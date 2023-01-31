@@ -31,8 +31,10 @@ const Index = () => {
 const IndexWrap = styled.div`
     padding-right: 100px;
     padding-left: 100px;
+    /* padding-right: 20%;
+    padding-left: 20%;*/ 
     box-sizing: border-box;
-    width: 100%;
+    /* width: 100%; */
     height: 100%;
     display: flex;
     flex-direction: column;

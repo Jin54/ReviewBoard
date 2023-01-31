@@ -1,7 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import ImgComponent from './ImageComponent'
 import RestaurantModal from './RestaurantModal'
+
+const { kakao } = window;
 
 const Body = () => {
   // 도시 선택 버튼
@@ -22,9 +24,21 @@ const Body = () => {
 // 만약에 아래에서 위로 슬라이드 하고 싶다면 여기 참고
 // https://velog.io/@qhdgkdbs/React%EC%97%90%EC%84%9C-ios-%ED%9D%89%EB%82%B4%EB%82%B4%EA%B8%B0-Slide-Up-Modal-%EA%B5%AC%ED%98%84
 
+//카카오 맵 api 설정
+useEffect(() => {
+    var container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스
+    var options = {
+      //지도를 생성할 때 필요한 기본 옵션
+      center: new kakao.maps.LatLng(36, 127.570667), //지도의 중심좌표. 필수값
+      level: 12, //지도의 레벨(확대, 축소 정도)
+    };
+
+    var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+  }, []);
+
   return (
     <BodyWrap>
-        <Map></Map>
+        <Map id="map"></Map>
         <MapBtns>
             <SelectRegion onClick={openRegion}>지역 선택</SelectRegion>
         </MapBtns>

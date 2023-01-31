@@ -19,7 +19,7 @@
         - ListPage
             - ListContent : 메인 -> 리스트 보기 -> 리스트 하나 컴포넌트
         - RestaurantModal : 선택한 맛집 상세 페이지
-
+            - ReviewModal : 선택한 맛집 상세 페이지 -> 더보기 리뷰 전체
     pages 폴더
         -Index  
             <Header>
