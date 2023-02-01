@@ -6,6 +6,7 @@ import Body from '../components/Body'
 import ListPage from '../components/ListPage'
 import Footer from '../components/Footer'
 import RestaurantModal from "../components/RestaurantModal";
+import RestaurantReviewModal from '../components/RestaurantReviewModal'
 
 const Index = () => {
   // 지도보기 & 리스트 버튼 클릭시 해당 페이지 보이기
@@ -28,6 +29,15 @@ const Index = () => {
     setRestaurantModal(false)
   }
 
+  // 더보기 클릭 시 전체 리뷰 모달
+  const [allReview, setAllReview] = useState(false)
+  const openAllReivew = () => {
+    setAllReview(true)
+  }
+  const closeAllReview = () => {
+    setAllReview(false)
+  }
+
   return (
     <IndexWrap>
         <Header />
@@ -42,9 +52,15 @@ const Index = () => {
         }
         {restauratModal && 
           <RestaurantModal
-            detailModalClose={detailModalClose}  
+            detailModalClose={detailModalClose} 
+            openAllReivew={openAllReivew} 
         />
-      }
+        }
+        {allReview && 
+          <RestaurantReviewModal 
+          closeAllReview={closeAllReview}
+          />
+        }
         <Footer />
     </IndexWrap>
   )

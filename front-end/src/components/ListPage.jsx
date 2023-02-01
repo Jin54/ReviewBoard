@@ -57,7 +57,7 @@ const ListContent = (props) => {
 
 const ListContentWrap = styled.div`
     background: #FFFFFF;
-    border: 1px solid rgba(255, 5, 95, 0.2);
+    border: 1px solid #C09567;
     border-radius: 10px;
     width: 49%;
     margin-bottom: 2.5%;
@@ -79,11 +79,13 @@ const ImgWrap = styled.div`
 `
 // ====== 오른쪽 설명
 const AboutWrap = styled.div`
-    
+    flex: 1;
 `
 // 매장명 & 주소
 const Top = styled.div`
     margin-bottom: 20px;
+    display: flex;
+    align-items: baseline;
 `
 const Title = styled.span`
     font-weight: 700;
@@ -95,6 +97,10 @@ const Address = styled.span`
     font-weight: 400;
     font-size: 15px;
     color: #999999;
+    width: 50%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 `
 // 별점 & 아이콘
 const Middle = styled.div`
