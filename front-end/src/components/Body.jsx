@@ -7,7 +7,8 @@ import Slider from "./Slider";
 import { useDispatch, useSelector } from "react-redux";
 import { increase, decrease } from "../modules/mapSize";
 
-import compass from "./../img/mapCompass.svg";
+// import compass from "./../img/mapCompass.svg";
+import ImgComponent from "./ImageComponent";
 
 const Body = () => {
   //지역 선택 모달
@@ -28,18 +29,32 @@ const Body = () => {
   const sizeUp = useCallback(() => dispatch(decrease()), [dispatch]);
   const sizeDown = useCallback(() => dispatch(increase()), [dispatch]);
 
+  // <SelectRegion onClick={openRegion}>지역 선택</SelectRegion>
+  //       <Location top="120"><ImgComponent src={'gps.png'} width={'100%'} /></Location>
+  //       <MapSize top="0" onClick={() => sizeUp()}>
+  //         +
+  //       </MapSize>
+  //       <MapSize top="120" onClick={() => sizeDown()}>
+  //         -
+  //       </MapSize>
   return (
     <BodyWrap>
       <Map size={size} />
       <MapBtns>
-        <SelectRegion onClick={openRegion}>지역 선택</SelectRegion>
-        <Location top="120"></Location>
-        <MapSize top="0" onClick={() => sizeUp()}>
-          +
-        </MapSize>
-        <MapSize top="120" onClick={() => sizeDown()}>
-          -
-        </MapSize>
+        <MapBtnsLeft>
+          <SelectRegion onClick={openRegion}>지역 선택</SelectRegion>
+          <Location top="120">
+            <ImgComponent src={'gps.png'} width={'100%'} />
+          </Location>
+        </MapBtnsLeft>
+        <MapBtnsRight>
+          <MapSize top="0" onClick={() => sizeUp()}>
+            <ImgComponent src={'plus.png'} width={'100%'} />
+          </MapSize>
+          <MapSize top="120" onClick={() => sizeDown()}>
+            <ImgComponent src={'minus.png'} width={'100%'} />
+          </MapSize>
+        </MapBtnsRight>
       </MapBtns>
       <Slider></Slider>
       {showRegion && <RegionListModal closeRegion={closeRegion} />}
@@ -58,56 +73,72 @@ const BodyWrap = styled.div`
   overflow: hidden;
   margin-top: 40px;
   position: relative;
-`;
-
-//수정됨-보민
+  @media screen and (max-width: 1000px) {
+    margin-top: 20px;
+    width: 100%;
+  }
+`
 const MapBtns = styled.div`
   position: absolute;
-  left: 5%;
+  left: 50%;
+  width: 90%;
+  transform: translateX(-50%);
   top: 7%;
   z-index: 10;
-`;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
 const BtnStyle = styled.div`
   background: #16312c;
   border-radius: 10px;
   color: #fff;
   font-weight: 700;
-  font-size: 50px;
+  font-size: 18px;
   padding: 10px;
-  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
-  font-size: 20px;
-`;
-const SelectRegion = styled(BtnStyle)`
-  /* height: 90px;
-  width: 250px; 수정됨-하림*/ 
-  /* height: 40px; */
-  /* width: 100px; */
-  font-size: 20px;
+  height: 20px;
 `
+const MapBtnsLeft = styled.div``
+const MapBtnsRight = styled.div``
+const SelectRegion = styled(BtnStyle)``
 const Location = styled(BtnStyle)`
-  height: 30px;
-  width: 30px;
-  /* position: absolute; */
-  left: 0%;
-  top: ${(props) => props.top}%;
-  background-repeat: no-repeat;
-  background-size: 80%;
-  background-position: center;
-  padding: 20px;
-  margin-top: 20px;
-  background-image: url(${compass});
-`;
+  width: 20px;
+  margin-top: 10px;
+`
 const MapSize = styled(BtnStyle)`
-  height: 30px;
-  width: 30px;
-  /* position: absolute; */
-  left: 400%;
-  padding: 10px;
-  top: ${(props) => props.top}%;
-`;
+  width: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+`
+
+
+//수정됨-보민
+// const SelectRegion = styled(BtnStyle)`
+//   /* height: 90px;
+//   width: 250px; 수정됨-하림*/ 
+//   /* height: 40px; */
+//   /* width: 100px; */
+//   font-size: 20px;
+// `
+// const Location = styled(BtnStyle)`
+//   height: 30px;
+//   width: 30px;
+//   /* position: absolute; */
+//   /* left: 0%; */
+//   /* top: ${(props) => props.top}%; */
+//   /* padding: 20px; */
+//   margin-top: 20px;
+// `;
+// const MapSize = styled(BtnStyle)`
+//   height: 30px;
+//   width: 30px;
+//   /* position: absolute; */
+//   /* left: 400%; */
+//   /* padding: 10px; */
+//   /* top: ${(props) => props.top}%; */
+// `;
 
 export default Body;

@@ -67,15 +67,16 @@ const Index = () => {
 }
 
 const IndexWrap = styled.div`
-    /* padding-right: 100px;
-    padding-left: 100px; */
     padding-right: 5%;
     padding-left: 5%;
     box-sizing: border-box;
-    /* width: 100%; */
     height: 100%;
     display: flex;
     flex-direction: column;
+    @media screen and (max-width: 1000px) {
+      padding-left: 8%;
+      padding-right: 8%;
+  }
 `
 
 export default Index
@@ -95,7 +96,7 @@ const MapOrListWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 40%;
+  width: 60%;
   margin: auto;
   margin-top: 40px;
   flex: 0;
@@ -106,6 +107,9 @@ const MapBtn = styled.p`
   font-weight: 400;
   font-size: 20px;
   color: ${props=>props.selected ? '#000' : '#999'};
+  @media screen and (max-width: 1000px) {
+    font-size: 12px;
+  }
 `
 const ListBtn = styled.p`
   margin: 0;
@@ -113,4 +117,7 @@ const ListBtn = styled.p`
   font-weight: 400;
   font-size: 20px;
   color: ${props=>props.selected ? '#000' : '#999'};
+  @media screen and (max-width: 1000px) {
+    font-size: 12px;
+  }
 `

@@ -22,7 +22,7 @@ const Slider = () => {
 };
 
 const SliderWrap = styled.div`
-  height: 200px;
+  height: 120px;
   width: 100%;
   position: absolute;
   bottom: 0;

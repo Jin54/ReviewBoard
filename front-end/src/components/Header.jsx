@@ -36,6 +36,9 @@ const FoodBtn = styled.div`
     border-bottom:  0px solid #C09567;
     padding-bottom: ${props=>props.selected && '10px'};
     border-bottom: ${props=>props.selected && '4px'};
+  @media screen and (max-width: 1000px) {
+   display: none;
+  }
 `
 const HospitalBtn = styled.div`
     margin-left: 70px;
@@ -46,19 +49,25 @@ const HospitalBtn = styled.div`
     border-bottom:  0px solid #C09567;
     padding-bottom: ${props=>props.selected && '10px'};
     border-bottom: ${props=>props.selected && '4px'};
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
 `
 
 // ============
 const Question = styled.div`
     border: 1.5px solid #C09567;
     border-radius: 50px;
-    padding: 10px;
+    padding: 7px;
     font-weight: 700;
     font-size: 16px;
     text-align: center;
     color: #C09567;
-    width: 120px;
+    width: 100px;
     box-sizing: border-box;
+    @media screen and (max-width: 1000px) {
+    display: none;
+  }
 `
 
 export default Header

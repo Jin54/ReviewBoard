@@ -21,6 +21,9 @@ const AppWrap = styled.div`
   width: 50%;
   margin: auto;
   overflow: hidden;
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }
 `
 
 export default App;

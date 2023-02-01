@@ -22,8 +22,12 @@ const Footer = () => {
 const FooterWrap = styled.div`
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
     margin-top: 40px;
     margin-bottom: 20px;
+    @media screen and (max-width: 1000px) {
+        flex-direction: column-reverse;
+    }
 `
 // =========
 const FooterLeft = styled.div`
@@ -32,22 +36,34 @@ const FooterLeft = styled.div`
 const Privacy = styled.div`
     margin-bottom: 40px; 
     font-weight: 700;
-    font-size: 16px;
+    font-size: 14px;
     color: #000000;
+    @media screen and (max-width: 1000px) {
+        font-size: 12px;
+        margin-bottom: 10px; 
+    }
 `
 const TOS = styled.div`
     font-weight: 700;
-    font-size: 16px;
+    font-size: 14px;
     color: #000000;
+    @media screen and (max-width: 1000px) {
+        font-size: 12px;
+    }
 `
 
 // ========
-const FooterRight = styled.div`
-    margin-left: 210px;
+const FooterRight = styled.p`
+    margin: 0;
     font-weight: 100;
-    font-size: 16px;
-    line-height: 29px;
+    font-size: 12px;
+    line-height: 24px;
     color: #000000;
+    @media screen and (max-width: 1000px) {
+        font-size: 11px;
+        line-height: 16px;
+        margin-bottom: 15px;
+    }
 `
 
 export default Footer
