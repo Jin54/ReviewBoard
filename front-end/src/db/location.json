@@ -1,0 +1,1398 @@
+{
+  "locations": [
+    {
+      "id": "1",
+      "name": "서울",
+      "english": "seoul"
+    },
+    {
+      "id": "2",
+      "name": "경기",
+      "english": "gyeonggi"
+    },
+    {
+      "id": "3",
+      "name": "인천",
+      "english": "incheon"
+    },
+    {
+      "id": "4",
+      "name": "부산",
+      "english": "busan"
+    },
+    {
+      "id": "5",
+      "name": "대구",
+      "english": "daegu"
+    },
+    {
+      "id": "6",
+      "name": "대전",
+      "english": "deajeon"
+    },
+    {
+      "id": "7",
+      "name": "울산",
+      "english": "ulsan"
+    },
+    {
+      "id": "8",
+      "name": "세종",
+      "english": "sejong"
+    },
+    {
+      "id": "9",
+      "name": "강원",
+      "english": "gangwon"
+    },
+    {
+      "id": "10",
+      "name": "충북",
+      "english": "chungbuk"
+    },
+    {
+      "id": "11",
+      "name": "충남",
+      "english": "chungnam"
+    },
+    {
+      "id": "12",
+      "name": "광주",
+      "english": "gwangju"
+    },
+    {
+      "id": "13",
+      "name": "전북",
+      "english": "jeonbuk"
+    },
+    {
+      "id": "14",
+      "name": "전남",
+      "english": "jeonnam"
+    },
+
+    {
+      "id": "15",
+      "name": "경북",
+      "english": "gyeongbuk"
+    },
+    {
+      "id": "16",
+      "name": "경남",
+      "english": "gyeongnam"
+    },
+    {
+      "id": "17",
+      "name": "제주",
+      "english": "jeju"
+    }
+  ],
+  "citys": [
+    {
+      "id": "1",
+      "location": "서울",
+      "name": "강남구"
+    },
+    {
+      "id": "2",
+      "location": "서울",
+      "name": "강동구"
+    },
+    {
+      "id": "3",
+      "location": "서울",
+      "name": "강북구"
+    },
+    {
+      "id": "4",
+      "location": "서울",
+      "name": "강서구"
+    },
+    {
+      "id": "5",
+      "location": "서울",
+      "name": "관악구"
+    },
+    {
+      "id": "6",
+      "location": "서울",
+      "name": "광진구"
+    },
+    {
+      "id": "7",
+      "location": "서울",
+      "name": "구로구"
+    },
+    {
+      "id": "8",
+      "location": "서울",
+      "name": "금천구"
+    },
+    {
+      "id": "9",
+      "location": "서울",
+      "name": "노원구"
+    },
+    {
+      "id": "10",
+      "location": "서울",
+      "name": "도봉구"
+    },
+    {
+      "id": "11",
+      "location": "서울",
+      "name": "동대문구"
+    },
+    {
+      "id": "12",
+      "location": "서울",
+      "name": "동작구"
+    },
+    {
+      "id": "13",
+      "location": "서울",
+      "name": "마포구"
+    },
+    {
+      "id": "14",
+      "location": "서울",
+      "name": "서대문구"
+    },
+    {
+      "id": "15",
+      "location": "서울",
+      "name": "서초구"
+    },
+    {
+      "id": "16",
+      "location": "서울",
+      "name": "성동구"
+    },
+    {
+      "id": "17",
+      "location": "서울",
+      "name": "성북구"
+    },
+    {
+      "id": "18",
+      "location": "서울",
+      "name": "송파구"
+    },
+    {
+      "id": "19",
+      "location": "서울",
+      "name": "양천구"
+    },
+    {
+      "id": "20",
+      "location": "서울",
+      "name": "영등포구"
+    },
+    {
+      "id": "21",
+      "location": "서울",
+      "name": "용산구"
+    },
+    {
+      "id": "22",
+      "location": "서울",
+      "name": "은평구"
+    },
+    {
+      "id": "23",
+      "location": "서울",
+      "name": "종로구"
+    },
+    {
+      "id": "24",
+      "location": "서울",
+      "name": "중구"
+    },
+    {
+      "id": "25",
+      "location": "서울",
+      "name": "중랑구"
+    },
+    {
+      "id": "26",
+      "location": "경기",
+      "name": "가평군",
+      "english": "gapyeong"
+    },
+    {
+      "id": "27",
+      "location": "경기",
+      "name": "고양시",
+      "english": "goyang"
+    },
+    {
+      "id": "28",
+      "location": "경기",
+      "name": "과천시",
+      "english": "gwacheon"
+    },
+    {
+      "id": "29",
+      "location": "경기",
+      "name": "광명시",
+      "english": "gwangmyeong"
+    },
+    {
+      "id": "30",
+      "location": "경기",
+      "name": "광주시",
+      "english": "gwangju"
+    },
+    {
+      "id": "31",
+      "location": "경기",
+      "name": "구리시",
+      "english": "guri"
+    },
+    {
+      "id": "32",
+      "location": "경기",
+      "name": "군포시",
+      "english": "gunpo"
+    },
+    {
+      "id": "33",
+      "location": "경기",
+      "name": "김포시",
+      "english": "gimpo"
+    },
+    {
+      "id": "34",
+      "location": "경기",
+      "name": "남양주시",
+      "english": "namyangju"
+    },
+    {
+      "id": "35",
+      "location": "경기",
+      "name": "동두천시",
+      "english": "dongducheon"
+    },
+    {
+      "id": "36",
+      "location": "경기",
+      "name": "부천시",
+      "english": "bucheon"
+    },
+    {
+      "id": "37",
+      "location": "경기",
+      "name": "성남시",
+      "english": "seongnam"
+    },
+    {
+      "id": "38",
+      "location": "경기",
+      "name": "수원시",
+      "english": "suwon"
+    },
+    {
+      "id": "39",
+      "location": "경기",
+      "name": "시흥시",
+      "english": "siheung"
+    },
+    {
+      "id": "40",
+      "location": "경기",
+      "name": "안산시",
+      "english": "ansan"
+    },
+    {
+      "id": "41",
+      "location": "경기",
+      "name": "안성시",
+      "english": "anseong"
+    },
+    {
+      "id": "42",
+      "location": "경기",
+      "name": "안양시",
+      "english": "anyang"
+    },
+    {
+      "id": "43",
+      "location": "경기",
+      "name": "양주시",
+      "english": "yangju"
+    },
+    {
+      "id": "44",
+      "location": "경기",
+      "name": "양평군",
+      "english": "yangpyeong"
+    },
+    {
+      "id": "45",
+      "location": "경기",
+      "name": "여주시",
+      "english": "yeoju"
+    },
+    {
+      "id": "46",
+      "location": "경기",
+      "name": "연천군",
+      "english": "yeoncheon"
+    },
+    {
+      "id": "47",
+      "location": "경기",
+      "name": "오산시",
+      "english": "osan"
+    },
+    {
+      "id": "48",
+      "location": "경기",
+      "name": "용인시",
+      "english": "yongin"
+    },
+    {
+      "id": "49",
+      "location": "경기",
+      "name": "의왕시",
+      "english": "uiwang"
+    },
+    {
+      "id": "50",
+      "location": "경기",
+      "name": "의정부시",
+      "english": "uijeongbu"
+    },
+    {
+      "id": "51",
+      "location": "경기",
+      "name": "이천시",
+      "english": "icheon"
+    },
+    {
+      "id": "52",
+      "location": "경기",
+      "name": "파주시",
+      "english": "paju"
+    },
+    {
+      "id": "53",
+      "location": "경기",
+      "name": "평택시",
+      "english": "pyeongtaek"
+    },
+    {
+      "id": "54",
+      "location": "경기",
+      "name": "포천시",
+      "english": "pocheon"
+    },
+    {
+      "id": "55",
+      "location": "경기",
+      "name": "하남시",
+      "english": "hanam"
+    },
+    {
+      "id": "56",
+      "location": "경기",
+      "name": "화성시",
+      "english": "hwaseong"
+    },
+    {
+      "id": "57",
+      "location": "인천",
+      "name": "강화군"
+    },
+    {
+      "id": "58",
+      "location": "인천",
+      "name": "옹진군"
+    },
+    {
+      "id": "59",
+      "location": "인천",
+      "name": "중구"
+    },
+    {
+      "id": "60",
+      "location": "인천",
+      "name": "동구"
+    },
+    {
+      "id": "61",
+      "location": "인천",
+      "name": "미추홀구"
+    },
+    {
+      "id": "62",
+      "location": "인천",
+      "name": "연수구"
+    },
+    {
+      "id": "63",
+      "location": "인천",
+      "name": "남동구"
+    },
+    {
+      "id": "64",
+      "location": "인천",
+      "name": "부평구"
+    },
+    {
+      "id": "65",
+      "location": "인천",
+      "name": "계양구"
+    },
+    {
+      "id": "66",
+      "location": "인천",
+      "name": "서구"
+    },
+    {
+      "id": "67",
+      "location": "부산",
+      "name": "강서구"
+    },
+    {
+      "id": "68",
+      "location": "부산",
+      "name": "금정구"
+    },
+    {
+      "id": "69",
+      "location": "부산",
+      "name": "남구"
+    },
+    {
+      "id": "70",
+      "location": "부산",
+      "name": "동구"
+    },
+    {
+      "id": "71",
+      "location": "부산",
+      "name": "동래구"
+    },
+    {
+      "id": "72",
+      "location": "부산",
+      "name": "부산진구"
+    },
+    {
+      "id": "73",
+      "location": "부산",
+      "name": "북구"
+    },
+    {
+      "id": "74",
+      "location": "부산",
+      "name": "사상구"
+    },
+    {
+      "id": "75",
+      "location": "부산",
+      "name": "사하구"
+    },
+    {
+      "id": "76",
+      "location": "부산",
+      "name": "서구"
+    },
+    {
+      "id": "77",
+      "location": "부산",
+      "name": "수영구"
+    },
+    {
+      "id": "78",
+      "location": "부산",
+      "name": "연제구"
+    },
+    {
+      "id": "79",
+      "location": "부산",
+      "name": "영도구"
+    },
+    {
+      "id": "80",
+      "location": "부산",
+      "name": "중구"
+    },
+    {
+      "id": "81",
+      "location": "부산",
+      "name": "해운대구"
+    },
+    {
+      "id": "82",
+      "location": "대구",
+      "name": "남구"
+    },
+    {
+      "id": "83",
+      "location": "대구",
+      "name": "달서구"
+    },
+    {
+      "id": "84",
+      "location": "대구",
+      "name": "동구"
+    },
+    {
+      "id": "85",
+      "location": "대구",
+      "name": "북구"
+    },
+    {
+      "id": "86",
+      "location": "대구",
+      "name": "서구"
+    },
+    {
+      "id": "87",
+      "location": "대구",
+      "name": "수성구"
+    },
+    {
+      "id": "88",
+      "location": "대구",
+      "name": "중구"
+    },
+    {
+      "id": "89",
+      "location": "대전",
+      "name": "동구"
+    },
+    {
+      "id": "90",
+      "location": "대전",
+      "name": "중구"
+    },
+    {
+      "id": "91",
+      "location": "대전",
+      "name": "서구"
+    },
+    {
+      "id": "92",
+      "location": "대전",
+      "name": "유성구"
+    },
+    {
+      "id": "93",
+      "location": "대전",
+      "name": "대덕구"
+    },
+    {
+      "id": "94",
+      "location": "울산",
+      "name": "중구"
+    },
+    {
+      "id": "95",
+      "location": "울산",
+      "name": "남구"
+    },
+    {
+      "id": "96",
+      "location": "울산",
+      "name": "동구"
+    },
+    {
+      "id": "97",
+      "location": "울산",
+      "name": "북구"
+    },
+    {
+      "id": "98",
+      "location": "울산",
+      "name": "울주군"
+    },
+    {
+      "id": "100",
+      "location": "세종",
+      "name": "조치원읍"
+    },
+    {
+      "id": "101",
+      "location": "세종",
+      "name": "연기면"
+    },
+    {
+      "id": "102",
+      "location": "세종",
+      "name": "연동면"
+    },
+    {
+      "id": "103",
+      "location": "세종",
+      "name": "부강면"
+    },
+    {
+      "id": "104",
+      "location": "세종",
+      "name": "금남면"
+    },
+    {
+      "id": "105",
+      "location": "세종",
+      "name": "장군면"
+    },
+    {
+      "id": "106",
+      "location": "세종",
+      "name": "연서면"
+    },
+    {
+      "id": "107",
+      "location": "세종",
+      "name": "전의면"
+    },
+    {
+      "id": "108",
+      "location": "세종",
+      "name": "전동면"
+    },
+    {
+      "id": "109",
+      "location": "세종",
+      "name": "소정면"
+    },
+    {
+      "id": "110",
+      "location": "세종",
+      "name": "한솔동"
+    },
+    {
+      "id": "111",
+      "location": "세종",
+      "name": "도담동"
+    },
+    {
+      "id": "112",
+      "location": "세종",
+      "name": "아름동"
+    },
+    {
+      "id": "113",
+      "location": "세종",
+      "name": "종촌동"
+    },
+    {
+      "id": "114",
+      "location": "세종",
+      "name": "고운동"
+    },
+    {
+      "id": "115",
+      "location": "세종",
+      "name": "보람동"
+    },
+    {
+      "id": "116",
+      "location": "세종",
+      "name": "새롬동"
+    },
+    {
+      "id": "117",
+      "location": "세종",
+      "name": "대평동"
+    },
+    {
+      "id": "118",
+      "location": "세종",
+      "name": "소담동"
+    },
+    {
+      "id": "119",
+      "location": "세종",
+      "name": "다정동"
+    },
+    {
+      "id": "120",
+      "location": "세종",
+      "name": "해밀동"
+    },
+    {
+      "id": "121",
+      "location": "세종",
+      "name": "반곡동"
+    },
+    {
+      "id": "122",
+      "location": "강원",
+      "name": "춘천시"
+    },
+    {
+      "id": "123",
+      "location": "강원",
+      "name": "원주시"
+    },
+    {
+      "id": "124",
+      "location": "강원",
+      "name": "강릉시"
+    },
+    {
+      "id": "125",
+      "location": "강원",
+      "name": "동해시"
+    },
+    {
+      "id": "126",
+      "location": "강원",
+      "name": "태백시"
+    },
+    {
+      "id": "127",
+      "location": "강원",
+      "name": "속초시"
+    },
+    {
+      "id": "128",
+      "location": "강원",
+      "name": "삼척시"
+    },
+    {
+      "id": "129",
+      "location": "강원",
+      "name": "홍천군"
+    },
+    {
+      "id": "130",
+      "location": "강원",
+      "name": "횡성군"
+    },
+    {
+      "id": "131",
+      "location": "강원",
+      "name": "영월군"
+    },
+    {
+      "id": "132",
+      "location": "강원",
+      "name": "평창군"
+    },
+    {
+      "id": "133",
+      "location": "강원",
+      "name": "정선군"
+    },
+    {
+      "id": "134",
+      "location": "강원",
+      "name": "철원군"
+    },
+    {
+      "id": "135",
+      "location": "강원",
+      "name": "화천군"
+    },
+    {
+      "id": "136",
+      "location": "강원",
+      "name": "양구군"
+    },
+    {
+      "id": "137",
+      "location": "강원",
+      "name": "인제군"
+    },
+    {
+      "id": "138",
+      "location": "강원",
+      "name": "고성군"
+    },
+    {
+      "id": "139",
+      "location": "강원",
+      "name": "양양군"
+    },
+    {
+      "id": "140",
+      "location": "충북",
+      "name": "청주시"
+    },
+    {
+      "id": "141",
+      "location": "충북",
+      "name": "상당구"
+    },
+    {
+      "id": "142",
+      "location": "충북",
+      "name": "서원구"
+    },
+    {
+      "id": "143",
+      "location": "충북",
+      "name": "흥덕구"
+    },
+    {
+      "id": "144",
+      "location": "충북",
+      "name": "청원구"
+    },
+    {
+      "id": "145",
+      "location": "충북",
+      "name": "충주시"
+    },
+    {
+      "id": "146",
+      "location": "충북",
+      "name": "제천시"
+    },
+    {
+      "id": "147",
+      "location": "충북",
+      "name": "보은군"
+    },
+    {
+      "id": "148",
+      "location": "충북",
+      "name": "옥천군"
+    },
+    {
+      "id": "149",
+      "location": "충북",
+      "name": "영동군"
+    },
+    {
+      "id": "150",
+      "location": "충북",
+      "name": "증편군"
+    },
+    {
+      "id": "151",
+      "location": "충북",
+      "name": "진천군"
+    },
+    {
+      "id": "152",
+      "location": "충북",
+      "name": "괴산군"
+    },
+    {
+      "id": "153",
+      "location": "충북",
+      "name": "음성군"
+    },
+    {
+      "id": "154",
+      "location": "충북",
+      "name": "단양군"
+    },
+    {
+      "id": "155",
+      "location": "충남",
+      "name": "천안시"
+    },
+    {
+      "id": "156",
+      "location": "충남",
+      "name": "공주시"
+    },
+    {
+      "id": "157",
+      "location": "충남",
+      "name": "보령시"
+    },
+    {
+      "id": "158",
+      "location": "충남",
+      "name": "아산시"
+    },
+    {
+      "id": "159",
+      "location": "충남",
+      "name": "서산시"
+    },
+    {
+      "id": "160",
+      "location": "충남",
+      "name": "논산시"
+    },
+    {
+      "id": "161",
+      "location": "충남",
+      "name": "계룡시"
+    },
+    {
+      "id": "162",
+      "location": "충남",
+      "name": "당진시"
+    },
+    {
+      "id": "163",
+      "location": "충남",
+      "name": "금산군"
+    },
+    {
+      "id": "164",
+      "location": "충남",
+      "name": "부여군"
+    },
+    {
+      "id": "165",
+      "location": "충남",
+      "name": "서천군"
+    },
+    {
+      "id": "166",
+      "location": "충남",
+      "name": "청양군"
+    },
+    {
+      "id": "167",
+      "location": "충남",
+      "name": "홍성군"
+    },
+    {
+      "id": "168",
+      "location": "충남",
+      "name": "예산군"
+    },
+    {
+      "id": "169",
+      "location": "충남",
+      "name": "태안군"
+    },
+    {
+      "id": "170",
+      "location": "광주",
+      "name": "동구"
+    },
+    {
+      "id": "171",
+      "location": "광주",
+      "name": "서구"
+    },
+    {
+      "id": "172",
+      "location": "광주",
+      "name": "남구"
+    },
+    {
+      "id": "173",
+      "location": "광주",
+      "name": "북구"
+    },
+    {
+      "id": "174",
+      "location": "광주",
+      "name": "광산구"
+    },
+    {
+      "id": "175",
+      "location": "전북",
+      "name": "전주시"
+    },
+    {
+      "id": "176",
+      "location": "전북",
+      "name": "군산시"
+    },
+    {
+      "id": "177",
+      "location": "전북",
+      "name": "익산시"
+    },
+    {
+      "id": "178",
+      "location": "전북",
+      "name": "정읍시"
+    },
+    {
+      "id": "179",
+      "location": "전북",
+      "name": "남원시"
+    },
+    {
+      "id": "180",
+      "location": "전북",
+      "name": "김제시"
+    },
+    {
+      "id": "181",
+      "location": "전북",
+      "name": "완주군"
+    },
+    {
+      "id": "182",
+      "location": "전북",
+      "name": "진안군"
+    },
+    {
+      "id": "183",
+      "location": "전북",
+      "name": "무주군"
+    },
+    {
+      "id": "184",
+      "location": "전북",
+      "name": "장수군"
+    },
+    {
+      "id": "185",
+      "location": "전북",
+      "name": "임실군"
+    },
+    {
+      "id": "186",
+      "location": "전북",
+      "name": "순창군"
+    },
+    {
+      "id": "187",
+      "location": "전북",
+      "name": "고창군"
+    },
+    {
+      "id": "188",
+      "location": "전북",
+      "name": "부안군"
+    },
+    {
+      "id": "189",
+      "location": "전남",
+      "name": "목포시"
+    },
+    {
+      "id": "190",
+      "location": "전남",
+      "name": "여수시"
+    },
+    {
+      "id": "191",
+      "location": "전남",
+      "name": "순천시"
+    },
+    {
+      "id": "192",
+      "location": "전남",
+      "name": "나주시"
+    },
+    {
+      "id": "193",
+      "location": "전남",
+      "name": "광양시"
+    },
+    {
+      "id": "194",
+      "location": "전남",
+      "name": "담양군"
+    },
+    {
+      "id": "195",
+      "location": "전남",
+      "name": "곡성군"
+    },
+    {
+      "id": "196",
+      "location": "전남",
+      "name": "구례군"
+    },
+    {
+      "id": "197",
+      "location": "전남",
+      "name": "고흥군"
+    },
+    {
+      "id": "198",
+      "location": "전남",
+      "name": "보성군"
+    },
+    {
+      "id": "199",
+      "location": "전남",
+      "name": "화순군"
+    },
+    {
+      "id": "200",
+      "location": "전남",
+      "name": "장흥군"
+    },
+    {
+      "id": "201",
+      "location": "전남",
+      "name": "강진군"
+    },
+    {
+      "id": "202",
+      "location": "전남",
+      "name": "해남군"
+    },
+    {
+      "id": "203",
+      "location": "전남",
+      "name": "영암군"
+    },
+    {
+      "id": "204",
+      "location": "경북",
+      "name": "포항시"
+    },
+    {
+      "id": "205",
+      "location": "경북",
+      "name": "경주시"
+    },
+    {
+      "id": "206",
+      "location": "경북",
+      "name": "김천시"
+    },
+    {
+      "id": "207",
+      "location": "경북",
+      "name": "안동시"
+    },
+    {
+      "id": "208",
+      "location": "경북",
+      "name": "구미시"
+    },
+    {
+      "id": "209",
+      "location": "경북",
+      "name": "영주시"
+    },
+    {
+      "id": "210",
+      "location": "경북",
+      "name": "영천시"
+    },
+    {
+      "id": "211",
+      "location": "경북",
+      "name": "상주시"
+    },
+    {
+      "id": "212",
+      "location": "경북",
+      "name": "문경시"
+    },
+    {
+      "id": "213",
+      "location": "경북",
+      "name": "경산시"
+    },
+    {
+      "id": "214",
+      "location": "경북",
+      "name": "군위군"
+    },
+    {
+      "id": "215",
+      "location": "경북",
+      "name": "의성군"
+    },
+    {
+      "id": "216",
+      "location": "경북",
+      "name": "청송군"
+    },
+    {
+      "id": "217",
+      "location": "경북",
+      "name": "영양군"
+    },
+    {
+      "id": "218",
+      "location": "경북",
+      "name": "영덕군"
+    },
+    {
+      "id": "219",
+      "location": "경북",
+      "name": "청도군"
+    },
+    {
+      "id": "220",
+      "location": "경북",
+      "name": "고령군"
+    },
+    {
+      "id": "230",
+      "location": "경북",
+      "name": "성주군"
+    },
+    {
+      "id": "240",
+      "location": "경북",
+      "name": "칠곡군"
+    },
+    {
+      "id": "250",
+      "location": "경북",
+      "name": "예천군"
+    },
+    {
+      "id": "251",
+      "location": "경북",
+      "name": "봉화군"
+    },
+    {
+      "id": "252",
+      "location": "경북",
+      "name": "울진군"
+    },
+    {
+      "id": "253",
+      "location": "경북",
+      "name": "울릉군"
+    },
+    {
+      "id": "254",
+      "location": "경남",
+      "name": "거제시"
+    },
+    {
+      "id": "255",
+      "location": "경남",
+      "name": "거창군"
+    },
+    {
+      "id": "256",
+      "location": "경남",
+      "name": "고성군"
+    },
+    {
+      "id": "257",
+      "location": "경남",
+      "name": "김해시"
+    },
+    {
+      "id": "258",
+      "location": "경남",
+      "name": "남해군"
+    },
+    {
+      "id": "259",
+      "location": "경남",
+      "name": "밀양시"
+    },
+    {
+      "id": "260",
+      "location": "경남",
+      "name": "사천시"
+    },
+    {
+      "id": "261",
+      "location": "경남",
+      "name": "산청군"
+    },
+    {
+      "id": "262",
+      "location": "경남",
+      "name": "양산시"
+    },
+    {
+      "id": "263",
+      "location": "경남",
+      "name": "의령군"
+    },
+    {
+      "id": "264",
+      "location": "경남",
+      "name": "진주시"
+    },
+    {
+      "id": "265",
+      "location": "경남",
+      "name": "창녕군"
+    },
+    {
+      "id": "266",
+      "location": "경남",
+      "name": "창원시"
+    },
+    {
+      "id": "267",
+      "location": "경남",
+      "name": "통영시"
+    },
+    {
+      "id": "268",
+      "location": "경남",
+      "name": "하동군"
+    },
+    {
+      "id": "269",
+      "location": "경남",
+      "name": "함안군"
+    },
+    {
+      "id": "270",
+      "location": "경남",
+      "name": "함양군"
+    },
+    {
+      "id": "271",
+      "location": "경남",
+      "name": "합천군"
+    },
+    {
+      "id": "272",
+      "location": "제주",
+      "name": "한경면"
+    },
+    {
+      "id": "273",
+      "location": "제주",
+      "name": "한림읍"
+    },
+    {
+      "id": "274",
+      "location": "제주",
+      "name": "애월읍"
+    },
+    {
+      "id": "275",
+      "location": "제주",
+      "name": "제주시"
+    },
+    {
+      "id": "276",
+      "location": "제주",
+      "name": "조천읍"
+    },
+    {
+      "id": "277",
+      "location": "제주",
+      "name": "구좌읍"
+    },
+    {
+      "id": "278",
+      "location": "제주",
+      "name": "대정읍"
+    },
+    {
+      "id": "279",
+      "location": "제주",
+      "name": "안덕면"
+    },
+    {
+      "id": "280",
+      "location": "제주",
+      "name": "시내동"
+    },
+    {
+      "id": "281",
+      "location": "제주",
+      "name": "남원읍"
+    },
+    {
+      "id": "282",
+      "location": "제주",
+      "name": "표선면"
+    },
+    {
+      "id": "283",
+      "location": "제주",
+      "name": "성산읍"
+    }
+  ]
+}
