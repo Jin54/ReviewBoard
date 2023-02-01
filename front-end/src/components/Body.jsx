@@ -48,14 +48,15 @@ const Body = () => {
 };
 
 const BodyWrap = styled.div`
-  width: 100%;
+  width: 80%;
+  margin: auto;
   box-sizing: border-box;
   flex: 1;
   border: 1px solid #c09567;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
-  margin-top: 100px;
+  margin-top: 40px;
   position: relative;
 `;
 
@@ -65,45 +66,47 @@ const MapBtns = styled.div`
   left: 5%;
   top: 7%;
   z-index: 10;
-  background-color: red;
 `;
 const BtnStyle = styled.div`
   background: #16312c;
-  border: 1px solid #c09567;
   border-radius: 10px;
   color: #fff;
   font-weight: 700;
   font-size: 50px;
-  line-height: 70px;
   padding: 10px;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+  font-size: 20px;
 `;
 const SelectRegion = styled(BtnStyle)`
-  height: 90px;
-  width: 250px;
-`;
+  /* height: 90px;
+  width: 250px; 수정됨-하림*/ 
+  /* height: 40px; */
+  /* width: 100px; */
+  font-size: 20px;
+`
 const Location = styled(BtnStyle)`
-  height: 90px;
-  width: 90px;
-
-  position: absolute;
+  height: 30px;
+  width: 30px;
+  /* position: absolute; */
   left: 0%;
   top: ${(props) => props.top}%;
-
   background-repeat: no-repeat;
   background-size: 80%;
   background-position: center;
+  padding: 20px;
+  margin-top: 20px;
   background-image: url(${compass});
 `;
 const MapSize = styled(BtnStyle)`
-  height: 90px;
-  width: 90px;
-
-  position: absolute;
+  height: 30px;
+  width: 30px;
+  /* position: absolute; */
   left: 400%;
+  padding: 10px;
   top: ${(props) => props.top}%;
 `;
 

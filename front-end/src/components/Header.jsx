@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <HeaderWrap>
         <HedaerLeftWrap>
-            <ImgComponent src={'logo.png'} width={'100px'}  />
+            <ImgComponent src={'logo.png'} width={'60px'}  />
             <FoodBtn>맛집</FoodBtn>
             <HospitalBtn>병원</HospitalBtn>
         </HedaerLeftWrap>
@@ -31,7 +31,7 @@ const FoodBtn = styled.div`
     margin-left: 100px;
     color: #000;
     font-weight: ${props=>props.selected ? '700' : '400'};
-    font-size: 20px;
+    font-size: 16px;
     letter-spacing: 0.01em;
     border-bottom:  0px solid #C09567;
     padding-bottom: ${props=>props.selected && '10px'};
@@ -41,7 +41,7 @@ const HospitalBtn = styled.div`
     margin-left: 70px;
     color: #000;
     font-weight: ${props=>props.selected ? '700' : '400'};
-    font-size: 20px;
+    font-size: 16px;
     letter-spacing: 0.01em;
     border-bottom:  0px solid #C09567;
     padding-bottom: ${props=>props.selected && '10px'};
@@ -54,11 +54,10 @@ const Question = styled.div`
     border-radius: 50px;
     padding: 10px;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     color: #C09567;
-    height: 54px;
-    width: 170px;
+    width: 120px;
     box-sizing: border-box;
 `
 

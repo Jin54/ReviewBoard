@@ -39,14 +39,18 @@ const RegionListModal = (props) => {
 
   return (
     <RegionSelectWrap>
-      <Close onClick={props.closeRegion}>
-        <ImgComponent src={"close.png"} width={"100%"} />
-      </Close>
-      <ListWrap>
-        <FlexWrap>{locationList}</FlexWrap>
-        <Divider />
-        <FlexWrap>{locationBtn === "" ? <></> : cityList}</FlexWrap>
-      </ListWrap>
+      <CloseWrap>
+        <Close onClick={props.closeRegion}>
+          <ImgComponent src={"close.png"} width={"100%"} />
+        </Close>
+      </CloseWrap>
+      <Box>
+        <ListWrap>
+          <FlexWrap>{locationList}</FlexWrap>
+          <Divider />
+          <FlexWrap>{locationBtn === "" ? <></> : cityList}</FlexWrap>
+        </ListWrap>
+      </Box>
     </RegionSelectWrap>
   );
 };
@@ -62,8 +66,21 @@ const RegionSelectWrap = styled.div`
   padding: 40px 22px;
   box-sizing: border-box;
   background-color: #fff;
-`;
-
+`
+const CloseWrap = styled.div`
+    &::after{
+      display: block;
+      content: '';
+      line-height: 0;
+      clear: both;
+    }
+    &::before{
+      display: block;
+      content: '';
+      line-height: 0;
+      clear: both;
+    }
+`
 const Close = styled.div`
   width: 17px;
   height: 17px;
@@ -72,7 +89,18 @@ const Close = styled.div`
   padding-right: 10px;
   margin-right: 1%;
   margin-top: 40px;
-`;
+`
+const Box = styled.div`
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  height: 100%;
+  padding-bottom: 120px;
+  box-sizing: border-box;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`
 // 리스트
 const ListWrap = styled.div`
   width: 100%;

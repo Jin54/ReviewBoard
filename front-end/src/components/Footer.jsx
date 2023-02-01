@@ -22,8 +22,8 @@ const Footer = () => {
 const FooterWrap = styled.div`
     display: flex;
     align-items: flex-start;
-    margin-top: 150px;
-    margin-bottom: 40px;
+    margin-top: 40px;
+    margin-bottom: 20px;
 `
 // =========
 const FooterLeft = styled.div`
@@ -32,12 +32,12 @@ const FooterLeft = styled.div`
 const Privacy = styled.div`
     margin-bottom: 40px; 
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
     color: #000000;
 `
 const TOS = styled.div`
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
     color: #000000;
 `
 
@@ -45,7 +45,7 @@ const TOS = styled.div`
 const FooterRight = styled.div`
     margin-left: 210px;
     font-weight: 100;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 29px;
     color: #000000;
 `

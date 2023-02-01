@@ -18,6 +18,8 @@ function App () {
 
 const AppWrap = styled.div`
   height: 100vh;
+  width: 50%;
+  margin: auto;
   overflow: hidden;
 `
 

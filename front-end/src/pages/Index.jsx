@@ -95,22 +95,22 @@ const MapOrListWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 50%;
+  width: 40%;
   margin: auto;
   margin-top: 40px;
   flex: 0;
 `
 const MapBtn = styled.p`
   margin: 0;
-  margin-right: 55px;
+  margin-right: 40px;
   font-weight: 400;
-  font-size: 50px;
+  font-size: 20px;
   color: ${props=>props.selected ? '#000' : '#999'};
 `
 const ListBtn = styled.p`
   margin: 0;
-  margin-left: 55px;
+  margin-left: 40px;
   font-weight: 400;
-  font-size: 50px;
+  font-size: 20px;
   color: ${props=>props.selected ? '#000' : '#999'};
 `
