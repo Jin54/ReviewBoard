@@ -5,7 +5,7 @@ export const increase = () => ({ type: INCREASE });
 export const decrease = () => ({ type: DECREASE });
 
 const initialState = {
-  number: 11,
+  number: 13,
 };
 
 function mapSize(state = initialState, action) {

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import ImgComponent from "./ImageComponent";
 import dummy from "./../db/restaurant.json";
+import { useDispatch } from "react-redux";
+import { change } from "../modules/restaurantModal";
 
 const ListPage = ({ detailModalOpen }) => {
   return (
@@ -27,17 +29,6 @@ const FlexWrap = styled.div`
 `;
 
 export default ListPage;
-
-// const ListContent = (props) => {
-// return (
-//   <ListContentWrap onClick={props.onClick}>
-//     <ImgWrap>
-//       <ImgComponent src={"ex01.png"} width={"100%"} />
-//     </ImgWrap>
-//     {RestaurantList}
-//   </ListContentWrap>
-// );
-// };
 
 const ListContentWrap = styled.div`
   background: #ffffff;
@@ -104,10 +95,22 @@ const Bottom = styled.p`
 `;
 
 function ListContent(detailModalOpen) {
-  return dummy.restaurant.map((restaurant) => (
-    <ListContentWrap onClick={detailModalOpen}>
+  //가게 클릭 시 해당 가게로 이름 변경 -> 모달창 이동
+  const dispatch = useDispatch();
+  const onClickSelect = useCallback(
+    (name) => dispatch(change(name)),
+    [dispatch]
+  );
+
+  return dummy.restaurants.map((restaurant) => (
+    <ListContentWrap
+      onClick={() => {
+        onClickSelect(restaurant.title);
+        detailModalOpen();
+      }}
+    >
       <ImgWrap>
-        <ImgComponent src={restaurant.img} width={"100%"} />
+        <ImgComponent src={"ex01.png"} width={"100%"} />
       </ImgWrap>
       <AboutWrap>
         <Top>
@@ -118,7 +121,7 @@ function ListContent(detailModalOpen) {
           <Scope>{restaurant.scope}</Scope>
           <ScopeIConWrap></ScopeIConWrap>
         </Middle>
-        <Bottom>리뷰 {restaurant.reviewNum}</Bottom>
+        <Bottom>리뷰 250</Bottom>
       </AboutWrap>
     </ListContentWrap>
   ));
