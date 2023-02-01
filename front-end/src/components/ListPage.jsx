@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import ImgComponent from "./ImageComponent";
+import dummy from "./../db/restaurant.json";
 
 const ListPage = ({ detailModalOpen }) => {
   return (
     <ListPageWrap>
-      <FlexWrap>
-        <ListContent onClick={detailModalOpen} />
-        <ListContent />
-      </FlexWrap>
+      <FlexWrap>{ListContent(detailModalOpen)}</FlexWrap>
     </ListPageWrap>
   );
 };
@@ -30,26 +28,16 @@ const FlexWrap = styled.div`
 
 export default ListPage;
 
-const ListContent = (props) => {
-  return (
-    <ListContentWrap onClick={props.onClick}>
-      <ImgWrap>
-        <ImgComponent src={"ex01.png"} width={"100%"} />
-      </ImgWrap>
-      <AboutWrap>
-        <Top>
-          <Title>명동교자</Title>
-          <Address>서울 종로구 종로4길 33 (청진동)</Address>
-        </Top>
-        <Middle>
-          <Scope>2.8</Scope>
-          <ScopeIConWrap></ScopeIConWrap>
-        </Middle>
-        <Bottom>리뷰 {props.reviewNum}</Bottom>
-      </AboutWrap>
-    </ListContentWrap>
-  );
-};
+// const ListContent = (props) => {
+// return (
+//   <ListContentWrap onClick={props.onClick}>
+//     <ImgWrap>
+//       <ImgComponent src={"ex01.png"} width={"100%"} />
+//     </ImgWrap>
+//     {RestaurantList}
+//   </ListContentWrap>
+// );
+// };
 
 const ListContentWrap = styled.div`
   background: #ffffff;
@@ -114,3 +102,24 @@ const Bottom = styled.p`
   font-size: 20px;
   color: #999999;
 `;
+
+function ListContent(detailModalOpen) {
+  return dummy.restaurant.map((restaurant) => (
+    <ListContentWrap onClick={detailModalOpen}>
+      <ImgWrap>
+        <ImgComponent src={restaurant.img} width={"100%"} />
+      </ImgWrap>
+      <AboutWrap>
+        <Top>
+          <Title>{restaurant.title}</Title>
+          <Address>{restaurant.add}</Address>
+        </Top>
+        <Middle>
+          <Scope>{restaurant.scope}</Scope>
+          <ScopeIConWrap></ScopeIConWrap>
+        </Middle>
+        <Bottom>리뷰 {restaurant.reviewNum}</Bottom>
+      </AboutWrap>
+    </ListContentWrap>
+  ));
+}
