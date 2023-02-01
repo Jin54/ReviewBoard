@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import ImgComponent from './ImageComponent'
 
-const ListPage = () => {
+const ListPage = ({detailModalOpen}) => {
   return (
     <ListPageWrap>
         <FlexWrap>
-            <ListContent />
+            <ListContent onClick={detailModalOpen} />
             <ListContent />
             <ListContent />
             <ListContent />
@@ -36,7 +36,7 @@ export default ListPage
 
 const ListContent = (props) => {
     return (
-        <ListContentWrap>
+        <ListContentWrap onClick={props.onClick}>
             <ImgWrap>
                 <ImgComponent src={'ex01.png'} width={'100%'} />
             </ImgWrap>

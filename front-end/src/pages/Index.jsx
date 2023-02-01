@@ -5,6 +5,7 @@ import Header from '../components/Header'
 import Body from '../components/Body'
 import ListPage from '../components/ListPage'
 import Footer from '../components/Footer'
+import RestaurantModal from "../components/RestaurantModal";
 
 const Index = () => {
   // 지도보기 & 리스트 버튼 클릭시 해당 페이지 보이기
@@ -17,22 +18,43 @@ const Index = () => {
     setShowPage('리스트보기')
   }
 
+  // 매장 상세 보기
+  const [restauratModal, setRestaurantModal] = useState(false)
+ 
+  const detailModalOpen = () => {
+    setRestaurantModal(true)
+  }
+  const detailModalClose = () => {
+    setRestaurantModal(false)
+  }
+
   return (
     <IndexWrap>
         <Header />
         <MapOrList showMap={showMap} showList={showList} showPage={showPage} />
-        {showPage === '지도보기' && <Body />}
-        {showPage === '리스트보기' && <ListPage />}
+        {showPage === '지도보기' && 
+          <Body/>
+        }
+        {showPage === '리스트보기' && 
+          <ListPage
+          detailModalOpen={detailModalOpen}
+          />
+        }
+        {restauratModal && 
+          <RestaurantModal
+            detailModalClose={detailModalClose}  
+        />
+      }
         <Footer />
     </IndexWrap>
   )
 }
 
 const IndexWrap = styled.div`
-    padding-right: 100px;
-    padding-left: 100px;
-    /* padding-right: 20%;
-    padding-left: 20%;*/ 
+    /* padding-right: 100px;
+    padding-left: 100px; */
+    padding-right: 5%;
+    padding-left: 5%;
     box-sizing: border-box;
     /* width: 100%; */
     height: 100%;

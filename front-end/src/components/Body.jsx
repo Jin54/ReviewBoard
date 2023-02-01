@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import ImgComponent from "./ImageComponent";
-import RestaurantModal from "./RestaurantModal";
 import Map from "./Map";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -34,6 +33,7 @@ const Body = () => {
   const sizeUp = useCallback(() => dispatch(decrease()), [dispatch]);
   const sizeDown = useCallback(() => dispatch(increase()), [dispatch]);
 
+
   return (
     <BodyWrap>
       <Map size={size} />
@@ -48,7 +48,6 @@ const Body = () => {
         </MapSize>
       </MapBtns>
       <Slider></Slider>
-      {/* <RestaurantModal /> */}
       {showRegion && (
         <RegionListModal
           closeRegion={closeRegion}
