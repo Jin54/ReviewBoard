@@ -25,6 +25,13 @@ const RegionListModal = (props) => {
     inputLocation(locationBtn, cityBtn);
   }, [cityBtn]);
 
+  //지역 입력이 완료되면 리스트 보기 페이지로 이동
+  const [showListBool, setShowListBool] = useState(false);
+  useEffect(() => {
+    if (showListBool === false) return;
+    else props.showList();
+  }, [showListBool]);
+
   const locationList = dummy.locations.map((location) => (
     <Region
       key={location.id}
@@ -46,6 +53,7 @@ const RegionListModal = (props) => {
       id={city.id}
       onClick={() => {
         setCityBtn(city.name);
+        setShowListBool(true);
       }}
       selected={cityBtn === city.name && "selected"}
       name={city.name}

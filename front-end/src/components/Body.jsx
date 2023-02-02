@@ -4,13 +4,13 @@ import Map from "./Map";
 import RegionListModal from "./RegionListModal";
 import Slider from "./Slider";
 
-import { createDispatchHook, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { increase, decrease, currentUp } from "../modules/map";
 
 // import compass from "./../img/mapCompass.svg";
 import ImgComponent from "./ImageComponent";
 
-const Body = () => {
+const Body = (props) => {
   //지역 선택 모달
   const [showRegion, setShowRegion] = useState(false);
   const openRegion = () => {
@@ -54,7 +54,9 @@ const Body = () => {
         </MapBtnsRight>
       </MapBtns>
       <Slider></Slider>
-      {showRegion && <RegionListModal closeRegion={closeRegion} />}
+      {showRegion && (
+        <RegionListModal closeRegion={closeRegion} showList={props.showList} />
+      )}
     </BodyWrap>
   );
 };
