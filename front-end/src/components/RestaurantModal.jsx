@@ -64,6 +64,9 @@ const RestaurantModalWrap = styled.div`
   padding: 40px 22px;
   box-sizing: border-box;
   background-color: #fff;
+  @media screen and (max-width: 1000px) {
+    padding-top: 20px;
+  }
 `;
 
 const Box = styled.div`
@@ -97,6 +100,12 @@ const Close = styled.div`
   margin-bottom: 30px;
   float: right;
   margin-right: 1%;
+  @media screen and (max-width: 1000px) {
+    width: 12px;
+    height: 12px;
+    margin-right: 0;
+    padding-right: 0;
+  }
 `;
 
 const MainImg = styled.div`
@@ -108,6 +117,10 @@ const MainImg = styled.div`
   justify-content: center;
   overflow: hidden;
   margin-bottom: 20px;
+  @media screen and (max-width: 1000px) {
+    height: 140px;
+    width: 90%;
+  }
 `;
 const About = styled.div`
   display: flex;
@@ -147,6 +160,9 @@ const ScopeIConWrap = styled.div`
 //=============
 const Info = styled.div`
   margin-left: 20px;
+  @media screen and (max-width: 1000px) {
+    margin-left: 0;
+  }
 `;
 // ============
 const Divider = styled.div`
@@ -155,6 +171,10 @@ const Divider = styled.div`
   margin-top: 30px;
   height: 0.5px;
   background-color: #c09567;
+  @media screen and (max-width: 1000px) {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
 `;
 // =============
 
@@ -202,6 +222,10 @@ const ReviewTxtWrap = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  margin-left: 20px;
+  @media screen and (max-width: 1000px) {
+    margin-left: 0;
+  }
 `;
 const ReviewNum = styled.p`
   margin: 0;
@@ -209,6 +233,9 @@ const ReviewNum = styled.p`
   font-weight: 400;
   font-size: 14px;
   color: #999999;
+  @media screen and (max-width: 1000px) {
+    font-size: 12px;
+  }
 `;
 const ReviewMore = styled.p`
   margin: 0;
@@ -220,6 +247,10 @@ const ReviewMore = styled.p`
   color: #fff;
   font-weight: 700;
   font-size: 14px;
+  @media screen and (max-width: 1000px) {
+    font-size: 12px;
+    padding: 8px;
+  }
 `;
 
 // 매장 상세 중간 정보 컴포넌트 ( 영업 시간, 링크, 번호 )
@@ -239,6 +270,9 @@ const InfoWrap = styled.div`
   margin-bottom: 16px;
   display: flex;
   align-items: center;
+  @media screen and (max-width: 1000px) {
+    margin-bottom: 10px;
+  }
 `;
 const InfoIcon = styled.div`
   width: 20px;
@@ -253,6 +287,9 @@ const InfoTxt = styled.div`
   font-weight: 400;
   font-size: 14px;
   color: #999999;
+  @media screen and (max-width: 1000px) {
+    font-size: 12px;
+  }
 `;
 
 // 매장 상세 리뷰
@@ -288,22 +325,39 @@ const ReviewBox = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 1000px) {
+    padding: 15px;
+  }
 `
 
 // 매장명 & 주소
 const Top = styled.div`
   margin-bottom: 20px;
+  @media screen and (max-width: 1000px) {
+    margin-bottom: 6px;
+    flex-direction: column;
+    display: flex;
+  }
 `;
 const Feeling = styled.span`
   font-weight: 700;
   font-size: 20px;
   color: #000000;
   margin-right: 10px;
+  @media screen and (max-width: 1000px) {
+    font-size: 14px;
+    margin: 0;
+    margin-bottom: 4px;
+  }
 `;
 const Date = styled.span`
   font-weight: 400;
   font-size: 12px;
   color: #999999;
+  @media screen and (max-width: 1000px) {
+    font-size: 11px;
+    width: 100%;
+  }
 `;
 // 별점 & 아이콘
 const Middle = styled.div`
@@ -321,4 +375,8 @@ const Bottom = styled.p`
   font-size: 14px;
   color: #999999;
   margin: 0;
+  @media screen and (max-width: 1000px) {
+    margin: 0;
+    font-size: 11px;
+  }
 `;

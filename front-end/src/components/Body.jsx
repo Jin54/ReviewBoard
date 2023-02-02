@@ -100,6 +100,12 @@ const BtnStyle = styled.div`
   justify-content: center;
   align-items: center;
   height: 20px;
+  @media screen and (max-width: 1000px) {
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 6px;
+    height: 14px;
+  }
 `
 const MapBtnsLeft = styled.div``
 const MapBtnsRight = styled.div``
@@ -112,6 +118,9 @@ const MapSize = styled(BtnStyle)`
   width: 20px;
   margin-bottom: 5px;
   margin-top: 5px;
+  @media screen and (max-width: 1000px) {
+   width: 14px;
+  }
 `
 
 

@@ -8,7 +8,9 @@ import { change } from "../modules/restaurantModal";
 const ListPage = ({ detailModalOpen }) => {
   return (
     <ListPageWrap>
-      <FlexWrap>{ListContent(detailModalOpen)}</FlexWrap>
+      <ListScroll>
+        <FlexWrap>{ListContent(detailModalOpen)}</FlexWrap>
+      </ListScroll>
     </ListPageWrap>
   );
 };
@@ -18,14 +20,34 @@ const ListPageWrap = styled.div`
   box-sizing: border-box;
   border-radius: 10px;
   margin-top: 100px;
-  flex: 1;
-`;
+  /* flex: 1; */
+  @media screen and (max-width: 1000px) {
+    margin-top: 20px;
+    height: 100%;
+  }
+`
+const ListScroll = styled.div`
+  display: none;
+  @media screen and (max-width: 1000px) {
+    display: block;
+    width: 100%;
+    overflow-y: scroll;
+    height: 100%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    box-sizing: border-box;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+`
 
 const FlexWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
+  padding-bottom: 180px;
 `;
 
 export default ListPage;
@@ -40,6 +62,9 @@ const ListContentWrap = styled.div`
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+  }
 `;
 // ====== 왼쪽 이미지
 const ImgWrap = styled.div`
@@ -51,22 +76,39 @@ const ImgWrap = styled.div`
   overflow: hidden;
   border-radius: 10px;
   margin-right: 25px;
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+    margin: 0;
+  }
 `;
 // ====== 오른쪽 설명
 const AboutWrap = styled.div`
   flex: 1;
+  @media screen and (max-width: 1000px) {
+    flex: 0;
+    width: 100%;
+    margin-top: 10px;
+  }
 `;
 // 매장명 & 주소
 const Top = styled.div`
   margin-bottom: 20px;
   display: flex;
   align-items: baseline;
+  @media screen and (max-width: 1000px) {
+    margin-bottom: 6px;
+    flex-direction: column;
+  }
 `;
 const Title = styled.span`
   font-weight: 700;
   font-size: 16px;
   color: #000000;
   margin-right: 10px;
+  @media screen and (max-width: 1000px) {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
 `;
 const Address = styled.span`
   font-weight: 400;
@@ -76,10 +118,17 @@ const Address = styled.span`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  @media screen and (max-width: 1000px) {
+    font-size: 11px;
+    width: 100%;
+  }
 `;
 // 별점 & 아이콘
 const Middle = styled.div`
   margin-bottom: 20px;
+  @media screen and (max-width: 1000px) {
+    margin-bottom: 6px;
+  }
 `;
 const Scope = styled.span`
   font-weight: 700;
@@ -92,6 +141,10 @@ const Bottom = styled.p`
   font-weight: 400;
   font-size: 14px;
   color: #999999;
+  @media screen and (max-width: 1000px) {
+    margin: 0;
+    font-size: 11px;
+  }
 `;
 
 function ListContent(detailModalOpen) {

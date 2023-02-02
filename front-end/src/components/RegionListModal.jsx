@@ -66,6 +66,9 @@ const RegionSelectWrap = styled.div`
   padding: 40px 22px;
   box-sizing: border-box;
   background-color: #fff;
+  @media screen and (max-width: 1000px) {
+    padding-top: 20px;
+  }
 `;
 const CloseWrap = styled.div`
   &::after {
@@ -84,11 +87,16 @@ const CloseWrap = styled.div`
 const Close = styled.div`
   width: 17px;
   height: 17px;
-  margin-bottom: 3px;
   float: right;
   padding-right: 10px;
   margin-right: 1%;
   margin-bottom: 20px;
+  @media screen and (max-width: 1000px) {
+    width: 12px;
+    height: 12px;
+    margin-right: 0;
+    padding-right: 0;
+  }
 `;
 const Box = styled.div`
   overflow: scroll;
@@ -143,6 +151,13 @@ const RegionBtn = styled.div`
   box-sizing: border-box;
   width: 12%;
   background-color: ${(props) => (props.selected ? "#C09567" : "#fff")};
+  @media screen and (max-width: 1000px) {
+    font-size: 12px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 4px;
+    width: 18%;
+  }
 `;
 
 export default RegionListModal;

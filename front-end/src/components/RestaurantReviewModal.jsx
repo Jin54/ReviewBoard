@@ -34,6 +34,9 @@ const RestaurantReviewModalWrap = styled.div`
   padding: 40px 22px;
   box-sizing: border-box;
   background-color: #fff;
+  @media screen and (max-width: 1000px) {
+    padding-top: 20px;
+  }
 `;
 const Box = styled.div`
   overflow: scroll;
@@ -66,6 +69,12 @@ const Close = styled.div`
   margin-bottom: 30px;
   float: right;
   margin-right: 1%;
+  @media screen and (max-width: 1000px) {
+    width: 12px;
+    height: 12px;
+    margin-right: 0;
+    padding-right: 0;
+  }
 `;
 
 // 모달창 밖을 눌렀을 때 모달창 지우기 위한 컴포넌트
@@ -128,23 +137,40 @@ const ReviewBox = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 1000px) {
+    padding: 15px;
+  }
 `;
 // 매장명 & 주소
 const Top = styled.div`
   margin-bottom: 20px;
   display: flex;
   align-items: baseline;
+  @media screen and (max-width: 1000px) {
+    margin-bottom: 6px;
+    flex-direction: column;
+    display: flex;
+  }
 `;
 const Feeling = styled.span`
   font-weight: 700;
   font-size: 20px;
   color: #000000;
   margin-right: 10px;
+  @media screen and (max-width: 1000px) {
+    font-size: 14px;
+    margin: 0;
+    margin-bottom: 4px;
+  }
 `;
 const Date = styled.span`
   font-weight: 400;
   font-size: 12px;
   color: #999999;
+  @media screen and (max-width: 1000px) {
+    font-size: 11px;
+    width: 100%;
+  }
 `;
 // 별점 & 아이콘
 const Middle = styled.div`
@@ -162,4 +188,8 @@ const Bottom = styled.p`
   font-size: 14px;
   color: #999999;
   margin: 0;
+  @media screen and (max-width: 1000px) {
+    margin: 0;
+    font-size: 11px;
+  }
 `;
