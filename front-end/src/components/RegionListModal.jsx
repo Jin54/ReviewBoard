@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import dummy from "./../db/location.json";
 import styled from "styled-components";
 import ImgComponent from "./ImageComponent";
+
+import { useDispatch } from "react-redux";
+import { saveLocation } from "../modules/location";
 
 // =========== RegionListModal 지역 선택 모달
 //수정-보민 : map, json DB, Redux (setCity)
@@ -11,6 +14,16 @@ const RegionListModal = (props) => {
   const [locationBtn, setLocationBtn] = useState("");
   // 세부 지역 선택 버튼
   const [cityBtn, setCityBtn] = useState("");
+
+  //입력한 지역 저장 -> [리스트 보기]에 표시할 예정
+  const dispatch = useDispatch();
+  const inputLocation = useCallback(
+    (locationBtn, cityBtn) => dispatch(saveLocation(locationBtn, cityBtn)),
+    [dispatch]
+  );
+  useEffect(() => {
+    inputLocation(locationBtn, cityBtn);
+  }, [cityBtn]);
 
   const locationList = dummy.locations.map((location) => (
     <Region
@@ -31,7 +44,9 @@ const RegionListModal = (props) => {
     <Region
       key={city.id}
       id={city.id}
-      onClick={() => setCityBtn(city.name)}
+      onClick={() => {
+        setCityBtn(city.name);
+      }}
       selected={cityBtn === city.name && "selected"}
       name={city.name}
     ></Region>

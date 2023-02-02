@@ -1,9 +1,11 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import ImgComponent from "./ImageComponent";
 import dummy from "./../db/restaurant.json";
-import { useDispatch } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
 import { change } from "../modules/restaurantModal";
+import { saveLocation } from "../modules/location";
 
 const ListPage = ({ detailModalOpen }) => {
   return (
@@ -25,7 +27,7 @@ const ListPageWrap = styled.div`
     margin-top: 20px;
     height: 100%;
   }
-`
+`;
 const ListScroll = styled.div`
   @media screen and (max-width: 1000px) {
     display: block;
@@ -39,7 +41,7 @@ const ListScroll = styled.div`
       display: none;
     }
   }
-`
+`;
 
 const FlexWrap = styled.div`
   display: flex;
@@ -154,7 +156,20 @@ function ListContent(detailModalOpen) {
     [dispatch]
   );
 
-  return dummy.restaurants.map((restaurant) => (
+  //modules/location.js 에 저장된 지역의 음식 리스트만 보여주기
+  const [bigLocation, setBigLocation] = useState(
+    useSelector((state) => state.location.bigLocation)
+  );
+  const [smallLocation, setSmallLocation] = useState(
+    useSelector((state) => state.location.smallLocation)
+  );
+  const searchLocationRestaurantList = dummy.restaurants.filter(
+    (restaurant) =>
+      -1 !== restaurant.add.search(bigLocation) &&
+      -1 !== restaurant.add.search(smallLocation)
+  );
+
+  return searchLocationRestaurantList.map((restaurant) => (
     <ListContentWrap
       onClick={() => {
         onClickSelect(restaurant.title);
