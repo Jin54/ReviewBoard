@@ -1,5 +1,5 @@
-const INCREASE = "mapSize/INCREASE";
-const DECREASE = "mapSize/DECREASE";
+const INCREASE = "map/INCREASE";
+const DECREASE = "map/DECREASE";
 
 export const increase = () => ({ type: INCREASE });
 export const decrease = () => ({ type: DECREASE });
@@ -8,7 +8,7 @@ const initialState = {
   number: 13,
 };
 
-function mapSize(state = initialState, action) {
+function map(state = initialState, action) {
   switch (action.type) {
     case INCREASE:
       return {
@@ -25,4 +25,4 @@ function mapSize(state = initialState, action) {
   }
 }
 
-export default mapSize;
+export default map;
