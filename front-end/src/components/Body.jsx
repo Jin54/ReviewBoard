@@ -92,10 +92,10 @@ const BtnStyle = styled.div`
   justify-content: center;
   align-items: center;
   height: 20px;
-`
-const MapBtnsLeft = styled.div``
-const MapBtnsRight = styled.div``
-const SelectRegion = styled(BtnStyle)``
+`;
+const MapBtnsLeft = styled.div``;
+const MapBtnsRight = styled.div``;
+const SelectRegion = styled(BtnStyle)``;
 const Location = styled(BtnStyle)`
   width: 20px;
   margin-top: 10px;
@@ -104,8 +104,7 @@ const MapSize = styled(BtnStyle)`
   width: 20px;
   margin-bottom: 5px;
   margin-top: 5px;
-`
-
+`;
 
 //수정됨-보민
 // const SelectRegion = styled(BtnStyle)`
