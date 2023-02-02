@@ -1,6 +1,7 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
+import dummy from "./../db/slideBanner.json";
 
 const { kakao } = window;
 
@@ -62,36 +63,53 @@ const Map = (props) => {
     }
     //마커를 지도 위에 표시
 
-    //=========주소로 장소 표시하기=======================================================================
+    //=========dummy 데이터에서 주소를 가져온 후, 주소로 여러 장소 표시하기=======================================================================
     //주소-좌표 변환 객체 생성
     var geocoder = new kakao.maps.services.Geocoder();
     //주소로 좌표 검색
-    geocoder.addressSearch(
-      "제주특별자치도 제주시 첨단로 242",
-      function (result, status) {
+    const showRestaurant = dummy.restaurants.map((restaurant) => {
+      geocoder.addressSearch(restaurant.add, function (result, status) {
         // 정상적으로 검색이 완료됐으면
         if (status === kakao.maps.services.Status.OK) {
-          var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+          const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
           // 결과값으로 받은 위치를 마커로 표시합니다
-          var marker = new kakao.maps.Marker({
+          const marker = new kakao.maps.Marker({
             map: map,
             position: coords,
           });
-          marker.setMap(map);
 
-          // 인포윈도우로 장소에 대한 설명을 표시합니다
-          // var infowindow = new kakao.maps.InfoWindow({
-          //   content:
-          //     '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>',
-          // });
-          // infowindow.open(map, marker);
+          //=============마커의 오버레이(클릭 시 보여지는 css)========================================================
+          // 닫기가 구현되지 않아 일단 보류
+          /*
+          const content =
+            '<div class="wrap" style="background: white;" >' +
+            '<button onClick="closeOverlay()">' +
+            "버튼" +
+            "</button>" +
+            "테스트" +
+            "</div>";
 
-          // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-          // map.setCenter(coords);
+          // 마커 위에 커스텀오버레이를 표시합니다
+          // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+          const overlay = new kakao.maps.CustomOverlay({
+            content: content,
+            position: marker.getPosition(),
+          });
+
+          // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+          kakao.maps.event.addListener(marker, "click", function () {
+            overlay.setMap(map);
+          });
+
+          // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
+          function closeOverlay() {
+            overlay.setMap(null);
+          }
+          */
         }
-      }
-    );
+      });
+    });
   }, [props.size]);
 
   return <KaKaoMap id="map"></KaKaoMap>;
