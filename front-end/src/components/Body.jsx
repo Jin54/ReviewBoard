@@ -4,8 +4,8 @@ import Map from "./Map";
 import RegionListModal from "./RegionListModal";
 import Slider from "./Slider";
 
-import { useDispatch, useSelector } from "react-redux";
-import { increase, decrease } from "../modules/map";
+import { createDispatchHook, useDispatch, useSelector } from "react-redux";
+import { increase, decrease, currentUp } from "../modules/map";
 
 // import compass from "./../img/mapCompass.svg";
 import ImgComponent from "./ImageComponent";
@@ -28,6 +28,11 @@ const Body = () => {
   const dispatch = useDispatch();
   const sizeUp = useCallback(() => dispatch(decrease()), [dispatch]);
   const sizeDown = useCallback(() => dispatch(increase()), [dispatch]);
+  //현재 위치 버튼 클릭 시, 현재 위치로 확대
+  const onClickCurrentBtn = useCallback(
+    () => dispatch(currentUp()),
+    [dispatch]
+  );
 
   return (
     <BodyWrap>
@@ -35,7 +40,7 @@ const Body = () => {
       <MapBtns>
         <MapBtnsLeft>
           <SelectRegion onClick={openRegion}>지역 선택</SelectRegion>
-          <Location top="120">
+          <Location top="120" onClick={() => onClickCurrentBtn()}>
             <ImgComponent src={"gps.png"} width={"100%"} />
           </Location>
         </MapBtnsLeft>
