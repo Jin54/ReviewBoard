@@ -4,8 +4,6 @@ import ImgComponent from "./ImageComponent";
 import dummy from "./../db/restaurant.json";
 import { useSelector } from "react-redux";
 
-// Body 컴포넌트 안에 있는 RegionListModal 컴포넌트 css 참고하기
-
 const RestaurantReviewModal = ({ closeAllReview }) => {
   return (
     <RestaurantReviewModalWrap>
@@ -28,10 +26,10 @@ const RestaurantReviewModalWrap = styled.div`
     left: 0;
     right: 0;
     z-index: 20; */
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: 0;
-  border-top: 1px solid #c09567;
+  border: 1px solid #c09567;
   border-radius: 10px;
   padding: 40px 22px;
   box-sizing: border-box;
@@ -42,7 +40,7 @@ const Box = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
   height: 100%;
-  padding-bottom: 120px;
+  padding-bottom: 50px;
   box-sizing: border-box;
   &::-webkit-scrollbar {
     display: none;
@@ -65,10 +63,9 @@ const CloseWrap = styled.div`
 const Close = styled.div`
   width: 17px;
   height: 17px;
-  margin-bottom: 100px;
+  margin-bottom: 30px;
   float: right;
   margin-right: 1%;
-  margin-top: 40px;
 `;
 
 // 모달창 밖을 눌렀을 때 모달창 지우기 위한 컴포넌트
@@ -125,7 +122,7 @@ const ReviewComponent = () => {
 const ReviewBox = styled.div`
   border: 1px solid #c09567;
   border-radius: 10px;
-  width: 49.3%;
+  width: 49%;
   margin-bottom: 2%;
   padding: 25px;
   box-sizing: border-box;
@@ -140,13 +137,13 @@ const Top = styled.div`
 `;
 const Feeling = styled.span`
   font-weight: 700;
-  font-size: 30px;
+  font-size: 20px;
   color: #000000;
   margin-right: 10px;
 `;
 const Date = styled.span`
   font-weight: 400;
-  font-size: 15px;
+  font-size: 12px;
   color: #999999;
 `;
 // 별점 & 아이콘
@@ -155,14 +152,14 @@ const Middle = styled.div`
 `;
 const ReviewScope = styled.span`
   font-weight: 700;
-  font-size: 30px;
+  font-size: 20px;
   color: #000000;
 `;
 const ReviewScopeIConWrap = styled.div``;
 // 리뷰
 const Bottom = styled.p`
   font-weight: 400;
-  font-size: 20px;
+  font-size: 14px;
   color: #999999;
   margin: 0;
 `;

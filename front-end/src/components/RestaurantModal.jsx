@@ -4,8 +4,6 @@ import ImgComponent from "./ImageComponent";
 import dummy from "./../db/restaurant.json";
 import { useSelector } from "react-redux";
 
-// Body 컴포넌트 안에 있는 RegionListModal 컴포넌트 css 참고하기
-
 const RestaurantModal = (props) => {
   //매장 상세 정보
   const selectRestaurant = useSelector((state) => state.restaurantModal.name);
@@ -58,10 +56,10 @@ const RestaurantModalWrap = styled.div`
     left: 0;
     right: 0;
     z-index: 20; */
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: 0;
-  border-top: 1px solid #c09567;
+  border: 1px solid #c09567;
   border-radius: 10px;
   padding: 40px 22px;
   box-sizing: border-box;
@@ -73,7 +71,7 @@ const Box = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
   height: 100%;
-  padding-bottom: 120px;
+  padding-bottom: 50px;
   box-sizing: border-box;
   &::-webkit-scrollbar {
     display: none;
@@ -96,16 +94,15 @@ const CloseWrap = styled.div`
 const Close = styled.div`
   width: 17px;
   height: 17px;
-  margin-bottom: 100px;
+  margin-bottom: 30px;
   float: right;
   margin-right: 1%;
-  margin-top: 40px;
 `;
 
 const MainImg = styled.div`
   width: 80%;
   margin: auto;
-  height: 400px;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,7 +117,7 @@ const About = styled.div`
 `;
 const Title = styled.p`
   font-weight: 700;
-  font-size: 50px;
+  font-size: 20px;
   color: #000000;
   margin: 0;
 `;
@@ -128,7 +125,7 @@ const Address = styled.p`
   margin-top: 10px;
   margin-bottom: 20px;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 12px;
   color: #999999;
 `;
 const ScopeWrap = styled.div`
@@ -140,7 +137,7 @@ const Scope = styled.p`
   margin: 0;
   margin-right: 20px;
   font-weight: 700;
-  font-size: 50px;
+  font-size: 20px;
   color: #000000;
 `;
 const ScopeIConWrap = styled.div`
@@ -149,13 +146,13 @@ const ScopeIConWrap = styled.div`
 `;
 //=============
 const Info = styled.div`
-  margin-left: 40px;
+  margin-left: 20px;
 `;
 // ============
 const Divider = styled.div`
   border: 0;
-  margin-bottom: 40px;
-  margin-top: 50px;
+  margin-bottom: 30px;
+  margin-top: 30px;
   height: 0.5px;
   background-color: #c09567;
 `;
@@ -184,28 +181,37 @@ const ReviewPage = (props) => {
         <ReviewNum>리뷰 {reviewNum}개</ReviewNum>
         <ReviewMore onClick={props.onClick}>더보기</ReviewMore>
       </ReviewTxtWrap>
-      <ReviewList />
+      <ReviewFlexWrap>
+        <ReviewList />
+      </ReviewFlexWrap>
     </ReviewWrap>
   );
 };
 
-const ReviewWrap = styled.div``;
+const ReviewWrap = styled.div`
+  width: 100%;
+`;
+const ReviewFlexWrap = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`
 const ReviewTxtWrap = styled.div`
-  margin-left: 40px;
+  margin-left: 20px;
   display: flex;
   align-items: center;
   margin-bottom: 20px;
 `;
 const ReviewNum = styled.p`
   margin: 0;
-  margin-right: 20px;
+  margin-right: 10px;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 14px;
   color: #999999;
 `;
 const ReviewMore = styled.p`
   margin: 0;
-  height: 49px;
   background: #c09567;
   border: 1px solid #c09567;
   border-radius: 10px;
@@ -213,7 +219,7 @@ const ReviewMore = styled.p`
   box-sizing: border-box;
   color: #fff;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 14px;
 `;
 
 // 매장 상세 중간 정보 컴포넌트 ( 영업 시간, 링크, 번호 )
@@ -230,7 +236,7 @@ const InfoComponent = (props) => {
 };
 
 const InfoWrap = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
 `;
@@ -245,7 +251,7 @@ const InfoIcon = styled.div`
 `;
 const InfoTxt = styled.div`
   font-weight: 400;
-  font-size: 20px;
+  font-size: 14px;
   color: #999999;
 `;
 
@@ -259,11 +265,10 @@ function ReviewList() {
 
   // 매장 상세 리뷰 한 개 컴포넌트
   return selectRestaurantDB.map((review) => (
-    <ReviewListWrap>
       <ReviewBox>
         <Top>
           <Feeling>{review.title}</Feeling>
-          <Date>{review.add}</Date>
+          <Date>{review.date}</Date>
         </Top>
         <Middle>
           <ReviewScope>{review.scope}</ReviewScope>
@@ -271,40 +276,33 @@ function ReviewList() {
         </Middle>
         <Bottom>{review.post}</Bottom>
       </ReviewBox>
-    </ReviewListWrap>
   ));
 }
-
-const ReviewListWrap = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-`;
 
 const ReviewBox = styled.div`
   border: 1px solid #c09567;
   border-radius: 10px;
-  width: 49.3%;
+  width: 49%;
   margin-bottom: 2%;
   padding: 25px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-`;
+`
+
 // 매장명 & 주소
 const Top = styled.div`
   margin-bottom: 20px;
 `;
 const Feeling = styled.span`
   font-weight: 700;
-  font-size: 30px;
+  font-size: 20px;
   color: #000000;
   margin-right: 10px;
 `;
 const Date = styled.span`
   font-weight: 400;
-  font-size: 15px;
+  font-size: 12px;
   color: #999999;
 `;
 // 별점 & 아이콘
@@ -313,14 +311,14 @@ const Middle = styled.div`
 `;
 const ReviewScope = styled.span`
   font-weight: 700;
-  font-size: 30px;
+  font-size: 20px;
   color: #000000;
 `;
 const ReviewScopeIConWrap = styled.div``;
 // 리뷰
 const Bottom = styled.p`
   font-weight: 400;
-  font-size: 20px;
+  font-size: 14px;
   color: #999999;
   margin: 0;
 `;

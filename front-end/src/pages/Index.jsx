@@ -68,6 +68,7 @@ const Index = () => {
 
 const IndexWrap = styled.div`
     padding-right: 5%;
+    position: relative;
     padding-left: 5%;
     box-sizing: border-box;
     height: 100%;

@@ -35,15 +35,15 @@ const ListContentWrap = styled.div`
   border: 1px solid #c09567;
   border-radius: 10px;
   width: 49%;
-  margin-bottom: 2.5%;
-  padding: 25px;
+  margin-bottom: 2%;
+  padding: 15px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
 `;
 // ====== 왼쪽 이미지
 const ImgWrap = styled.div`
-  height: 150px;
+  height: 100px;
   width: 40%;
   display: flex;
   align-items: center;
@@ -64,13 +64,13 @@ const Top = styled.div`
 `;
 const Title = styled.span`
   font-weight: 700;
-  font-size: 30px;
+  font-size: 16px;
   color: #000000;
   margin-right: 10px;
 `;
 const Address = styled.span`
   font-weight: 400;
-  font-size: 15px;
+  font-size: 12px;
   color: #999999;
   width: 50%;
   text-overflow: ellipsis;
@@ -83,14 +83,14 @@ const Middle = styled.div`
 `;
 const Scope = styled.span`
   font-weight: 700;
-  font-size: 30px;
+  font-size: 20px;
   color: #000000;
 `;
 const ScopeIConWrap = styled.div``;
 // 리뷰 개수
 const Bottom = styled.p`
   font-weight: 400;
-  font-size: 20px;
+  font-size: 14px;
   color: #999999;
 `;
 

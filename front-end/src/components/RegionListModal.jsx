@@ -84,18 +84,18 @@ const CloseWrap = styled.div`
 const Close = styled.div`
   width: 17px;
   height: 17px;
-  margin-bottom: 100px;
+  margin-bottom: 3px;
   float: right;
   padding-right: 10px;
   margin-right: 1%;
-  margin-top: 40px;
+  margin-bottom: 20px;
 `;
 const Box = styled.div`
   overflow: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
   height: 100%;
-  padding-bottom: 120px;
+  padding-bottom: 50px;
   box-sizing: border-box;
   &::-webkit-scrollbar {
     display: none;
@@ -115,8 +115,8 @@ const FlexWrap = styled.div`
 `;
 const Divider = styled.hr`
   border: 0;
-  margin-bottom: 100px;
-  margin-top: 100px;
+  margin-bottom: 40px;
+  margin-top: 40px;
   height: 0.5px;
   background-color: #c09567;
 `;
@@ -133,10 +133,10 @@ const Region = ({ onClick, selected, name }) => {
 const RegionBtn = styled.div`
   border: 1px solid #000000;
   border-radius: 10px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   font-weight: 400;
-  font-size: 30px;
+  font-size: 16px;
   text-align: center;
   color: ${(props) => (props.selected ? "##fff" : "#000")};
   margin: 1%;
