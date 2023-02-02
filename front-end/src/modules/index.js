@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import mapSize from "./mapSize";
+import map from "./map";
 import restaurantModal from "./restaurantModal";
 
 const rootReducer = combineReducers({
-  mapSize,
+  map,
   restaurantModal,
 });
 
