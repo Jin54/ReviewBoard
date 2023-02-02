@@ -19,7 +19,7 @@ const ListPageWrap = styled.div`
   width: 100%;
   box-sizing: border-box;
   border-radius: 10px;
-  margin-top: 100px;
+  margin-top: 60px;
   /* flex: 1; */
   @media screen and (max-width: 1000px) {
     margin-top: 20px;
@@ -27,7 +27,6 @@ const ListPageWrap = styled.div`
   }
 `
 const ListScroll = styled.div`
-  display: none;
   @media screen and (max-width: 1000px) {
     display: block;
     width: 100%;

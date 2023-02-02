@@ -23,10 +23,11 @@ const FooterWrap = styled.div`
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    margin-top: 40px;
+    /* margin-top: 20px; */
     margin-bottom: 20px;
     @media screen and (max-width: 1000px) {
         flex-direction: column-reverse;
+        margin-top: 20px;
     }
 `
 // =========

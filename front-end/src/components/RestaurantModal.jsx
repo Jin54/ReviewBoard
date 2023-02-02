@@ -50,7 +50,7 @@ const RestaurantModal = (props) => {
 };
 
 const RestaurantModalWrap = styled.div`
-  height: 80%;
+  height: 85%;
   /* position: absolute;
     bottom: 0;
     left: 0;

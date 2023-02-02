@@ -144,7 +144,7 @@ const RegionBtn = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   text-align: center;
   color: ${(props) => (props.selected ? "##fff" : "#000")};
   margin: 1%;
