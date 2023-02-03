@@ -21,7 +21,7 @@ const ListPageWrap = styled.div`
   box-sizing: border-box;
   border-radius: 10px;
   margin-top: 60px;
-  /* flex: 1; */
+  flex: 1;
   overflow-y: scroll;
   -ms-overflow-style: none;
     scrollbar-width: none;
