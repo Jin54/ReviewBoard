@@ -82,6 +82,8 @@ const ImgWrap = styled.div`
   overflow: hidden;
   border-radius: 10px;
   margin-right: 25px;
+  background: url(${(props) => props.imgUrl}) no-repeat center ;
+  background-size: cover;
   @media screen and (max-width: 1000px) {
     width: 100%;
     margin: 0;
@@ -151,7 +153,7 @@ const Bottom = styled.p`
     margin: 0;
     font-size: 11px;
   }
-`;
+`
 
 function ListContent(detailModalOpen) {
   //가게 클릭 시 해당 가게로 이름 변경 -> 모달창 이동
@@ -177,12 +179,12 @@ function ListContent(detailModalOpen) {
   return searchLocationRestaurantList.map((restaurant) => (
     <ListContentWrap
       onClick={() => {
-        onClickSelect(restaurant.title, restaurant.add);
+        onClickSelect(restaurant.title, restaurant.add, restaurant.url);
         detailModalOpen();
       }}
     >
-      <ImgWrap>
-        <ImgComponent src={"ex01.png"} width={"100%"} />
+      <ImgWrap imgUrl={restaurant.url}>
+        {/* <ImgComponent src={"ex01.png"} width={"100%"} /> */}
       </ImgWrap>
       <AboutWrap>
         <Top>

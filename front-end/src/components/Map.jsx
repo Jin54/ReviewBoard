@@ -87,7 +87,7 @@ const Map = (props) => {
             '<div class="wrap">' +
               '<div class="header">' +
                 '<p>매장이름</p>' +
-                '<div class="closeimgWrap" onClick="closeOverlay()">' +
+                '<div class="closeimgWrap" onclick="closeOverlay()">' +
                   '<img src="https://i.postimg.cc/ZYjNRKj6/close-white.png"></img>' +
                 '</div>' +
               '</div>' +
