@@ -2,7 +2,6 @@ import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import Map from "./Map";
 import RegionListModal from "./RegionListModal";
-import Slider from "./Slider";
 
 import { useDispatch, useSelector } from "react-redux";
 import { increase, decrease, currentUp } from "../modules/map";
@@ -53,7 +52,6 @@ const Body = (props) => {
           </MapSize>
         </MapBtnsRight>
       </MapBtns>
-      <Slider></Slider>
       {showRegion && (
         <RegionListModal closeRegion={closeRegion} showList={props.showList} />
       )}

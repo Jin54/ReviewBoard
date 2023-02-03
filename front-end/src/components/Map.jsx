@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
 import dummy from "./../db/restaurant.json";
+import '../style/map.scss'
 
 const { kakao } = window;
 
@@ -81,14 +82,32 @@ const Map = (props) => {
 
           //=============마커의 오버레이(클릭 시 보여지는 css)========================================================
           // 닫기가 구현되지 않아 일단 보류
-          /*
+          
           const content =
-            '<div class="wrap" style="background: white;" >' +
-            '<button onClick="closeOverlay()">' +
-            "버튼" +
-            "</button>" +
-            "테스트" +
-            "</div>";
+            // '<div class="wrap" style="background: white;" >' +
+            // '<button onClick="closeOverlay()">' +
+            // "버튼" +
+            // "</button>" +
+            // "테스트" +
+            // "</div>";
+            '<div class="wrap">' +
+              '<div class="header">' +
+                '<p>매장이름</p>' +
+                '<div class="closeimgWrap">' +
+                  '<img src={' + process.env.PUBLIC_URL + '/img/close_white.png}></img>' +
+                '</div>' +
+              '</div>' +
+              '<div class="infowrap">' +
+                '<div class="imgwrap">' +
+                  '<img src={' + process.env.PUBLIC_URL + '/img/ex01.png}></img>' +
+                '</div>' +
+                '<div class="info">' +
+                  '<p class="address">서울시 관악구 성현동 동아아파트</p>' +
+                  '<p class="scope">5.0</p>' +
+                  '<p class="review">리뷰 100개</p>' +
+                '</div>' +
+              '</div>' +
+           '</div>' ;
 
           // 마커 위에 커스텀오버레이를 표시합니다
           // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
@@ -106,7 +125,7 @@ const Map = (props) => {
           function closeOverlay() {
             overlay.setMap(null);
           }
-      */
+      
         }
       });
     });
