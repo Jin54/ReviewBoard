@@ -17,7 +17,7 @@ const RestaurantModal = (props) => {
   );
 
   const restaurantDetail = selectRestaurantDB.map((restaurant) => (
-    <>
+    <div key={restaurant.id}>
       <MainImg>
         <ImgComponent src={restaurant.img} width={"100%"} />
       </MainImg>
@@ -34,7 +34,7 @@ const RestaurantModal = (props) => {
         <InfoComponent img={"link.png"} txt={restaurant.link} />
         <InfoComponent img={"phone.png"} txt={restaurant.phone} />
       </Info>
-    </>
+    </div>
   ));
 
   return (
@@ -313,7 +313,7 @@ function ReviewList() {
 
   // 매장 상세 리뷰 한 개 컴포넌트
   return selectRestaurantDB.map((review) => (
-    <ReviewBox>
+    <ReviewBox key={review.id}>
       <Top>
         <Feeling>{review.title}</Feeling>
         <Date>{review.date}</Date>

@@ -120,7 +120,7 @@ const ReviewComponent = () => {
   );
 
   return selectRestaurantDB.map((review) => (
-    <ReviewBox>
+    <ReviewBox key={review.id}>
       <Top>
         <Feeling>{review.title}</Feeling>
         <Date>{review.date}</Date>
