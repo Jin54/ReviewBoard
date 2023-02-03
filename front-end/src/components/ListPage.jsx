@@ -22,6 +22,13 @@ const ListPageWrap = styled.div`
   border-radius: 10px;
   margin-top: 60px;
   /* flex: 1; */
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+    scrollbar-width: none;
+    box-sizing: border-box;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   @media screen and (max-width: 1000px) {
     margin-top: 20px;
     height: 100%;
@@ -47,7 +54,6 @@ const FlexWrap = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-  padding-bottom: 180px;
 `;
 
 export default ListPage;

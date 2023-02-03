@@ -21,6 +21,7 @@ const RestaurantReviewModal = ({ closeAllReview }) => {
 
 const RestaurantReviewModalWrap = styled.div`
   height: 85%;
+  width: 100%;
   /* position: absolute;
     bottom: 0;
     left: 0;
