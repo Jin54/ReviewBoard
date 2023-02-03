@@ -84,17 +84,11 @@ const Map = (props) => {
           // 닫기가 구현되지 않아 일단 보류
           
           const content =
-            // '<div class="wrap" style="background: white;" >' +
-            // '<button onClick="closeOverlay()">' +
-            // "버튼" +
-            // "</button>" +
-            // "테스트" +
-            // "</div>";
             '<div class="wrap">' +
               '<div class="header">' +
                 '<p>매장이름</p>' +
-                '<div class="closeimgWrap">' +
-                  '<img src={' + process.env.PUBLIC_URL + '/img/close_white.png}></img>' +
+                '<div class="closeimgWrap" onClick="closeOverlay()">' +
+                  '<img src="https://i.postimg.cc/ZYjNRKj6/close-white.png"></img>' +
                 '</div>' +
               '</div>' +
               '<div class="infowrap">' +
