@@ -5,7 +5,6 @@ import dummy from "./../db/restaurant.json";
 
 import { useDispatch, useSelector } from "react-redux";
 import { change } from "../modules/restaurantModal";
-import { saveLocation } from "../modules/location";
 
 const ListPage = ({ detailModalOpen }) => {
   return (
@@ -152,7 +151,7 @@ function ListContent(detailModalOpen) {
   //가게 클릭 시 해당 가게로 이름 변경 -> 모달창 이동
   const dispatch = useDispatch();
   const onClickSelect = useCallback(
-    (name) => dispatch(change(name)),
+    (name, add) => dispatch(change(name, add)),
     [dispatch]
   );
 
@@ -172,7 +171,7 @@ function ListContent(detailModalOpen) {
   return searchLocationRestaurantList.map((restaurant) => (
     <ListContentWrap
       onClick={() => {
-        onClickSelect(restaurant.title);
+        onClickSelect(restaurant.title, restaurant.add);
         detailModalOpen();
       }}
     >

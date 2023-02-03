@@ -108,9 +108,14 @@ const ReviewListWrap = styled.div`
 
 // 매장 상세 리뷰 한 개 컴포넌트
 const ReviewComponent = () => {
-  const selectRestaurant = useSelector((state) => state.restaurantModal.name);
+  const selectRestaurantName = useSelector(
+    (state) => state.restaurantModal.name
+  );
+  const selectRestaurantAdd = useSelector((state) => state.restaurantModal.add);
   const selectRestaurantDB = dummy.reviews.filter(
-    (reviews) => reviews.restaurant === selectRestaurant
+    (reviews) =>
+      reviews.restaurant === selectRestaurantName &&
+      reviews.add === selectRestaurantAdd
   );
 
   return selectRestaurantDB.map((review) => (

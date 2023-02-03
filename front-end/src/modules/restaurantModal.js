@@ -1,13 +1,15 @@
 const CHANGE = "restaurantModal/CHANGE";
 
-export const change = (title, reviewNum) => ({
+export const change = (title, add, reviewNum) => ({
   type: CHANGE,
   title: title,
+  add: add,
   reviewNum: reviewNum,
 });
 
 const initialState = {
   name: "",
+  add: "",
   reviewNum: 10,
 };
 
@@ -17,6 +19,7 @@ function restaurantModal(state = initialState, action) {
       return {
         ...state,
         name: action.title,
+        add: action.add,
         // reviewNum: action.reviewNum,
         reviewNum: 100,
       };

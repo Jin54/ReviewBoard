@@ -6,9 +6,14 @@ import { useSelector } from "react-redux";
 
 const RestaurantModal = (props) => {
   //매장 상세 정보
-  const selectRestaurant = useSelector((state) => state.restaurantModal.name);
+  const selectRestaurantName = useSelector(
+    (state) => state.restaurantModal.name
+  );
+  const selectRestaurantAdd = useSelector((state) => state.restaurantModal.add);
   const selectRestaurantDB = dummy.restaurants.filter(
-    (restaurant) => restaurant.title === selectRestaurant
+    (restaurant) =>
+      restaurant.title === selectRestaurantName &&
+      restaurant.add === selectRestaurantAdd
   );
 
   const restaurantDetail = selectRestaurantDB.map((restaurant) => (
@@ -216,7 +221,7 @@ const ReviewFlexWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-`
+`;
 const ReviewTxtWrap = styled.div`
   margin-left: 20px;
   display: flex;
@@ -295,24 +300,29 @@ const InfoTxt = styled.div`
 // 매장 상세 리뷰
 
 function ReviewList() {
-  const selectRestaurant = useSelector((state) => state.restaurantModal.name);
+  const selectRestaurantName = useSelector(
+    (state) => state.restaurantModal.name
+  );
+  const selectRestaurantAdd = useSelector((state) => state.restaurantModal.add);
   const selectRestaurantDB = dummy.reviews.filter(
-    (reviews) => reviews.restaurant === selectRestaurant
+    (reviews) =>
+      reviews.restaurant === selectRestaurantName &&
+      reviews.add === selectRestaurantAdd
   );
 
   // 매장 상세 리뷰 한 개 컴포넌트
   return selectRestaurantDB.map((review) => (
-      <ReviewBox>
-        <Top>
-          <Feeling>{review.title}</Feeling>
-          <Date>{review.date}</Date>
-        </Top>
-        <Middle>
-          <ReviewScope>{review.scope}</ReviewScope>
-          <ReviewScopeIConWrap></ReviewScopeIConWrap>
-        </Middle>
-        <Bottom>{review.post}</Bottom>
-      </ReviewBox>
+    <ReviewBox>
+      <Top>
+        <Feeling>{review.title}</Feeling>
+        <Date>{review.date}</Date>
+      </Top>
+      <Middle>
+        <ReviewScope>{review.scope}</ReviewScope>
+        <ReviewScopeIConWrap></ReviewScopeIConWrap>
+      </Middle>
+      <Bottom>{review.post}</Bottom>
+    </ReviewBox>
   ));
 }
 
@@ -328,7 +338,7 @@ const ReviewBox = styled.div`
   @media screen and (max-width: 1000px) {
     padding: 15px;
   }
-`
+`;
 
 // 매장명 & 주소
 const Top = styled.div`
