@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
-import dummy from "./../db/slideBanner.json";
+import dummy from "./../db/restaurant.json";
 
 const { kakao } = window;
 
@@ -106,7 +106,7 @@ const Map = (props) => {
           function closeOverlay() {
             overlay.setMap(null);
           }
-          */
+      */
         }
       });
     });
