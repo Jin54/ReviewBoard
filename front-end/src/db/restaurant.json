@@ -76,6 +76,83 @@
       "link": "www.myoungdong.com",
       "phone": "01-1234-1234",
       "date": "22.10.03(수)"
+    },
+    {
+      "id": "8",
+      "title": "명동교자8",
+      "img": "ex01.png",
+      "add": "경기 수원시 장안구 하률로 13",
+      "scope": "5.0",
+      "time": "11:00 ~ 22:00",
+      "link": "www.myoungdong.com",
+      "phone": "01-1234-1234",
+      "date": "22.10.03(수)"
+    },
+    {
+      "id": "9",
+      "title": "명동교자9",
+      "img": "ex01.png",
+      "add": "전북 군산시 중앙로 177 이성당",
+      "scope": "5.0",
+      "time": "11:00 ~ 22:00",
+      "link": "www.myoungdong.com",
+      "phone": "01-1234-1234",
+      "date": "22.10.03(수)"
+    },
+    {
+      "id": "10",
+      "title": "명동교자10",
+      "img": "ex01.png",
+      "add": "강원 속초시 엑스포로 12-36",
+      "scope": "5.0",
+      "time": "11:00 ~ 22:00",
+      "link": "www.myoungdong.com",
+      "phone": "01-1234-1234",
+      "date": "22.10.03(수)"
+    },
+    {
+      "id": "11",
+      "title": "명동교자11",
+      "img": "ex01.png",
+      "add": "강원 춘천시 신북읍 신샘밭로 763",
+      "scope": "5.0",
+      "time": "11:00 ~ 22:00",
+      "link": "www.myoungdong.com",
+      "phone": "01-1234-1234",
+      "date": "22.10.03(수)"
+    },
+    {
+      "id": "12",
+      "title": "명동교자12",
+      "img": "ex01.png",
+      "add": "전남 여수시 봉산남4길 23-26",
+      "scope": "5.0",
+      "time": "11:00 ~ 22:00",
+      "link": "www.myoungdong.com",
+      "phone": "01-1234-1234",
+      "date": "22.10.03(수)"
+    },
+    {
+      "id": "13",
+      "title": "명동교자13",
+      "img": "ex01.png",
+      "add": "경기 성남시 분당구 판교역로 230",
+      "scope": "5.0",
+      "time": "11:00 ~ 22:00",
+      "link": "www.myoungdong.com",
+      "phone": "01-1234-1234",
+      "date": "22.10.03(수)"
+    },
+    {
+      "id": "14",
+      "title": "명동교자14",
+      "img": "ex01.png",
+      "add": "경기 수원시 팔달구 효원로292번길 67",
+      "scope": "5.0",
+      "time": "11:00 ~ 22:00",
+      "link": "www.myoungdong.com",
+      "phone": "01-1234-1234",
+      "date": "22.10.03(수)"
     }
   ],
   "reviews": [
