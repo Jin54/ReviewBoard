@@ -81,7 +81,7 @@ const MapBtns = styled.div`
   width: 90%;
   transform: translateX(-50%);
   top: 7%;
-  z-index: 10;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
