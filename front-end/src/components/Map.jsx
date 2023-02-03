@@ -87,11 +87,13 @@ const Map = (props) => {
           const content = document.createElement(
             '<div class="wrap">' +
               '<div class="header">' +
-                '<p>매장이름</p>' +
-                '<div class="closeimgWrap" onClick="closeOverlay()">' +
-                  '<img src="https://i.postimg.cc/ZYjNRKj6/close-white.png"></img>' +
-                '</div>' +
-              '</div>' +
+              "<p>" +
+              restaurant.title +
+              "</p>" +
+              '<div class="closeimgWrap" onclick="closeOverlay()">' +
+              '<img src="https://i.postimg.cc/ZYjNRKj6/close-white.png"></img>' +
+              "</div>" +
+              "</div>" +
               '<div class="infowrap">' +
               '<div class="imgwrap">' +
               "<img src={" +
