@@ -81,38 +81,6 @@ const Map = (props) => {
           });
 
           //=============마커의 오버레이(클릭 시 보여지는 css)========================================================
-          // 닫기가 구현되지 않아 일단 보류
-
-          /*
-          const content = document.createElement(
-            '<div class="wrap">' +
-              '<div class="header">' +
-              "<p>" +
-              restaurant.title +
-              "</p>" +
-              '<div class="closeimgWrap" onclick="closeOverlay()">' +
-              '<img src="https://i.postimg.cc/ZYjNRKj6/close-white.png"></img>' +
-              "</div>" +
-              "</div>" +
-              '<div class="infowrap">' +
-              '<div class="imgwrap">' +
-              "<img src={" +
-              process.env.PUBLIC_URL +
-              "/img/ex01.png}></img>" +
-              "</div>" +
-              '<div class="info">' +
-              '<p class="address">' +
-              restaurant.add +
-              "</p>" +
-              '<p class="scope">' +
-              restaurant.scope +
-              "</p>" +
-              '<p class="review">리뷰 100개</p>' +
-              "</div>" +
-              "</div>" +
-              "</div>"
-          );
-          */
 
           var content = document.createElement("div");
           content.className = "wrap";

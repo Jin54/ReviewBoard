@@ -61,7 +61,8 @@ const RestaurantModalWrap = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 20; */
+    */
+  z-index: 20;
   position: absolute;
   left: 0;
   bottom: 0;

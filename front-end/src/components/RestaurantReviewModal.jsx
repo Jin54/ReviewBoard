@@ -25,8 +25,8 @@ const RestaurantReviewModalWrap = styled.div`
   /* position: absolute;
     bottom: 0;
     left: 0;
-    right: 0;
-    z-index: 20; */
+    right: 0; */
+  z-index: 30;
   position: absolute;
   left: 0;
   bottom: 0;
