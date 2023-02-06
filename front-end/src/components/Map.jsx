@@ -1,18 +1,31 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
 import dummy from "./../db/restaurant.json";
 import "../style/map.scss";
+import { resetxy } from "../modules/map";
+import { saveLocation } from "../modules/location";
+import { useDispatch, useSelector } from "react-redux";
 
 const { kakao } = window;
 
 const Map = (props) => {
+  //중심 좌표 설정 (현재 위치 기준)
+  const x = useSelector((state) => state.map.x);
+  const y = useSelector((state) => state.map.y);
+  const dispatch = useDispatch();
+  const resetXY = useCallback((x, y) => dispatch(resetxy(x, y)), [dispatch]);
+
+  //=========지역 선택 후, 해당 지역의 맛집만 표시=======================================================================
+  const bigLocation = useSelector((state) => state.location.bigLocation);
+  const smallLocation = useSelector((state) => state.location.smallLocation);
+
   useEffect(() => {
     //========카카오 맵 api 설정&생성========================================================================
     var container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스
     var options = {
       //지도를 생성할 때 필요한 기본 옵션
-      center: new kakao.maps.LatLng(36, 127.9), //지도의 중심좌표. 필수값
+      center: new kakao.maps.LatLng(x, y), //지도의 중심좌표. 필수값
       level: props.size, //지도의 레벨(확대, 축소 정도)
     };
 
@@ -25,6 +38,7 @@ const Map = (props) => {
       navigator.geolocation.getCurrentPosition(function (position) {
         var lat = position.coords.latitude, // 위도
           lon = position.coords.longitude; // 경도
+        resetXY(lat, lon);
 
         var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 
@@ -64,11 +78,17 @@ const Map = (props) => {
     }
     //마커를 지도 위에 표시
 
-    //=========dummy 데이터에서 주소를 가져온 후, 주소로 여러 장소 표시하기=======================================================================
+    //=========dummy 데이터에서 주소를 가져온 후, 주소로 여러 장소 표시하기 & 지역 선택 후, 해당 지역의 맛집 모두 표시하기=======================================================================
     //주소-좌표 변환 객체 생성
     var geocoder = new kakao.maps.services.Geocoder();
+    const searchLocation = dummy.restaurants.filter(
+      (restaurant) =>
+        -1 !== restaurant.add.search(bigLocation) &&
+        -1 !== restaurant.add.search(smallLocation)
+    );
+
     //주소로 좌표 검색
-    const showRestaurant = dummy.restaurants.map((restaurant) => {
+    const showRestaurant = searchLocation.map((restaurant) => {
       geocoder.addressSearch(restaurant.add, function (result, status) {
         // 정상적으로 검색이 완료됐으면
         if (status === kakao.maps.services.Status.OK) {
