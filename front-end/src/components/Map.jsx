@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
 import dummy from "./../db/restaurant.json";
@@ -6,6 +6,8 @@ import "../style/map.scss";
 import { resetxy } from "../modules/map";
 import { saveLocation } from "../modules/location";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+// import MapRamdom from "../api/MapRamdom";
 
 const { kakao } = window;
 
@@ -16,11 +18,37 @@ const Map = (props) => {
   const dispatch = useDispatch();
   const resetXY = useCallback((x, y) => dispatch(resetxy(x, y)), [dispatch]);
 
+  //랜덤 값 저장
+  const [ramdomData, setRamdomData] = useState(null);
+  const url = "http://3.35.140.28:9000/app/shop";
+  const ramdom = async () => {
+    try {
+      const data = await axios({
+        method: "get",
+        url: url,
+      });
+      setRamdomData(data.data.result);
+    } catch (err) {
+      alert(err);
+    }
+  };
+
   //=========지역 선택 후, 해당 지역의 맛집만 표시=======================================================================
   const bigLocation = useSelector((state) => state.location.bigLocation);
   const smallLocation = useSelector((state) => state.location.smallLocation);
 
+  // useEffect(() => {
+  //   console.log(ramdomData);
+  // }, [ramdomData]);
+
   useEffect(() => {
+    ramdom();
+  }, []);
+
+  useEffect(() => {
+    if (ramdomData === null) {
+      return;
+    }
     //========카카오 맵 api 설정&생성========================================================================
     var container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스
     var options = {
@@ -32,7 +60,6 @@ const Map = (props) => {
     var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
     //=========현재 위치 마커 생성=======================================================================
-
     if (navigator.geolocation) {
       // GeoLocation을 이용해서 접속 위치를 얻어옵니다
       navigator.geolocation.getCurrentPosition(function (position) {
@@ -77,7 +104,6 @@ const Map = (props) => {
       map.setCenter(locPosition);
     }
     //마커를 지도 위에 표시
-
     //=========dummy 데이터에서 주소를 가져온 후, 주소로 여러 장소 표시하기 & 지역 선택 후, 해당 지역의 맛집 모두 표시하기=======================================================================
     //주소-좌표 변환 객체 생성
     var geocoder = new kakao.maps.services.Geocoder();
@@ -87,80 +113,83 @@ const Map = (props) => {
         -1 !== restaurant.add.search(smallLocation)
     );
 
+    console.log(ramdomData);
+
     //주소로 좌표 검색
-    const showRestaurant = searchLocation.map((restaurant) => {
-      geocoder.addressSearch(restaurant.add, function (result, status) {
-        // 정상적으로 검색이 완료됐으면
-        if (status === kakao.maps.services.Status.OK) {
-          const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+    // const showRestaurant = searchLocation.map((restaurant) => {
+    const showRestaurant = ramdomData.map((restaurant) => {
+      geocoder.addressSearch(
+        restaurant.numberAddress,
+        function (result, status) {
+          // 정상적으로 검색이 완료됐으면
+          if (status === kakao.maps.services.Status.OK) {
+            const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-          // 결과값으로 받은 위치를 마커로 표시합니다
-          const marker = new kakao.maps.Marker({
-            map: map,
-            position: coords,
-          });
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            const marker = new kakao.maps.Marker({
+              map: map,
+              position: coords,
+            });
 
-          //=============마커의 오버레이(클릭 시 보여지는 css)========================================================
+            //=============마커의 오버레이(클릭 시 보여지는 css)========================================================
 
-          var content = document.createElement("div");
-          content.className = "wrap";
+            var content = document.createElement("div");
+            content.className = "wrap";
 
-          var contentHeader = document.createElement("div");
-          contentHeader.className = "header";
-          content.appendChild(contentHeader);
+            var contentHeader = document.createElement("div");
+            contentHeader.className = "header";
+            content.appendChild(contentHeader);
 
-          var HeaderTitle = document.createElement("p");
-          HeaderTitle.innerHTML = restaurant.title;
-          contentHeader.appendChild(HeaderTitle);
+            var HeaderTitle = document.createElement("p");
+            HeaderTitle.innerHTML = restaurant.name;
+            contentHeader.appendChild(HeaderTitle);
 
-          var HeaderCloseBtn = document.createElement("div");
-          HeaderCloseBtn.className = "closeimgWrap";
-          HeaderCloseBtn.innerHTML =
-            '<img src="https://i.postimg.cc/ZYjNRKj6/close-white.png"></img>';
-          HeaderCloseBtn.onclick = function () {
-            overlay.setMap(null);
-          };
-          contentHeader.appendChild(HeaderCloseBtn);
+            var HeaderCloseBtn = document.createElement("div");
+            HeaderCloseBtn.className = "closeimgWrap";
+            HeaderCloseBtn.innerHTML =
+              '<img src="https://i.postimg.cc/ZYjNRKj6/close-white.png"></img>';
+            HeaderCloseBtn.onclick = function () {
+              overlay.setMap(null);
+            };
+            contentHeader.appendChild(HeaderCloseBtn);
 
-          var infowrap = document.createElement("div");
-          infowrap.className = "infowrap";
-          infowrap.innerHTML =
-            '<div class="imgwrap">' +
-            "<img src={" +
-            process.env.PUBLIC_URL +
-            "/img/ex01.png}></img>" +
-            "</div>" +
-            '<div class="info">' +
-            '<p class="address">' +
-            restaurant.add +
-            "</p>" +
-            '<p class="scope">' +
-            restaurant.scope +
-            "</p>" +
-            '<p class="review">리뷰 100개</p>' +
-            "</div>";
-          content.appendChild(infowrap);
+            var infowrap = document.createElement("div");
+            infowrap.className = "infowrap";
+            infowrap.innerHTML =
+              '<div class="imgwrap">' +
+              "<img src={" +
+              process.env.PUBLIC_URL +
+              "/img/ex01.png}></img>" +
+              "</div>" +
+              '<div class="info">' +
+              '<p class="address">' +
+              restaurant.numberAddress +
+              "</p>" +
+              '<p class="scope">리뷰 ' +
+              restaurant.review_rating +
+              "점</p>" +
+              '<p class="review"> 리뷰' +
+              restaurant.review_number +
+              "개</p>" +
+              "</div>";
+            content.appendChild(infowrap);
 
-          // 마커 위에 커스텀오버레이를 표시합니다
-          // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-          const overlay = new kakao.maps.CustomOverlay({
-            content: content,
-            position: marker.getPosition(),
-          });
+            // 마커 위에 커스텀오버레이를 표시합니다
+            // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+            const overlay = new kakao.maps.CustomOverlay({
+              content: content,
+              position: marker.getPosition(),
+            });
 
-          // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-          kakao.maps.event.addListener(marker, "click", function () {
-            overlay.setMap(map);
-          });
-
-          // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
-          function closeOverlay() {
-            overlay.setMap(null);
+            // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+            kakao.maps.event.addListener(marker, "click", function () {
+              overlay.setMap(map);
+            });
           }
         }
-      });
+      );
     });
-  }, [props.size]);
+  }, [props.size, ramdomData]);
 
   return <KaKaoMap id="map"></KaKaoMap>;
 };
