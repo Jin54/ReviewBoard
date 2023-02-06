@@ -3,6 +3,6 @@ build/
 logs/
 .idea/
 out/
-
+/node_modules
 application.yml
 Constant
