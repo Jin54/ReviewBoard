@@ -23,12 +23,12 @@ public class ShopService {
     public List<GetShopRes> getShopRandom() {
       List<Shop> shopList = shopRepository.findTop10();
 
-
-
         List<GetShopRes> result = new ArrayList<>();
         for (Shop shop : shopList) {
             GetShopRes getShopRes = new GetShopRes(shop);
             result.add(getShopRes);
+            if(result.size()>10)
+                break;;
         }
 
         return result;
