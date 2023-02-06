@@ -7,7 +7,7 @@ import { resetxy } from "../modules/map";
 import { saveLocation } from "../modules/location";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-// import MapRamdom from "../api/MapRamdom";
+import { MapRamdom } from "./../api/MapRamdom";
 
 const { kakao } = window;
 
@@ -20,29 +20,16 @@ const Map = (props) => {
 
   //랜덤 값 저장
   const [ramdomData, setRamdomData] = useState(null);
-  const url = "http://3.35.140.28:9000/app/shop";
-  const ramdom = async () => {
-    try {
-      const data = await axios({
-        method: "get",
-        url: url,
-      });
-      setRamdomData(data.data.result);
-    } catch (err) {
-      alert(err);
-    }
-  };
+  // const ramdomData = useSelector((state) => state.map.data);
 
   //=========지역 선택 후, 해당 지역의 맛집만 표시=======================================================================
   const bigLocation = useSelector((state) => state.location.bigLocation);
   const smallLocation = useSelector((state) => state.location.smallLocation);
 
-  // useEffect(() => {
-  //   console.log(ramdomData);
-  // }, [ramdomData]);
-
   useEffect(() => {
-    ramdom();
+    MapRamdom((data) => {
+      setRamdomData(data);
+    });
   }, []);
 
   useEffect(() => {

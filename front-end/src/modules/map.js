@@ -2,6 +2,7 @@ const INCREASE = "map/INCREASE";
 const DECREASE = "map/DECREASE";
 const CURRENTUP = "map/CURRENTUP";
 const RESETXY = "map/RESETXY";
+const MARKERS = "map/MARKERS";
 
 export const increase = () => ({ type: INCREASE });
 export const decrease = () => ({ type: DECREASE });
@@ -11,11 +12,16 @@ export const resetxy = (x, y) => ({
   x: x,
   y: y,
 });
+export const markers = (data) => ({
+  type: MARKERS,
+  data: data,
+});
 
 const initialState = {
   number: 13,
   x: 36,
   y: 127.9,
+  data: [],
 };
 
 function map(state = initialState, action) {
@@ -40,6 +46,11 @@ function map(state = initialState, action) {
         ...state,
         x: action.x,
         y: action.y,
+      };
+    case MARKERS:
+      return {
+        ...state,
+        data: action.data,
       };
     default:
       return state;
