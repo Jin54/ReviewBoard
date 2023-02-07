@@ -63,9 +63,9 @@ const ListPage = ({ detailModalOpen }) => {
    // }, [page]);
  
    useEffect(() => {
-     document.getElementById('scrollWrap').addEventListener('scroll', handleScroll);
+     window.addEventListener('scroll', handleScroll);
      return () => {
-       document.getElementById('scrollWrap').removeEventListener('scroll', handleScroll);
+       window.removeEventListener('scroll', handleScroll);
        console.log('!')
      };
    }, []);
