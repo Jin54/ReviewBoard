@@ -34,6 +34,4 @@ public class Shop {
     private String thumbnail;
 
 
-
-
 }

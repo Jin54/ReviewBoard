@@ -8,10 +8,16 @@ import com.example.demo.src.user.entity.Review;
 import com.example.demo.src.user.entity.Shop;
 import com.example.demo.src.user.model.*;
 import com.example.demo.utils.JwtService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.DataOutput;
 import java.io.IOException;
 import java.util.List;
 
@@ -22,12 +28,11 @@ import static com.example.demo.utils.ValidationRegex.isRegexEmail;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/app/shop")
+@RequestMapping("/shop")
 public class ShopController {
 
 
     private final ShopService shopService;
-
 
 
     /* 회원 1명 조회 API
@@ -35,13 +40,43 @@ public class ShopController {
      * @return BaseResponse<GetUserRes>
      */
     // Path-variable
+
+    @Operation(summary = "연결 확인", description = "", tags = {"Test"})
     @ResponseBody
-    @GetMapping("") // (GET) 127.0.0.1:9000/app/users/:userId
+    @GetMapping("/test") // (GET) 127.0.0.1:9000/app/users/:userId
+    public BaseResponse<String> getTestLog() {
+        String result = "연결 성공";
+        return new BaseResponse<>(result);
+    }
+
+    /* 회원 1명 조회 API
+     * [GET] /app/users/:userId
+     * @return BaseResponse<GetUserRes>
+     */
+    @Operation(summary = "무작위 음식점 10개", description = "", tags = {"무작위 음식점"})
+    @ResponseBody
+    @GetMapping("/random") // (GET) 127.0.0.1:9000/app/users/:userId
     public BaseResponse<List<GetShopRes>> getShopRandom() {
         List<GetShopRes> getShopResList = shopService.getShopRandom();
         return new BaseResponse<>(getShopResList);
     }
 
+    /* 회원 PAGing 조회 API
+     * [GET] /app/users/:userId
+     * @return BaseResponse<GetUserRes>
+     */
+    @Operation(summary = "좌표 중심 탐색", description = "", tags = {"좌표 중심 탐색"})
+    @ResponseBody
+    @GetMapping("/coord") // (GET) 127.0.0.1:9000/app/users/:userId
+    public BaseResponse<List<GetShopRes>> getShopPaging(
+            @RequestParam(defaultValue = "1",name = "페이지인덱스") int pageIndex,
+            @RequestParam(defaultValue = "10", name = "페이지사이즈") int pageSize,
+            @RequestParam(defaultValue = "37.5666805", name = "위도") Double lat,
+            @RequestParam(defaultValue = "126.9784147", name = "경도") Double lon
+    ) {
+//        List<GetShopRes> getShopResList = shopService.getShopByCoord(pageIndex,pageSize,lat,lon);
+        return new BaseResponse<>(shopService.getShopByCoord(pageIndex,pageSize,lat,lon));
+    }
 
 
 }

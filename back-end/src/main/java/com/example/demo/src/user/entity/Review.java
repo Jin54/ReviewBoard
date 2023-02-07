@@ -21,8 +21,8 @@ public class Review  {
     private Long id;
 
     @Column(nullable = true, length = 255)
-    private String rating;
-    @Column(nullable = true)
+    private Double rating;
+    @Column(nullable = true,length = 1000)
     private String content;
 
     @Column(nullable = true, length = 25)
