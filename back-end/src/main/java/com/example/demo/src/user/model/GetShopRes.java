@@ -13,18 +13,28 @@ import lombok.Setter;
 @AllArgsConstructor
 public class GetShopRes {
 
+    //아이디
     private Long id;
+    //이름
     private String name;
+    //전화번호
     private String number;
+    //지번주소
     private String numberAddress;
+    //도로명주소
     private String roadAddress;
+    //위도
     private String lat;
+  //경도
     private String lon;
+   //대표이미지
     private String thumbnail;
-
+//리뷰총 갯수
     private Long review_number;
 
+    //리뷰 평균
     private Double review_rating;
+
 
 
     public GetShopRes(Shop shop,Long reviewCounter ,Double reviewRating) {

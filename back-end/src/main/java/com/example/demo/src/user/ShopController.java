@@ -35,12 +35,10 @@ public class ShopController {
     private final ShopService shopService;
 
 
-    /* 회원 1명 조회 API
-     * [GET] /app/users/:userId
-     * @return BaseResponse<GetUserRes>
+    /* 연결 테스트 API
+     * [GET] /shop/test
+     * @return BaseResponse<String>
      */
-    // Path-variable
-
     @Operation(summary = "연결 확인", description = "", tags = {"Test"})
     @ResponseBody
     @GetMapping("/test") // (GET) 127.0.0.1:9000/app/users/:userId
@@ -49,9 +47,9 @@ public class ShopController {
         return new BaseResponse<>(result);
     }
 
-    /* 회원 1명 조회 API
-     * [GET] /app/users/:userId
-     * @return BaseResponse<GetUserRes>
+    /* 랜덤 음식점 10개 조회
+     * [GET] /shop/random
+     * @return BaseResponse<GetShopRes>
      */
     @Operation(summary = "무작위 음식점 10개", description = "", tags = {"무작위 음식점"})
     @ResponseBody
@@ -61,21 +59,22 @@ public class ShopController {
         return new BaseResponse<>(getShopResList);
     }
 
-    /* 회원 PAGing 조회 API
-     * [GET] /app/users/:userId
-     * @return BaseResponse<GetUserRes>
+    /* 음식점 좌표 paging 조회 API
+     * [GET] /shop/coord
+     * @return BaseResponse<GetShopRes>
      */
     @Operation(summary = "좌표 중심 탐색", description = "", tags = {"좌표 중심 탐색"})
     @ResponseBody
     @GetMapping("/coord") // (GET) 127.0.0.1:9000/app/users/:userId
     public BaseResponse<List<GetShopRes>> getShopPaging(
-            @RequestParam(defaultValue = "1",name = "페이지인덱스") int pageIndex,
+            @RequestParam(defaultValue = "1", name = "페이지인덱스") int pageIndex,
             @RequestParam(defaultValue = "10", name = "페이지사이즈") int pageSize,
             @RequestParam(defaultValue = "37.5666805", name = "위도") Double lat,
             @RequestParam(defaultValue = "126.9784147", name = "경도") Double lon
     ) {
-//        List<GetShopRes> getShopResList = shopService.getShopByCoord(pageIndex,pageSize,lat,lon);
-        return new BaseResponse<>(shopService.getShopByCoord(pageIndex,pageSize,lat,lon));
+        List<GetShopRes> getShopResList = shopService.getShopByCoord(pageIndex, pageSize, lat, lon);
+
+        return new BaseResponse<>(getShopResList);
     }
 
 

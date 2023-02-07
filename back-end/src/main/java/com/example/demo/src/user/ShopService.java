@@ -22,16 +22,35 @@ public class ShopService {
 
     private final ShopRepository shopRepository;
     private final ReviewRepository reviewRepository;
+
+
+    //랜덤으로 음식점 출력
     @Transactional(readOnly = true)
     public List<GetShopRes> getShopRandom() {
+
+        //랜덤으로 정렬함
         List<Shop> shopList = shopRepository.findTop10();
 
+        //리턴할 리스트 객체선언
         List<GetShopRes> result = new ArrayList<>();
+        //for문 순회하면서 GetShopRes형태로 담음
         for (Shop shop : shopList) {
+
+            //리뷰 테이블에서 shop_id 와 같은 것을 카운트함
             Long reviewCounter =reviewRepository.countByShop(shop);
+
+            //리뷰 테이블에서 shop_id 와 같은 row.rating 의 합을 나눠 평균을 구함
+
             Double reviewRating =reviewRepository.sumRatingByShop(shop) /  (double)reviewCounter;
+
+            //GetShopRes 형태 변환
             GetShopRes getShopRes = new GetShopRes(shop,reviewCounter,reviewRating);
+
+            //리턴 리스트에 담음
             result.add(getShopRes);
+
+            //10개 이상 리턴안함
+            //sql 구문에서 수정해야될부분 native query를 써야되나??
             if (result.size() > 10)
                 break;
 
@@ -41,17 +60,23 @@ public class ShopService {
     }
 
 
+    //좌표중심 탐색
     public List<GetShopRes> getShopByCoord(int pageIndex, int pageSize, Double lat, Double lon) {
 
 
+        //paging 변수들 선언
         Sort.Direction direction = Sort.Direction.DESC;
+        //name 기준으로 정렬함 (딱히필요하지않은데 필수 파라미터라서)
         Sort sort = Sort.by(direction, "name");
+
+        //paing 할 인덱스 , 사이즈 선언
         Pageable pageable = PageRequest.of(pageIndex - 1, pageSize, sort);
+
+        //lat,lon 가까운 음식점들 선택, (distance도 파라미터로 받아야할 필요성?)
         Page<Shop> shopList  = shopRepository.findAllBy(lat, lon,pageable);
 
-
+        ///for문 순회하면서 GetShopRes형태로 담음
         List<GetShopRes> result = new ArrayList<>();
-
         for (Shop shop : shopList) {
             Long reviewCounter =reviewRepository.countByShop(shop);
             Double reviewRating =reviewRepository.sumRatingByShop(shop) /  (double)reviewCounter;
