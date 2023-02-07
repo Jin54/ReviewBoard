@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const ReviewScope = ({scope}) => {
     const AVR_RATE = scope*20;
-    console.log(AVR_RATE);
+    // console.log(AVR_RATE);
     const STAR_IDX_ARR = ['first', 'second', 'third', 'fourth', 'last'];
     const [ratesResArr, setRatesResArr] = useState([0, 0, 0, 0, 0]);
     const calcStarRates = () => {
@@ -25,7 +25,7 @@ const ReviewScope = ({scope}) => {
       <StarRateWrap>
         {STAR_IDX_ARR.map((item, idx) => {
           return <span className='star_icon' key={`${item}_${idx}`}>
-              <svg xmlns='http://www.w3.org/2000/svg' width='20' height='39' viewBox='0 0 14 13' fill='#cacaca'>
+              <svg xmlns='http://www.w3.org/2000/svg' width='18' height='39' viewBox='0 0 14 13' fill='#cacaca'>
                   <clipPath id={`${item}StarClip`}>
                       <rect width={`${ratesResArr[idx]}`} height='39' />
                   </clipPath>
