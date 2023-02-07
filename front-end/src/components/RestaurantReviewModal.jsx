@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ImgComponent from "./ImageComponent";
 import dummy from "./../db/restaurant.json";
 import { useSelector } from "react-redux";
+import ReviewScope from "./ReviewScope";
 
 const RestaurantReviewModal = ({ closeAllReview }) => {
   return (
@@ -126,8 +127,8 @@ const ReviewComponent = () => {
         <Date>{review.date}</Date>
       </Top>
       <Middle>
-        <ReviewScope>{review.scope}</ReviewScope>
-        <ReviewScopeIConWrap></ReviewScopeIConWrap>
+        <ReviewScopeNum>{review.scope}</ReviewScopeNum>
+        <ReviewScope scope={review.scope} />
       </Middle>
       <Bottom>{review.post}</Bottom>
     </ReviewBox>
@@ -181,13 +182,15 @@ const Date = styled.span`
 // 별점 & 아이콘
 const Middle = styled.div`
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
 `;
-const ReviewScope = styled.span`
+const ReviewScopeNum = styled.span`
   font-weight: 700;
   font-size: 20px;
   color: #000000;
+  margin-right: 6px;
 `;
-const ReviewScopeIConWrap = styled.div``;
 // 리뷰
 const Bottom = styled.p`
   font-weight: 400;

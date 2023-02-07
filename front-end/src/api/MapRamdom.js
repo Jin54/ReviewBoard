@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { markers } from "../modules/map";
 
-const url = "http://3.35.140.28:9000/app/shop";
+const url = "http://3.35.140.28:9000/shop/random";
 
 export const MapRamdom = async (setRamdomData) => {
   try {
