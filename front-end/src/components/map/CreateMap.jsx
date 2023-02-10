@@ -230,8 +230,8 @@ const CreateMap = (props) => {
       x,
       y
     );
-    console.log(centerData);
-  }, [x, y]);
+    // console.log(centerData);
+  }, [x, y, size]);
 
   useEffect(() => {
     if (centerData === null) return;
@@ -244,7 +244,6 @@ const CreateMap = (props) => {
       // 마커 이미지를 생성합니다
       var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
       const coords = new kakao.maps.LatLng(restaurant.lat, restaurant.lon);
-      console.log(restaurant);
 
       // 마커를 생성합니다
       var marker = new kakao.maps.Marker({

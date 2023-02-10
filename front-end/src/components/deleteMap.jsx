@@ -99,8 +99,6 @@ const Map = (props) => {
         -1 !== restaurant.add.search(smallLocation)
     );
 
-    console.log(ramdomData);
-
     //주소로 좌표 검색
     // const showRestaurant = searchLocation.map((restaurant) => {
     const showRestaurant = ramdomData.map((restaurant) => {

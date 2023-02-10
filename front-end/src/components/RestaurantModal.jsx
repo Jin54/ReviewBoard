@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import ReviewScope from "./ReviewScope";
 import restaurantModal from "../modules/restaurantModal";
 import { RestaurantModalAPI } from "../api/RestaurantModalAPI";
+import ReviewAPI from "../api/Review";
 
 const RestaurantModal = (props) => {
   const [listData, setListData] = useState([]);
@@ -313,28 +314,38 @@ const InfoTxt = styled.div`
 // 매장 상세 리뷰
 
 function ReviewList() {
-  const selectRestaurantName = useSelector(
-    (state) => state.restaurantModal.name
-  );
-  const selectRestaurantAdd = useSelector((state) => state.restaurantModal.add);
-  const selectRestaurantDB = dummy.reviews.filter(
-    (reviews) =>
-      reviews.restaurant === selectRestaurantName &&
-      reviews.add === selectRestaurantAdd
-  );
+  const restaurantID = useSelector((state) => state.restaurantModal.id);
+  // const selectRestaurantAdd = useSelector((state) => state.restaurantModal.add);
+
+  const [reviewData, setReviewData] = useState(null);
+  useEffect(() => {
+    ReviewAPI((data) => {
+      setReviewData(data);
+    }, restaurantID);
+  }, [restaurantID]);
+
+  if (reviewData === null) {
+    return <ReviewBox>리뷰 없음</ReviewBox>;
+  }
+
+  // const selectRestaurantDB = dummy.reviews.filter(
+  //   (reviews) =>
+  //     reviews.restaurant === selectRestaurantName &&
+  //     reviews.add === selectRestaurantAdd
+  // );
 
   // 매장 상세 리뷰 한 개 컴포넌트
-  return selectRestaurantDB.map((review) => (
+  return reviewData.map((review) => (
     <ReviewBox key={review.id}>
       <Top>
-        <Feeling>{review.title}</Feeling>
-        <Date>{review.date}</Date>
+        <Feeling>{review.content}</Feeling>
+        <Date>{review.createAT}</Date>
       </Top>
       <Middle>
-        <ReviewScopeNum>{review.scope}</ReviewScopeNum>
-        <ReviewScope scope={review.scope} />
+        <ReviewScopeNum>{review.rating}</ReviewScopeNum>
+        <ReviewScope scope={review.rating} />
       </Middle>
-      <Bottom>{review.post}</Bottom>
+      <Bottom>{review.content}</Bottom>
     </ReviewBox>
   ));
 }

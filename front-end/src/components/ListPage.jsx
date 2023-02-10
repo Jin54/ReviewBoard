@@ -135,13 +135,14 @@ function ListContent(detailModalOpen) {
   useEffect(() => {
     ListRandom((data) => {
       setRandomData(data);
+      // console.log(randomData);
     });
   }, []);
 
   // console.log(randomData)
 
   useEffect(() => {
-    if (randomData === null) {
+    if (randomData === []) {
       return;
     }
   });

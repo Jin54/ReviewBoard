@@ -4,6 +4,7 @@ import ImgComponent from "./ImageComponent";
 import dummy from "./../db/restaurant.json";
 import { useSelector } from "react-redux";
 import ReviewScope from "./ReviewScope";
+import { ReviewAPI } from "../api/Review";
 
 const RestaurantReviewModal = ({ closeAllReview }) => {
   return (

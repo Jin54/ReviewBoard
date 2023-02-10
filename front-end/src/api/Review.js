@@ -1,11 +1,8 @@
 import axios from "axios";
-import { useCallback } from "react";
-import { useDispatch } from "react-redux";
-import { markers } from "../modules/map";
 
-const url = "http://3.35.140.28:9000/shop";
+export const ReviewAPI = async (setReviewData, restaurantID) => {
+  const url = `http://3.35.140.28:9000/shop/${restaurantID}?pageIndex=1&pageSize=100`;
 
-export const ReviewAPI = async (setReviewData) => {
   try {
     const data = await axios({
       method: "get",

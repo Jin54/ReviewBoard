@@ -3,10 +3,8 @@ import styled from "styled-components";
 
 const ReviewScope = ({ scope }) => {
   const AVR_RATE = scope * 20;
-  // console.log(AVR_RATE);
   const STAR_IDX_ARR = ["first", "second", "third", "fourth", "last"];
   const [ratesResArr, setRatesResArr] = useState([0, 0, 0, 0, 0]);
-  // console.log(ratesResArr)
   const calcStarRates = () => {
     let tempStarRatesArr = [0, 0, 0, 0, 0];
     let starVerScore = (AVR_RATE * 70) / 100;
