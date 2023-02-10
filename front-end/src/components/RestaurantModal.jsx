@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ImgComponent from "./ImageComponent";
 import dummy from "./../db/restaurant.json";
 import { useSelector } from "react-redux";
 import ReviewScope from "./ReviewScope";
 import restaurantModal from "../modules/restaurantModal";
-import {RestaurantModalAPI} from '../api/RestaurantModalAPI'
+import { RestaurantModalAPI } from "../api/RestaurantModalAPI";
 
 const RestaurantModal = (props) => {
   const [listData, setListData] = useState([]);
@@ -20,13 +20,11 @@ const RestaurantModal = (props) => {
 
   useEffect(() => {
     if (listData === null) {
-      return
+      return;
     }
-    })
+  });
   //매장 상세 정보
-  const selectRestaurantId = useSelector(
-    (state) => state.restaurantModal.id
-  );
+  const selectRestaurantId = useSelector((state) => state.restaurantModal.id);
   // const selectRestaurantAdd = useSelector((state) => state.restaurantModal.add);
   // const selectRestaurantDB = listData.filter(
   //   (restaurant) =>
@@ -36,7 +34,7 @@ const RestaurantModal = (props) => {
 
   // console.log(selectRestaurantId)
   // console.log(listData[selectRestaurantId-1])
-  const info =listData[selectRestaurantId-1]
+  const info = listData[selectRestaurantId - 1];
   // console.log(info.thumbnail)
 
   return (
@@ -50,26 +48,26 @@ const RestaurantModal = (props) => {
         {/* <Back></Back>  */}
         {/* {restaurantDetail} */}
         <div key={info.id}>
-      <MainImg>
-        <Thumbnail src={info.thumbnail} width={"100%"} />
-      </MainImg>
-      <About>
-        <Title>{info.name}</Title>
-        <Address>{info.numberAddress}</Address>
-        <ScopeWrap>
-          <Scope>{info.review_rating}</Scope>
-          <ReviewScope scope={info.review_rating} />
-        </ScopeWrap>
-      </About>
-      <Info>
-        <InfoComponent img={"time.png"} txt={info.time} />
-        <InfoComponent img={"link.png"} txt={info.link} />
-        <InfoComponent img={"phone.png"} txt={info.number} />
-      </Info>
-    </div>
+          <MainImg>
+            <Thumbnail src={info.thumbnail} width={"100%"} />
+          </MainImg>
+          <About>
+            <Title>{info.name}</Title>
+            <Address>{info.numberAddress}</Address>
+            <ScopeWrap>
+              <Scope>{info.review_rating}</Scope>
+              <ReviewScope scope={info.review_rating} />
+            </ScopeWrap>
+          </About>
+          <Info>
+            <InfoComponent img={"time.png"} txt={info.time} />
+            <InfoComponent img={"link.png"} txt={info.link} />
+            <InfoComponent img={"phone.png"} txt={info.number} />
+          </Info>
+        </div>
         <Divider></Divider>
         {/* <ReviewPage onClick={props.openAllReivew} /> */}
-        <ReviewWrap  onClick={props.openAllReivew}>
+        <ReviewWrap onClick={props.openAllReivew}>
           <ReviewTxtWrap>
             <ReviewNum>리뷰 {info.review_number}개</ReviewNum>
             <ReviewMore onClick={props.onClick}>더보기</ReviewMore>
@@ -105,7 +103,7 @@ const RestaurantModalWrap = styled.div`
   }
 `;
 
-const Thumbnail = styled.img``
+const Thumbnail = styled.img``;
 
 const Box = styled.div`
   overflow: scroll;
@@ -275,7 +273,6 @@ const ReviewMore = styled.p`
   }
 `;
 export default RestaurantModal;
-
 
 // 매장 상세 중간 정보 컴포넌트 ( 영업 시간, 링크, 번호 )
 
