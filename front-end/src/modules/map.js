@@ -19,8 +19,8 @@ export const markers = (data) => ({
 
 const initialState = {
   number: 13,
-  x: 36,
-  y: 127.9,
+  x: 36.5,
+  y: 128,
   data: [],
 };
 
