@@ -250,6 +250,60 @@ const CreateMap = (props) => {
         position: coords, // 마커를 표시할 위치
         image: markerImage, // 마커 이미지
       });
+
+      //=============마커의 오버레이(클릭 시 보여지는 css)========================================================
+      var content = document.createElement("div");
+      content.className = "wrap";
+
+      var contentHeader = document.createElement("div");
+      contentHeader.className = "header";
+      content.appendChild(contentHeader);
+
+      var HeaderTitle = document.createElement("p");
+      HeaderTitle.innerHTML = restaurant.name;
+      contentHeader.appendChild(HeaderTitle);
+
+      var HeaderCloseBtn = document.createElement("div");
+      HeaderCloseBtn.className = "closeimgWrap";
+      HeaderCloseBtn.innerHTML =
+        '<img src="https://i.postimg.cc/ZYjNRKj6/close-white.png"></img>';
+      HeaderCloseBtn.onclick = function () {
+        overlay.setMap(null);
+      };
+      contentHeader.appendChild(HeaderCloseBtn);
+
+      var infowrap = document.createElement("div");
+      infowrap.className = "infowrap";
+      infowrap.innerHTML =
+        '<div class="imgwrap">' +
+        "<img src={" +
+        process.env.PUBLIC_URL +
+        "/img/ex01.png}></img>" +
+        "</div>" +
+        '<div class="info">' +
+        '<p class="address">' +
+        restaurant.numberAddress +
+        "</p>" +
+        '<p class="scope">리뷰 ' +
+        restaurant.review_rating +
+        "점</p>" +
+        '<p class="review"> 리뷰' +
+        restaurant.review_number +
+        "개</p>" +
+        "</div>";
+      content.appendChild(infowrap);
+
+      // 마커 위에 커스텀오버레이를 표시합니다
+      // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+      const overlay = new kakao.maps.CustomOverlay({
+        content: content,
+        position: marker.getPosition(),
+      });
+
+      // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+      kakao.maps.event.addListener(marker, "click", function () {
+        overlay.setMap(_map);
+      });
     });
   }, [centerData]);
 
