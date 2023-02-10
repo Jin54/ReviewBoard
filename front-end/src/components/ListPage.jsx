@@ -7,8 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { change } from "../modules/restaurantModal";
 import ReviewScope from "./ReviewScope";
 import axios from "axios";
+import {ListRandom} from '../api/ListRandom'
 
 const ListPage = ({ detailModalOpen }) => {
+    //랜덤 값 저장
+    const [randomData, setRandomData] = useState(null);
    // 무한 스크롤
    const [randomImageList, setRandomImageList] = useState([]);
    const [page, setPage] = useState(1);
@@ -48,6 +51,8 @@ const ListPage = ({ detailModalOpen }) => {
        alert(err);
      }
    };
+
+   console.log(randomData)
  
    useEffect(() => {
     //  const list = dummy.restaurant.filter(
@@ -55,7 +60,7 @@ const ListPage = ({ detailModalOpen }) => {
     //  );
     //  setRandomImageList((restaurant) => [...list]);
      getRandomImageThenSet();
-   }, [page]);
+   }, [randomData]);
  
    // useEffect(() => {
    //   console.log('page ? ', page);
