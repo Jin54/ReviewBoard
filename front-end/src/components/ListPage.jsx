@@ -11,7 +11,7 @@ import {ListRandom} from '../api/ListRandom'
 
 const ListPage = ({ detailModalOpen }) => {
 
-  //  // 무한 스크롤
+   // 무한 스크롤
   //  const [randomImageList, setRandomImageList] = useState([]);
   //  const [page, setPage] = useState(1);
  
@@ -28,7 +28,7 @@ const ListPage = ({ detailModalOpen }) => {
   //    }
   //  };
  
-  //  const url = "http://3.35.140.28:9000/shop/random";
+  //  const url = "http://3.35.140.28:9000/shop";
  
   //  const getRandomImageThenSet = async () => {
   //    console.log('fetching 함수 호출됨');
@@ -51,15 +51,13 @@ const ListPage = ({ detailModalOpen }) => {
   //    }
   //  };
 
-  //  console.log(randomData)
- 
   //  useEffect(() => {
   //   //  const list = dummy.restaurant.filter(
   //   //    (restaurant, i) => i < page + 8
   //   //  );
   //   //  setRandomImageList((restaurant) => [...list]);
   //    getRandomImageThenSet();
-  //  }, [randomData]);
+  //  }, []);
  
   //  // useEffect(() => {
   //  //   console.log('page ? ', page);
@@ -73,6 +71,9 @@ const ListPage = ({ detailModalOpen }) => {
   //      console.log('!')
   //    };
   //  }, []);
+
+  // 무한 스크롤
+  
   return (
     <ListPageWrap>
       <ListScroll id='scrollWrap'>
@@ -127,6 +128,9 @@ export default ListPage;
 // =============================================
 
 function ListContent(detailModalOpen) {
+
+  // 무한스크롤
+
   //랜덤 값 저장
   const [randomData, setRandomData] = useState([]);
   useEffect(() => {
@@ -135,7 +139,7 @@ function ListContent(detailModalOpen) {
     });
   }, []);
 
-  console.log(randomData)
+  // console.log(randomData)
 
   useEffect(() => {
     if (randomData === null) {
