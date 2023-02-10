@@ -1,10 +1,7 @@
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
-import Map from "./Map";
+import CreateMap from "./map/CreateMap";
 import RegionListModal from "./RegionListModal";
-
-import { useDispatch, useSelector } from "react-redux";
-import { increase, decrease, currentUp } from "../modules/map";
 
 // import compass from "./../img/mapCompass.svg";
 import ImgComponent from "./ImageComponent";
@@ -22,36 +19,10 @@ const Body = (props) => {
   // 만약에 아래에서 위로 슬라이드 하고 싶다면 여기 참고
   // https://velog.io/@qhdgkdbs/React%EC%97%90%EC%84%9C-ios-%ED%9D%89%EB%82%B4%EB%82%B4%EA%B8%B0-Slide-Up-Modal-%EA%B5%AC%ED%98%84
 
-  //맵 사이즈 변경 Redux
-  const size = useSelector((state) => state.map.number);
-  const dispatch = useDispatch();
-  const sizeUp = useCallback(() => dispatch(decrease()), [dispatch]);
-  const sizeDown = useCallback(() => dispatch(increase()), [dispatch]);
-  //현재 위치 버튼 클릭 시, 현재 위치로 확대
-  const onClickCurrentBtn = useCallback(
-    () => dispatch(currentUp()),
-    [dispatch]
-  );
-
   return (
     <BodyWrap>
-      <Map size={size} />
-      <MapBtns>
-        <MapBtnsLeft>
-          <SelectRegion onClick={openRegion}>지역 선택</SelectRegion>
-          <Location top="120" onClick={() => onClickCurrentBtn()}>
-            <ImgComponent src={"gps.png"} width={"100%"} />
-          </Location>
-        </MapBtnsLeft>
-        <MapBtnsRight>
-          <MapSize top="0" onClick={() => sizeUp()}>
-            <ImgComponent src={"plus.png"} width={"100%"} />
-          </MapSize>
-          <MapSize top="120" onClick={() => sizeDown()}>
-            <ImgComponent src={"minus.png"} width={"100%"} />
-          </MapSize>
-        </MapBtnsRight>
-      </MapBtns>
+      {/* <Map size={size} /> */}
+      <CreateMap openRegion={openRegion} />
       {showRegion && (
         <RegionListModal closeRegion={closeRegion} showList={props.showList} />
       )}
@@ -74,41 +45,6 @@ const BodyWrap = styled.div`
     margin-top: 20px;
     width: 100%;
   }
-`;
-const MapBtns = styled.div`
-  position: absolute;
-  left: 50%;
-  width: 90%;
-  transform: translateX(-50%);
-  top: 7%;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-const BtnStyle = styled.div`
-  background: #16312c;
-  border-radius: 10px;
-  color: #fff;
-  font-weight: 700;
-  font-size: 18px;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 20px;
-`;
-const MapBtnsLeft = styled.div``;
-const MapBtnsRight = styled.div``;
-const SelectRegion = styled(BtnStyle)``;
-const Location = styled(BtnStyle)`
-  width: 20px;
-  margin-top: 10px;
-`;
-const MapSize = styled(BtnStyle)`
-  width: 20px;
-  margin-bottom: 5px;
-  margin-top: 5px;
 `;
 
 //수정됨-보민

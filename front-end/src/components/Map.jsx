@@ -4,9 +4,7 @@ import styled from "styled-components";
 import dummy from "./../db/restaurant.json";
 import "../style/map.scss";
 import { resetxy } from "../modules/map";
-import { saveLocation } from "../modules/location";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { MapRamdom } from "./../api/MapRamdom";
 
 const { kakao } = window;
