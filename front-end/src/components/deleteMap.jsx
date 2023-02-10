@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
-import dummy from "./../db/restaurant.json";
+import dummy from "../db/restaurant.json";
 import "../style/map.scss";
 import { resetxy } from "../modules/map";
 import { useDispatch, useSelector } from "react-redux";
-import { MapRamdom } from "./../api/MapRamdom";
+import { MapRamdom } from "../api/MapRamdom";
 
 const { kakao } = window;
 
