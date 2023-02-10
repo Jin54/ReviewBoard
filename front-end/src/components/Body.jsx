@@ -1,10 +1,7 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import CreateMap from "./map/CreateMap";
 import RegionListModal from "./RegionListModal";
-
-// import compass from "./../img/mapCompass.svg";
-import ImgComponent from "./ImageComponent";
 
 const Body = (props) => {
   //지역 선택 모달
@@ -21,7 +18,6 @@ const Body = (props) => {
 
   return (
     <BodyWrap>
-      {/* <Map size={size} /> */}
       <CreateMap openRegion={openRegion} />
       {showRegion && (
         <RegionListModal closeRegion={closeRegion} showList={props.showList} />
@@ -46,31 +42,5 @@ const BodyWrap = styled.div`
     width: 100%;
   }
 `;
-
-//수정됨-보민
-// const SelectRegion = styled(BtnStyle)`
-//   /* height: 90px;
-//   width: 250px; 수정됨-하림*/
-//   /* height: 40px; */
-//   /* width: 100px; */
-//   font-size: 20px;
-// `
-// const Location = styled(BtnStyle)`
-//   height: 30px;
-//   width: 30px;
-//   /* position: absolute; */
-//   /* left: 0%; */
-//   /* top: ${(props) => props.top}%; */
-//   /* padding: 20px; */
-//   margin-top: 20px;
-// `;
-// const MapSize = styled(BtnStyle)`
-//   height: 30px;
-//   width: 30px;
-//   /* position: absolute; */
-//   /* left: 400%; */
-//   /* padding: 10px; */
-//   /* top: ${(props) => props.top}%; */
-// `;
 
 export default Body;

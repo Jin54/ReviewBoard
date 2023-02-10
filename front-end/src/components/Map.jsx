@@ -77,7 +77,7 @@ const Map = (props) => {
       imageSize,
       imageOption
     );
-    function displayCurrentMarker(locPosition, message) {
+    function displayCurrentMarker(locPosition) {
       // 마커를 생성합니다
       var CurrentMarker = new kakao.maps.Marker({
         map: map,
@@ -88,6 +88,7 @@ const Map = (props) => {
       // 지도 중심좌표를 접속위치로 변경합니다
       map.setCenter(locPosition);
     }
+
     //마커를 지도 위에 표시
     //=========dummy 데이터에서 주소를 가져온 후, 주소로 여러 장소 표시하기 & 지역 선택 후, 해당 지역의 맛집 모두 표시하기=======================================================================
     //주소-좌표 변환 객체 생성
