@@ -1,42 +1,43 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import ImgComponent from "./ImageComponent";
 import dummy from "./../db/restaurant.json";
 import { useSelector } from "react-redux";
 import ReviewScope from "./ReviewScope";
+import restaurantModal from "../modules/restaurantModal";
+import {RestaurantModalAPI} from '../api/RestaurantModalAPI'
 
 const RestaurantModal = (props) => {
-  //매장 상세 정보
-  const selectRestaurantName = useSelector(
-    (state) => state.restaurantModal.name
-  );
-  const selectRestaurantAdd = useSelector((state) => state.restaurantModal.add);
-  const selectRestaurantDB = dummy.restaurants.filter(
-    (restaurant) =>
-      restaurant.title === selectRestaurantName &&
-      restaurant.add === selectRestaurantAdd
-  );
+  const [listData, setListData] = useState([]);
 
-  const restaurantDetail = selectRestaurantDB.map((restaurant) => (
-    <div key={restaurant.id}>
-      <MainImg>
-        <ImgComponent src={restaurant.thumbnail} width={"100%"} />
-      </MainImg>
-      <About>
-        <Title>{restaurant.name}</Title>
-        <Address>{restaurant.numberAddress}</Address>
-        <ScopeWrap>
-          <Scope>{restaurant.review_rating}</Scope>
-          <ReviewScope scope={restaurant.review_rating} />
-        </ScopeWrap>
-      </About>
-      <Info>
-        <InfoComponent img={"time.png"} txt={restaurant.time} />
-        <InfoComponent img={"link.png"} txt={restaurant.link} />
-        <InfoComponent img={"phone.png"} txt={restaurant.phone} />
-      </Info>
-    </div>
-  ));
+  useEffect(() => {
+    RestaurantModalAPI((data) => {
+      setListData(data);
+    });
+  }, []);
+
+  // console.log(listData)
+
+  useEffect(() => {
+    if (listData === null) {
+      return
+    }
+    })
+  //매장 상세 정보
+  const selectRestaurantId = useSelector(
+    (state) => state.restaurantModal.id
+  );
+  // const selectRestaurantAdd = useSelector((state) => state.restaurantModal.add);
+  // const selectRestaurantDB = listData.filter(
+  //   (restaurant) =>
+  //     restaurant.title === selectRestaurantName &&
+  //     restaurant.add === selectRestaurantAdd
+  // );
+
+  // console.log(selectRestaurantId)
+  // console.log(listData[selectRestaurantId-1])
+  const info =listData[selectRestaurantId-1]
+  // console.log(info.thumbnail)
 
   return (
     <RestaurantModalWrap>
@@ -47,9 +48,36 @@ const RestaurantModal = (props) => {
       </CloseWrap>
       <Box>
         {/* <Back></Back>  */}
-        {restaurantDetail}
+        {/* {restaurantDetail} */}
+        <div key={info.id}>
+      <MainImg>
+        <Thumbnail src={info.thumbnail} width={"100%"} />
+      </MainImg>
+      <About>
+        <Title>{info.name}</Title>
+        <Address>{info.numberAddress}</Address>
+        <ScopeWrap>
+          <Scope>{info.review_rating}</Scope>
+          <ReviewScope scope={info.review_rating} />
+        </ScopeWrap>
+      </About>
+      <Info>
+        <InfoComponent img={"time.png"} txt={info.time} />
+        <InfoComponent img={"link.png"} txt={info.link} />
+        <InfoComponent img={"phone.png"} txt={info.number} />
+      </Info>
+    </div>
         <Divider></Divider>
-        <ReviewPage onClick={props.openAllReivew} />
+        {/* <ReviewPage onClick={props.openAllReivew} /> */}
+        <ReviewWrap  onClick={props.openAllReivew}>
+          <ReviewTxtWrap>
+            <ReviewNum>리뷰 {info.review_number}개</ReviewNum>
+            <ReviewMore onClick={props.onClick}>더보기</ReviewMore>
+          </ReviewTxtWrap>
+          <ReviewFlexWrap>
+            <ReviewList />
+          </ReviewFlexWrap>
+        </ReviewWrap>
       </Box>
     </RestaurantModalWrap>
   );
@@ -76,6 +104,8 @@ const RestaurantModalWrap = styled.div`
     padding-top: 20px;
   }
 `;
+
+const Thumbnail = styled.img``
 
 const Box = styled.div`
   overflow: scroll;
@@ -197,24 +227,8 @@ const Back = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
   overflow: hidden;
 `;
-export default RestaurantModal;
 
-// 매장 상세 하단 리뷰 전체 컴포넌트 ( 리뷰 개수, 더보기 버튼, 리뷰 리스트 )
-const ReviewPage = (props) => {
-  const reviewNum = useSelector((state) => state.restaurantModal.reviewNum);
-
-  return (
-    <ReviewWrap>
-      <ReviewTxtWrap>
-        <ReviewNum>리뷰 {reviewNum}개</ReviewNum>
-        <ReviewMore onClick={props.onClick}>더보기</ReviewMore>
-      </ReviewTxtWrap>
-      <ReviewFlexWrap>
-        <ReviewList />
-      </ReviewFlexWrap>
-    </ReviewWrap>
-  );
-};
+// ================
 
 const ReviewWrap = styled.div`
   width: 100%;
@@ -260,6 +274,8 @@ const ReviewMore = styled.p`
     padding: 8px;
   }
 `;
+export default RestaurantModal;
+
 
 // 매장 상세 중간 정보 컴포넌트 ( 영업 시간, 링크, 번호 )
 

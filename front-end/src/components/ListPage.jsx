@@ -131,8 +131,9 @@ function ListContent(detailModalOpen) {
 
   // 무한스크롤
 
-  //랜덤 값 저장
+  //전체 음식점 저장
   const [randomData, setRandomData] = useState([]);
+
   useEffect(() => {
     ListRandom((data) => {
       setRandomData(data);
@@ -149,7 +150,7 @@ function ListContent(detailModalOpen) {
   //가게 클릭 시 해당 가게로 이름 변경 -> 모달창 이동
   const dispatch = useDispatch();
   const onClickSelect = useCallback(
-    (name, add) => dispatch(change(name, add)),
+    (id) => dispatch(change(id)),
     [dispatch]
   );
 
@@ -160,17 +161,23 @@ function ListContent(detailModalOpen) {
   const [smallLocation, setSmallLocation] = useState(
     useSelector((state) => state.location.smallLocation)
   );
-  const searchLocationRestaurantList = dummy.restaurants.filter(
-    (restaurant) =>
-      -1 !== restaurant.add.search(bigLocation) &&
-      -1 !== restaurant.add.search(smallLocation)
-  );
+  // const selectRestaurantId = useSelector(
+  //   (state) => state.restaurantModal.id
+  // );
+  // console.log(randomData[1])
+
+  // const searchLocationRestaurantList = randomData.filter(
+  //   (idx) =>
+  //     // -1 !== restaurant.add.search(bigLocation) &&
+  //     // id == randomData.search(selectRestaurantId)
+  //     randomData[idx].id == randomData.search(selectRestaurantId)
+  // );
 
   return randomData.map((restaurant) => (
     <ListContentWrap
       key={restaurant.id}
       onClick={() => {
-        onClickSelect(restaurant.name, restaurant.numberAddress, restaurant.thumbnail, restaurant.review_rating, restaurant.review_number);
+        onClickSelect(restaurant.id);
         detailModalOpen();
       }}
     >
