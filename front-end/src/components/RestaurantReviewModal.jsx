@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ImgComponent from "./ImageComponent";
 import dummy from "./../db/restaurant.json";
@@ -111,27 +111,40 @@ const ReviewListWrap = styled.div`
 
 // 매장 상세 리뷰 한 개 컴포넌트
 const ReviewComponent = () => {
-  const selectRestaurantName = useSelector(
-    (state) => state.restaurantModal.name
-  );
-  const selectRestaurantAdd = useSelector((state) => state.restaurantModal.add);
-  const selectRestaurantDB = dummy.reviews.filter(
-    (reviews) =>
-      reviews.restaurant === selectRestaurantName &&
-      reviews.add === selectRestaurantAdd
-  );
+  // const selectRestaurantName = useSelector(
+  //   (state) => state.restaurantModal.name
+  // );
+  // const selectRestaurantAdd = useSelector((state) => state.restaurantModal.add);
+  // const selectRestaurantDB = dummy.reviews.filter(
+  //   (reviews) =>
+  //     reviews.restaurant === selectRestaurantName &&
+  //     reviews.add === selectRestaurantAdd
+  // );
+  const restaurantID = useSelector((state) => state.restaurantModal.id);
+  const [reviewData, setReviewData] = useState(null);
 
-  return selectRestaurantDB.map((review) => (
+  useEffect(() => {
+    ReviewAPI((data) => {
+      setReviewData(data);
+    }, restaurantID);
+    //주의 : console.log(reviewData) 이렇게 해도 reviewData 는 null 로 나온다. useEffect 밖에서 console 해줘야 한다.
+  }, [restaurantID]);
+
+  if (reviewData === null) {
+    return <ReviewBox>리뷰 없음</ReviewBox>;
+  }
+
+  return reviewData.map((review) => (
     <ReviewBox key={review.id}>
       <Top>
-        <Feeling>{review.title}</Feeling>
-        <Date>{review.date}</Date>
+        <Feeling>{review.content}</Feeling>
+        <Date>{review.createAT}</Date>
       </Top>
       <Middle>
-        <ReviewScopeNum>{review.scope}</ReviewScopeNum>
-        <ReviewScope scope={review.scope} />
+        <ReviewScopeNum>{review.rating}</ReviewScopeNum>
+        <ReviewScope scope={review.rating} />
       </Middle>
-      <Bottom>{review.post}</Bottom>
+      <Bottom>{review.content}</Bottom>
     </ReviewBox>
   ));
 };
