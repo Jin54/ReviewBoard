@@ -39,7 +39,14 @@ const CreateMap = (props) => {
   useEffect(() => {
     //랜덤 10개 받아오기 전일 때
     if (randomData === null) {
-      //   alert("랜덤 음식점 10개를 받아올 수 없습니다.");
+      const mapContainer = document.getElementById("map"), // 지도를 표시할 div
+        mapOption = {
+          center: new kakao.maps.LatLng(x, y), // 지도의 중심좌표
+          level: size, // 지도의 확대 레벨
+        };
+
+      // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+      const map = new kakao.maps.Map(mapContainer, mapOption);
       return;
     }
 
