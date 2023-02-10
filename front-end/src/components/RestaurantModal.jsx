@@ -13,10 +13,11 @@ const RestaurantModal = (props) => {
   useEffect(() => {
     RestaurantModalAPI((data) => {
       setListData(data);
+      console.log('useEffect')
     });
   }, []);
 
-  // console.log(listData)
+  console.log(listData)
 
   useEffect(() => {
     if (listData === null) {
