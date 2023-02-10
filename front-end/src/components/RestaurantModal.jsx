@@ -14,20 +14,12 @@ const RestaurantModal = (props) => {
   useEffect(() => {
     RestaurantModalAPI((data) => {
       setListData(data);
-<<<<<<< HEAD
     }, selectRestaurantId);
   }, [selectRestaurantId]);
 
   if (listData === null) {
     return;
   }
-=======
-      console.log('useEffect')
-    });
-  }, []);
-
-  console.log(listData)
->>>>>>> dbc58a7b39f2a02a66fa79bbfc0c5f3e99e99021
 
   //매장 상세 정보
   // const selectRestaurantAdd = useSelector((state) => state.restaurantModal.add);
