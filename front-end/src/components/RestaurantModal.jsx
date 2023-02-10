@@ -20,14 +20,14 @@ const RestaurantModal = (props) => {
   const restaurantDetail = selectRestaurantDB.map((restaurant) => (
     <div key={restaurant.id}>
       <MainImg>
-        <ImgComponent src={restaurant.img} width={"100%"} />
+        <ImgComponent src={restaurant.thumbnail} width={"100%"} />
       </MainImg>
       <About>
-        <Title>{restaurant.title}</Title>
-        <Address>{restaurant.add}</Address>
+        <Title>{restaurant.name}</Title>
+        <Address>{restaurant.numberAddress}</Address>
         <ScopeWrap>
-          <Scope>{restaurant.scope}</Scope>
-          <ReviewScope scope={restaurant.scope} />
+          <Scope>{restaurant.review_rating}</Scope>
+          <ReviewScope scope={restaurant.review_rating} />
         </ScopeWrap>
       </About>
       <Info>
