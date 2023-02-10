@@ -7,29 +7,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { change } from "../modules/restaurantModal";
 import ReviewScope from "./ReviewScope";
 import axios from "axios";
-import {ListRandom} from '../api/ListRandom'
+import { ListRandom } from "../api/ListRandom";
 
 const ListPage = ({ detailModalOpen }) => {
-
-   // 무한 스크롤
+  // 무한 스크롤
   //  const [randomImageList, setRandomImageList] = useState([]);
   //  const [page, setPage] = useState(1);
- 
+
   //  const handleScroll = () => {
   //    const scrollHeight = document.documentElement.scrollHeight;
   //    const scrollTop = document.documentElement.scrollTop;
   //    const clientHeight = document.documentElement.clientHeight;
- 
+
   //    console.log('스크롤 이벤트 발생');
- 
+
   //    if (scrollTop + clientHeight >= scrollHeight -100) {
   //      console.log('페이지 끝에 스크롤이 닿았음');
   //      setPage((prev) => prev + 1);
   //    }
   //  };
- 
+
   //  const url = "http://3.35.140.28:9000/shop";
- 
+
   //  const getRandomImageThenSet = async () => {
   //    console.log('fetching 함수 호출됨');
   //    // try {
@@ -58,12 +57,12 @@ const ListPage = ({ detailModalOpen }) => {
   //   //  setRandomImageList((restaurant) => [...list]);
   //    getRandomImageThenSet();
   //  }, []);
- 
+
   //  // useEffect(() => {
   //  //   console.log('page ? ', page);
   //  //   getRandomImageThenSet();
   //  // }, [page]);
- 
+
   //  useEffect(() => {
   //    window.addEventListener('scroll', handleScroll);
   //    return () => {
@@ -73,10 +72,10 @@ const ListPage = ({ detailModalOpen }) => {
   //  }, []);
 
   // 무한 스크롤
-  
+
   return (
     <ListPageWrap>
-      <ListScroll id='scrollWrap'>
+      <ListScroll id="scrollWrap">
         <FlexWrap>{ListContent(detailModalOpen)}</FlexWrap>
       </ListScroll>
     </ListPageWrap>
@@ -128,7 +127,6 @@ export default ListPage;
 // =============================================
 
 function ListContent(detailModalOpen) {
-
   // 무한스크롤
 
   //전체 음식점 저장
@@ -144,15 +142,12 @@ function ListContent(detailModalOpen) {
 
   useEffect(() => {
     if (randomData === null) {
-      return
+      return;
     }
-    })
+  });
   //가게 클릭 시 해당 가게로 이름 변경 -> 모달창 이동
   const dispatch = useDispatch();
-  const onClickSelect = useCallback(
-    (id) => dispatch(change(id)),
-    [dispatch]
-  );
+  const onClickSelect = useCallback((id) => dispatch(change(id)), [dispatch]);
 
   //modules/location.js 에 저장된 지역의 음식 리스트만 보여주기
   const [bigLocation, setBigLocation] = useState(
@@ -166,14 +161,13 @@ function ListContent(detailModalOpen) {
   // );
   // console.log(randomData[1])
 
-  // const searchLocationRestaurantList = randomData.filter(
-  //   (idx) =>
-  //     // -1 !== restaurant.add.search(bigLocation) &&
-  //     // id == randomData.search(selectRestaurantId)
-  //     randomData[idx].id == randomData.search(selectRestaurantId)
-  // );
+  const searchLocationRestaurantList = randomData.filter(
+    (restaurant) =>
+      -1 !== restaurant.numberAddress.search(bigLocation) &&
+      -1 !== restaurant.numberAddress.search(smallLocation)
+  );
 
-  return randomData.map((restaurant) => (
+  return searchLocationRestaurantList.map((restaurant) => (
     <ListContentWrap
       key={restaurant.id}
       onClick={() => {
@@ -303,4 +297,3 @@ const Bottom = styled.p`
     font-size: 11px;
   }
 `;
-
