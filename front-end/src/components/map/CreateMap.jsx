@@ -15,6 +15,8 @@ const CreateMap = (props) => {
   const currentX = useSelector((state) => state.map.currentX);
   const currentY = useSelector((state) => state.map.currentY);
   const size = useSelector((state) => state.map.number);
+  const bigLocation = useSelector((state) => state.location.bigLocation);
+  const smallLocation = useSelector((state) => state.location.smallLocation);
   const dispatch = useDispatch();
   const resetXY = useCallback((x, y) => dispatch(resetxy(x, y)), [dispatch]);
   const currentXY = useCallback(
@@ -306,6 +308,23 @@ const CreateMap = (props) => {
       });
     });
   }, [centerData]);
+
+  //============지역 선택 시, 중심 좌표 이동 및 맵 이동=======================================================================
+  useEffect(() => {
+    if (_map === null) return;
+
+    var geocoder = new kakao.maps.services.Geocoder();
+    const location = bigLocation + " " + smallLocation;
+    geocoder.addressSearch(location, function (result, status) {
+      if (status === kakao.maps.services.Status.OK) {
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        _map.setCenter(coords);
+        resetXY(result[0].y, result[0].x);
+        ChangeSize(4);
+      }
+    });
+  }, [bigLocation, smallLocation, _map]);
 
   return (
     <>

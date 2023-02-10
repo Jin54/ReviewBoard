@@ -37,9 +37,9 @@ const RegionListModal = (props) => {
       key={location.id}
       id={location.id}
       onClick={() => {
-        setLocationBtn(location.name);
+        setLocationBtn(location.search);
       }}
-      selected={locationBtn === location.name && "selected"}
+      selected={locationBtn === location.search && "selected"}
       name={location.name}
     ></Region>
   ));
