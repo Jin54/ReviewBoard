@@ -8,6 +8,7 @@ import { change } from "../modules/restaurantModal";
 import ReviewScope from "./ReviewScope";
 import axios from "axios";
 import { ListRandom } from "../api/ListRandom";
+import { useInView } from "react-intersection-observer";
 
 const ListPage = ({ detailModalOpen }) => {
   // 무한 스크롤
@@ -71,13 +72,11 @@ const ListPage = ({ detailModalOpen }) => {
   //    };
   //  }, []);
 
-  // 무한 스크롤
+  // 무한 스크롤-보민
 
   return (
     <ListPageWrap>
-      <ListScroll id="scrollWrap">
-        <FlexWrap>{ListContent(detailModalOpen)}</FlexWrap>
-      </ListScroll>
+      <ListScroll id="scrollWrap">{ListContent(detailModalOpen)}</ListScroll>
     </ListPageWrap>
   );
 };
@@ -128,6 +127,12 @@ export default ListPage;
 
 function ListContent(detailModalOpen) {
   // 무한스크롤
+  const [pageNum, setPageNum] = useState(4);
+  const [ref, inView] = useInView();
+  useEffect(() => {
+    // console.log(inView.toString());
+    setPageNum(pageNum + 10);
+  }, [ref, inView]);
 
   //전체 음식점 저장
   const [randomData, setRandomData] = useState([]);
@@ -135,9 +140,8 @@ function ListContent(detailModalOpen) {
   useEffect(() => {
     ListRandom((data) => {
       setRandomData(data);
-      // console.log(randomData);
-    });
-  }, []);
+    }, pageNum);
+  }, [pageNum]);
 
   // console.log(randomData)
 
@@ -168,28 +172,33 @@ function ListContent(detailModalOpen) {
       -1 !== restaurant.numberAddress.search(smallLocation)
   );
 
-  return searchLocationRestaurantList.map((restaurant) => (
-    <ListContentWrap
-      key={restaurant.id}
-      onClick={() => {
-        onClickSelect(restaurant.id);
-        detailModalOpen();
-      }}
-    >
-      <ImgWrap imgUrl={restaurant.thumbnail}></ImgWrap>
-      <AboutWrap>
-        <Top>
-          <Title>{restaurant.name}</Title>
-          <Address>{restaurant.numberAddress}</Address>
-        </Top>
-        <Middle>
-          <Scope>{restaurant.review_rating}</Scope>
-          <ReviewScope scope={restaurant.review_rating} />
-        </Middle>
-        <Bottom>리뷰 {restaurant.review_number}</Bottom>
-      </AboutWrap>
-    </ListContentWrap>
-  ));
+  return (
+    <FlexWrap>
+      {searchLocationRestaurantList.map((restaurant) => (
+        <ListContentWrap
+          key={restaurant.id}
+          onClick={() => {
+            onClickSelect(restaurant.id);
+            detailModalOpen();
+          }}
+        >
+          <ImgWrap imgUrl={restaurant.thumbnail}></ImgWrap>
+          <AboutWrap>
+            <Top>
+              <Title>{restaurant.name}</Title>
+              <Address>{restaurant.numberAddress}</Address>
+            </Top>
+            <Middle>
+              <Scope>{restaurant.review_rating}</Scope>
+              <ReviewScope scope={restaurant.review_rating} />
+            </Middle>
+            <Bottom>리뷰 {restaurant.review_number}</Bottom>
+          </AboutWrap>
+        </ListContentWrap>
+      ))}
+      <div ref={ref}></div>
+    </FlexWrap>
+  );
 }
 
 const ListContentWrap = styled.div`

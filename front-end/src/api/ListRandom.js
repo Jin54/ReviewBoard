@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const url = "http://3.35.140.28:9000/shop";
+export const ListRandom = async (setRandomData, pageNum) => {
+  const url = `http://3.35.140.28:9000/shop?pageIndex=1&pageSize=${pageNum}`;
 
-export const ListRandom = async (setRandomData) => {
   try {
     const data = await axios({
       method: "get",
