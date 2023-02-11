@@ -8,6 +8,7 @@ import { change } from "../modules/restaurantModal";
 import ReviewScope from "./ReviewScope";
 import axios from "axios";
 import { ListRandom } from "../api/ListRandom";
+import { SearchRestaurantAPI } from "../api/SearchRestaurantAPI";
 import { useInView } from "react-intersection-observer";
 
 const ListPage = ({ detailModalOpen }) => {
@@ -127,7 +128,7 @@ export default ListPage;
 
 function ListContent(detailModalOpen) {
   // 무한스크롤
-  const [pageNum, setPageNum] = useState(4);
+  const [pageNum, setPageNum] = useState(10);
   const [ref, inView] = useInView();
   useEffect(() => {
     // console.log(inView.toString());
@@ -135,21 +136,17 @@ function ListContent(detailModalOpen) {
   }, [ref, inView]);
 
   //전체 음식점 저장
-  const [randomData, setRandomData] = useState([]);
+  const [restaurantData, setRestaurantData] = useState([]);
 
   useEffect(() => {
-    ListRandom((data) => {
-      setRandomData(data);
-    }, pageNum);
+    if (bigLocation === "") {
+      ListRandom((data) => {
+        setRestaurantData(data);
+      }, pageNum);
+    }
   }, [pageNum]);
 
-  // console.log(randomData)
-
-  useEffect(() => {
-    if (randomData === []) {
-      return;
-    }
-  });
+  // console.log(restaurantData)
   //가게 클릭 시 해당 가게로 이름 변경 -> 모달창 이동
   const dispatch = useDispatch();
   const onClickSelect = useCallback((id) => dispatch(change(id)), [dispatch]);
@@ -164,17 +161,33 @@ function ListContent(detailModalOpen) {
   // const selectRestaurantId = useSelector(
   //   (state) => state.restaurantModal.id
   // );
-  // console.log(randomData[1])
+  // console.log(restaurantData[1])
 
-  const searchLocationRestaurantList = randomData.filter(
-    (restaurant) =>
-      -1 !== restaurant.numberAddress.search(bigLocation) &&
-      -1 !== restaurant.numberAddress.search(smallLocation)
-  );
+  // const searchLocationRestaurantList = restaurantData.filter(
+  //   (restaurant) =>
+  //     -1 !== restaurant.numberAddress.search(bigLocation) &&
+  //     -1 !== restaurant.numberAddress.search(smallLocation)
+  // );
+
+  //지역 검색시, 해당 지역의 음식점만 조회
+  useEffect(() => {
+    SearchRestaurantAPI(
+      bigLocation,
+      smallLocation,
+      (data) => {
+        setRestaurantData(data);
+      },
+      pageNum
+    );
+  }, [bigLocation, smallLocation, pageNum]);
+
+  console.log(restaurantData);
+
+  if (restaurantData === []) return;
 
   return (
     <FlexWrap>
-      {searchLocationRestaurantList.map((restaurant) => (
+      {restaurantData.map((restaurant) => (
         <ListContentWrap
           key={restaurant.id}
           onClick={() => {
