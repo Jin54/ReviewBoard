@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export const ReviewAPI = async (setReviewData, restaurantID) => {
-  const url = `http://3.35.140.28:9000/shop/${restaurantID}?pageIndex=1&pageSize=100`;
+export const ReviewAPI = async (setReviewData, restaurantID, pageNum) => {
+  const url = `http://3.35.140.28:9000/shop/${restaurantID}/review?pageIndex=1&pageSize=${pageNum}`;
 
   try {
     const data = await axios({

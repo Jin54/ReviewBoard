@@ -7,6 +7,7 @@ import ReviewScope from "./ReviewScope";
 import restaurantModal from "../modules/restaurantModal";
 import { RestaurantModalAPI } from "../api/RestaurantModalAPI";
 import ReviewAPI from "../api/Review";
+import { useInView } from "react-intersection-observer";
 
 const RestaurantModal = (props) => {
   const [listData, setListData] = useState([]);
@@ -70,9 +71,7 @@ const RestaurantModal = (props) => {
             <ReviewNum>리뷰 {listData.review_number}개</ReviewNum>
             <ReviewMore onClick={props.onClick}>더보기</ReviewMore>
           </ReviewTxtWrap>
-          <ReviewFlexWrap>
-            <ReviewList />
-          </ReviewFlexWrap>
+          <ReviewList />
         </ReviewWrap>
       </Box>
     </RestaurantModalWrap>
@@ -314,15 +313,27 @@ const InfoTxt = styled.div`
 // 매장 상세 리뷰
 
 function ReviewList() {
+  const [pageNum, setPageNum] = useState(10);
+  const [reviewData, setReviewData] = useState(null);
+  //무한 스크롤 : 라이브러리 react-intersection-observer
+  const [ref, inView] = useInView();
+  useEffect(() => {
+    // console.log(inView.toString());
+    setPageNum(pageNum + 10);
+  }, [ref, inView]);
+
   const restaurantID = useSelector((state) => state.restaurantModal.id);
   // const selectRestaurantAdd = useSelector((state) => state.restaurantModal.add);
 
-  const [reviewData, setReviewData] = useState(null);
   useEffect(() => {
-    ReviewAPI((data) => {
-      setReviewData(data);
-    }, restaurantID);
-  }, [restaurantID]);
+    ReviewAPI(
+      (data) => {
+        setReviewData(data);
+      },
+      restaurantID,
+      pageNum
+    );
+  }, [restaurantID, pageNum]);
 
   if (reviewData === null) {
     return <ReviewBox>리뷰 없음</ReviewBox>;
@@ -335,19 +346,24 @@ function ReviewList() {
   // );
 
   // 매장 상세 리뷰 한 개 컴포넌트
-  return reviewData.map((review) => (
-    <ReviewBox key={review.id}>
-      <Top>
-        <Feeling>{review.content}</Feeling>
-        <Date>{review.createAT}</Date>
-      </Top>
-      <Middle>
-        <ReviewScopeNum>{review.rating}</ReviewScopeNum>
-        <ReviewScope scope={review.rating} />
-      </Middle>
-      <Bottom>{review.content}</Bottom>
-    </ReviewBox>
-  ));
+  return (
+    <ReviewFlexWrap>
+      {reviewData.map((review) => (
+        <ReviewBox key={review.id}>
+          <Top>
+            <Feeling>{review.content}</Feeling>
+            <Date>{review.createAT}</Date>
+          </Top>
+          <Middle>
+            <ReviewScopeNum>{review.rating}</ReviewScopeNum>
+            <ReviewScope scope={review.rating} />
+          </Middle>
+          <Bottom>{review.content}</Bottom>
+        </ReviewBox>
+      ))}
+      <div ref={ref}></div>
+    </ReviewFlexWrap>
+  );
 }
 
 const ReviewBox = styled.div`

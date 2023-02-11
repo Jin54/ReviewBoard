@@ -5,6 +5,7 @@ import dummy from "./../db/restaurant.json";
 import { useSelector } from "react-redux";
 import ReviewScope from "./ReviewScope";
 import { ReviewAPI } from "../api/Review";
+import { useInView } from "react-intersection-observer";
 
 const RestaurantReviewModal = ({ closeAllReview }) => {
   return (
@@ -122,31 +123,48 @@ const ReviewComponent = () => {
   // );
   const restaurantID = useSelector((state) => state.restaurantModal.id);
   const [reviewData, setReviewData] = useState(null);
+  const [pageNum, setPageNum] = useState(10);
+
+  //무한 스크롤 : 라이브러리 react-intersection-observer
+  const [ref, inView] = useInView();
+  useEffect(() => {
+    // console.log(inView.toString());
+    setPageNum(pageNum + 10);
+  }, [ref, inView]);
 
   useEffect(() => {
-    ReviewAPI((data) => {
-      setReviewData(data);
-    }, restaurantID);
+    ReviewAPI(
+      (data) => {
+        setReviewData(data);
+      },
+      restaurantID,
+      pageNum
+    );
     //주의 : console.log(reviewData) 이렇게 해도 reviewData 는 null 로 나온다. useEffect 밖에서 console 해줘야 한다.
-  }, [restaurantID]);
+  }, [restaurantID, pageNum]);
 
   if (reviewData === null) {
     return <ReviewBox>리뷰 없음</ReviewBox>;
   }
 
-  return reviewData.map((review) => (
-    <ReviewBox key={review.id}>
-      <Top>
-        <Feeling>{review.content}</Feeling>
-        <Date>{review.createAT}</Date>
-      </Top>
-      <Middle>
-        <ReviewScopeNum>{review.rating}</ReviewScopeNum>
-        <ReviewScope scope={review.rating} />
-      </Middle>
-      <Bottom>{review.content}</Bottom>
-    </ReviewBox>
-  ));
+  return (
+    <ReviewListWrap>
+      {reviewData.map((review) => (
+        <ReviewBox key={review.id}>
+          <Top>
+            <Feeling>{review.content}</Feeling>
+            <Date>{review.createAT}</Date>
+          </Top>
+          <Middle>
+            <ReviewScopeNum>{review.rating}</ReviewScopeNum>
+            <ReviewScope scope={review.rating} />
+          </Middle>
+          <Bottom>{review.content}</Bottom>
+        </ReviewBox>
+      ))}
+      <div ref={ref}></div>
+    </ReviewListWrap>
+  );
 };
 
 const ReviewBox = styled.div`
