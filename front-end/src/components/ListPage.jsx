@@ -1,12 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 
-import { useDispatch, useSelector } from "react-redux";
 import { change } from "../modules/restaurantModal";
 import ReviewScope from "./ReviewScope";
+
 import { ListRandom } from "../api/ListRandom";
 import { SearchRestaurantAPI } from "../api/SearchRestaurantAPI";
-import { useInView } from "react-intersection-observer";
+
 
 const ListPage = ({ detailModalOpen }) => {
   return (
@@ -48,14 +50,12 @@ const ListScroll = styled.div`
     }
   }
 `
-
 const FlexWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
 `
-
 export default ListPage;
 
 // =============================================

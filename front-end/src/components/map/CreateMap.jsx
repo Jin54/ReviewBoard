@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import "../../style/map.scss";
+
 import ImgComponent from "./../ImageComponent";
 import { resetxy, changeSize, currentxy } from "../../modules/map";
+
 import { MapRamdomAPI } from "./../../api/MapRamdom";
 import { CenterRestaurantAPI } from "./../../api/CenterRestaurant";
-import "../../style/map.scss";
 
 const { kakao } = window;
 
@@ -37,7 +39,7 @@ const CreateMap = (props) => {
     });
   }, []);
 
-  //=========맵 생성=======================================================================
+  //=========맵 생성=========================
   useEffect(() => {
     //랜덤 10개 받아오기 전일 때
     if (randomData === null) {

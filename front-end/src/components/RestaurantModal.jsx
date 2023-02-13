@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import ImgComponent from "./ImageComponent";
 import { useSelector } from "react-redux";
+import { useInView } from "react-intersection-observer";
+import styled from "styled-components";
+
+import ImgComponent from "./ImageComponent";
 import ReviewScope from "./ReviewScope";
+
 import { RestaurantModalAPI } from "../api/RestaurantModalAPI";
 import ReviewAPI from "../api/Review";
-import { useInView } from "react-intersection-observer";
 
 const RestaurantModal = (props) => {
   const [listData, setListData] = useState([]);
@@ -119,6 +121,7 @@ const Close = styled.div`
 `;
 
 const MainImg = styled.div`
+  background-color: #C09567;
   width: 80%;
   margin: auto;
   height: 300px;

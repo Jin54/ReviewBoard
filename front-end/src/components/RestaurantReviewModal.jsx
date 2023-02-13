@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import ImgComponent from "./ImageComponent";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
+
+import ImgComponent from "./ImageComponent";
 import ReviewScope from "./ReviewScope";
+
 import { ReviewAPI } from "../api/Review";
 import { useInView } from "react-intersection-observer";
 
