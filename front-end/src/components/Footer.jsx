@@ -29,7 +29,6 @@ const FooterWrap = styled.div`
         flex-direction: column-reverse;
     }
 `
-// =========
 const FooterLeft = styled.div`
 
 `
@@ -52,7 +51,6 @@ const TOS = styled.div`
     }
 `
 
-// ========
 const FooterRight = styled.p`
     margin: 0;
     font-weight: 100;

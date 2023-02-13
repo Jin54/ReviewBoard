@@ -24,10 +24,6 @@ const RestaurantReviewModal = ({ closeAllReview }) => {
 const RestaurantReviewModalWrap = styled.div`
   height: 85%;
   width: 100%;
-  /* position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0; */
   z-index: 30;
   position: absolute;
   left: 0;
@@ -40,7 +36,7 @@ const RestaurantReviewModalWrap = styled.div`
   @media screen and (max-width: 1000px) {
     padding-top: 20px;
   }
-`;
+`
 const Box = styled.div`
   overflow: scroll;
   -ms-overflow-style: none;
@@ -51,7 +47,7 @@ const Box = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`;
+`
 const CloseWrap = styled.div`
   &::after {
     display: block;
@@ -65,7 +61,7 @@ const CloseWrap = styled.div`
     line-height: 0;
     clear: both;
   }
-`;
+`
 const Close = styled.div`
   width: 17px;
   height: 17px;
@@ -78,7 +74,7 @@ const Close = styled.div`
     margin-right: 0;
     padding-right: 0;
   }
-`;
+`
 
 export default RestaurantReviewModal;
 
@@ -96,7 +92,7 @@ const ReviewListWrap = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-`;
+`
 
 // 매장 상세 리뷰 한 개 컴포넌트
 const ReviewComponent = () => {
@@ -107,7 +103,6 @@ const ReviewComponent = () => {
   //무한 스크롤 : 라이브러리 react-intersection-observer
   const [ref, inView] = useInView();
   useEffect(() => {
-    // console.log(inView.toString());
     setPageNum(pageNum + 10);
   }, [ref, inView]);
 
@@ -158,7 +153,7 @@ const ReviewBox = styled.div`
   @media screen and (max-width: 1000px) {
     padding: 15px;
   }
-`;
+`
 // 매장명 & 주소
 const Top = styled.div`
   margin-bottom: 20px;
@@ -169,7 +164,7 @@ const Top = styled.div`
     flex-direction: column;
     display: flex;
   }
-`;
+`
 const Feeling = styled.span`
   font-weight: 700;
   font-size: 20px;
@@ -180,7 +175,7 @@ const Feeling = styled.span`
     margin: 0;
     margin-bottom: 4px;
   }
-`;
+`
 const Date = styled.span`
   font-weight: 400;
   font-size: 12px;
@@ -189,19 +184,19 @@ const Date = styled.span`
     font-size: 11px;
     width: 100%;
   }
-`;
+`
 // 별점 & 아이콘
 const Middle = styled.div`
   margin-bottom: 20px;
   display: flex;
   align-items: center;
-`;
+`
 const ReviewScopeNum = styled.span`
   font-weight: 700;
   font-size: 20px;
   color: #000000;
   margin-right: 6px;
-`;
+`
 // 리뷰
 const Bottom = styled.p`
   font-weight: 400;
@@ -212,4 +207,4 @@ const Bottom = styled.p`
     margin: 0;
     font-size: 11px;
   }
-`;
+`

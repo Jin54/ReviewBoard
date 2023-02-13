@@ -29,8 +29,6 @@ const RestaurantModal = (props) => {
         </Close>
       </CloseWrap>
       <Box>
-        {/* <Back></Back>  */}
-        {/* {restaurantDetail} */}
         <div key={listData.id}>
           <MainImg>
             <Thumbnail src={listData.thumbnail} width={"100%"} />
@@ -50,7 +48,6 @@ const RestaurantModal = (props) => {
           </Info>
         </div>
         <Divider></Divider>
-        {/* <ReviewPage onClick={props.openAllReivew} /> */}
         <ReviewWrap onClick={props.openAllReivew}>
           <ReviewTxtWrap>
             <ReviewNum>리뷰 {listData.review_number}개</ReviewNum>
@@ -66,11 +63,6 @@ const RestaurantModal = (props) => {
 const RestaurantModalWrap = styled.div`
   height: 85%;
   width: 100%;
-  /* position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    */
   z-index: 20;
   position: absolute;
   left: 0;
@@ -83,9 +75,9 @@ const RestaurantModalWrap = styled.div`
   @media screen and (max-width: 1000px) {
     padding-top: 20px;
   }
-`;
+`
 
-const Thumbnail = styled.img``;
+const Thumbnail = styled.img``
 
 const Box = styled.div`
   overflow: scroll;
@@ -97,7 +89,7 @@ const Box = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`;
+`
 const CloseWrap = styled.div`
   &::after {
     display: block;
@@ -111,7 +103,7 @@ const CloseWrap = styled.div`
     line-height: 0;
     clear: both;
   }
-`;
+`
 const Close = styled.div`
   width: 17px;
   height: 17px;
@@ -139,45 +131,45 @@ const MainImg = styled.div`
     height: 140px;
     width: 90%;
   }
-`;
+`
 const About = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-`;
+`
 const Title = styled.p`
   font-weight: 700;
   font-size: 20px;
   color: #000000;
   margin: 0;
-`;
+`
 const Address = styled.p`
   margin-top: 10px;
   margin-bottom: 20px;
   font-weight: 400;
   font-size: 12px;
   color: #999999;
-`;
+`
 const ScopeWrap = styled.div`
   margin-bottom: 20px;
   display: flex;
   align-items: center;
-`;
+`
 const Scope = styled.p`
   margin: 0;
   margin-right: 20px;
   font-weight: 700;
   font-size: 20px;
   color: #000000;
-`;
+`
 //=============
 const Info = styled.div`
   margin-left: 20px;
   @media screen and (max-width: 1000px) {
     margin-left: 0;
   }
-`;
+`
 // ============
 const Divider = styled.div`
   border: 0;
@@ -189,7 +181,7 @@ const Divider = styled.div`
     margin-bottom: 20px;
     margin-top: 20px;
   }
-`;
+`
 // =============
 
 const ReviewWrap = styled.div`
@@ -258,7 +250,7 @@ const InfoWrap = styled.div`
   @media screen and (max-width: 1000px) {
     margin-bottom: 10px;
   }
-`;
+`
 const InfoIcon = styled.div`
   width: 20px;
   height: 20px;
@@ -267,7 +259,7 @@ const InfoIcon = styled.div`
   justify-content: center;
   overflow: hidden;
   margin-right: 10px;
-`;
+`
 const InfoTxt = styled.div`
   font-weight: 400;
   font-size: 14px;
@@ -275,23 +267,22 @@ const InfoTxt = styled.div`
   @media screen and (max-width: 1000px) {
     font-size: 12px;
   }
-`;
+`
 
 // 매장 상세 리뷰
 
 function ReviewList() {
   const [pageNum, setPageNum] = useState(0);
   const [reviewData, setReviewData] = useState(null);
+
   //무한 스크롤 : 라이브러리 react-intersection-observer
   const [ref, inView] = useInView();
   useEffect(() => {
     if (!inView) return;
     setPageNum(pageNum + 10);
-    // console.log(inView);
   }, [ref, inView]);
 
   const restaurantID = useSelector((state) => state.restaurantModal.id);
-  // const selectRestaurantAdd = useSelector((state) => state.restaurantModal.add);
 
   useEffect(() => {
     if (pageNum === 0) return;
@@ -348,7 +339,7 @@ const ReviewBox = styled.div`
   @media screen and (max-width: 1000px) {
     padding: 15px;
   }
-`;
+`
 
 // 매장명 & 주소
 const Top = styled.div`
@@ -358,7 +349,7 @@ const Top = styled.div`
     flex-direction: column;
     display: flex;
   }
-`;
+`
 const Feeling = styled.span`
   font-weight: 700;
   font-size: 20px;
@@ -369,7 +360,7 @@ const Feeling = styled.span`
     margin: 0;
     margin-bottom: 4px;
   }
-`;
+`
 const Date = styled.span`
   font-weight: 400;
   font-size: 12px;
@@ -378,19 +369,19 @@ const Date = styled.span`
     font-size: 11px;
     width: 100%;
   }
-`;
+`
 // 별점 & 아이콘
 const Middle = styled.div`
   margin-bottom: 20px;
   display: flex;
   align-items: center;
-`;
+`
 const ReviewScopeNum = styled.span`
   font-weight: 700;
   font-size: 20px;
   color: #000000;
   margin-right: 6px;
-`;
+`
 // 리뷰
 const Bottom = styled.p`
   font-weight: 400;
@@ -401,4 +392,4 @@ const Bottom = styled.p`
     margin: 0;
     font-size: 11px;
   }
-`;
+`

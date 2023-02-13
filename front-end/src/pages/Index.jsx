@@ -70,11 +70,11 @@ const IndexWrap = styled.div`
     padding-left: 8%;
     padding-right: 8%;
   }
-`;
+`
 
 export default Index;
 
-// ========= 지도보기 & 리스트보기 버튼
+// 지도보기 & 리스트보기 버튼
 
 const MapOrList = ({ showMap, showList, showPage }) => {
   return (
@@ -97,7 +97,7 @@ const MapOrListWrap = styled.div`
   margin: auto;
   margin-top: 40px;
   flex: 0;
-`;
+`
 const MapBtn = styled.p`
   margin: 0;
   margin-right: 40px;
@@ -107,7 +107,7 @@ const MapBtn = styled.p`
   @media screen and (max-width: 1000px) {
     font-size: 12px;
   }
-`;
+`
 const ListBtn = styled.p`
   margin: 0;
   margin-left: 40px;
@@ -117,4 +117,4 @@ const ListBtn = styled.p`
   @media screen and (max-width: 1000px) {
     font-size: 12px;
   }
-`;
+`

@@ -13,9 +13,6 @@ const Body = (props) => {
     setShowRegion(false);
   };
 
-  // 만약에 아래에서 위로 슬라이드 하고 싶다면 여기 참고
-  // https://velog.io/@qhdgkdbs/React%EC%97%90%EC%84%9C-ios-%ED%9D%89%EB%82%B4%EB%82%B4%EA%B8%B0-Slide-Up-Modal-%EA%B5%AC%ED%98%84
-
   return (
     <BodyWrap>
       <CreateMap openRegion={openRegion} />
@@ -41,6 +38,6 @@ const BodyWrap = styled.div`
     margin-top: 20px;
     width: 100%;
   }
-`;
+`
 
 export default Body;

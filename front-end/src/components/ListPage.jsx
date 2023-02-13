@@ -158,6 +158,8 @@ const ListContentWrap = styled.div`
 `;
 // ====== 왼쪽 이미지
 const ImgWrap = styled.div`
+background-color:#C09567;
+;
   height: 100px;
   width: 40%;
   display: flex;
@@ -173,16 +175,15 @@ const ImgWrap = styled.div`
     margin: 0;
   }
 `;
-// ====== 오른쪽 설명
+// 오른쪽 설명
 const AboutWrap = styled.div`
-  /* flex: 1; */
   width: 50%;
   @media screen and (max-width: 1000px) {
     flex: 0;
     width: 100%;
     margin-top: 10px;
   }
-`;
+`
 // 매장명 & 주소
 const Top = styled.div`
   margin-bottom: 20px;
@@ -194,7 +195,7 @@ const Top = styled.div`
     margin-bottom: 6px;
     flex-direction: column;
   }
-`;
+`
 const Title = styled.span`
   font-weight: 700;
   font-size: 16px;
@@ -208,12 +209,11 @@ const Title = styled.span`
     font-size: 14px;
     margin-bottom: 4px;
   }
-`;
+`
 const Address = styled.span`
   font-weight: 400;
   font-size: 12px;
   color: #999999;
-  /* width: 50%; */
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -221,7 +221,7 @@ const Address = styled.span`
     font-size: 11px;
     width: 100%;
   }
-`;
+`
 // 별점 & 아이콘
 const Middle = styled.div`
   margin-bottom: 20px;
@@ -230,13 +230,13 @@ const Middle = styled.div`
   @media screen and (max-width: 1000px) {
     margin-bottom: 6px;
   }
-`;
+`
 const Scope = styled.span`
   font-weight: 700;
   font-size: 20px;
   color: #000000;
   margin-right: 6px;
-`;
+`
 
 // 리뷰 개수
 const Bottom = styled.p`
@@ -247,4 +247,4 @@ const Bottom = styled.p`
     margin: 0;
     font-size: 11px;
   }
-`;
+`
