@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const url = "http://3.35.140.28:9000/shop/random";
-
 export const MapRamdomAPI = async (setRamdomData) => {
+  const apiurl = process.env.REACT_APP_APIURL;
+  const url = `${apiurl}/shop/random`;
+
   try {
     const data = await axios({
       method: "get",

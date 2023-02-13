@@ -6,7 +6,8 @@ export const SearchRestaurantAPI = async (
   setRestuarantData,
   pageNum
 ) => {
-  const url = `http://3.35.140.28:9000/shop/address?pageIndex=1&pageSize=${pageNum}&first=${bigLocation}&second=${smallLocation}`;
+  const apiurl = process.env.REACT_APP_APIURL;
+  const url = `${apiurl}/shop/address?pageIndex=1&pageSize=${pageNum}&first=${bigLocation}&second=${smallLocation}`;
 
   try {
     const data = await axios({

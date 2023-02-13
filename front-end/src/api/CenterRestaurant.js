@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export const CenterRestaurantAPI = async (setCenterData, x, y) => {
-  const url = `http://3.35.140.28:9000/shop/coord?pageIndex=1&pageSize=20&lat=${x}&lon=${y}`;
+  const apiurl = process.env.REACT_APP_APIURL;
+  const url = `${apiurl}/shop/coord?pageIndex=1&pageSize=20&lat=${x}&lon=${y}`;
 
   try {
     const data = await axios({

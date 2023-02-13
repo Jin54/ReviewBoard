@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export const ListRandom = async (setRandomData, pageNum) => {
-  const url = `http://3.35.140.28:9000/shop?pageIndex=1&pageSize=${pageNum}`;
+  const apiurl = process.env.REACT_APP_APIURL;
+  const url = `${apiurl}/shop?pageIndex=1&pageSize=${pageNum}`;
 
   try {
     const data = await axios({
