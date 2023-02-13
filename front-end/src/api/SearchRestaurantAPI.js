@@ -8,6 +8,7 @@ export const SearchRestaurantAPI = async (
   showURL
 ) => {
   const apiurl = process.env.REACT_APP_APIURL;
+  // const url = `${apiurl}/${showURL}/address?pageIndex=1&pageSize=${pageNum}&first=${bigLocation}&second=${smallLocation}`;
   const url = `${apiurl}/${showURL}/address?pageIndex=1&pageSize=${pageNum}&first=${bigLocation}&second=${smallLocation}`;
 
   try {
@@ -15,6 +16,7 @@ export const SearchRestaurantAPI = async (
       method: "get",
       url: url,
     });
+    console.log(data.data.result);
     setRestuarantData(data.data.result);
   } catch (err) {
     alert(err);
