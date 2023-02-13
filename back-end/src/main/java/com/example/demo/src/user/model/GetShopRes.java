@@ -38,16 +38,13 @@ public class GetShopRes {
 
     public GetShopRes(Shop shop, Long reviewCounter, Double reviewRating) {
         this.id = shop.getId();
-        this.name = shop.getName();
-        this.number = shop.getNumber();
+        this.name = shop.getShop_name();
+        this.number = shop.getSort();
         this.numberAddress = shop.getNumberAddress();
         this.roadAddress = shop.getRoadAddress();
         this.lat = shop.getLat();
         this.lon = shop.getLon();
-        String str = shop.getThumbnail();
-        if (!str.isEmpty())
-            this.thumbnail = "https://firebasestorage.googleapis.com/v0/b/wnatedcv.appspot.com/o/thumnail%2F" +
-                    shop.getThumbnail() + ".png" + "?alt=media";
+        this.thumbnail=getThumbnail();
 
         this.review_number = reviewCounter;
         if (Double.isNaN(reviewRating))

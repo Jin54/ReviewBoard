@@ -18,10 +18,10 @@ public class Shop {
     private Long id;
 
     @Column(nullable = false, length = 25)
-    private String name;
+    private String shop_name;
 
     @Column(nullable = true, length = 255)
-    private String number;
+    private String sort;
     @Column(nullable = false, length = 255)
     private String numberAddress;
     @Column(nullable = false, length = 255)
