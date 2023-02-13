@@ -79,7 +79,7 @@ function ListContent(detailModalOpen) {
     ListRandom((data) => {
       setRestaurantData(data);
     }, pageNum);
-    console.log(pageNum);
+    // console.log(pageNum);
   }, [pageNum]);
 
   // console.log(restaurantData);
@@ -107,7 +107,6 @@ function ListContent(detailModalOpen) {
       },
       pageNum
     );
-    console.log(2);
   }, [smallLocation]);
 
   // console.log(restaurantData);
