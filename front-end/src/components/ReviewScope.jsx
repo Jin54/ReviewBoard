@@ -58,4 +58,4 @@ const StarRateWrap = styled.div`
     display: inline-flex;
     margin-right: 5px;
   }
-`;
+`

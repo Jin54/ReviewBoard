@@ -230,15 +230,12 @@ const CreateMap = (props) => {
       x,
       y
     );
-    // console.log(centerData);
   }, [x, y, size]);
 
   const [markers, setMarkers] = useState([]);
 
   useEffect(() => {
     if (centerData === null) return;
-
-    // console.log(markers);
 
     if (markers !== null) {
       for (var i = 0; i < markers.length; i++) {
@@ -263,7 +260,6 @@ const CreateMap = (props) => {
         image: markerImage, // 마커 이미지
       });
       setMarkers((markers) => [...markers, marker]);
-      // console.log(markers);
 
       //=============마커의 오버레이(클릭 시 보여지는 css)========================================================
       var content = document.createElement("div");

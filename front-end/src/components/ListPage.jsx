@@ -33,7 +33,7 @@ const ListPageWrap = styled.div`
     margin-top: 20px;
     height: 100%;
   }
-`;
+`
 const ListScroll = styled.div`
   @media screen and (max-width: 1000px) {
     display: block;
@@ -47,14 +47,14 @@ const ListScroll = styled.div`
       display: none;
     }
   }
-`;
+`
 
 const FlexWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-`;
+`
 
 export default ListPage;
 
@@ -67,7 +67,6 @@ function ListContent(detailModalOpen) {
   useEffect(() => {
     if (!inView) return;
     setPageNum(pageNum + 10);
-    // console.log(inView);
   }, [ref, inView]);
 
   //전체 음식점 저장
@@ -79,10 +78,8 @@ function ListContent(detailModalOpen) {
     ListRandom((data) => {
       setRestaurantData(data);
     }, pageNum);
-    // console.log(pageNum);
   }, [pageNum]);
 
-  // console.log(restaurantData);
   //가게 클릭 시 해당 가게로 이름 변경 -> 모달창 이동
   const dispatch = useDispatch();
   const onClickSelect = useCallback((id) => dispatch(change(id)), [dispatch]);
@@ -108,8 +105,6 @@ function ListContent(detailModalOpen) {
       pageNum
     );
   }, [smallLocation]);
-
-  // console.log(restaurantData);
 
   if (restaurantData === []) return;
 
@@ -155,11 +150,10 @@ const ListContentWrap = styled.div`
   @media screen and (max-width: 1000px) {
     flex-direction: column;
   }
-`;
-// ====== 왼쪽 이미지
+`
+// 왼쪽 이미지
 const ImgWrap = styled.div`
-background-color:#C09567;
-;
+  background-color:#C09567;
   height: 100px;
   width: 40%;
   display: flex;
@@ -174,7 +168,7 @@ background-color:#C09567;
     width: 100%;
     margin: 0;
   }
-`;
+`
 // 오른쪽 설명
 const AboutWrap = styled.div`
   width: 50%;

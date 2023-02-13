@@ -71,7 +71,6 @@ const IndexWrap = styled.div`
     padding-right: 8%;
   }
 `
-
 export default Index;
 
 // 지도보기 & 리스트보기 버튼
