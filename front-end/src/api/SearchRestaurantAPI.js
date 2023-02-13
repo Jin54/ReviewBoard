@@ -16,7 +16,6 @@ export const SearchRestaurantAPI = async (
       method: "get",
       url: url,
     });
-    console.log(data.data.result);
     setRestuarantData(data.data.result);
   } catch (err) {
     alert(err);
