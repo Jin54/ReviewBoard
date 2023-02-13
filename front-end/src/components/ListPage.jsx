@@ -75,7 +75,6 @@ function ListContent(detailModalOpen) {
   useEffect(() => {
     if (bigLocation !== "") return;
     if (pageNum === 0) return;
-    if (showURL === "") return;
 
     ListRandom(
       (data) => {
@@ -101,6 +100,7 @@ function ListContent(detailModalOpen) {
   //지역 검색시, 해당 지역의 음식점만 조회
   useEffect(() => {
     if (smallLocation === "") return;
+    if (pageNum === 0) return;
 
     SearchRestaurantAPI(
       bigLocation,
@@ -111,7 +111,7 @@ function ListContent(detailModalOpen) {
       pageNum,
       showURL
     );
-  }, [smallLocation, showURL]);
+  }, [smallLocation, pageNum, showURL]);
 
   if (restaurantData === []) return;
 
