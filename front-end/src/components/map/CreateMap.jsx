@@ -30,14 +30,15 @@ const CreateMap = (props) => {
     [dispatch]
   );
   const [_map, setMap] = useState(null);
+  const showURL = useSelector((state) => state.urlChange.name);
 
   //랜덤 값 저장
   const [randomData, setRandomData] = useState(null);
   useEffect(() => {
     MapRamdomAPI((data) => {
       setRandomData(data);
-    });
-  }, []);
+    }, showURL);
+  }, [showURL]);
 
   //=========맵 생성=========================
   useEffect(() => {
@@ -230,9 +231,10 @@ const CreateMap = (props) => {
         setCenterData(data);
       },
       x,
-      y
+      y,
+      showURL
     );
-  }, [x, y, size]);
+  }, [x, y, size, showURL]);
 
   const [markers, setMarkers] = useState([]);
 

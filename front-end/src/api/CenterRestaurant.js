@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const CenterRestaurantAPI = async (setCenterData, x, y) => {
+export const CenterRestaurantAPI = async (setCenterData, x, y, showURL) => {
   const apiurl = process.env.REACT_APP_APIURL;
-  const url = `${apiurl}/shop/coord?pageIndex=1&pageSize=20&lat=${x}&lon=${y}`;
+  const url = `${apiurl}/${showURL}/coord?pageIndex=1&pageSize=20&lat=${x}&lon=${y}`;
 
   try {
     const data = await axios({

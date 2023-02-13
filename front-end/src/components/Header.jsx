@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import ImgComponent from "./ImageComponent";
+import { change } from "../modules/urlChange";
 
 const Header = () => {
   // 모바일 메뉴
@@ -12,12 +14,29 @@ const Header = () => {
   const menuClose = () => {
     setMobileMenu(false);
   };
+
+  //클릭 시 맛집, 병원 API 변경
+  const dispatch = useDispatch();
+  const onClickURL = useCallback((name) => dispatch(change(name)), [dispatch]);
+
   return (
     <HeaderWrap>
       <HedaerLeftWrap>
         <ImgComponent src={"logo.png"} width={"60px"} />
-        <FoodBtn>맛집</FoodBtn>
-        <HospitalBtn>병원</HospitalBtn>
+        <FoodBtn
+          onClick={() => {
+            onClickURL("shop");
+          }}
+        >
+          맛집
+        </FoodBtn>
+        <HospitalBtn
+          onClick={() => {
+            onClickURL("hospital");
+          }}
+        >
+          병원
+        </HospitalBtn>
       </HedaerLeftWrap>
       <Question href="mailto:sales@lfin.kr">문의하기</Question>
       <MobileMenu>
@@ -36,12 +55,12 @@ const HeaderWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 // ============
 const HedaerLeftWrap = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 const FoodBtn = styled.div`
   margin-left: 100px;
   color: #000;
@@ -54,7 +73,7 @@ const FoodBtn = styled.div`
   @media screen and (max-width: 1000px) {
     display: none;
   }
-`
+`;
 const HospitalBtn = styled.div`
   margin-left: 70px;
   color: #000;
@@ -67,7 +86,7 @@ const HospitalBtn = styled.div`
   @media screen and (max-width: 1000px) {
     display: none;
   }
-`
+`;
 
 // ============
 const Question = styled.a`
@@ -84,16 +103,16 @@ const Question = styled.a`
   @media screen and (max-width: 1000px) {
     display: none;
   }
-`
+`;
 const MobileMenu = styled.div`
   display: none;
   @media screen and (max-width: 1000px) {
     display: block;
   }
-`
+`;
 const HamburgerBtn = styled.div`
   width: 30px;
-`
+`;
 
 export default Header;
 
@@ -123,7 +142,7 @@ const MobileMenuWrap = styled.div`
   position: fixed;
   z-index: 20;
   width: 100%;
-`
+`;
 const MobileMenuBox = styled.div`
   background: #ffffff;
   border-radius: 20px 0px 0px 20px;
@@ -134,7 +153,7 @@ const MobileMenuBox = styled.div`
   height: 100%;
   padding: 30px 20px;
   box-sizing: border-box;
-`
+`;
 const CloseWrap = styled.div`
   &::after {
     display: block;
@@ -148,7 +167,7 @@ const CloseWrap = styled.div`
     line-height: 0;
     clear: both;
   }
-`
+`;
 const Close = styled.div`
   width: 17px;
   height: 17px;
@@ -160,7 +179,7 @@ const Close = styled.div`
     margin-right: 0;
     padding-right: 0;
   }
-`
+`;
 const MFoodBtn = styled.p`
   padding-top: 15px;
   padding-bottom: 15px;
@@ -168,7 +187,7 @@ const MFoodBtn = styled.p`
   font-weight: 400;
   font-size: 20x;
   margin: 0;
-`
+`;
 const MHospitalBtn = styled.p`
   padding-top: 15px;
   padding-bottom: 30px;
@@ -176,7 +195,7 @@ const MHospitalBtn = styled.p`
   font-weight: 400;
   font-size: 20x;
   margin: 0;
-`
+`;
 const MQuestionBtn = styled.p`
   padding-top: 30px;
   color: #000;
@@ -185,7 +204,7 @@ const MQuestionBtn = styled.p`
   margin: 0;
   border-top: 0.5px solid #c09567;
   text-decoration: none;
-`
+`;
 const BackBlack = styled.div`
   position: fixed;
   left: 0;
@@ -195,4 +214,4 @@ const BackBlack = styled.div`
   z-index: 4;
   background-color: rgba(0, 0, 0, 0.5);
   overflow: hidden;
-`
+`;

@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const RestaurantModalAPI = async (setListData, id) => {
+export const RestaurantModalAPI = async (setListData, id, showURL) => {
   const apiurl = process.env.REACT_APP_APIURL;
-  const url = `${apiurl}/shop/${id}`;
+  const url = `${apiurl}/${showURL}/${id}`;
 
   try {
     const data = await axios({
