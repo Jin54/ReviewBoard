@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ImgComponent from "./ImageComponent";
-import dummy from "./../db/restaurant.json";
 import { useSelector } from "react-redux";
 import ReviewScope from "./ReviewScope";
-import restaurantModal from "../modules/restaurantModal";
 import { RestaurantModalAPI } from "../api/RestaurantModalAPI";
 import ReviewAPI from "../api/Review";
 import { useInView } from "react-intersection-observer";
@@ -22,19 +20,6 @@ const RestaurantModal = (props) => {
   if (listData === null) {
     return;
   }
-
-  //매장 상세 정보
-  // const selectRestaurantAdd = useSelector((state) => state.restaurantModal.add);
-  // const selectRestaurantDB = listData.filter(
-  //   (restaurant) =>
-  //     restaurant.title === selectRestaurantName &&
-  //     restaurant.add === selectRestaurantAdd
-  // );
-
-  // console.log(selectRestaurantId)
-  // console.log(listData[selectRestaurantId-1])
-  // const info = listData[selectRestaurantId - 1];
-  // console.log(info.thumbnail)
 
   return (
     <RestaurantModalWrap>
@@ -186,10 +171,6 @@ const Scope = styled.p`
   font-size: 20px;
   color: #000000;
 `;
-const ScopeIConWrap = styled.div`
-  display: flex;
-  align-items: center;
-`;
 //=============
 const Info = styled.div`
   margin-left: 20px;
@@ -210,20 +191,6 @@ const Divider = styled.div`
   }
 `;
 // =============
-
-// 모달창 밖을 눌렀을 때 모달창 지우기 위한 컴포넌트
-const Back = styled.div`
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 20;
-  background-color: rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-`;
-
-// ================
 
 const ReviewWrap = styled.div`
   width: 100%;
@@ -313,19 +280,22 @@ const InfoTxt = styled.div`
 // 매장 상세 리뷰
 
 function ReviewList() {
-  const [pageNum, setPageNum] = useState(10);
+  const [pageNum, setPageNum] = useState(0);
   const [reviewData, setReviewData] = useState(null);
   //무한 스크롤 : 라이브러리 react-intersection-observer
   const [ref, inView] = useInView();
   useEffect(() => {
-    // console.log(inView.toString());
+    if (!inView) return;
     setPageNum(pageNum + 10);
+    // console.log(inView);
   }, [ref, inView]);
 
   const restaurantID = useSelector((state) => state.restaurantModal.id);
   // const selectRestaurantAdd = useSelector((state) => state.restaurantModal.add);
 
   useEffect(() => {
+    if (pageNum === 0) return;
+    if (restaurantID === "") return;
     ReviewAPI(
       (data) => {
         setReviewData(data);
@@ -333,17 +303,17 @@ function ReviewList() {
       restaurantID,
       pageNum
     );
+    console.log(pageNum);
   }, [restaurantID, pageNum]);
 
   if (reviewData === null) {
-    return <ReviewBox>리뷰 없음</ReviewBox>;
+    return (
+      <>
+        <ReviewBox>리뷰 없음</ReviewBox>
+        <div ref={ref} style={{ height: "100px" }}></div>
+      </>
+    );
   }
-
-  // const selectRestaurantDB = dummy.reviews.filter(
-  //   (reviews) =>
-  //     reviews.restaurant === selectRestaurantName &&
-  //     reviews.add === selectRestaurantAdd
-  // );
 
   // 매장 상세 리뷰 한 개 컴포넌트
   return (
@@ -361,7 +331,7 @@ function ReviewList() {
           <Bottom>{review.content}</Bottom>
         </ReviewBox>
       ))}
-      <div ref={ref}></div>
+      <div ref={ref} style={{ height: "100px" }}></div>
     </ReviewFlexWrap>
   );
 }

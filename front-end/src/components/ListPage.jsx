@@ -1,80 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
-import ImgComponent from "./ImageComponent";
-import dummy from "./../db/restaurant.json";
 
 import { useDispatch, useSelector } from "react-redux";
 import { change } from "../modules/restaurantModal";
 import ReviewScope from "./ReviewScope";
-import axios from "axios";
 import { ListRandom } from "../api/ListRandom";
 import { SearchRestaurantAPI } from "../api/SearchRestaurantAPI";
 import { useInView } from "react-intersection-observer";
 
 const ListPage = ({ detailModalOpen }) => {
-  // 무한 스크롤
-  //  const [randomImageList, setRandomImageList] = useState([]);
-  //  const [page, setPage] = useState(1);
-
-  //  const handleScroll = () => {
-  //    const scrollHeight = document.documentElement.scrollHeight;
-  //    const scrollTop = document.documentElement.scrollTop;
-  //    const clientHeight = document.documentElement.clientHeight;
-
-  //    console.log('스크롤 이벤트 발생');
-
-  //    if (scrollTop + clientHeight >= scrollHeight -100) {
-  //      console.log('페이지 끝에 스크롤이 닿았음');
-  //      setPage((prev) => prev + 1);
-  //    }
-  //  };
-
-  //  const url = "http://3.35.140.28:9000/shop";
-
-  //  const getRandomImageThenSet = async () => {
-  //    console.log('fetching 함수 호출됨');
-  //    // try {
-  //    //   const { data } = await axios.get(
-  //    //     `https://picsum.photos/v2/list?page=${page}&limit=7`
-  //    //   );
-  //    //   setRandomImageList(randomImageList.concat(data));
-  //    // } catch {
-  //    //   console.error('fetching error');
-  //    // }
-  //    try {
-  //      const data = await axios({
-  //        method: "get",
-  //        url: url,
-  //      });
-  //      setRandomImageList(randomImageList.concat(data));
-  //    } catch (err) {
-  //      alert(err);
-  //    }
-  //  };
-
-  //  useEffect(() => {
-  //   //  const list = dummy.restaurant.filter(
-  //   //    (restaurant, i) => i < page + 8
-  //   //  );
-  //   //  setRandomImageList((restaurant) => [...list]);
-  //    getRandomImageThenSet();
-  //  }, []);
-
-  //  // useEffect(() => {
-  //  //   console.log('page ? ', page);
-  //  //   getRandomImageThenSet();
-  //  // }, [page]);
-
-  //  useEffect(() => {
-  //    window.addEventListener('scroll', handleScroll);
-  //    return () => {
-  //      window.removeEventListener('scroll', handleScroll);
-  //      console.log('!')
-  //    };
-  //  }, []);
-
-  // 무한 스크롤-보민
-
   return (
     <ListPageWrap>
       <ListScroll id="scrollWrap">{ListContent(detailModalOpen)}</ListScroll>
@@ -128,25 +62,27 @@ export default ListPage;
 
 function ListContent(detailModalOpen) {
   // 무한스크롤
-  const [pageNum, setPageNum] = useState(10);
+  const [pageNum, setPageNum] = useState(0);
   const [ref, inView] = useInView();
   useEffect(() => {
-    // console.log(inView.toString());
+    if (!inView) return;
     setPageNum(pageNum + 10);
+    // console.log(inView);
   }, [ref, inView]);
 
   //전체 음식점 저장
   const [restaurantData, setRestaurantData] = useState([]);
 
   useEffect(() => {
-    if (bigLocation === "") {
-      ListRandom((data) => {
-        setRestaurantData(data);
-      }, pageNum);
-    }
+    if (bigLocation !== "") return;
+    if (pageNum === 0) return;
+    ListRandom((data) => {
+      setRestaurantData(data);
+    }, pageNum);
+    console.log(pageNum);
   }, [pageNum]);
 
-  // console.log(restaurantData)
+  // console.log(restaurantData);
   //가게 클릭 시 해당 가게로 이름 변경 -> 모달창 이동
   const dispatch = useDispatch();
   const onClickSelect = useCallback((id) => dispatch(change(id)), [dispatch]);
@@ -158,19 +94,11 @@ function ListContent(detailModalOpen) {
   const [smallLocation, setSmallLocation] = useState(
     useSelector((state) => state.location.smallLocation)
   );
-  // const selectRestaurantId = useSelector(
-  //   (state) => state.restaurantModal.id
-  // );
-  // console.log(restaurantData[1])
-
-  // const searchLocationRestaurantList = restaurantData.filter(
-  //   (restaurant) =>
-  //     -1 !== restaurant.numberAddress.search(bigLocation) &&
-  //     -1 !== restaurant.numberAddress.search(smallLocation)
-  // );
 
   //지역 검색시, 해당 지역의 음식점만 조회
   useEffect(() => {
+    if (smallLocation === "") return;
+
     SearchRestaurantAPI(
       bigLocation,
       smallLocation,
@@ -179,9 +107,10 @@ function ListContent(detailModalOpen) {
       },
       pageNum
     );
-  }, [bigLocation, smallLocation, pageNum]);
+    console.log(2);
+  }, [smallLocation]);
 
-  console.log(restaurantData);
+  // console.log(restaurantData);
 
   if (restaurantData === []) return;
 
@@ -209,7 +138,7 @@ function ListContent(detailModalOpen) {
           </AboutWrap>
         </ListContentWrap>
       ))}
-      <div ref={ref}></div>
+      <div ref={ref} style={{ height: "100px" }}></div>
     </FlexWrap>
   );
 }

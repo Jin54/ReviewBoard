@@ -233,8 +233,19 @@ const CreateMap = (props) => {
     // console.log(centerData);
   }, [x, y, size]);
 
+  const [markers, setMarkers] = useState([]);
+
   useEffect(() => {
     if (centerData === null) return;
+
+    console.log(markers);
+
+    if (markers !== null) {
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+      }
+      setMarkers([]);
+    }
 
     const showCenterRestaurant = centerData.map((restaurant) => {
       var imageSrc =
@@ -251,6 +262,8 @@ const CreateMap = (props) => {
         position: coords, // 마커를 표시할 위치
         image: markerImage, // 마커 이미지
       });
+      setMarkers((markers) => [...markers, marker]);
+      console.log(markers);
 
       //=============마커의 오버레이(클릭 시 보여지는 css)========================================================
       var content = document.createElement("div");
@@ -306,7 +319,7 @@ const CreateMap = (props) => {
         overlay.setMap(_map);
       });
     });
-  }, [centerData]);
+  }, [centerData, size]);
 
   //============지역 선택 시, 중심 좌표 이동 및 맵 이동=======================================================================
   useEffect(() => {

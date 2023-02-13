@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const ReviewScope = ({ scope }) => {
   const AVR_RATE = scope * 20;
-  const STAR_IDX_ARR = ["first", "second", "third", "fourth", "last"];
   const [ratesResArr, setRatesResArr] = useState([0, 0, 0, 0, 0]);
   const calcStarRates = () => {
     let tempStarRatesArr = [0, 0, 0, 0, 0];
@@ -55,8 +54,6 @@ export default ReviewScope;
 const StarRateWrap = styled.div`
   display: flex;
   align-items: center;
-  /* width: 100%; */
-  /* margin: 100px 0 0 15px; */
   .star_icon {
     display: inline-flex;
     margin-right: 5px;

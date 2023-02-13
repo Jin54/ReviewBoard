@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ImgComponent from "./ImageComponent";
-import dummy from "./../db/restaurant.json";
 import { useSelector } from "react-redux";
 import ReviewScope from "./ReviewScope";
 import { ReviewAPI } from "../api/Review";
@@ -81,17 +80,6 @@ const Close = styled.div`
   }
 `;
 
-// 모달창 밖을 눌렀을 때 모달창 지우기 위한 컴포넌트
-const Back = styled.div`
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 20;
-  background-color: rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-`;
 export default RestaurantReviewModal;
 
 // 매장 상세 리뷰
@@ -112,15 +100,6 @@ const ReviewListWrap = styled.div`
 
 // 매장 상세 리뷰 한 개 컴포넌트
 const ReviewComponent = () => {
-  // const selectRestaurantName = useSelector(
-  //   (state) => state.restaurantModal.name
-  // );
-  // const selectRestaurantAdd = useSelector((state) => state.restaurantModal.add);
-  // const selectRestaurantDB = dummy.reviews.filter(
-  //   (reviews) =>
-  //     reviews.restaurant === selectRestaurantName &&
-  //     reviews.add === selectRestaurantAdd
-  // );
   const restaurantID = useSelector((state) => state.restaurantModal.id);
   const [reviewData, setReviewData] = useState(null);
   const [pageNum, setPageNum] = useState(10);
