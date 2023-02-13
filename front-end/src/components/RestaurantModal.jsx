@@ -294,7 +294,7 @@ function ReviewList() {
       restaurantID,
       pageNum
     );
-    console.log(pageNum);
+    // console.log(pageNum);
   }, [restaurantID, pageNum]);
 
   if (reviewData === null) {
