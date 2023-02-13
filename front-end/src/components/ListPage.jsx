@@ -125,7 +125,9 @@ function ListContent(detailModalOpen) {
             detailModalOpen();
           }}
         >
-          <ImgWrap imgUrl={restaurant.thumbnail}></ImgWrap>
+          <ImgBox>
+            <ImgWrap imgUrl={restaurant.thumbnail}></ImgWrap>
+          </ImgBox>
           <AboutWrap>
             <Top>
               <Title>{restaurant.name}</Title>
@@ -159,16 +161,19 @@ const ListContentWrap = styled.div`
   }
 `;
 // 왼쪽 이미지
-const ImgWrap = styled.div`
-  background-color: #c09567;
-  height: 100px;
+const ImgBox = styled.div`
   width: 40%;
+  background-color: #c09567;
+  border-radius: 10px;
+  margin-right: 25px;
+`
+const ImgWrap = styled.div`
+  height: 100px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border-radius: 10px;
-  margin-right: 25px;
   background: url(${(props) => props.imgUrl}) no-repeat center;
   background-size: cover;
   @media screen and (max-width: 1000px) {

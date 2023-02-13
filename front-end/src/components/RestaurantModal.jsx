@@ -127,6 +127,7 @@ const Close = styled.div`
 
 const MainImg = styled.div`
   background-color: #c09567;
+  border-radius: 10px;
   width: 80%;
   margin: auto;
   height: 300px;

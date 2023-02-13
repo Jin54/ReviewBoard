@@ -93,7 +93,6 @@ const ReviewListWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-start;
 `;
 
 // 매장 상세 리뷰 한 개 컴포넌트
@@ -161,8 +160,8 @@ const ReviewBox = styled.div`
 // 매장명 & 주소
 const Top = styled.div`
   margin-bottom: 20px;
-  display: flex;
-  align-items: baseline;
+  /* display: flex;
+  align-items: baseline; */
   @media screen and (max-width: 1000px) {
     margin-bottom: 6px;
     flex-direction: column;
