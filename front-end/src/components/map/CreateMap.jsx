@@ -181,6 +181,10 @@ const CreateMap = (props) => {
             kakao.maps.event.addListener(marker, "click", function () {
               overlay.setMap(_map);
             });
+            //지도를 클릭했을 때 오버레이 닫기
+            kakao.maps.event.addListener(_map, "click", function (mouseEvent) {
+              overlay.setMap(null);
+            });
           }
         }
       );
@@ -317,6 +321,10 @@ const CreateMap = (props) => {
       // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
       kakao.maps.event.addListener(marker, "click", function () {
         overlay.setMap(_map);
+      });
+      //지도를 클릭했을 때 오버레이 닫기
+      kakao.maps.event.addListener(_map, "click", function (mouseEvent) {
+        overlay.setMap(null);
       });
     });
   }, [centerData, size]);
