@@ -311,7 +311,7 @@ function ReviewList() {
     return (
       <>
         <ReviewBox>리뷰 없음</ReviewBox>
-        <div ref={ref} style={{ height: "100px" }}></div>
+        <div ref={ref} style={{ height: "100px", width: "100px" }}></div>
       </>
     );
   }
@@ -332,7 +332,7 @@ function ReviewList() {
           <Bottom>{review.content}</Bottom>
         </ReviewBox>
       ))}
-      <div ref={ref} style={{ height: "100px" }}></div>
+      <div ref={ref} style={{ height: "100px", width: "100px" }}></div>
     </ReviewFlexWrap>
   );
 }

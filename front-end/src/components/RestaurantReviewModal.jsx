@@ -139,7 +139,7 @@ const ReviewComponent = () => {
           <Bottom>{review.content}</Bottom>
         </ReviewBox>
       ))}
-      <div ref={ref}></div>
+      <div ref={ref} style={{ height: "100px", width: "100px" }}></div>
     </ReviewListWrap>
   );
 };

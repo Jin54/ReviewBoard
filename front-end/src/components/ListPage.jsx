@@ -141,7 +141,7 @@ function ListContent(detailModalOpen) {
           </AboutWrap>
         </ListContentWrap>
       ))}
-      <div ref={ref} style={{ height: "100px" }}></div>
+      <div ref={ref} style={{ height: "100px", width: "100px" }}></div>
     </FlexWrap>
   );
 }
@@ -166,7 +166,7 @@ const ImgBox = styled.div`
   background-color: #c09567;
   border-radius: 10px;
   margin-right: 25px;
-`
+`;
 const ImgWrap = styled.div`
   height: 100px;
   width: 100%;
