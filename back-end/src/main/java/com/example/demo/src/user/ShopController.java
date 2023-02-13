@@ -47,6 +47,20 @@ public class ShopController {
         return new BaseResponse<>(result);
     }
 
+    /* 연결 테스트 API
+     * [GET] /shop/test
+     * @return BaseResponse<String>
+     */
+    @Operation(summary = "모든 음식점 조회", description = "", tags = {"모든 음식점 조회"})
+    @ResponseBody
+    @GetMapping("") // (GET) 127.0.0.1:9000/app/users/:userId
+    public BaseResponse<List<GetShopRes>> getShopAll(
+            @RequestParam(defaultValue = "1") int pageIndex,
+            @RequestParam(defaultValue = "10") int pageSize
+    ) {
+        List<GetShopRes> getShopResList = shopService.getShopAll(pageIndex, pageSize);
+        return new BaseResponse<>(getShopResList);
+    }
     /* 랜덤 음식점 10개 조회
      * [GET] /shop/random
      * @return BaseResponse<GetShopRes>
@@ -67,15 +81,64 @@ public class ShopController {
     @ResponseBody
     @GetMapping("/coord") // (GET) 127.0.0.1:9000/app/users/:userId
     public BaseResponse<List<GetShopRes>> getShopPaging(
-            @RequestParam(defaultValue = "1", name = "페이지인덱스") int pageIndex,
-            @RequestParam(defaultValue = "10", name = "페이지사이즈") int pageSize,
-            @RequestParam(defaultValue = "37.5666805", name = "위도") Double lat,
-            @RequestParam(defaultValue = "126.9784147", name = "경도") Double lon
+            @RequestParam(defaultValue = "1") int pageIndex,
+            @RequestParam(defaultValue = "10") int pageSize,
+            @RequestParam(defaultValue = "37.5666805") double lat,
+            @RequestParam(defaultValue = "126.9784147") double lon
     ) {
         List<GetShopRes> getShopResList = shopService.getShopByCoord(pageIndex, pageSize, lat, lon);
 
         return new BaseResponse<>(getShopResList);
     }
 
+    /* 음식점 좌표 paging 조회 API
+     * [GET] /shop/coord
+     * @return BaseResponse<GetShopRes>
+     */
+    @Operation(summary = "주소지 검색", description = "" +
+            "경상북도, 전라북도 지번과 같은 형식 데이터 필요 경북x,전북x", tags = {"주소지 검색"})
+    @ResponseBody
+    @GetMapping("/address") // (GET) 127.0.0.1:9000/app/users/:userId
+    public BaseResponse<List<GetShopRes>> getAddressPaging(
+            @RequestParam(defaultValue = "1") int pageIndex,
+            @RequestParam(defaultValue = "10") int pageSize,
+            @RequestParam(defaultValue = "서울특별시") String first,
+            @RequestParam(defaultValue = "") String second
+    ) {
+        List<GetShopRes> getShopResList = shopService.getShopByAddress(pageIndex, pageSize, first, second);
 
+        return new BaseResponse<>(getShopResList);
+    }
+
+    /* 음식점 리뷰 조회 paging 조회 API
+     * [GET] /shop/coord
+     * @return BaseResponse<GetShopRes>
+     */
+    @Operation(summary = "특정 음식점 상세 정보 요청", description = "", tags = {"특정 음식점 상세 정보 요청"})
+    @ResponseBody
+    @GetMapping("/{shopId}") // (GET) 127.0.0.1:9000/app/users/:userId
+    public BaseResponse<GetShopRes> getShopReview(
+            @PathVariable("shopId") Long shopId
+    ) {
+        GetShopRes getShopRes = shopService.getShopInfo(shopId);
+
+        return new BaseResponse<>(getShopRes);
+    }
+
+    /* 음식점 리뷰 조회 paging 조회 API
+     * [GET] /shop/coord
+     * @return BaseResponse<GetShopRes>
+     */
+    @Operation(summary = "음식점 리뷰 요청", description = "", tags = {"음식점 리뷰 요청"})
+    @ResponseBody
+    @GetMapping("/{shopId}/review") // (GET) 127.0.0.1:9000/app/users/:userId
+    public BaseResponse<List<GetReviewRes>> getShopReview(
+            @RequestParam(defaultValue = "1") int pageIndex,
+            @RequestParam(defaultValue = "10") int pageSize,
+            @PathVariable("shopId") Long shopId
+    ) {
+        List<GetReviewRes> getReviewResList = shopService.getShopReview(pageIndex, pageSize, shopId);
+
+        return new BaseResponse<>(getReviewResList);
+    }
 }

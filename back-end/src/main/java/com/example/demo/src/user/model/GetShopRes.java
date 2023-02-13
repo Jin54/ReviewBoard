@@ -25,19 +25,18 @@ public class GetShopRes {
     private String roadAddress;
     //위도
     private String lat;
-  //경도
+    //경도
     private String lon;
-   //대표이미지
+    //대표이미지
     private String thumbnail;
-//리뷰총 갯수
+    //리뷰총 갯수
     private Long review_number;
 
     //리뷰 평균
     private Double review_rating;
 
 
-
-    public GetShopRes(Shop shop,Long reviewCounter ,Double reviewRating) {
+    public GetShopRes(Shop shop, Long reviewCounter, Double reviewRating) {
         this.id = shop.getId();
         this.name = shop.getName();
         this.number = shop.getNumber();
@@ -45,12 +44,15 @@ public class GetShopRes {
         this.roadAddress = shop.getRoadAddress();
         this.lat = shop.getLat();
         this.lon = shop.getLon();
-        this.thumbnail = "https://firebasestorage.googleapis.com/v0/b/gridgetest-2a0c6.appspot.com/o/jin%2F08a42836-367b-4ebd-b041-b2d2e881676cpng?alt=media&token=7fb57279-fae1-4694-89ce-12fd28de7ba9";
+        String str = shop.getThumbnail();
+        if (!str.isEmpty())
+            this.thumbnail = "https://firebasestorage.googleapis.com/v0/b/wnatedcv.appspot.com/o/thumnail%2F" +
+                    shop.getThumbnail() + ".png" + "?alt=media";
 
         this.review_number = reviewCounter;
         if (Double.isNaN(reviewRating))
-            reviewRating=0D;
+            reviewRating = 0D;
 
-        this.review_rating = (double) Math.round(reviewRating*10)/10;
+        this.review_rating = (double) Math.round(reviewRating * 10) / 10;
     }
 }

@@ -27,8 +27,4 @@ public class Review_img {
     private String url;
 
 
-
-
-
-
 }
