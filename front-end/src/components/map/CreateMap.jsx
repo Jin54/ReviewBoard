@@ -153,9 +153,9 @@ const CreateMap = (props) => {
             infowrap.className = "infowrap";
             infowrap.innerHTML =
               '<div class="imgwrap">' +
-              "<img src={" +
-              process.env.PUBLIC_URL +
-              "/img/ex01.png}></img>" +
+              "<img src='" +
+              restaurant.thumbnail +
+              "'><img>" +
               "</div>" +
               '<div class="info">' +
               '<p class="address">' +
@@ -294,9 +294,9 @@ const CreateMap = (props) => {
       infowrap.className = "infowrap";
       infowrap.innerHTML =
         '<div class="imgwrap">' +
-        "<img src={" +
-        process.env.PUBLIC_URL +
-        "/img/ex01.png}></img>" +
+        "<img src='" +
+        restaurant.thumbnail +
+        "'><img>" +
         "</div>" +
         '<div class="info">' +
         '<p class="address">' +
