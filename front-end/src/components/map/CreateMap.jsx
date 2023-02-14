@@ -4,7 +4,7 @@ import styled from "styled-components";
 import "../../style/map.scss";
 
 import ImgComponent from "./../ImageComponent";
-import { resetxy, changeSize, currentxy } from "../../modules/map";
+import { resetxy, changeSize, currentxy, setbounds } from "../../modules/map";
 
 import { MapRamdomAPI } from "./../../api/MapRamdom";
 import { CenterRestaurantAPI } from "./../../api/CenterRestaurant";
@@ -31,6 +31,11 @@ const CreateMap = (props) => {
   );
   const [_map, setMap] = useState(null);
   const showURL = useSelector((state) => state.urlChange.name);
+  const ha = useSelector((state) => state.map.ha);
+  const setBounds = useCallback(
+    (ha, qa, oa, pa) => dispatch(setbounds(ha, qa, oa, pa)),
+    [dispatch]
+  );
 
   //랜덤 값 저장
   const [randomData, setRandomData] = useState(null);
@@ -230,6 +235,11 @@ const CreateMap = (props) => {
   //=========위치가 바뀔 때마다 주변 음식점 8개 보이기=====================================================
   useEffect(() => {
     if (_map === null) return;
+
+    //지도의 영역 적용하기
+    var bounds = _map.getBounds();
+    setBounds(bounds.ha, bounds.qa, bounds.oa, bounds.pa);
+
     CenterRestaurantAPI(
       (data) => {
         setCenterData(data);
@@ -251,6 +261,8 @@ const CreateMap = (props) => {
       }
       setMarkers([]);
     }
+
+    //범위 변경, 받아오기
 
     const showCenterRestaurant = centerData.map((restaurant) => {
       var imageSrc =
