@@ -28,12 +28,13 @@ export const currentxy = (x, y) => ({
   currentX: x,
   currentY: y,
 });
-export const setbounds = (ha, qa, oa, pa) => ({
+export const setbounds = (ha, qa, oa, pa, radius) => ({
   type: SETBOUNDS,
   ha: ha,
   qa: qa,
   oa: oa,
   pa: pa,
+  radius: radius,
 });
 
 const initialState = {
@@ -49,6 +50,7 @@ const initialState = {
     oa: 0,
     pa: 0,
   },
+  radius: 0,
 };
 
 function map(state = initialState, action) {
@@ -99,6 +101,7 @@ function map(state = initialState, action) {
           oa: action.oa,
           pa: action.pa,
         },
+        radius: action.radius,
       };
     default:
       return state;

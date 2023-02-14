@@ -4,6 +4,7 @@ import styled from "styled-components";
 import "../../style/map.scss";
 
 import ImgComponent from "./../ImageComponent";
+import markerImg from "../../img/circle.png";
 import { resetxy, changeSize, currentxy, setbounds } from "../../modules/map";
 import { modalopen, change } from "../../modules/restaurantModal";
 
@@ -34,7 +35,7 @@ const CreateMap = (props) => {
   const showURL = useSelector((state) => state.urlChange.name);
   const ha = useSelector((state) => state.map.ha);
   const setBounds = useCallback(
-    (ha, qa, oa, pa) => dispatch(setbounds(ha, qa, oa, pa)),
+    (ha, qa, oa, pa, radius) => dispatch(setbounds(ha, qa, oa, pa, radius)),
     [dispatch]
   );
   const modalOpenBool = useSelector((state) => state.restaurantModal.open);
@@ -250,7 +251,20 @@ const CreateMap = (props) => {
 
     //지도의 영역 적용하기
     var bounds = _map.getBounds();
-    setBounds(bounds.ha, bounds.qa, bounds.oa, bounds.pa);
+
+    const haversine = require("haversine");
+    const start = {
+      latitude: bounds.qa,
+      longitude: bounds.ha,
+    };
+    const end = {
+      latitude: bounds.pa,
+      longitude: bounds.oa,
+    };
+    const radiusMath = haversine(start, end, { unit: "meter" }) / 2;
+    setBounds(bounds.ha, bounds.qa, bounds.oa, bounds.pa, radiusMath);
+
+    // console.log(radiusMath);
 
     CenterRestaurantAPI(
       (data) => {
@@ -277,12 +291,10 @@ const CreateMap = (props) => {
     //범위 변경, 받아오기
 
     const showCenterRestaurant = centerData.map((restaurant) => {
-      var imageSrc =
-        "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
       // 마커 이미지의 이미지 크기 입니다
-      var imageSize = new kakao.maps.Size(24, 35);
+      var imageSize = new kakao.maps.Size(10, 10);
       // 마커 이미지를 생성합니다
-      var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+      var markerImage = new kakao.maps.MarkerImage(markerImg, imageSize);
       const coords = new kakao.maps.LatLng(restaurant.lat, restaurant.lon);
 
       // 마커를 생성합니다
