@@ -8,8 +8,8 @@ import markerImg from "../../img/circle.png";
 import { resetxy, changeSize, currentxy, setbounds } from "../../modules/map";
 import { modalopen, change } from "../../modules/restaurantModal";
 
-import { MapRamdomAPI } from "./../../api/MapRamdom";
 import { CenterRestaurantAPI } from "./../../api/CenterRestaurant";
+import { saveLocation, selectLocation } from "../../modules/location";
 
 const { kakao } = window;
 
@@ -19,6 +19,7 @@ const CreateMap = (props) => {
   const size = useSelector((state) => state.map.number);
   const bigLocation = useSelector((state) => state.location.bigLocation);
   const smallLocation = useSelector((state) => state.location.smallLocation);
+  const selectLocationBool = useSelector((state) => state.location.bool);
   const dispatch = useDispatch();
   const resetXY = useCallback((x, y) => dispatch(resetxy(x, y)), [dispatch]);
   const ChangeSize = useCallback(
@@ -36,6 +37,15 @@ const CreateMap = (props) => {
     [dispatch]
   );
   const changeID = useCallback((id) => dispatch(change(id)), [dispatch]);
+  const SaveLocation = useCallback(
+    (bigLocation, smallLocation) =>
+      dispatch(saveLocation(bigLocation, smallLocation)),
+    [dispatch]
+  );
+  const SelectLocation = useCallback(
+    (bool) => dispatch(selectLocation(bool)),
+    [dispatch]
+  );
 
   //=========맵 생성=========================
   const [_map, setMap] = useState(null);
@@ -158,14 +168,39 @@ const CreateMap = (props) => {
   }, [showURL, x]);
 
   // 마우스 드래그로 지도 이동이 완료되었을 때 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
-  if (_map != null) {
+  useEffect(() => {
+    if (_map === null) return;
+
     kakao.maps.event.addListener(_map, "dragend", function () {
+      //지역 선택을 클릭하지 않았을 때, 좌표 유지
+      SelectLocation(false);
+
       // 지도 중심좌표를 얻어옵니다
       var latlng = _map.getCenter();
       resetXY(latlng.getLat(), latlng.getLng());
       ChangeSize(_map.getLevel());
+
+      // 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
+      searchAddrFromCoords(latlng, displayCenterInfo);
     });
-  }
+
+    // 주소-좌표 변환 객체를 생성합니다
+    var geocoder = new kakao.maps.services.Geocoder();
+
+    function searchAddrFromCoords(coords, callback) {
+      // 좌표로 행정동 주소 정보를 요청합니다
+      geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);
+    }
+    // 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
+    function displayCenterInfo(result, status) {
+      if (status === kakao.maps.services.Status.OK) {
+        SaveLocation(
+          result[0].region_1depth_name,
+          result[0].region_2depth_name
+        );
+      }
+    }
+  }, [_map]);
 
   //=========상위 리뷰 개수 음식점 10개 보여주기=======================================================================
   const [topMarkers, setTopMarkers] = useState([]);
@@ -352,6 +387,8 @@ const CreateMap = (props) => {
   //============지역 선택 시, 중심 좌표 이동 및 맵 이동=======================================================================
   useEffect(() => {
     if (_map === null) return;
+    if (!selectLocationBool) return;
+
     var geocoder = new kakao.maps.services.Geocoder();
     const location = bigLocation + " " + smallLocation;
     geocoder.addressSearch(location, function (result, status) {

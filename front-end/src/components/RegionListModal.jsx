@@ -4,7 +4,7 @@ import styled from "styled-components";
 import ImgComponent from "./ImageComponent";
 
 import { useDispatch } from "react-redux";
-import { saveLocation } from "../modules/location";
+import { saveLocation, selectLocation } from "../modules/location";
 
 // =========== RegionListModal 지역 선택 모달
 //수정-보민 : map, json DB, Redux (setCity)
@@ -32,6 +32,12 @@ const RegionListModal = (props) => {
     else props.showList();
   }, [showListBool]);
 
+  //지역 선택 시 지역 선택의 값 변경 : map 에서 중심 위치 이동의 여부
+  const SelectLocation = useCallback(
+    (bool) => dispatch(selectLocation(bool)),
+    [dispatch]
+  );
+
   const locationList = dummy.locations.map((location) => (
     <Region
       key={location.id}
@@ -54,6 +60,7 @@ const RegionListModal = (props) => {
       onClick={() => {
         setCityBtn(city.name);
         setShowListBool(true);
+        SelectLocation(true);
       }}
       selected={cityBtn === city.name && "selected"}
       name={city.name}
@@ -92,7 +99,7 @@ const RegionSelectWrap = styled.div`
   @media screen and (max-width: 1000px) {
     padding-top: 20px;
   }
-`
+`;
 const CloseWrap = styled.div`
   &::after {
     display: block;
@@ -106,7 +113,7 @@ const CloseWrap = styled.div`
     line-height: 0;
     clear: both;
   }
-`
+`;
 const Close = styled.div`
   width: 17px;
   height: 17px;
@@ -120,7 +127,7 @@ const Close = styled.div`
     margin-right: 0;
     padding-right: 0;
   }
-`
+`;
 const Box = styled.div`
   overflow: scroll;
   -ms-overflow-style: none;
@@ -131,26 +138,26 @@ const Box = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`
+`;
 // 리스트
 const ListWrap = styled.div`
   width: 100%;
   box-sizing: border-box;
   margin: auto;
-`
+`;
 const FlexWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   margin: auto;
-`
+`;
 const Divider = styled.hr`
   border: 0;
   margin-bottom: 40px;
   margin-top: 40px;
   height: 0.5px;
   background-color: #c09567;
-`
+`;
 
 // 지역 버튼
 const Region = ({ onClick, selected, name }) => {
@@ -181,6 +188,6 @@ const RegionBtn = styled.div`
     border-radius: 4px;
     width: 18%;
   }
-`
+`;
 
 export default RegionListModal;
