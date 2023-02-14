@@ -58,7 +58,7 @@ const RestaurantModal = (props) => {
         <ReviewWrap onClick={props.openAllReivew}>
           <ReviewTxtWrap>
             <ReviewNum>리뷰 {listData.review_number}개</ReviewNum>
-            <ReviewMore onClick={props.onClick}>더보기</ReviewMore>
+            {!(listData.review_number ===0) && <ReviewMore onClick={props.onClick}>더보기</ReviewMore>}
           </ReviewTxtWrap>
           <ReviewList reviewNum={listData.review_number} />
         </ReviewWrap>
@@ -314,7 +314,7 @@ function ReviewList({ reviewNum }) {
   if (reviewData === null || undefined || reviewNum === 0) {
     return (
       <>
-        <ReviewBox>리뷰 없음</ReviewBox>
+        <ReviewNone>리뷰 없음</ReviewNone>
         <div ref={ref} style={{ height: "100px", width: "100px" }}></div>
       </>
     );
@@ -342,6 +342,13 @@ function ReviewList({ reviewNum }) {
     </ReviewFlexWrap>
   );
 }
+
+const ReviewNone = styled.p`
+  color :#C09567;
+  text-align: center;
+  font-size: 20px;
+  padding-top: 20px;
+`
 
 const ReviewBox = styled.div`
   border: 1px solid #c09567;

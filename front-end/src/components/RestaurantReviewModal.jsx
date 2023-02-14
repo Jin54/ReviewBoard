@@ -124,7 +124,7 @@ const ReviewComponent = () => {
   // if (reviewData === null) {
   //   return <ReviewBox>리뷰 없음</ReviewBox>;
   // }
-  if (reviewData == undefined) {
+  if (reviewData === null || undefined) {
     return (
       <>
         <ReviewBox>리뷰 없음</ReviewBox>
