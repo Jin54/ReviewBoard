@@ -247,7 +247,11 @@ const InfoComponent = (props) => {
       <InfoIcon>
         <ImgComponent src={props.img} width={"100%"} />
       </InfoIcon>
-      {props.txt ? <InfoTxt>{props.txt}</InfoTxt> : <InfoTxt>정보가 존재하지 않습니다.</InfoTxt>}
+      {props.txt ? (
+        <InfoTxt>{props.txt}</InfoTxt>
+      ) : (
+        <InfoTxt>정보가 존재하지 않습니다.</InfoTxt>
+      )}
     </InfoWrap>
   );
 };
@@ -307,7 +311,7 @@ function ReviewList() {
     );
   }, [restaurantID, pageNum, showURL]);
 
-  if (reviewData === null) {
+  if (reviewData === null || [] || undefined) {
     return (
       <>
         <ReviewBox>리뷰 없음</ReviewBox>
@@ -322,12 +326,14 @@ function ReviewList() {
       {reviewData.map((review) => (
         <ReviewBox key={review.id}>
           <Top>
-            <Feeling scope={review.rating}/>
+            <Feeling scope={review.rating} />
             <Date>{review.createAT}</Date>
           </Top>
           <Middle>
             <ReviewScopeNum>{review.rating}</ReviewScopeNum>
-            {!(review.rating == null || undefined) && (<ReviewScope scope={review.rating} />)}
+            {!(review.rating == null || undefined) && (
+              <ReviewScope scope={review.rating} />
+            )}
           </Middle>
           <Bottom>{review.content}</Bottom>
         </ReviewBox>
@@ -394,28 +400,24 @@ const Bottom = styled.p`
   }
 `;
 
-const Feeling = ({scope}) => {
-  function txt(scope){
-    if(scope>=4.5){
-      return '정말 맛있어요!'
-    }else if(scope<4.5 && scope>=3.5){
-      return '맛있어요!'
-    }else if(scope<3.5 && scope>=2.5){
-      return '괜찮아요!'
-    }else if(scope<2.5 && scope>=1.5){
-      return '그저 그래요'
-    }else if(scope == null){
-      return '별점을 주지 않았습니다'
-    }else{
-      return '별로예요'
+const Feeling = ({ scope }) => {
+  function txt(scope) {
+    if (scope >= 4.5) {
+      return "정말 맛있어요!";
+    } else if (scope < 4.5 && scope >= 3.5) {
+      return "맛있어요!";
+    } else if (scope < 3.5 && scope >= 2.5) {
+      return "괜찮아요!";
+    } else if (scope < 2.5 && scope >= 1.5) {
+      return "그저 그래요";
+    } else if (scope == null) {
+      return "별점을 주지 않았습니다";
+    } else {
+      return "별로예요";
     }
   }
-  return (
-    <FeelingWrap>
-      {txt(scope)}
-    </FeelingWrap>
-  )
-}
+  return <FeelingWrap>{txt(scope)}</FeelingWrap>;
+};
 const FeelingWrap = styled.span`
   font-weight: 700;
   font-size: 20px;

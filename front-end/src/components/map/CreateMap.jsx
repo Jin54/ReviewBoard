@@ -385,7 +385,7 @@ const CreateMap = (props) => {
         ChangeSize(4);
       }
     });
-  }, [bigLocation, smallLocation, _map]);
+  }, [smallLocation]);
 
   return (
     <>
