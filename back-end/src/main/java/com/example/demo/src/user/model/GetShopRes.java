@@ -44,7 +44,7 @@ public class GetShopRes {
         this.roadAddress = shop.getRoadAddress();
         this.lat = shop.getLat();
         this.lon = shop.getLon();
-        this.thumbnail=getThumbnail();
+        this.thumbnail=shop.getThumbnail();
 
         this.review_number = reviewCounter;
         if (Double.isNaN(reviewRating))
