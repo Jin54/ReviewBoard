@@ -28,8 +28,6 @@ const RestaurantModal = (props) => {
     return;
   }
 
-  console.log(listData)
-
   return (
     <RestaurantModalWrap>
       <CloseWrap>

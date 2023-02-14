@@ -43,7 +43,7 @@ const Header = () => {
         <HamburgerBtn onClick={menuOpen}>
           <ImgComponent src={"hamburger.png"} width={"100%"} />
         </HamburgerBtn>
-        {mobilemenu && <SlideMenu menuClose={menuClose} />}
+        {mobilemenu && <SlideMenu menuClose={menuClose} onClickURL={onClickURL} />}
       </MobileMenu>
     </HeaderWrap>
   );
@@ -117,7 +117,7 @@ const HamburgerBtn = styled.div`
 export default Header;
 
 // 햄버거 버튼 시 보이는 메뉴 모달
-const SlideMenu = ({ menuClose }) => {
+const SlideMenu = ({ menuClose, onClickURL }) => {
   return (
     <MobileMenuWrap>
       <MobileMenuBox>
@@ -126,8 +126,18 @@ const SlideMenu = ({ menuClose }) => {
             <ImgComponent src={"close.png"} width={"100%"} />
           </Close>
         </CloseWrap>
-        <MFoodBtn>맛집</MFoodBtn>
-        <MHospitalBtn>병원</MHospitalBtn>
+        <MFoodBtn
+          onClick={() => {
+            onClickURL("shop");
+          }}
+        >
+          맛집
+        </MFoodBtn>
+        <MHospitalBtn
+          onClick={() => {
+            onClickURL("hospital");
+          }}
+        >병원</MHospitalBtn>
         <MQuestionBtn href="mailto:sales@lfin.kr">문의</MQuestionBtn>
       </MobileMenuBox>
       <BackBlack onClick={menuClose}></BackBlack>
@@ -196,7 +206,7 @@ const MHospitalBtn = styled.p`
   font-size: 20x;
   margin: 0;
 `;
-const MQuestionBtn = styled.p`
+const MQuestionBtn = styled.a`
   padding-top: 30px;
   color: #000;
   font-weight: 400;
@@ -204,6 +214,7 @@ const MQuestionBtn = styled.p`
   margin: 0;
   border-top: 0.5px solid #c09567;
   text-decoration: none;
+  display: block;
 `;
 const BackBlack = styled.div`
   position: fixed;
