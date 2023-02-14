@@ -31,7 +31,6 @@ const CreateMap = (props) => {
     (ha, qa, oa, pa, radius) => dispatch(setbounds(ha, qa, oa, pa, radius)),
     [dispatch]
   );
-  const modalOpenBool = useSelector((state) => state.restaurantModal.open);
   const modalOpen = useCallback(
     (bool) => dispatch(modalopen(bool)),
     [dispatch]
@@ -103,6 +102,7 @@ const CreateMap = (props) => {
       });
       CurrentMarker.setMap(_map);
       // 지도 중심좌표를 접속위치로 변경합니다
+      if (smallLocation !== null) return;
       _map.setCenter(locPosition);
     }
   }, [_map]);
@@ -352,7 +352,6 @@ const CreateMap = (props) => {
   //============지역 선택 시, 중심 좌표 이동 및 맵 이동=======================================================================
   useEffect(() => {
     if (_map === null) return;
-
     var geocoder = new kakao.maps.services.Geocoder();
     const location = bigLocation + " " + smallLocation;
     geocoder.addressSearch(location, function (result, status) {
