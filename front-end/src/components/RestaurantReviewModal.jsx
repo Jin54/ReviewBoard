@@ -129,12 +129,12 @@ const ReviewComponent = () => {
       {reviewData.map((review) => (
         <ReviewBox key={review.id}>
           <Top>
-            <Feeling>{review.content}</Feeling>
+          <Feeling scope={review.rating}/>
             <Date>{review.createAT}</Date>
           </Top>
           <Middle>
             <ReviewScopeNum>{review.rating}</ReviewScopeNum>
-            <ReviewScope scope={review.rating} />
+            {!(review.rating == null || undefined) && (<ReviewScope scope={review.rating} />)}
           </Middle>
           <Bottom>{review.content}</Bottom>
         </ReviewBox>
@@ -168,17 +168,7 @@ const Top = styled.div`
     display: flex;
   }
 `;
-const Feeling = styled.span`
-  font-weight: 700;
-  font-size: 20px;
-  color: #000000;
-  margin-right: 10px;
-  @media screen and (max-width: 1000px) {
-    font-size: 14px;
-    margin: 0;
-    margin-bottom: 4px;
-  }
-`;
+
 const Date = styled.span`
   font-weight: 400;
   font-size: 12px;
@@ -209,5 +199,39 @@ const Bottom = styled.p`
   @media screen and (max-width: 1000px) {
     margin: 0;
     font-size: 11px;
+  }
+`;
+
+const Feeling = ({scope}) => {
+  function txt(scope){
+    if(scope>=4.5){
+      return '정말 맛있어요!'
+    }else if(scope<4.5 && scope>=3.5){
+      return '맛있어요!'
+    }else if(scope<3.5 && scope>=2.5){
+      return '괜찮아요!'
+    }else if(scope<2.5 && scope>=1.5){
+      return '그저 그래요'
+    }else if(scope == null){
+      return '별점을 주지 않았습니다'
+    }else{
+      return '별로예요'
+    }
+  }
+  return (
+    <FeelingWrap>
+      {txt(scope)}
+    </FeelingWrap>
+  )
+}
+const FeelingWrap = styled.span`
+  font-weight: 700;
+  font-size: 20px;
+  color: #000000;
+  margin-right: 10px;
+  @media screen and (max-width: 1000px) {
+    font-size: 14px;
+    margin: 0;
+    margin-bottom: 4px;
   }
 `;
