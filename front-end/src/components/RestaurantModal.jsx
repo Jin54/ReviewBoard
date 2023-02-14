@@ -380,7 +380,7 @@ const ReviewScopeNum = styled.span`
   font-weight: 700;
   font-size: 20px;
   color: #000000;
-  margin-right: 6px;
+  margin-right: 10px;
 `;
 // 리뷰
 const Bottom = styled.p`
@@ -394,10 +394,9 @@ const Bottom = styled.p`
   }
 `;
 
-const Feeling = (scope) => {
-  
+const Feeling = ({scope}) => {
   function txt(scope){
-    // console.log(scope)
+    console.log(scope)
     if(scope>=4.5){
       return '정말 맛있어요!'
     }else if(scope<4.5 && scope>=3.5){
@@ -405,9 +404,11 @@ const Feeling = (scope) => {
     }else if(scope<3.5 && scope>=2.5){
       return '괜찮아요!'
     }else if(scope<2.5 && scope>=1.5){
-      return '그저 그래요!'
+      return '그저 그래요'
+    }else if(scope == null){
+      return '별점을 주지 않았습니다'
     }else{
-      return '별로예요!'
+      return '별로예요'
     }
   }
   return (
