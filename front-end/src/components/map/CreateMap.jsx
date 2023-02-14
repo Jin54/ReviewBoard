@@ -144,10 +144,6 @@ const CreateMap = (props) => {
             //=============마커의 오버레이(클릭 시 보여지는 css)========================================================
             var content = document.createElement("div");
             content.className = "wrap";
-            content.onclick = function () {
-              changeID(restaurant.id);
-              modalOpen(true);
-            };
 
             var contentHeader = document.createElement("div");
             contentHeader.className = "header";
@@ -185,6 +181,11 @@ const CreateMap = (props) => {
               restaurant.review_number +
               "개</p>" +
               "</div>";
+            infowrap.onclick = function () {
+              changeID(restaurant.id);
+              modalOpen(true);
+            };
+
             content.appendChild(infowrap);
 
             // 마커 위에 커스텀오버레이를 표시합니다
@@ -308,10 +309,6 @@ const CreateMap = (props) => {
       //=============마커의 오버레이(클릭 시 보여지는 css)========================================================
       var content = document.createElement("div");
       content.className = "wrap";
-      content.onclick = function () {
-        changeID(restaurant.id);
-        modalOpen(true);
-      };
 
       var contentHeader = document.createElement("div");
       contentHeader.className = "header";
@@ -349,6 +346,10 @@ const CreateMap = (props) => {
         restaurant.review_number +
         "개</p>" +
         "</div>";
+      infowrap.onclick = function () {
+        changeID(restaurant.id);
+        modalOpen(true);
+      };
       content.appendChild(infowrap);
 
       // 마커 위에 커스텀오버레이를 표시합니다
