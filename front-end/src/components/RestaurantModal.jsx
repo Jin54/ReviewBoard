@@ -50,8 +50,8 @@ const RestaurantModal = (props) => {
           </About>
           <Info>
             <InfoComponent img={"time.png"} txt={listData.time} />
-            <InfoComponent img={"sort.png"} txt={listData.sort} />
-            <InfoComponent img={"phone.png"} txt={listData.number} />
+            <InfoComponent img={"sort.png"} txt={listData.number} />
+            <InfoComponent img={"phone.png"} txt={listData.sort} />
           </Info>
         </div>
         <Divider></Divider>
@@ -311,7 +311,7 @@ function ReviewList() {
     );
   }, [restaurantID, pageNum, showURL]);
 
-  if (reviewData === null || [] || undefined) {
+  if (reviewData == null || [] || undefined) {
     return (
       <>
         <ReviewBox>리뷰 없음</ReviewBox>

@@ -93,6 +93,7 @@ const ReviewListWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  width: 100%;
 `;
 
 // 매장 상세 리뷰 한 개 컴포넌트
@@ -120,8 +121,16 @@ const ReviewComponent = () => {
     //주의 : console.log(reviewData) 이렇게 해도 reviewData 는 null 로 나온다. useEffect 밖에서 console 해줘야 한다.
   }, [restaurantID, pageNum, showURL]);
 
-  if (reviewData === null) {
-    return <ReviewBox>리뷰 없음</ReviewBox>;
+  // if (reviewData === null) {
+  //   return <ReviewBox>리뷰 없음</ReviewBox>;
+  // }
+  if (reviewData == undefined) {
+    return (
+      <>
+        <ReviewBox>리뷰 없음</ReviewBox>
+        <div ref={ref} style={{ height: "100px", width: "100px" }}></div>
+      </>
+    );
   }
 
   return (
