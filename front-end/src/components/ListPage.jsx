@@ -69,11 +69,6 @@ function ListContent() {
     setPageNum(pageNum + 10);
   }, [ref, inView]);
 
-  const modalOpen = useCallback(
-    (bool) => dispatch(modalopen(bool)),
-    [dispatch]
-  );
-
   //전체 음식점 저장
   const [restaurantData, setRestaurantData] = useState([]);
   const showURL = useSelector((state) => state.urlChange.name);
@@ -94,6 +89,10 @@ function ListContent() {
   //가게 클릭 시 해당 가게로 이름 변경 -> 모달창 이동
   const dispatch = useDispatch();
   const onClickSelect = useCallback((id) => dispatch(change(id)), [dispatch]);
+  const modalOpen = useCallback(
+    (bool) => dispatch(modalopen(bool)),
+    [dispatch]
+  );
 
   //modules/location.js 에 저장된 지역의 음식 리스트만 보여주기
   const [bigLocation, setBigLocation] = useState(
@@ -128,7 +127,6 @@ function ListContent() {
           key={restaurant.id}
           onClick={() => {
             onClickSelect(restaurant.id);
-            // detailModalOpen();
             modalOpen(true);
           }}
         >
