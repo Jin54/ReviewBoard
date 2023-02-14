@@ -1,22 +1,24 @@
 import axios from "axios";
 
 export const CenterRestaurantAPI = async (
-  setCenterData,
+  setData,
   x,
   y,
   showURL,
+  indexNum,
+  pageSize,
   mapBounds
 ) => {
   const apiurl = process.env.REACT_APP_APIURL;
-  const url = `${apiurl}/${showURL}/coord?pageIndex=1&pageSize=300&lat=${x}&lon=${y}&distance=${mapBounds}`;
-  // const url = `${apiurl}/${showURL}/coord?pageIndex=1&pageSize=100&lat=${x}&lon=${y}&distance=100`;
+  const url = `${apiurl}/${showURL}/coord?pageIndex=${indexNum}&pageSize=${pageSize}&lat=${x}&lon=${y}&distance=${mapBounds}`;
+
   try {
     const data = await axios({
       method: "get",
       url: url,
     });
-    // console.log(data.data.result);
-    setCenterData(data.data.result);
+    console.log(data.data.result);
+    setData(data.data.result);
   } catch (err) {
     alert(err);
   }

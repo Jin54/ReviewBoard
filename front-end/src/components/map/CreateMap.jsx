@@ -16,22 +16,15 @@ const { kakao } = window;
 const CreateMap = (props) => {
   const x = useSelector((state) => state.map.x);
   const y = useSelector((state) => state.map.y);
-  const currentX = useSelector((state) => state.map.currentX);
-  const currentY = useSelector((state) => state.map.currentY);
   const size = useSelector((state) => state.map.number);
   const bigLocation = useSelector((state) => state.location.bigLocation);
   const smallLocation = useSelector((state) => state.location.smallLocation);
   const dispatch = useDispatch();
   const resetXY = useCallback((x, y) => dispatch(resetxy(x, y)), [dispatch]);
-  const currentXY = useCallback(
-    (x, y) => dispatch(currentxy(x, y)),
-    [dispatch]
-  );
   const ChangeSize = useCallback(
     (number) => dispatch(changeSize(number)),
     [dispatch]
   );
-  const [_map, setMap] = useState(null);
   const showURL = useSelector((state) => state.urlChange.name);
   const mapBounds = useSelector((state) => state.map.radius);
   const setBounds = useCallback(
@@ -45,29 +38,9 @@ const CreateMap = (props) => {
   );
   const changeID = useCallback((id) => dispatch(change(id)), [dispatch]);
 
-  //랜덤 값 저장
-  const [randomData, setRandomData] = useState(null);
-  useEffect(() => {
-    MapRamdomAPI((data) => {
-      setRandomData(data);
-    }, showURL);
-  }, [showURL]);
-
   //=========맵 생성=========================
+  const [_map, setMap] = useState(null);
   useEffect(() => {
-    //랜덤 10개 받아오기 전일 때
-    if (randomData === null) {
-      const mapContainer = document.getElementById("map"), // 지도를 표시할 div
-        mapOption = {
-          center: new kakao.maps.LatLng(x, y), // 지도의 중심좌표
-          level: size, // 지도의 확대 레벨
-        };
-
-      // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-      const map = new kakao.maps.Map(mapContainer, mapOption);
-      return;
-    }
-
     const mapContainer = document.getElementById("map"), // 지도를 표시할 div
       mapOption = {
         center: new kakao.maps.LatLng(x, y), // 지도의 중심좌표
@@ -77,7 +50,19 @@ const CreateMap = (props) => {
     // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
     const map = new kakao.maps.Map(mapContainer, mapOption);
 
-    //=========현재 위치 마커 생성=======================================================================
+    setMap(map);
+  }, []);
+
+  //=========현재 위치 마커 생성=======================================================================
+  const currentX = useSelector((state) => state.map.currentX);
+  const currentY = useSelector((state) => state.map.currentY);
+  const currentXY = useCallback(
+    (x, y) => dispatch(currentxy(x, y)),
+    [dispatch]
+  );
+  useEffect(() => {
+    if (_map === null) return;
+
     if (navigator.geolocation) {
       // GeoLocation을 이용해서 접속 위치를 얻어옵니다
       navigator.geolocation.getCurrentPosition(function (position) {
@@ -111,147 +96,25 @@ const CreateMap = (props) => {
     function displayCurrentMarker(locPosition) {
       // 마커를 생성합니다
       var CurrentMarker = new kakao.maps.Marker({
-        map: map,
+        map: _map,
         position: locPosition,
         image: markerImage, // 마커이미지 설정
       });
-      CurrentMarker.setMap(map);
+      CurrentMarker.setMap(_map);
       // 지도 중심좌표를 접속위치로 변경합니다
-      map.setCenter(locPosition);
+      _map.setCenter(locPosition);
     }
-
-    setMap(map);
-  }, [randomData]);
-
-  useEffect(() => {
-    if (_map === null) return;
-    //=========랜덤 10개 보여주기=======================================================================
-    var geocoder = new kakao.maps.services.Geocoder();
-    const showRestaurant = randomData.map((restaurant) => {
-      geocoder.addressSearch(
-        restaurant.numberAddress,
-        function (result, status) {
-          // 정상적으로 검색이 완료됐으면
-          if (status === kakao.maps.services.Status.OK) {
-            const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-            // 결과값으로 받은 위치를 마커로 표시합니다
-            const marker = new kakao.maps.Marker({
-              map: _map,
-              position: coords,
-            });
-
-            //=============마커의 오버레이(클릭 시 보여지는 css)========================================================
-            var content = document.createElement("div");
-            content.className = "wrap";
-
-            var contentHeader = document.createElement("div");
-            contentHeader.className = "header";
-            content.appendChild(contentHeader);
-
-            var HeaderTitle = document.createElement("p");
-            HeaderTitle.innerHTML = restaurant.name;
-            contentHeader.appendChild(HeaderTitle);
-
-            var HeaderCloseBtn = document.createElement("div");
-            HeaderCloseBtn.className = "closeimgWrap";
-            HeaderCloseBtn.innerHTML =
-              '<img src="https://i.postimg.cc/ZYjNRKj6/close-white.png"></img>';
-            HeaderCloseBtn.onclick = function () {
-              overlay.setMap(null);
-            };
-            contentHeader.appendChild(HeaderCloseBtn);
-
-            var infowrap = document.createElement("div");
-            infowrap.className = "infowrap";
-            infowrap.innerHTML =
-              '<div class="imgwrap">' +
-              "<img src='" +
-              restaurant.thumbnail +
-              "'><img>" +
-              "</div>" +
-              '<div class="info">' +
-              '<p class="address">' +
-              restaurant.numberAddress +
-              "</p>" +
-              '<p class="scope">리뷰 ' +
-              restaurant.review_rating +
-              "점</p>" +
-              '<p class="review"> 리뷰' +
-              restaurant.review_number +
-              "개</p>" +
-              "</div>";
-            infowrap.onclick = function () {
-              changeID(restaurant.id);
-              modalOpen(true);
-            };
-
-            content.appendChild(infowrap);
-
-            // 마커 위에 커스텀오버레이를 표시합니다
-            // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-            const overlay = new kakao.maps.CustomOverlay({
-              clickable: true, //true 로 설정하면 컨텐츠 영역을 클릭했을 경우 지도 이벤트를 막아준다.
-              content: content,
-              position: marker.getPosition(),
-            });
-
-            // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-            kakao.maps.event.addListener(marker, "click", function () {
-              overlay.setMap(_map);
-            });
-            //지도를 클릭했을 때 오버레이 닫기
-            kakao.maps.event.addListener(_map, "click", function (mouseEvent) {
-              overlay.setMap(null);
-            });
-          }
-        }
-      );
-    });
   }, [_map]);
 
-  //지도 줌 인&줌 아웃
-  //https://leedaeho1188.tistory.com/51
-  const zoomIn = () => {
-    ChangeSize(_map.getLevel() - 1);
-    _map.setLevel(_map.getLevel() - 1);
-  };
-
-  const zoomOut = () => {
-    ChangeSize(_map.getLevel() + 1);
-    _map.setLevel(_map.getLevel() + 1);
-  };
-
-  //현재 위치로 부드럽게 이동시키기
-  const panTo = () => {
-    // 이동할 위도 경도 위치를 생성합니다
-    var moveLatLon = new kakao.maps.LatLng(currentX, currentY);
-    //현재 위치 버튼 클릭 시 줌 인
-    ChangeSize(4);
-    _map.setLevel(4);
-
-    // 지도 중심을 부드럽게 이동시킵니다
-    // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
-    _map.panTo(moveLatLon);
-  };
-
-  // 마우스 드래그로 지도 이동이 완료되었을 때 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+  //상위 10개 값 저장 & 나머지 290개 값 저장
+  const [topData, setTopData] = useState(null);
   const [centerData, setCenterData] = useState(null);
-  if (_map != null) {
-    kakao.maps.event.addListener(_map, "dragend", function () {
-      // 지도 중심좌표를 얻어옵니다
-      var latlng = _map.getCenter();
-      resetXY(latlng.getLat(), latlng.getLng());
-    });
-  }
 
-  //=========위치가 바뀔 때마다 주변 음식점 8개 보이기=====================================================
   useEffect(() => {
     if (_map === null) return;
 
     //지도의 범위 적용하기
     var bounds = _map.getBounds();
-
     const haversine = require("haversine");
     const start = {
       latitude: bounds.qa,
@@ -266,8 +129,20 @@ const CreateMap = (props) => {
     );
     setBounds(bounds.ha, bounds.qa, bounds.oa, bounds.pa, radiusMath);
 
-    // console.log(radiusMath);
+    //상위 10개 데이터 불러오기
+    CenterRestaurantAPI(
+      (data) => {
+        setTopData(data);
+      },
+      x,
+      y,
+      showURL,
+      1,
+      10,
+      mapBounds
+    );
 
+    //상위 290개 데이터 불러오기
     CenterRestaurantAPI(
       (data) => {
         setCenterData(data);
@@ -275,13 +150,115 @@ const CreateMap = (props) => {
       x,
       y,
       showURL,
+      11,
+      100,
       mapBounds
     );
-  }, [x, y, size, showURL]);
+    console.log("CenterData");
+    console.log(centerData);
+  }, [showURL, x]);
 
+  // 마우스 드래그로 지도 이동이 완료되었을 때 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+  if (_map != null) {
+    kakao.maps.event.addListener(_map, "dragend", function () {
+      // 지도 중심좌표를 얻어옵니다
+      var latlng = _map.getCenter();
+      resetXY(latlng.getLat(), latlng.getLng());
+      ChangeSize(_map.getLevel());
+    });
+  }
+
+  //=========상위 리뷰 개수 음식점 10개 보여주기=======================================================================
+  const [topMarkers, setTopMarkers] = useState([]);
+  useEffect(() => {
+    if (_map === null) return;
+
+    if (topMarkers !== null) {
+      for (var i = 0; i < topMarkers.length; i++) {
+        topMarkers[i].setMap(null);
+      }
+      setTopMarkers([]);
+    }
+
+    const showRestaurant = topData.map((restaurant) => {
+      // 마커를 생성합니다
+      const coords = new kakao.maps.LatLng(restaurant.lat, restaurant.lon); //좌표
+      var marker = new kakao.maps.Marker({
+        map: _map, // 마커를 표시할 지도
+        position: coords, // 마커를 표시할 위치
+      });
+      setTopMarkers((topMarkers) => [...topMarkers, marker]);
+
+      //=============마커의 오버레이(클릭 시 보여지는 css)========================================================
+      var content = document.createElement("div");
+      content.className = "wrap";
+
+      var contentHeader = document.createElement("div");
+      contentHeader.className = "header";
+      content.appendChild(contentHeader);
+
+      var HeaderTitle = document.createElement("p");
+      HeaderTitle.innerHTML = restaurant.name;
+      contentHeader.appendChild(HeaderTitle);
+
+      var HeaderCloseBtn = document.createElement("div");
+      HeaderCloseBtn.className = "closeimgWrap";
+      HeaderCloseBtn.innerHTML =
+        '<img src="https://i.postimg.cc/ZYjNRKj6/close-white.png"></img>';
+      HeaderCloseBtn.onclick = function () {
+        overlay.setMap(null);
+      };
+      contentHeader.appendChild(HeaderCloseBtn);
+
+      var infowrap = document.createElement("div");
+      infowrap.className = "infowrap";
+      infowrap.innerHTML =
+        '<div class="imgwrap">' +
+        "<img src='" +
+        restaurant.thumbnail +
+        "'><img>" +
+        "</div>" +
+        '<div class="info">' +
+        '<p class="address">' +
+        restaurant.numberAddress +
+        "</p>" +
+        '<p class="scope">리뷰 ' +
+        restaurant.review_rating +
+        "점</p>" +
+        '<p class="review"> 리뷰' +
+        restaurant.review_number +
+        "개</p>" +
+        "</div>";
+      infowrap.onclick = function () {
+        changeID(restaurant.id);
+        modalOpen(true);
+      };
+      content.appendChild(infowrap);
+
+      // 마커 위에 커스텀오버레이를 표시합니다
+      // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+      const overlay = new kakao.maps.CustomOverlay({
+        clickable: true, //true 로 설정하면 컨텐츠 영역을 클릭했을 경우 지도 이벤트를 막아준다.
+        content: content,
+        position: marker.getPosition(),
+      });
+
+      // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+      kakao.maps.event.addListener(marker, "click", function () {
+        overlay.setMap(_map);
+      });
+      //지도를 클릭했을 때 오버레이 닫기
+      kakao.maps.event.addListener(_map, "click", function (mouseEvent) {
+        overlay.setMap(null);
+      });
+    });
+  }, [topData]);
+
+  //=========상위 리뷰 개수 음식점 290개 보여주기=======================================================================
   const [markers, setMarkers] = useState([]);
 
   useEffect(() => {
+    if (_map === null) return;
     if (centerData === null) return;
 
     if (markers !== null) {
@@ -291,7 +268,7 @@ const CreateMap = (props) => {
       setMarkers([]);
     }
 
-    const showCenterRestaurant = centerData.map((restaurant) => {
+    const showRestaurant = centerData.map((restaurant) => {
       // 마커 이미지의 이미지 크기 입니다
       var imageSize = new kakao.maps.Size(10, 10);
       // 마커 이미지를 생성합니다
@@ -369,7 +346,7 @@ const CreateMap = (props) => {
         overlay.setMap(null);
       });
     });
-  }, [centerData, size]);
+  }, [centerData]);
 
   //============지역 선택 시, 중심 좌표 이동 및 맵 이동=======================================================================
   useEffect(() => {
@@ -387,6 +364,47 @@ const CreateMap = (props) => {
       }
     });
   }, [smallLocation]);
+
+  //지도 줌 인&줌 아웃
+  //https://leedaeho1188.tistory.com/51
+  const zoomIn = () => {
+    ChangeSize(_map.getLevel() - 1);
+    _map.setLevel(_map.getLevel() - 1);
+  };
+
+  const zoomOut = () => {
+    ChangeSize(_map.getLevel() + 1);
+    _map.setLevel(_map.getLevel() + 1);
+  };
+
+  //현재 위치로 부드럽게 이동시키기
+  const panTo = () => {
+    // 이동할 위도 경도 위치를 생성합니다
+    var moveLatLon = new kakao.maps.LatLng(currentX, currentY);
+    //현재 위치 버튼 클릭 시 줌 인
+    ChangeSize(4);
+    _map.setLevel(4);
+
+    //지도의 범위 적용하기
+    var bounds = _map.getBounds();
+    const haversine = require("haversine");
+    const start = {
+      latitude: bounds.qa,
+      longitude: bounds.ha,
+    };
+    const end = {
+      latitude: bounds.pa,
+      longitude: bounds.oa,
+    };
+    const radiusMath = parseInt(
+      haversine(start, end, { unit: "meter" }) / 2000
+    );
+    setBounds(bounds.ha, bounds.qa, bounds.oa, bounds.pa, radiusMath);
+
+    // 지도 중심을 부드럽게 이동시킵니다
+    // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+    _map.panTo(moveLatLon);
+  };
 
   return (
     <>
