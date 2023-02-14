@@ -186,6 +186,19 @@ const CreateMap = (props) => {
       // 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
       searchAddrFromCoords(latlng, displayCenterInfo);
     });
+    //확대, 축소 시 드래그 이벤트와 같은 함수 실행
+    kakao.maps.event.addListener(_map, "zoom_changed", function () {
+      //지역 선택을 클릭하지 않았을 때, 좌표 유지
+      SelectLocation(false);
+
+      // 지도 중심좌표를 얻어옵니다
+      var latlng = _map.getCenter();
+      resetXY(latlng.getLat(), latlng.getLng());
+      ChangeSize(_map.getLevel());
+
+      // 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
+      searchAddrFromCoords(latlng, displayCenterInfo);
+    });
 
     // 주소-좌표 변환 객체를 생성합니다
     var geocoder = new kakao.maps.services.Geocoder();
