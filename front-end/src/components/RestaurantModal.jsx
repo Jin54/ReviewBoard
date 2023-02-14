@@ -28,6 +28,8 @@ const RestaurantModal = (props) => {
     return;
   }
 
+  console.log(listData)
+
   return (
     <RestaurantModalWrap>
       <CloseWrap>
@@ -50,7 +52,7 @@ const RestaurantModal = (props) => {
           </About>
           <Info>
             <InfoComponent img={"time.png"} txt={listData.time} />
-            <InfoComponent img={"link.png"} txt={listData.link} />
+            <InfoComponent img={"sort.png"} txt={listData.sort} />
             <InfoComponent img={"phone.png"} txt={listData.number} />
           </Info>
         </div>
@@ -247,7 +249,7 @@ const InfoComponent = (props) => {
       <InfoIcon>
         <ImgComponent src={props.img} width={"100%"} />
       </InfoIcon>
-      <InfoTxt>{props.txt}</InfoTxt>
+      {props.txt ? <InfoTxt>{props.txt}</InfoTxt> : <InfoTxt>정보가 존재하지 않습니다.</InfoTxt>}
     </InfoWrap>
   );
 };
