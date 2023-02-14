@@ -33,7 +33,7 @@ const CreateMap = (props) => {
   );
   const [_map, setMap] = useState(null);
   const showURL = useSelector((state) => state.urlChange.name);
-  const ha = useSelector((state) => state.map.ha);
+  const mapBounds = useSelector((state) => state.map.radius);
   const setBounds = useCallback(
     (ha, qa, oa, pa, radius) => dispatch(setbounds(ha, qa, oa, pa, radius)),
     [dispatch]
@@ -237,7 +237,6 @@ const CreateMap = (props) => {
 
   // 마우스 드래그로 지도 이동이 완료되었을 때 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
   const [centerData, setCenterData] = useState(null);
-
   if (_map != null) {
     kakao.maps.event.addListener(_map, "dragend", function () {
       // 지도 중심좌표를 얻어옵니다
@@ -250,7 +249,7 @@ const CreateMap = (props) => {
   useEffect(() => {
     if (_map === null) return;
 
-    //지도의 영역 적용하기
+    //지도의 범위 적용하기
     var bounds = _map.getBounds();
 
     const haversine = require("haversine");
@@ -262,7 +261,9 @@ const CreateMap = (props) => {
       latitude: bounds.pa,
       longitude: bounds.oa,
     };
-    const radiusMath = haversine(start, end, { unit: "meter" }) / 2;
+    const radiusMath = parseInt(
+      haversine(start, end, { unit: "meter" }) / 2000
+    );
     setBounds(bounds.ha, bounds.qa, bounds.oa, bounds.pa, radiusMath);
 
     // console.log(radiusMath);
@@ -273,7 +274,8 @@ const CreateMap = (props) => {
       },
       x,
       y,
-      showURL
+      showURL,
+      mapBounds
     );
   }, [x, y, size, showURL]);
 
@@ -288,8 +290,6 @@ const CreateMap = (props) => {
       }
       setMarkers([]);
     }
-
-    //범위 변경, 받아오기
 
     const showCenterRestaurant = centerData.map((restaurant) => {
       // 마커 이미지의 이미지 크기 입니다
