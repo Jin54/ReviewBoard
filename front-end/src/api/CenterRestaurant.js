@@ -17,7 +17,7 @@ export const CenterRestaurantAPI = async (
       method: "get",
       url: url,
     });
-    console.log(data.data.result);
+
     setData(data.data.result);
   } catch (err) {
     alert(err);

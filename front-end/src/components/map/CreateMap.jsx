@@ -49,6 +49,7 @@ const CreateMap = (props) => {
 
     // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
     const map = new kakao.maps.Map(mapContainer, mapOption);
+    map.setMaxLevel(12); //맵의 최대 축소 크기
 
     setMap(map);
   }, []);
@@ -142,7 +143,7 @@ const CreateMap = (props) => {
       mapBounds
     );
 
-    //상위 290개 데이터 불러오기
+    //상위 90개 데이터 불러오기
     CenterRestaurantAPI(
       (data) => {
         setCenterData(data);
@@ -150,12 +151,10 @@ const CreateMap = (props) => {
       x,
       y,
       showURL,
-      11,
+      1,
       100,
       mapBounds
     );
-    console.log("CenterData");
-    console.log(centerData);
   }, [showURL, x]);
 
   // 마우스 드래그로 지도 이동이 완료되었을 때 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
@@ -188,6 +187,7 @@ const CreateMap = (props) => {
         position: coords, // 마커를 표시할 위치
       });
       setTopMarkers((topMarkers) => [...topMarkers, marker]);
+      marker.setZIndex(-10);
 
       //=============마커의 오버레이(클릭 시 보여지는 css)========================================================
       var content = document.createElement("div");
@@ -282,6 +282,7 @@ const CreateMap = (props) => {
         image: markerImage, // 마커 이미지
       });
       setMarkers((markers) => [...markers, marker]);
+      marker.setZIndex(-20);
 
       //=============마커의 오버레이(클릭 시 보여지는 css)========================================================
       var content = document.createElement("div");
