@@ -1,16 +1,18 @@
 const CHANGE = "restaurantModal/CHANGE";
+const MODALOPEN = "restaurantModal/MODALOPEN";
 
 export const change = (id) => ({
   type: CHANGE,
   id: id,
-  // add: add,
-  // reviewNum: reviewNum,
+});
+export const modalopen = (bool) => ({
+  type: MODALOPEN,
+  bool: bool,
 });
 
 const initialState = {
   id: "",
-  // add: "",
-  // reviewNum: 10,
+  open: false,
 };
 
 function restaurantModal(state = initialState, action) {
@@ -19,9 +21,11 @@ function restaurantModal(state = initialState, action) {
       return {
         ...state,
         id: action.id,
-        // add: action.add,
-        // reviewNum: action.reviewNum,
-        // reviewNum: 100,
+      };
+    case MODALOPEN:
+      return {
+        ...state,
+        open: action.bool,
       };
     default:
       return state;
