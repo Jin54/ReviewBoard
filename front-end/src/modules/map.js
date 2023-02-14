@@ -5,6 +5,7 @@ const RESETXY = "map/RESETXY";
 const MARKERS = "map/MARKERS";
 const CHANGESIZE = "map/CHANGESIZE";
 const CURRENTXY = "map/CURRENTXY";
+const SETBOUNDS = "map/SETBOUNDS";
 
 export const increase = () => ({ type: INCREASE });
 export const decrease = () => ({ type: DECREASE });
@@ -27,6 +28,13 @@ export const currentxy = (x, y) => ({
   currentX: x,
   currentY: y,
 });
+export const setbounds = (ha, qa, oa, pa) => ({
+  type: SETBOUNDS,
+  ha: ha,
+  qa: qa,
+  oa: oa,
+  pa: pa,
+});
 
 const initialState = {
   number: 12,
@@ -35,6 +43,12 @@ const initialState = {
   data: [],
   currentX: 0,
   currentY: 0,
+  ha: {
+    ha: 0,
+    qa: 0,
+    oa: 0,
+    pa: 0,
+  },
 };
 
 function map(state = initialState, action) {
@@ -75,6 +89,16 @@ function map(state = initialState, action) {
         ...state,
         currentX: action.currentX,
         currentY: action.currentY,
+      };
+    case SETBOUNDS:
+      return {
+        ...state,
+        ha: {
+          ha: action.ha,
+          qa: action.qa,
+          oa: action.oa,
+          pa: action.pa,
+        },
       };
     default:
       return state;
