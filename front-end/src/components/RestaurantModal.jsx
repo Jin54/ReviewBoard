@@ -60,7 +60,7 @@ const RestaurantModal = (props) => {
             <ReviewNum>리뷰 {listData.review_number}개</ReviewNum>
             <ReviewMore onClick={props.onClick}>더보기</ReviewMore>
           </ReviewTxtWrap>
-          <ReviewList />
+          <ReviewList reviewNum={listData.review_number} />
         </ReviewWrap>
       </Box>
     </RestaurantModalWrap>
@@ -284,7 +284,7 @@ const InfoTxt = styled.div`
 
 // 매장 상세 리뷰
 
-function ReviewList() {
+function ReviewList({ reviewNum }) {
   const [pageNum, setPageNum] = useState(0);
   const [reviewData, setReviewData] = useState(null);
 
@@ -311,7 +311,7 @@ function ReviewList() {
     );
   }, [restaurantID, pageNum, showURL]);
 
-  if (reviewData === null || [] || undefined) {
+  if (reviewData === null || undefined || reviewNum === 0) {
     return (
       <>
         <ReviewBox>리뷰 없음</ReviewBox>
