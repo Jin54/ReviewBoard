@@ -20,7 +20,13 @@ const CreateMap = (props) => {
   const bigLocation = useSelector((state) => state.location.bigLocation);
   const smallLocation = useSelector((state) => state.location.smallLocation);
   const selectLocationBool = useSelector((state) => state.location.bool);
+  const currentX = useSelector((state) => state.map.currentX);
+  const currentY = useSelector((state) => state.map.currentY);
   const dispatch = useDispatch();
+  const currentXY = useCallback(
+    (x, y) => dispatch(currentxy(x, y)),
+    [dispatch]
+  );
   const resetXY = useCallback((x, y) => dispatch(resetxy(x, y)), [dispatch]);
   const ChangeSize = useCallback(
     (number) => dispatch(changeSize(number)),
@@ -64,12 +70,7 @@ const CreateMap = (props) => {
   }, []);
 
   //=========현재 위치 마커 생성=======================================================================
-  const currentX = useSelector((state) => state.map.currentX);
-  const currentY = useSelector((state) => state.map.currentY);
-  const currentXY = useCallback(
-    (x, y) => dispatch(currentxy(x, y)),
-    [dispatch]
-  );
+
   useEffect(() => {
     if (_map === null) return;
 
@@ -111,11 +112,13 @@ const CreateMap = (props) => {
         image: markerImage, // 마커이미지 설정
       });
       CurrentMarker.setMap(_map);
-      // 지도 중심좌표를 접속위치로 변경합니다
-      if (smallLocation !== null) return;
-      _map.setCenter(locPosition);
     }
   }, [_map]);
+
+  useEffect(() => {
+    if (_map === null) return;
+    _map.setCenter(new kakao.maps.LatLng(currentX, currentY));
+  }, [currentX]);
 
   //상위 10개 값 저장 & 나머지 290개 값 저장
   const [topData, setTopData] = useState(null);
