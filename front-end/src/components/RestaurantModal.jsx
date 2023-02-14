@@ -397,7 +397,7 @@ const Bottom = styled.p`
 const Feeling = (scope) => {
   
   function txt(scope){
-    console.log(scope)
+    // console.log(scope)
     if(scope>=4.5){
       return '정말 맛있어요!'
     }else if(scope<4.5 && scope>=3.5){

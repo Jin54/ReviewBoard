@@ -7,7 +7,7 @@ application.yml
 Constant
 
 # dependencies
-node_modules/
+FRONT-END/node_modules/
 /.pnp
 .pnp.js
 
