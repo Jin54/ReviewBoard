@@ -43,7 +43,9 @@ const Index = () => {
     <IndexWrap>
       <Header />
       <MapOrList showMap={showMap} showList={showList} showPage={showPage} />
-      {showPage === "지도보기" && <Body showList={showList} />}
+      {showPage === "지도보기" && 
+        <Body showList={showList} />
+      }
       {showPage === "리스트보기" && (
         <ListPage detailModalOpen={detailModalOpen} />
       )}

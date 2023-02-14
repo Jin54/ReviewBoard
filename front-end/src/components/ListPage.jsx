@@ -241,7 +241,10 @@ const Scope = styled.span`
   font-weight: 700;
   font-size: 20px;
   color: #000000;
-  margin-right: 6px;
+  margin-right: 8px;
+  @media screen and (max-width: 1000px) {
+    margin-right: 5px;
+  }
 `
 
 // 리뷰 개수

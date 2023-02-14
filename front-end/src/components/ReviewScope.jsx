@@ -24,8 +24,8 @@ const ReviewScope = ({ scope }) => {
     <span className="star_icon" key={idx}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="39"
+        width="90%"
+        height="30"
         viewBox="0 0 14 13"
         fill="#cacaca"
       >
