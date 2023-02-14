@@ -5,6 +5,7 @@ import "../../style/map.scss";
 
 import ImgComponent from "./../ImageComponent";
 import { resetxy, changeSize, currentxy, setbounds } from "../../modules/map";
+import { modalopen, change } from "../../modules/restaurantModal";
 
 import { MapRamdomAPI } from "./../../api/MapRamdom";
 import { CenterRestaurantAPI } from "./../../api/CenterRestaurant";
@@ -36,6 +37,12 @@ const CreateMap = (props) => {
     (ha, qa, oa, pa) => dispatch(setbounds(ha, qa, oa, pa)),
     [dispatch]
   );
+  const modalOpenBool = useSelector((state) => state.restaurantModal.open);
+  const modalOpen = useCallback(
+    (bool) => dispatch(modalopen(bool)),
+    [dispatch]
+  );
+  const changeID = useCallback((id) => dispatch(change(id)), [dispatch]);
 
   //랜덤 값 저장
   const [randomData, setRandomData] = useState(null);
@@ -136,6 +143,10 @@ const CreateMap = (props) => {
             //=============마커의 오버레이(클릭 시 보여지는 css)========================================================
             var content = document.createElement("div");
             content.className = "wrap";
+            content.onclick = function () {
+              changeID(restaurant.id);
+              modalOpen(true);
+            };
 
             var contentHeader = document.createElement("div");
             contentHeader.className = "header";
@@ -178,6 +189,7 @@ const CreateMap = (props) => {
             // 마커 위에 커스텀오버레이를 표시합니다
             // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
             const overlay = new kakao.maps.CustomOverlay({
+              clickable: true, //true 로 설정하면 컨텐츠 영역을 클릭했을 경우 지도 이벤트를 막아준다.
               content: content,
               position: marker.getPosition(),
             });
@@ -284,6 +296,10 @@ const CreateMap = (props) => {
       //=============마커의 오버레이(클릭 시 보여지는 css)========================================================
       var content = document.createElement("div");
       content.className = "wrap";
+      content.onclick = function () {
+        changeID(restaurant.id);
+        modalOpen(true);
+      };
 
       var contentHeader = document.createElement("div");
       contentHeader.className = "header";
@@ -326,6 +342,7 @@ const CreateMap = (props) => {
       // 마커 위에 커스텀오버레이를 표시합니다
       // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
       const overlay = new kakao.maps.CustomOverlay({
+        clickable: true, //true 로 설정하면 컨텐츠 영역을 클릭했을 경우 지도 이벤트를 막아준다.
         content: content,
         position: marker.getPosition(),
       });

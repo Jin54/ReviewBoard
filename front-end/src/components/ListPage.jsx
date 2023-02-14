@@ -8,11 +8,12 @@ import ReviewScope from "./ReviewScope";
 
 import { ListRandom } from "../api/ListRandom";
 import { SearchRestaurantAPI } from "../api/SearchRestaurantAPI";
+import { modalopen } from "../modules/restaurantModal";
 
-const ListPage = ({ detailModalOpen }) => {
+const ListPage = () => {
   return (
     <ListPageWrap>
-      <ListScroll id="scrollWrap">{ListContent(detailModalOpen)}</ListScroll>
+      <ListScroll id="scrollWrap">{ListContent()}</ListScroll>
     </ListPageWrap>
   );
 };
@@ -59,7 +60,7 @@ export default ListPage;
 
 // =============================================
 
-function ListContent(detailModalOpen) {
+function ListContent() {
   // 무한스크롤
   const [pageNum, setPageNum] = useState(0);
   const [ref, inView] = useInView();
@@ -67,6 +68,11 @@ function ListContent(detailModalOpen) {
     if (!inView) return;
     setPageNum(pageNum + 10);
   }, [ref, inView]);
+
+  const modalOpen = useCallback(
+    (bool) => dispatch(modalopen(bool)),
+    [dispatch]
+  );
 
   //전체 음식점 저장
   const [restaurantData, setRestaurantData] = useState([]);
@@ -122,7 +128,8 @@ function ListContent(detailModalOpen) {
           key={restaurant.id}
           onClick={() => {
             onClickSelect(restaurant.id);
-            detailModalOpen();
+            // detailModalOpen();
+            modalOpen(true);
           }}
         >
           <ImgBox>
@@ -159,7 +166,7 @@ const ListContentWrap = styled.div`
   @media screen and (max-width: 1000px) {
     flex-direction: column;
   }
-`
+`;
 // 왼쪽 이미지
 const ImgBox = styled.div`
   width: 40%;
@@ -171,7 +178,7 @@ const ImgBox = styled.div`
     width: 100%;
     margin: 0;
   }
-`
+`;
 const ImgWrap = styled.div`
   height: 100px;
   width: 100%;
@@ -180,7 +187,7 @@ const ImgWrap = styled.div`
   justify-content: center;
   background: url(${(props) => props.imgUrl}) no-repeat center;
   background-size: cover;
-`
+`;
 // 오른쪽 설명
 const AboutWrap = styled.div`
   width: 50%;
@@ -189,7 +196,7 @@ const AboutWrap = styled.div`
     width: 100%;
     margin-top: 10px;
   }
-`
+`;
 // 매장명 & 주소
 const Top = styled.div`
   margin-bottom: 20px;
@@ -201,7 +208,7 @@ const Top = styled.div`
     margin-bottom: 6px;
     flex-direction: column;
   }
-`
+`;
 const Title = styled.span`
   font-weight: 700;
   font-size: 16px;
@@ -215,7 +222,7 @@ const Title = styled.span`
     font-size: 14px;
     margin-bottom: 4px;
   }
-`
+`;
 const Address = styled.span`
   font-weight: 400;
   font-size: 12px;
@@ -227,7 +234,7 @@ const Address = styled.span`
     font-size: 11px;
     width: 100%;
   }
-`
+`;
 // 별점 & 아이콘
 const Middle = styled.div`
   margin-bottom: 20px;
@@ -236,7 +243,7 @@ const Middle = styled.div`
   @media screen and (max-width: 1000px) {
     margin-bottom: 6px;
   }
-`
+`;
 const Scope = styled.span`
   font-weight: 700;
   font-size: 20px;
@@ -245,7 +252,7 @@ const Scope = styled.span`
   @media screen and (max-width: 1000px) {
     margin-right: 5px;
   }
-`
+`;
 
 // 리뷰 개수
 const Bottom = styled.p`
@@ -256,4 +263,4 @@ const Bottom = styled.p`
     margin: 0;
     font-size: 11px;
   }
-`
+`;

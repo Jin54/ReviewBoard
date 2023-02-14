@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 
 // components import
 import Header from "../components/Header";
@@ -8,6 +9,9 @@ import ListPage from "../components/ListPage";
 import Footer from "../components/Footer";
 import RestaurantModal from "../components/RestaurantModal";
 import RestaurantReviewModal from "../components/RestaurantReviewModal";
+
+//redux
+import { modalopen } from "../modules/restaurantModal";
 
 const Index = () => {
   // 지도보기 & 리스트 버튼 클릭시 해당 페이지 보이기
@@ -21,13 +25,14 @@ const Index = () => {
   };
 
   // 매장 상세 보기
-  const [restauratModal, setRestaurantModal] = useState(false);
-
-  const detailModalOpen = () => {
-    setRestaurantModal(true);
-  };
+  const modalOpenBool = useSelector((state) => state.restaurantModal.open);
+  const dispatch = useDispatch();
+  const modalOpen = useCallback(
+    (bool) => dispatch(modalopen(bool)),
+    [dispatch]
+  );
   const detailModalClose = () => {
-    setRestaurantModal(false);
+    modalOpen(false);
   };
 
   // 더보기 클릭 시 전체 리뷰 모달
@@ -43,13 +48,9 @@ const Index = () => {
     <IndexWrap>
       <Header />
       <MapOrList showMap={showMap} showList={showList} showPage={showPage} />
-      {showPage === "지도보기" && 
-        <Body showList={showList} />
-      }
-      {showPage === "리스트보기" && (
-        <ListPage detailModalOpen={detailModalOpen} />
-      )}
-      {restauratModal && (
+      {showPage === "지도보기" && <Body showList={showList} />}
+      {showPage === "리스트보기" && <ListPage />}
+      {modalOpenBool && (
         <RestaurantModal
           detailModalClose={detailModalClose}
           openAllReivew={openAllReivew}
@@ -73,7 +74,7 @@ const IndexWrap = styled.div`
     padding-left: 8%;
     padding-right: 8%;
   }
-`
+`;
 export default Index;
 
 // 지도보기 & 리스트보기 버튼
@@ -99,7 +100,7 @@ const MapOrListWrap = styled.div`
   margin: auto;
   margin-top: 40px;
   flex: 0;
-`
+`;
 const MapBtn = styled.p`
   margin: 0;
   margin-right: 40px;
@@ -109,7 +110,7 @@ const MapBtn = styled.p`
   @media screen and (max-width: 1000px) {
     font-size: 12px;
   }
-`
+`;
 const ListBtn = styled.p`
   margin: 0;
   margin-left: 40px;
@@ -119,4 +120,4 @@ const ListBtn = styled.p`
   @media screen and (max-width: 1000px) {
     font-size: 12px;
   }
-`
+`;
