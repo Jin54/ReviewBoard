@@ -27,7 +27,7 @@ const RestaurantModal = (props) => {
   if (listData === null) {
     return;
   }
-  console.log('매장 데이터 렌더링')
+  console.log("매장 데이터 렌더링");
 
   return (
     <RestaurantModalWrap>
@@ -59,7 +59,9 @@ const RestaurantModal = (props) => {
         <ReviewWrap>
           <ReviewTxtWrap>
             <ReviewNum>리뷰 {listData.review_number}개</ReviewNum>
-            {!(listData.review_number ===0) && <ReviewMore onClick={props.openAllReivew}>더보기</ReviewMore>}
+            {!(listData.review_number === 0) && (
+              <ReviewMore onClick={props.openAllReivew}>더보기</ReviewMore>
+            )}
           </ReviewTxtWrap>
           <ReviewList reviewNum={listData.review_number} />
         </ReviewWrap>
@@ -165,6 +167,7 @@ const ScopeWrap = styled.div`
   margin-bottom: 20px;
   display: flex;
   align-items: center;
+  width: 30%;
 `;
 const Scope = styled.p`
   margin: 0;
@@ -243,7 +246,7 @@ export default RestaurantModal;
 // 매장 상세 중간 정보 컴포넌트 ( 영업 시간, 링크, 번호 )
 
 const InfoComponent = (props) => {
-  if(props.sort  == null) return;
+  if (props.sort == null) return;
   return (
     <InfoWrap>
       <InfoIcon>
@@ -343,14 +346,14 @@ const ReviewList = (reviewNum) => {
       <div ref={ref} style={{ height: "100px", width: "100px" }}></div>
     </ReviewFlexWrap>
   );
-}
+};
 
 const ReviewNone = styled.p`
-  color :#C09567;
+  color: #c09567;
   text-align: center;
   font-size: 20px;
   padding-top: 20px;
-`
+`;
 
 const ReviewBox = styled.div`
   border: 1px solid #c09567;
@@ -390,6 +393,7 @@ const Middle = styled.div`
   margin-bottom: 20px;
   display: flex;
   align-items: center;
+  width: 45%;
 `;
 const ReviewScopeNum = styled.span`
   font-weight: 700;

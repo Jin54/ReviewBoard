@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const ReviewScope = ({ scope }) => {
@@ -20,7 +20,7 @@ const ReviewScope = ({ scope }) => {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="90%"
-        height="30"
+        height="50%"
         viewBox="0 0 14 13"
         fill="#cacaca"
       >
@@ -55,4 +55,4 @@ const StarRateWrap = styled.div`
     display: inline-flex;
     margin-right: 5px;
   }
-`
+`;

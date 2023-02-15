@@ -11,11 +11,12 @@ import { SearchRestaurantAPI } from "../api/SearchRestaurantAPI";
 import { modalopen } from "../modules/restaurantModal";
 
 const ListPage = () => {
-
-  console.log('리스트 데이터 렌더링')
+  console.log("리스트 데이터 렌더링");
   return (
     <ListPageWrap>
-      <ListScroll><ListContent /></ListScroll>
+      <ListScroll>
+        <ListContent />
+      </ListScroll>
     </ListPageWrap>
   );
 };
@@ -91,7 +92,7 @@ function ListContent() {
       showURL
     );
   }, [pageNum, showURL]);
-  console.log(restaurantData)
+  console.log(restaurantData);
 
   //가게 클릭 시 해당 가게로 이름 변경 -> 모달창 이동
   const dispatch = useDispatch();
