@@ -50,7 +50,7 @@ const initialState = {
     oa: 0,
     pa: 0,
   },
-  radius: 0,
+  radius: 1,
 };
 
 function map(state = initialState, action) {
@@ -93,6 +93,10 @@ function map(state = initialState, action) {
         currentY: action.currentY,
       };
     case SETBOUNDS:
+      if (action.radius === 0) {
+        action.radius = 1;
+      }
+
       return {
         ...state,
         ha: {

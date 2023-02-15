@@ -65,6 +65,7 @@ const CreateMap = (props) => {
     // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
     const map = new kakao.maps.Map(mapContainer, mapOption);
     map.setMaxLevel(12); //맵의 최대 축소 크기
+    map.setMinLevel(3); //맵의 최소 확대 크기
 
     setMap(map);
   }, []);
@@ -152,7 +153,7 @@ const CreateMap = (props) => {
       y,
       showURL,
       1,
-      10,
+      2,
       mapBounds
     );
 
