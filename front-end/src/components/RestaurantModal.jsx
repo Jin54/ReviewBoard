@@ -27,7 +27,6 @@ const RestaurantModal = (props) => {
   if (listData === null) {
     return;
   }
-  console.log("매장 데이터 렌더링");
 
   return (
     <RestaurantModalWrap>
@@ -171,7 +170,7 @@ const ScopeWrap = styled.div`
   @media screen and (max-width: 1000px) and (min-width: 400px) {
     width: 40%;
   }
-  @media screen and (max-width: 399px){
+  @media screen and (max-width: 399px) {
     width: 80%;
   }
 `;
@@ -403,7 +402,7 @@ const Middle = styled.div`
   @media screen and (max-width: 1000px) and (min-width: 400px) {
     width: 80%;
   }
-  @media screen and (max-width: 399px){
+  @media screen and (max-width: 399px) {
     width: 100%;
   }
 `;

@@ -11,7 +11,6 @@ import { SearchRestaurantAPI } from "../api/SearchRestaurantAPI";
 import { modalopen } from "../modules/restaurantModal";
 
 const ListPage = () => {
-  console.log("리스트 데이터 렌더링");
   return (
     <ListPageWrap>
       <ListScroll>
@@ -88,7 +87,6 @@ function ListContent() {
       showURL
     );
   }, [pageNum, showURL]);
-  console.log(restaurantData);
 
   //가게 클릭 시 해당 가게로 이름 변경 -> 모달창 이동
   const dispatch = useDispatch();
@@ -172,7 +170,8 @@ const ListContentWrap = styled.div`
 // 왼쪽 이미지
 const ImgBox = styled.div`
   width: 40%;
-  background-color: #c09567;
+  /* background-color: #c09567; */
+  background-color: white;
   border-radius: 10px;
   margin-right: 25px;
   overflow: hidden;
@@ -247,7 +246,7 @@ const Middle = styled.div`
     margin-bottom: 6px;
     width: 70%;
   }
-  @media screen and (max-width: 399px){
+  @media screen and (max-width: 399px) {
     width: 100%;
   }
 `;
