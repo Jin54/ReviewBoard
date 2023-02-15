@@ -7,6 +7,7 @@ import { change } from "../modules/restaurantModal";
 import ReviewScope from "./ReviewScope";
 
 import { ListAll } from "../api/ListAll";
+import { CenterRestaurantAPI } from "../api/CenterRestaurant";
 import { SearchRestaurantAPI } from "../api/SearchRestaurantAPI";
 import { modalopen } from "../modules/restaurantModal";
 
@@ -74,17 +75,31 @@ function ListContent() {
   //전체 음식점 저장
   const [restaurantData, setRestaurantData] = useState([]);
   const showURL = useSelector((state) => state.urlChange.name);
+  const x = useSelector((state) => state.map.x);
+  const y = useSelector((state) => state.map.y);
+  const mapBounds = useSelector((state) => state.map.radius);
 
   useEffect(() => {
     if (bigLocation !== "") return;
     if (pageNum === 0) return;
 
-    ListAll(
+    // ListAll(
+    //   (data) => {
+    //     setRestaurantData(data);
+    //   },
+    //   pageNum,
+    //   showURL
+    // );
+    CenterRestaurantAPI(
       (data) => {
         setRestaurantData(data);
       },
-      pageNum,
-      showURL
+      x,
+      y,
+      showURL,
+      1,
+      100,
+      mapBounds
     );
   }, [pageNum, showURL]);
 
