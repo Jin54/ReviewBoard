@@ -55,10 +55,10 @@ const RestaurantModal = (props) => {
           </Info>
         </div>
         <Divider></Divider>
-        <ReviewWrap onClick={props.openAllReivew}>
+        <ReviewWrap>
           <ReviewTxtWrap>
             <ReviewNum>리뷰 {listData.review_number}개</ReviewNum>
-            {!(listData.review_number ===0) && <ReviewMore onClick={props.onClick}>더보기</ReviewMore>}
+            {!(listData.review_number ===0) && <ReviewMore onClick={props.openAllReivew}>더보기</ReviewMore>}
           </ReviewTxtWrap>
           <ReviewList reviewNum={listData.review_number} />
         </ReviewWrap>
