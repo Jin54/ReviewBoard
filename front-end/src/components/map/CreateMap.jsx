@@ -154,7 +154,7 @@ const CreateMap = (props) => {
       100,
       mapBounds
     );
-  }, [showURL, x]);
+  }, [showURL, x, currentX]);
 
   // 마우스 드래그로 지도 이동이 완료되었을 때 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
   useEffect(() => {
