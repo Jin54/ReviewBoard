@@ -2,12 +2,9 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const ReviewScope = ({ scope }) => {
-  console.log('별점 렌더링')
-  const AVR_RATE = scope * 20;
-  const [ratesResArr, setRatesResArr] = useState([0, 0, 0, 0, 0]);
-  const calcStarRates = () => {
+  const calcStarRates = (scope) => {
     let tempStarRatesArr = [0, 0, 0, 0, 0];
-    let starVerScore = (AVR_RATE * 70) / 100;
+    let starVerScore = (scope * 20 * 70) / 100;
     let idx = 0;
     while (starVerScore > 14) {
       tempStarRatesArr[idx] = 14;
@@ -17,11 +14,8 @@ const ReviewScope = ({ scope }) => {
     tempStarRatesArr[idx] = starVerScore;
     return tempStarRatesArr;
   };
-  useEffect(() => {
-    setRatesResArr(calcStarRates);
-  }, []);
 
-  const starList = ratesResArr.map((item, idx) => (
+  const starList = calcStarRates(scope).map((item, idx) => (
     <span className="star_icon" key={idx}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +25,7 @@ const ReviewScope = ({ scope }) => {
         fill="#cacaca"
       >
         <clipPath id={`${item}StarClip`}>
-          <rect width={`${ratesResArr[idx]}`} height="39" />
+          <rect width={`${item}`} height="39" />
         </clipPath>
         <path
           id={`${item}Star`}

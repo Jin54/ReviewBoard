@@ -243,6 +243,7 @@ export default RestaurantModal;
 // 매장 상세 중간 정보 컴포넌트 ( 영업 시간, 링크, 번호 )
 
 const InfoComponent = (props) => {
+  if(props.sort  == null) return;
   return (
     <InfoWrap>
       <InfoIcon>
