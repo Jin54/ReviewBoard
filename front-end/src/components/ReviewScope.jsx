@@ -54,6 +54,7 @@ export default ReviewScope;
 const StarRateWrap = styled.div`
   display: flex;
   align-items: center;
+  width: 100%;
   .star_icon {
     display: inline-flex;
     margin-right: 5px;
