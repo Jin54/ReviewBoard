@@ -27,6 +27,7 @@ const RestaurantModal = (props) => {
   if (listData === null) {
     return;
   }
+  console.log('매장 데이터 렌더링')
 
   return (
     <RestaurantModalWrap>
@@ -284,7 +285,7 @@ const InfoTxt = styled.div`
 
 // 매장 상세 리뷰
 
-function ReviewList({ reviewNum }) {
+const ReviewList = (reviewNum) => {
   const [pageNum, setPageNum] = useState(0);
   const [reviewData, setReviewData] = useState(null);
 

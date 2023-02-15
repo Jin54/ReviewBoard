@@ -120,6 +120,8 @@ function ListContent() {
 
   if (restaurantData === []) return;
 
+  console.log('리스트 데이터 렌더링')
+
   return (
     <FlexWrap>
       {restaurantData.map((restaurant) => (
