@@ -243,11 +243,11 @@ const Middle = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1000px) and (min-width: 400px) {
     margin-bottom: 6px;
     width: 70%;
   }
-  @media screen and (max-width: 359px){
+  @media screen and (max-width: 399px){
     width: 100%;
   }
 `;
