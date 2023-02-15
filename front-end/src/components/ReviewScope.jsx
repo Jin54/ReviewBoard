@@ -22,7 +22,7 @@ const ReviewScope = ({ scope }) => {
 
   console.log('별점 렌더링')
 
-  const starList = ratesResArr.map(function(item, idx){(
+  const starList = ratesResArr.map((item, idx) => (
     <span className="star_icon" key={idx}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ const ReviewScope = ({ scope }) => {
         />
       </svg>
     </span>
-  )});
+  ));
 
   return <StarRateWrap>{starList}</StarRateWrap>;
 };
