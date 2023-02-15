@@ -168,6 +168,12 @@ const ScopeWrap = styled.div`
   display: flex;
   align-items: center;
   width: 30%;
+  @media screen and (max-width: 1000px) and (min-width: 360px) {
+    width: 40%;
+  }
+  @media screen and (max-width: 359px){
+    width: 80%;
+  }
 `;
 const Scope = styled.p`
   margin: 0;
@@ -394,6 +400,12 @@ const Middle = styled.div`
   display: flex;
   align-items: center;
   width: 45%;
+  @media screen and (max-width: 1000px) and (min-width: 360px) {
+    width: 80%;
+  }
+  @media screen and (max-width: 359px){
+    width: 100%;
+  }
 `;
 const ReviewScopeNum = styled.span`
   font-weight: 700;

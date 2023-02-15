@@ -64,10 +64,6 @@ export default ListPage;
 // =============================================
 
 function ListContent() {
-  // useEffect(()=> {
-  //   console.log('제발 돼')
-  // },[])
-  // console.log('매장 모달 한 개 렌더링')
   // 무한스크롤
   const [pageNum, setPageNum] = useState(0);
   const [ref, inView] = useInView();
@@ -246,8 +242,13 @@ const Middle = styled.div`
   margin-bottom: 20px;
   display: flex;
   align-items: center;
+  width: 100%;
   @media screen and (max-width: 1000px) {
     margin-bottom: 6px;
+    width: 70%;
+  }
+  @media screen and (max-width: 359px){
+    width: 100%;
   }
 `;
 const Scope = styled.span`
