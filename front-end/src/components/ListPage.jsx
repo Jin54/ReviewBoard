@@ -63,7 +63,7 @@ export default ListPage;
 // =============================================
 
 function ListContent() {
-  console.log('매장 한 개 렌더링')
+  console.log('매장 모달 한 개 렌더링')
   // 무한스크롤
   const [pageNum, setPageNum] = useState(0);
   const [ref, inView] = useInView();
