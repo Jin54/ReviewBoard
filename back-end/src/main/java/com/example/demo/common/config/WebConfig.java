@@ -17,7 +17,9 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedOrigins("http://localhost:3000"
                         ,"https://localhost:3000"
                         , "https://joyful-buttercream-e0df61.netlify.app/"
-                        , "https://asac-elfin-reviewboard.store/")
+                        , "https://asac-elfin-reviewboard.store/"
+                ,"asac-elfin-reviewboard.store"
+                ,"https://main--joyful-buttercream-e0df61.netlify.app/")
                 // 모든 HTTP Method를 허용한다.
                 .allowedMethods("*")
                 // HTTP 요청의 Header에 어떤 값이든 들어갈 수 있도록 허용한다.
