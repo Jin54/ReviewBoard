@@ -7,9 +7,11 @@ import ImgComponent from "./../ImageComponent";
 import markerImg from "../../img/circle.png";
 import { resetxy, changeSize, currentxy, setbounds } from "../../modules/map";
 import { modalopen, change } from "../../modules/restaurantModal";
+import SearchRestaurantAPI from "../../api/SearchRestaurantAPI";
 
 import { CenterRestaurantAPI } from "./../../api/CenterRestaurant";
 import { saveLocation, selectLocation } from "../../modules/location";
+import mapData, { setMapData } from "../../modules/mapData";
 
 const { kakao } = window;
 
@@ -22,6 +24,8 @@ const CreateMap = (props) => {
   const selectLocationBool = useSelector((state) => state.location.bool);
   const currentX = useSelector((state) => state.map.currentX);
   const currentY = useSelector((state) => state.map.currentY);
+  const MapData = useSelector((state) => state.mapData.data);
+
   const dispatch = useDispatch();
   const currentXY = useCallback(
     (x, y) => dispatch(currentxy(x, y)),
@@ -52,6 +56,10 @@ const CreateMap = (props) => {
     (bool) => dispatch(selectLocation(bool)),
     [dispatch]
   );
+  const SetMapData = useCallback(
+    (data) => dispatch(setMapData(data)),
+    [dispatch]
+  );
 
   //=========맵 생성=========================
   const [_map, setMap] = useState(null);
@@ -71,7 +79,6 @@ const CreateMap = (props) => {
   }, []);
 
   //=========현재 위치 마커 생성=======================================================================
-
   useEffect(() => {
     if (_map === null) return;
 
@@ -122,7 +129,7 @@ const CreateMap = (props) => {
   }, [currentX]);
 
   //상위 100개 값 저장
-  const [centerData, setCenterData] = useState(null);
+  // const [centerData, setCenterData] = useState(null);
 
   useEffect(() => {
     if (_map === null) return;
@@ -145,7 +152,7 @@ const CreateMap = (props) => {
     //상위 100개 데이터 불러오기
     CenterRestaurantAPI(
       (data) => {
-        setCenterData(data);
+        SetMapData(data);
       },
       x,
       y,
@@ -211,7 +218,7 @@ const CreateMap = (props) => {
 
   useEffect(() => {
     if (_map === null) return;
-    if (centerData === null || centerData === undefined) return;
+    if (MapData === null || MapData === undefined) return;
 
     if (markers !== null) {
       for (var i = 0; i < markers.length; i++) {
@@ -220,7 +227,7 @@ const CreateMap = (props) => {
       setMarkers([]);
     }
 
-    const showRestaurant = centerData.map((restaurant, index) => {
+    const showRestaurant = MapData.map((restaurant, index) => {
       // 마커 이미지의 이미지 크기 입니다
       var imageSize = new kakao.maps.Size(10, 10);
       // 마커 이미지를 생성합니다
@@ -304,7 +311,7 @@ const CreateMap = (props) => {
         overlay.setMap(null);
       });
     });
-  }, [centerData]);
+  }, [MapData]);
 
   //============지역 선택 시, 중심 좌표 이동 및 맵 이동=======================================================================
   useEffect(() => {
@@ -323,6 +330,22 @@ const CreateMap = (props) => {
       }
     });
   }, [smallLocation]);
+
+  //지역 검색시, 해당 지역의 음식점만 조회
+  useEffect(() => {
+    if (smallLocation === "") return;
+    // if (pageNum === 0) return;
+
+    SearchRestaurantAPI(
+      bigLocation,
+      smallLocation,
+      (data) => {
+        SetMapData(data);
+      },
+      100,
+      showURL
+    );
+  }, [smallLocation, showURL]);
 
   //지도 줌 인&줌 아웃
   //https://leedaeho1188.tistory.com/51

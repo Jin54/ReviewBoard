@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import CreateMap from "./map/CreateMap";
@@ -13,6 +13,9 @@ const Body = (props) => {
   const closeRegion = () => {
     setShowRegion(false);
   };
+
+  //useEffect 사용
+  useEffect(() => {}, []);
 
   return (
     <BodyWrap>
@@ -39,6 +42,6 @@ const BodyWrap = styled.div`
     margin-top: 20px;
     width: 100%;
   }
-`
+`;
 
 export default Body;

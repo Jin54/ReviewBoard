@@ -9,7 +9,7 @@ export const SearchRestaurantAPI = async (
 ) => {
   const apiurl = process.env.REACT_APP_APIURL;
   // const url = `${apiurl}/${showURL}/address?pageIndex=1&pageSize=${pageNum}&first=${bigLocation}&second=${smallLocation}`;
-  const url = `${apiurl}/${showURL}/address?pageIndex=1&pageSize=${pageNum}&first=${bigLocation}&second=${smallLocation}`;
+  const url = `${apiurl}/${showURL}/address?pageIndex=1&pageSize=100&first=${bigLocation}&second=${smallLocation}`;
 
   try {
     const data = await axios({

@@ -5,10 +5,6 @@ import styled from "styled-components";
 
 import { change } from "../modules/restaurantModal";
 import ReviewScope from "./ReviewScope";
-
-import { ListAll } from "../api/ListAll";
-import { CenterRestaurantAPI } from "../api/CenterRestaurant";
-import { SearchRestaurantAPI } from "../api/SearchRestaurantAPI";
 import { modalopen } from "../modules/restaurantModal";
 
 const ListPage = () => {
@@ -72,37 +68,6 @@ function ListContent() {
     setPageNum(pageNum + 10);
   }, [ref, inView]);
 
-  //전체 음식점 저장
-  const [restaurantData, setRestaurantData] = useState([]);
-  const showURL = useSelector((state) => state.urlChange.name);
-  const x = useSelector((state) => state.map.x);
-  const y = useSelector((state) => state.map.y);
-  const mapBounds = useSelector((state) => state.map.radius);
-
-  useEffect(() => {
-    if (bigLocation !== "") return;
-    if (pageNum === 0) return;
-
-    ListAll(
-      (data) => {
-        setRestaurantData(data);
-      },
-      pageNum,
-      showURL
-    );
-    // CenterRestaurantAPI(
-    //   (data) => {
-    //     setRestaurantData(data);
-    //   },
-    //   x,
-    //   y,
-    //   showURL,
-    //   1,
-    //   pageNum,
-    //   mapBounds
-    // );
-  }, [pageNum, showURL]);
-
   //가게 클릭 시 해당 가게로 이름 변경 -> 모달창 이동
   const dispatch = useDispatch();
   const onClickSelect = useCallback((id) => dispatch(change(id)), [dispatch]);
@@ -111,59 +76,41 @@ function ListContent() {
     [dispatch]
   );
 
-  //modules/location.js 에 저장된 지역의 음식 리스트만 보여주기
-  const [bigLocation, setBigLocation] = useState(
-    useSelector((state) => state.location.bigLocation)
-  );
-  const [smallLocation, setSmallLocation] = useState(
-    useSelector((state) => state.location.smallLocation)
-  );
-
-  //지역 검색시, 해당 지역의 음식점만 조회
-  useEffect(() => {
-    if (smallLocation === "") return;
-    if (pageNum === 0) return;
-
-    SearchRestaurantAPI(
-      bigLocation,
-      smallLocation,
-      (data) => {
-        setRestaurantData(data);
-      },
-      pageNum,
-      showURL
-    );
-  }, [smallLocation, pageNum, showURL]);
-
-  if (restaurantData === undefined) return;
+  //mapData 리덕스
+  const MapData = useSelector((state) => state.mapData.data);
+  if (MapData === null) return;
 
   return (
     <FlexWrap>
-      {restaurantData.map((restaurant) => (
-        <ListContentWrap
-          key={restaurant.id}
-          onClick={() => {
-            onClickSelect(restaurant.id);
-            modalOpen(true);
-          }}
-        >
-          <ImgBox>
-            <ImgWrap imgUrl={restaurant.thumbnail}></ImgWrap>
-          </ImgBox>
-          <AboutWrap>
-            <Top>
-              <Title>{restaurant.name}</Title>
-              <Address>{restaurant.numberAddress}</Address>
-            </Top>
-            <Middle>
-              <Scope>{restaurant.review_rating}</Scope>
-              <ReviewScope scope={restaurant.review_rating} />
-            </Middle>
-            <Bottom>리뷰 {restaurant.review_number}</Bottom>
-          </AboutWrap>
-        </ListContentWrap>
-      ))}
-      <div ref={ref} style={{ height: "100px", width: "100px" }}></div>
+      {MapData.map((restaurant, index) =>
+        index < pageNum ? (
+          <ListContentWrap
+            key={restaurant.id}
+            onClick={() => {
+              onClickSelect(restaurant.id);
+              modalOpen(true);
+            }}
+          >
+            <ImgBox>
+              <ImgWrap imgUrl={restaurant.thumbnail}></ImgWrap>
+            </ImgBox>
+            <AboutWrap>
+              <Top>
+                <Title>{restaurant.name}</Title>
+                <Address>{restaurant.numberAddress}</Address>
+              </Top>
+              <Middle>
+                <Scope>{restaurant.review_rating}</Scope>
+                <ReviewScope scope={restaurant.review_rating} />
+              </Middle>
+              <Bottom>리뷰 {restaurant.review_number}</Bottom>
+            </AboutWrap>
+          </ListContentWrap>
+        ) : (
+          ""
+        )
+      )}
+      <div ref={ref} style={{ height: "10px", width: "10px" }}></div>
     </FlexWrap>
   );
 }
