@@ -83,24 +83,24 @@ function ListContent() {
     if (bigLocation !== "") return;
     if (pageNum === 0) return;
 
-    // ListAll(
-    //   (data) => {
-    //     setRestaurantData(data);
-    //   },
-    //   pageNum,
-    //   showURL
-    // );
-    CenterRestaurantAPI(
+    ListAll(
       (data) => {
         setRestaurantData(data);
       },
-      x,
-      y,
-      showURL,
-      1,
-      100,
-      mapBounds
+      pageNum,
+      showURL
     );
+    // CenterRestaurantAPI(
+    //   (data) => {
+    //     setRestaurantData(data);
+    //   },
+    //   x,
+    //   y,
+    //   showURL,
+    //   1,
+    //   pageNum,
+    //   mapBounds
+    // );
   }, [pageNum, showURL]);
 
   //가게 클릭 시 해당 가게로 이름 변경 -> 모달창 이동
@@ -135,7 +135,7 @@ function ListContent() {
     );
   }, [smallLocation, pageNum, showURL]);
 
-  if (restaurantData === []) return;
+  if (restaurantData === undefined) return;
 
   return (
     <FlexWrap>
