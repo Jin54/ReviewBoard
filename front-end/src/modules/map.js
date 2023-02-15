@@ -50,7 +50,7 @@ const initialState = {
     oa: 0,
     pa: 0,
   },
-  radius: 1,
+  radius: 250,
 };
 
 function map(state = initialState, action) {

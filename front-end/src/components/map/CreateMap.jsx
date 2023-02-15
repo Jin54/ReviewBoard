@@ -143,6 +143,7 @@ const CreateMap = (props) => {
     );
     setBounds(bounds.ha, bounds.qa, bounds.oa, bounds.pa, radiusMath);
     //상위 100개 데이터 불러오기
+
     CenterRestaurantAPI(
       (data) => {
         setCenterData(data);
