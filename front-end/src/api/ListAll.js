@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const ListRandom = async (setRandomData, pageNum, showURL) => {
+export const ListAll = async (setRandomData, pageNum, showURL) => {
   const apiurl = process.env.REACT_APP_APIURL;
   const url = `${apiurl}/${showURL}?pageIndex=1&pageSize=${pageNum}`;
 
@@ -15,4 +15,4 @@ export const ListRandom = async (setRandomData, pageNum, showURL) => {
   }
 };
 
-export default ListRandom;
+export default ListAll;

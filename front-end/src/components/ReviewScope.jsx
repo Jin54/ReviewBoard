@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const ReviewScope = ({ scope }) => {
+  console.log('별점 렌더링')
   const AVR_RATE = scope * 20;
   const [ratesResArr, setRatesResArr] = useState([0, 0, 0, 0, 0]);
   const calcStarRates = () => {
@@ -19,8 +20,6 @@ const ReviewScope = ({ scope }) => {
   useEffect(() => {
     setRatesResArr(calcStarRates);
   }, []);
-
-  console.log('별점 렌더링')
 
   const starList = ratesResArr.map((item, idx) => (
     <span className="star_icon" key={idx}>

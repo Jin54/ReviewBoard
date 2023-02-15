@@ -6,14 +6,18 @@ import styled from "styled-components";
 import { change } from "../modules/restaurantModal";
 import ReviewScope from "./ReviewScope";
 
-import { ListRandom } from "../api/ListRandom";
+import { ListAll } from "../api/ListAll";
 import { SearchRestaurantAPI } from "../api/SearchRestaurantAPI";
 import { modalopen } from "../modules/restaurantModal";
 
 const ListPage = () => {
+
+  console.log('리스트 데이터 렌더링')
   return (
     <ListPageWrap>
-      <ListScroll id="scrollWrap">{ListContent()}</ListScroll>
+      {/* <ListScroll> */}
+        <ListContent />
+      {/* </ListScroll> */}
     </ListPageWrap>
   );
 };
@@ -36,7 +40,25 @@ const ListPageWrap = styled.div`
     height: 100%;
   }
 `;
-const ListScroll = styled.div`
+// const ListScroll = styled.div`
+//   @media screen and (max-width: 1000px) {
+//     display: block;
+//     width: 100%;
+//     overflow-y: scroll;
+//     height: 100%;
+//     -ms-overflow-style: none;
+//     scrollbar-width: none;
+//     box-sizing: border-box;
+//     &::-webkit-scrollbar {
+//       display: none;
+//     }
+//   }
+// `;
+const FlexWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
   @media screen and (max-width: 1000px) {
     display: block;
     width: 100%;
@@ -50,41 +72,37 @@ const ListScroll = styled.div`
     }
   }
 `;
-const FlexWrap = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-`;
 export default ListPage;
 
 // =============================================
 
 function ListContent() {
+  console.log('매장 한 개 렌더링')
   // 무한스크롤
   const [pageNum, setPageNum] = useState(0);
   const [ref, inView] = useInView();
-  useEffect(() => {
-    if (!inView) return;
-    setPageNum(pageNum + 10);
-  }, [ref, inView]);
+  // useEffect(() => {
+  //   if (!inView) return;
+  //   setPageNum(pageNum + 10);
+  // }, [ref, inView]);
 
   //전체 음식점 저장
   const [restaurantData, setRestaurantData] = useState([]);
   const showURL = useSelector((state) => state.urlChange.name);
 
-  useEffect(() => {
-    if (bigLocation !== "") return;
-    if (pageNum === 0) return;
+  // useEffect(() => {
+  //   if (bigLocation !== "") return;
+  //   if (pageNum === 0) return;
 
-    ListRandom(
-      (data) => {
-        setRestaurantData(data);
-      },
-      pageNum,
-      showURL
-    );
-  }, [pageNum, showURL]);
+  //   ListAll(
+  //     (data) => {
+  //       setRestaurantData(data);
+  //     },
+  //     pageNum,
+  //     showURL
+  //   );
+  // }, [pageNum, showURL]);
+  console.log(restaurantData)
 
   //가게 클릭 시 해당 가게로 이름 변경 -> 모달창 이동
   const dispatch = useDispatch();
@@ -103,24 +121,22 @@ function ListContent() {
   );
 
   //지역 검색시, 해당 지역의 음식점만 조회
-  useEffect(() => {
-    if (smallLocation === "") return;
-    if (pageNum === 0) return;
+  // useEffect(() => {
+  //   if (smallLocation === "") return;
+  //   if (pageNum === 0) return;
 
-    SearchRestaurantAPI(
-      bigLocation,
-      smallLocation,
-      (data) => {
-        setRestaurantData(data);
-      },
-      pageNum,
-      showURL
-    );
-  }, [smallLocation, pageNum, showURL]);
+  //   SearchRestaurantAPI(
+  //     bigLocation,
+  //     smallLocation,
+  //     (data) => {
+  //       setRestaurantData(data);
+  //     },
+  //     pageNum,
+  //     showURL
+  //   );
+  // }, [smallLocation, pageNum, showURL]);
 
   if (restaurantData === []) return;
-
-  console.log('리스트 데이터 렌더링')
 
   return (
     <FlexWrap>
