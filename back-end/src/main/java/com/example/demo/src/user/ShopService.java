@@ -68,7 +68,7 @@ public class ShopService {
 
 
     //좌표중심 탐색
-    public List<GetShopRes> getShopByCoord(int pageIndex, int pageSize, double lat, double lon) {
+    public List<GetShopRes> getShopByCoord(int pageIndex, int pageSize, double lat, double lon,int distance) {
 
         System.out.println(lat);
         System.out.println(lon);
@@ -83,14 +83,15 @@ public class ShopService {
         PageRequest pageable = PageRequest.of(pageIndex - 1, pageSize);
 
         //lat,lon 가까운 음식점들 선택, (distance도 파라미터로 받아야할 필요성?)
-        Page<Shop> shopList  = shopRepository.findShopsByLocation(lat, lon,pageable);
+        Page<ShopInterface> shopList  = shopRepository.findShopsByLocation(lat, lon,distance,pageable);
 
         ///for문 순회하면서 GetShopRes형태로 담음
         List<GetShopRes> result = new ArrayList<>();
-        for (Shop shop : shopList) {
-            Long reviewCounter =reviewRepository.countByShop(shop);
-            Double reviewRating =reviewRepository.sumRatingByShop(shop) /  (double)reviewCounter;
-            GetShopRes getShopRes = new GetShopRes(shop,reviewCounter,reviewRating);
+        for (ShopInterface shopInterface : shopList) {
+            System.out.println("222222222222222");
+           Long reviewCounter =shopInterface.getCnt();
+          Double reviewRating =reviewRepository.sumRatingByShop(shopInterface.getShop()) /  (double)reviewCounter;
+            GetShopRes getShopRes = new GetShopRes(shopInterface.getShop(),reviewCounter,reviewRating);
             result.add(getShopRes);
         }
 
@@ -117,9 +118,9 @@ public class ShopService {
         List<GetReviewRes> result = new ArrayList<>();
         for (Review review : reviewList) {
 
-            List<Review_img> reviewImgs=reviewImgRepository.findAllByReview(review);
+//            List<Review_img> reviewImgs=reviewImgRepository.findAllByReview(review);
 
-            GetReviewRes getReviewRes = new GetReviewRes(review ,reviewImgs);
+            GetReviewRes getReviewRes = new GetReviewRes(review );
 
             result.add(getReviewRes);
         }
@@ -187,4 +188,6 @@ public class ShopService {
 
         return result;
     }
+
+
 }

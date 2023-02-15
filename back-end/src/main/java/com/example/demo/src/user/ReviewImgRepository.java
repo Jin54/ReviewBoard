@@ -3,7 +3,6 @@ package com.example.demo.src.user;
 import com.example.demo.src.user.entity.Review;
 import com.example.demo.src.user.entity.Review_img;
 import com.example.demo.src.user.entity.Shop;
-import com.example.demo.src.user.model.ReivewImgMapping;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

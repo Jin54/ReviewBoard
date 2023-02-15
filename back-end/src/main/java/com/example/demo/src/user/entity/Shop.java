@@ -2,6 +2,7 @@ package com.example.demo.src.user.entity;
 
 import com.example.demo.common.entity.BaseEntity;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -32,6 +33,5 @@ public class Shop {
     private String lon;
     @Column(nullable = true, length = 255)
     private String thumbnail;
-
 
 }

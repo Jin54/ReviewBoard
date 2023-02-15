@@ -29,21 +29,20 @@ public class GetReviewRes {
     private String createAT;
 
 
-    private List<String> imgList=new ArrayList<>();;
 
 
 
-    public GetReviewRes(Review review, List<Review_img> imgList) {
+    public GetReviewRes(Review review ) {
         this.id = review.getId();
        this.rating= review.getRating();
        this.content=review.getContent();
        this.createAT=review.getCreateAT();
 
-        for (Review_img Review_img : imgList) {
-            String str = "https://firebasestorage.googleapis.com/v0/b/wnatedcv.appspot.com/o/review%2F" +
-                    Review_img.getUrl() + ".png" + "?alt=media";
-            this.imgList.add(str);
-        }
+//        for (Review_img Review_img : imgList) {
+//            String str = "https://firebasestorage.googleapis.com/v0/b/wnatedcv.appspot.com/o/review%2F" +
+//                    Review_img.getUrl() + ".png" + "?alt=media";
+//            this.imgList.add(str);
+//        }
 
     }
 }

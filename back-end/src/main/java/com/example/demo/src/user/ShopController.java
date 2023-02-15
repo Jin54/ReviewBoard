@@ -70,9 +70,10 @@ public class ShopController {
             @RequestParam(defaultValue = "1") int pageIndex,
             @RequestParam(defaultValue = "10") int pageSize,
             @RequestParam(defaultValue = "37.5666805") double lat,
-            @RequestParam(defaultValue = "126.9784147") double lon
+            @RequestParam(defaultValue = "126.9784147") double lon,
+            @RequestParam(defaultValue = "300") int distance
     ) {
-        List<GetShopRes> getShopResList = shopService.getShopByCoord(pageIndex, pageSize, lat, lon);
+        List<GetShopRes> getShopResList = shopService.getShopByCoord(pageIndex, pageSize, lat, lon,distance);
 
         return new BaseResponse<>(getShopResList);
     }
@@ -127,4 +128,14 @@ public class ShopController {
 
         return new BaseResponse<>(getReviewResList);
     }
+
+
+
 }
+
+//{
+//        "fromLat": 126.4165,
+//        "toLat": 127.5168,
+//        "fromLon": 36.3360,
+//        "toLon": 37.974
+//        }

@@ -1,6 +1,8 @@
 package com.example.demo.src.user;
 
 import com.example.demo.src.user.entity.Shop;
+import com.example.demo.src.user.model.GetShopCountRes;
+import com.example.demo.src.user.model.ShopInterface;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ShopRepository extends JpaRepository<Shop, Long> {
     @Modifying
@@ -27,12 +30,21 @@ public interface ShopRepository extends JpaRepository<Shop, Long> {
 //                         Pageable pageable);
 //
 //    ORDER BY "+HAVERSINE_PART+" DESC"
-    final String HAVERSINE_PART = "(6371 * acos(cos(radians(:latitude)) * cos(radians(m.lat)) *" +
-            " cos(radians(m.lon) - radians(:longitude)) + sin(radians(:latitude)) * sin(radians(m.lat))))";
-    @Query("SELECT m  FROM Shop m WHERE "+HAVERSINE_PART+" < 11  ORDER BY "+HAVERSINE_PART)
-    public Page<Shop> findShopsByLocation(@Param("latitude") final double latitude,
-                                          @Param("longitude") final double longitude,
-                                            Pageable pageable);
+    final String HAVERSINE_PART = "(6371 * acos(cos(radians(:latitude)) * cos(radians(s.lat)) *" +
+            " cos(radians(s.lon) - radians(:longitude)) + sin(radians(:latitude)) * sin(radians(s.lat))))";
+
+    @Query("SELECT s as shop, count(r.shop) as cnt \n" +
+            "    from Shop s " +
+            "    left join Review  r  " +
+            "    on (s = r.shop ) " +
+            "   WHERE " + HAVERSINE_PART + " < :distance "+
+            "    group by  s.id " +
+            "   order by count(r.shop) desc ")
+    public Page<ShopInterface> findShopsByLocation(@Param("latitude") final double latitude,
+                                                   @Param("longitude") final double longitude,
+                                                   @Param("distance") final double distance,
+                                                   Pageable pageable);
+
 
 
     Page<Shop> findAllByNumberAddressStartingWithAndNumberAddressContaining
@@ -41,3 +53,8 @@ public interface ShopRepository extends JpaRepository<Shop, Long> {
     Page<Shop> findAll(Pageable pageable);
 
 }
+
+//    final String HAVERSINE_PART = "(6371 * acos(cos(radians(:latitude)) * cos(radians(m.lat)) *" +
+//            " cos(radians(m.lon) - radians(:longitude)) + sin(radians(:latitude)) * sin(radians(m.lat))))";
+//
+//@Query("SELECT m  FROM Shop m WHERE " + HAVERSINE_PART + " < :distance  ORDER BY " + HAVERSINE_PART)
