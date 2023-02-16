@@ -1,65 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useInView } from "react-intersection-observer";
+import { useState, useEffect, useCallback } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { useInView } from "react-intersection-observer";
 
-import { change } from "../modules/restaurantModal";
-import ReviewScope from "./ReviewScope";
-import { modalopen } from "../modules/restaurantModal";
+import { modalopen } from "../../modules/restaurantModal";
+import { change } from "../../modules/restaurantModal";
+import ReviewScope from "../ReviewScope";
 
-const ListPage = () => {
-  return (
-    <ListPageWrap>
-      <ListScroll>
-        <ListContent />
-      </ListScroll>
-    </ListPageWrap>
-  );
-};
-
-const ListPageWrap = styled.div`
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: 10px;
-  margin-top: 60px;
-  flex: 1;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  box-sizing: border-box;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  @media screen and (max-width: 1000px) {
-    margin-top: 20px;
-    height: 100%;
-  }
-`;
-const ListScroll = styled.div`
-  @media screen and (max-width: 1000px) {
-    display: block;
-    width: 100%;
-    overflow-y: scroll;
-    height: 100%;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    box-sizing: border-box;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-`;
-const FlexWrap = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-`;
-export default ListPage;
-
-// =============================================
-
-function ListContent() {
+const ListContent = (props) => {
   // 무한스크롤
   const [pageNum, setPageNum] = useState(0);
   const [ref, inView] = useInView();
@@ -76,13 +24,10 @@ function ListContent() {
     [dispatch]
   );
 
-  //mapData 리덕스
-  const MapData = useSelector((state) => state.mapData.data);
-  if (MapData === null) return;
-
+  if (props.mapData == null) return;
   return (
     <FlexWrap>
-      {MapData.map((restaurant, index) =>
+      {props.mapData.map((restaurant, index) =>
         index < pageNum ? (
           <ListContentWrap
             key={restaurant.id}
@@ -113,7 +58,9 @@ function ListContent() {
       <div ref={ref} style={{ height: "10px", width: "10px" }}></div>
     </FlexWrap>
   );
-}
+};
+
+export default ListContent;
 
 const ListContentWrap = styled.div`
   background: #ffffff;
@@ -240,4 +187,11 @@ const Bottom = styled.p`
     margin: 0;
     font-size: 11px;
   }
+`;
+
+const FlexWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
 `;

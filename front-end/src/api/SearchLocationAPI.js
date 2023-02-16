@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const SearchRestaurantAPI = async (
+export const SearchLocationAPI = async (
   bigLocation,
   smallLocation,
   setRestuarantData,
@@ -8,7 +8,6 @@ export const SearchRestaurantAPI = async (
   showURL
 ) => {
   const apiurl = process.env.REACT_APP_APIURL;
-  // const url = `${apiurl}/${showURL}/address?pageIndex=1&pageSize=${pageNum}&first=${bigLocation}&second=${smallLocation}`;
   const url = `${apiurl}/${showURL}/address?pageIndex=1&pageSize=100&first=${bigLocation}&second=${smallLocation}`;
 
   try {
@@ -22,4 +21,4 @@ export const SearchRestaurantAPI = async (
   }
 };
 
-export default SearchRestaurantAPI;
+export default SearchLocationAPI;

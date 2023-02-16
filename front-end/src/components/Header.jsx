@@ -43,7 +43,9 @@ const Header = () => {
         <HamburgerBtn onClick={menuOpen}>
           <ImgComponent src={"hamburger.png"} width={"100%"} />
         </HamburgerBtn>
-        {mobilemenu && <SlideMenu menuClose={menuClose} onClickURL={onClickURL} />}
+        {mobilemenu && (
+          <SlideMenu menuClose={menuClose} onClickURL={onClickURL} />
+        )}
       </MobileMenu>
     </HeaderWrap>
   );
@@ -137,7 +139,9 @@ const SlideMenu = ({ menuClose, onClickURL }) => {
           onClick={() => {
             onClickURL("hospital");
           }}
-        >병원</MHospitalBtn>
+        >
+          병원
+        </MHospitalBtn>
         <MQuestionBtn href="mailto:sales@lfin.kr">문의</MQuestionBtn>
       </MobileMenuBox>
       <BackBlack onClick={menuClose}></BackBlack>

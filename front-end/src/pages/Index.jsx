@@ -5,25 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 // components import
 import Header from "../components/Header";
 import Body from "../components/Body";
-import ListPage from "../components/ListPage";
 import Footer from "../components/Footer";
 import RestaurantModal from "../components/RestaurantModal";
 import RestaurantReviewModal from "../components/RestaurantReviewModal";
 
 //redux
 import { modalopen } from "../modules/restaurantModal";
+import { openListPage, closeListPage } from "../modules/showList";
 
 const Index = () => {
-  // 지도보기 & 리스트 버튼 클릭시 해당 페이지 보이기
-  const [showPage, setShowPage] = useState("지도보기");
-
-  const showMap = () => {
-    setShowPage("지도보기");
-  };
-  const showList = () => {
-    setShowPage("리스트보기");
-  };
-
+  console.log("Index 실행");
   // 매장 상세 보기
   const modalOpenBool = useSelector((state) => state.restaurantModal.open);
   const dispatch = useDispatch();
@@ -47,9 +38,8 @@ const Index = () => {
   return (
     <IndexWrap>
       <Header />
-      <MapOrList showMap={showMap} showList={showList} showPage={showPage} />
-      {showPage === "지도보기" && <Body showList={showList} />}
-      {showPage === "리스트보기" && <ListPage />}
+      <MapOrList />
+      <Body />
       {modalOpenBool && (
         <RestaurantModal
           detailModalClose={detailModalClose}
@@ -79,13 +69,22 @@ export default Index;
 
 // 지도보기 & 리스트보기 버튼
 
-const MapOrList = ({ showMap, showList, showPage }) => {
+const MapOrList = (props) => {
+  //리스트 보여주기 - 지도는 항상 뒤에 있음 (리렌더링 방지)
+  const showList = useSelector((state) => state.showList.bool);
+  const dispatch = useDispatch();
+  const OpenListPage = useCallback(() => dispatch(openListPage()), [dispatch]);
+  const CloseListPage = useCallback(
+    () => dispatch(closeListPage()),
+    [dispatch]
+  );
+
   return (
     <MapOrListWrap>
-      <MapBtn onClick={showMap} selected={showPage === "지도보기"}>
+      <MapBtn onClick={CloseListPage} selected={showList === false}>
         지도보기
       </MapBtn>
-      <ListBtn onClick={showList} selected={showPage === "리스트보기"}>
+      <ListBtn onClick={OpenListPage} selected={showList === true}>
         리스트보기
       </ListBtn>
     </MapOrListWrap>
