@@ -51,7 +51,7 @@ const RestaurantModal = (props) => {
           <Info>
             <InfoComponent img={"time.png"} txt={listData.time} />
             <InfoComponent img={"sort.png"} txt={listData.number} />
-            <InfoComponent img={"phone.png"} txt={listData.sort} />
+            {/* <InfoComponent img={"phone.png"} txt={listData.sort} /> */}
           </Info>
         </div>
         <Divider></Divider>
@@ -251,7 +251,7 @@ export default RestaurantModal;
 // 매장 상세 중간 정보 컴포넌트 ( 영업 시간, 링크, 번호 )
 
 const InfoComponent = (props) => {
-  if (props.sort == null) return;
+  // if (props.sort == null) return;
   return (
     <InfoWrap>
       <InfoIcon>
