@@ -195,6 +195,12 @@ const Middle = styled.div`
   display: flex;
   align-items: center;
   width: 45%;
+  @media screen and (max-width: 1300px) and (min-width: 400px) {
+    width: 80%;
+  }
+  @media screen and (max-width: 399px) {
+    width: 100%;
+  }
 `;
 const ReviewScopeNum = styled.span`
   font-weight: 700;

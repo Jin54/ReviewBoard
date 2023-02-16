@@ -204,11 +204,16 @@ const Middle = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  @media screen and (max-width: 1000px) and (min-width: 400px) {
-    margin-bottom: 6px;
+  @media screen and (max-width: 1500px) and (min-width: 1000px) {
+    width: 110%;
+  }
+  @media screen and (max-width: 999px) and (min-width: 600px) {
     width: 70%;
   }
-  @media screen and (max-width: 399px) {
+  @media screen and (max-width: 599px) and (min-width: 470px) {
+    width: 90%;
+  }
+  @media screen and (max-width: 469px) {
     width: 100%;
   }
 `;
@@ -217,7 +222,11 @@ const Scope = styled.span`
   font-size: 20px;
   color: #000000;
   margin-right: 16px;
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1500px) and (min-width: 1000px) {
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  @media screen and (max-width: 999px) {
     margin-right: 5px;
   }
 `;

@@ -167,7 +167,7 @@ const ScopeWrap = styled.div`
   display: flex;
   align-items: center;
   width: 30%;
-  @media screen and (max-width: 1000px) and (min-width: 400px) {
+  @media screen and (max-width: 1300px) and (min-width: 400px) {
     width: 40%;
   }
   @media screen and (max-width: 399px) {
@@ -399,7 +399,7 @@ const Middle = styled.div`
   display: flex;
   align-items: center;
   width: 45%;
-  @media screen and (max-width: 1000px) and (min-width: 400px) {
+  @media screen and (max-width: 1300px) and (min-width: 400px) {
     width: 80%;
   }
   @media screen and (max-width: 399px) {
