@@ -21,31 +21,30 @@ const Body = (props) => {
   };
 
   //Map 변수
-  const [_map, setMap] = useState(null);
-  const [mapData, setMapData] = useState([]); //맵 중심 좌표를 기준으로 리뷰 상위 100개 데이터
+  const [mapData, setMapData] = useState(null); //맵 중심 좌표를 기준으로 리뷰 상위 100개 데이터
   //지역 선택
   const [bigLocation, setBigLocation] = useState(null);
   const [smallLocation, setSmallLocation] = useState(null);
 
   //useEffect
   //[삭제 예정]데이터가 잘 들어가는지 확인
-  useEffect(() => {
-    if (_map == null) return;
-    console.log("mapData");
-    console.log(mapData);
-  }, [mapData]);
-  useEffect(() => {
-    if (bigLocation === null) return;
-    console.log("bigLocation : " + bigLocation);
-    console.log("smallLocation : " + smallLocation);
-  }, [bigLocation, smallLocation]);
+  // useEffect(() => {
+  //   if (_map == null) return;
+  //   console.log("mapData");
+  //   console.log(mapData);
+  // }, [mapData]);
+  // useEffect(() => {
+  //   if (bigLocation === null) return;
+  //   console.log("bigLocation : " + bigLocation);
+  //   console.log("smallLocation : " + smallLocation);
+  // }, [bigLocation, smallLocation]);
   // console.log(BigLocationModal);
 
   return (
     <BodyWrap>
       <CreateMap
-        setMap={setMap}
-        _map={_map}
+        // setMap={setMap}
+        // _map={_map}
         mapData={mapData}
         setMapData={setMapData}
         openLocationModal={openLocationModal}

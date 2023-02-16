@@ -10,6 +10,7 @@ const ListPage = (props) => {
   if (props.mapData === null) return;
 
   console.log("리스트 보기 페이지 Open");
+  console.log(showList);
   return (
     <ListPageWrap showList={showList}>
       <ListScroll>
@@ -38,7 +39,6 @@ const ListPageWrap = styled.div`
     margin-top: 20px;
     height: 100%;
   }
-  display: ${(props) => (props.showList ? "" : "none")};
 `;
 const ListScroll = styled.div`
   @media screen and (max-width: 1000px) {
