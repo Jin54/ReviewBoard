@@ -68,11 +68,11 @@ const RestaurantModal = (props) => {
         <ReviewWrap>
           <ReviewTxtWrap>
             <ReviewNum>리뷰 {listData.review_number}개</ReviewNum>
-            {!(listData.review_number === 0) && (
+            {/* {!(listData.review_number === 0) && (
               <ReviewMore onClick={props.openAllReivew}>더보기</ReviewMore>
-            )}
+            )} */}
           </ReviewTxtWrap>
-          <ReviewList reviewNum={listData.review_number} />
+          <ReviewList reviewNum={listData.review_number} openReivew={props.openReivew} />
         </ReviewWrap>
       </Box>
     </RestaurantModalWrap>
@@ -304,7 +304,7 @@ const InfoTxt = styled.div`
 
 // 매장 상세 리뷰
 
-const ReviewList = (reviewNum) => {
+const ReviewList = ({reviewNum, openReivew}) => {
   const [pageNum, setPageNum] = useState(0);
   const [reviewData, setReviewData] = useState(null);
 
@@ -344,7 +344,7 @@ const ReviewList = (reviewNum) => {
   return (
     <ReviewFlexWrap>
       {reviewData.map((review) => (
-        <ReviewBox key={review.id}>
+        <ReviewBox key={review.id} onClick={openReivew}>
           <Top>
             <Feeling scope={review.rating} />
             <Date>{review.createAT}</Date>
@@ -428,6 +428,10 @@ const Bottom = styled.p`
   font-size: 14px;
   color: #999999;
   margin: 0;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   @media screen and (max-width: 1000px) {
     margin: 0;
     font-size: 11px;

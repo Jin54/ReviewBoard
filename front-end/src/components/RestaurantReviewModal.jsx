@@ -17,7 +17,7 @@ const RestaurantReviewModal = ({ closeAllReview }) => {
         </Close>
       </CloseWrap>
       <Box>
-        <ReviewList />
+        <ReviewComponent />
       </Box>
     </RestaurantReviewModalWrap>
   );
@@ -80,15 +80,6 @@ const Close = styled.div`
 
 export default RestaurantReviewModal;
 
-// 매장 상세 리뷰
-const ReviewList = () => {
-  return (
-    <ReviewListWrap>
-      <ReviewComponent />
-    </ReviewListWrap>
-  );
-};
-
 const ReviewListWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -100,57 +91,48 @@ const ReviewListWrap = styled.div`
 const ReviewComponent = () => {
   const restaurantID = useSelector((state) => state.restaurantModal.id);
   const [reviewData, setReviewData] = useState(null);
-  const [pageNum, setPageNum] = useState(10);
-  const showURL = useSelector((state) => state.urlChange.name);
+  // const [pageNum, setPageNum] = useState(10);
+  // const showURL = useSelector((state) => state.urlChange.name);
 
-  //무한 스크롤 : 라이브러리 react-intersection-observer
-  const [ref, inView] = useInView();
-  useEffect(() => {
-    setPageNum(pageNum + 10);
-  }, [ref, inView]);
+  // useEffect(() => {
+  //   ReviewAPI(
+  //     (data) => {
+  //       setReviewData(data);
+  //     },
+  //     restaurantID,
+  //     // pageNum,
+  //     // showURL
+  //   );
+  //   //주의 : console.log(reviewData) 이렇게 해도 reviewData 는 null 로 나온다. useEffect 밖에서 console 해줘야 한다.
+  // }, [restaurantID]);
 
-  useEffect(() => {
-    ReviewAPI(
-      (data) => {
-        setReviewData(data);
-      },
-      restaurantID,
-      pageNum,
-      showURL
-    );
-    //주의 : console.log(reviewData) 이렇게 해도 reviewData 는 null 로 나온다. useEffect 밖에서 console 해줘야 한다.
-  }, [restaurantID, pageNum, showURL]);
-
-  // if (reviewData === null) {
-  //   return <ReviewBox>리뷰 없음</ReviewBox>;
-  // }
-  if (reviewData === null || undefined) {
+  if (reviewData == null) {
     return (
       <>
         <ReviewBox>리뷰 없음</ReviewBox>
-        <div ref={ref} style={{ height: "100px", width: "100px" }}></div>
       </>
     );
   }
 
+  console.log(reviewData)
+
   return (
     <ReviewListWrap>
-      {reviewData.map((review) => (
-        <ReviewBox key={review.id}>
+      {/* {reviewData.map((review) => ( */}
+        <ReviewBox key={reviewData.id}>
           <Top>
-            <Feeling scope={review.rating} />
-            <Date>{review.createAT}</Date>
+            <Feeling scope={reviewData.rating} />
+            <Date>{reviewData.createAT}</Date>
           </Top>
           <Middle>
-            <ReviewScopeNum>{review.rating}</ReviewScopeNum>
-            {!(review.rating == null || undefined) && (
-              <ReviewScope scope={review.rating} />
+            <ReviewScopeNum>{reviewData.rating}</ReviewScopeNum>
+            {!(reviewData.rating == null || undefined) && (
+              <ReviewScope scope={reviewData.rating} />
             )}
           </Middle>
-          <Bottom>{review.content}</Bottom>
+          <Bottom>{reviewData.content}</Bottom>
         </ReviewBox>
-      ))}
-      <div ref={ref} style={{ height: "100px", width: "100px" }}></div>
+       {/* ))}  */}
     </ReviewListWrap>
   );
 };

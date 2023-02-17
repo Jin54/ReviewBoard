@@ -37,7 +37,7 @@ const Index = () => {
 
   // 더보기 클릭 시 전체 리뷰 모달
   const [allReview, setAllReview] = useState(false);
-  const openAllReivew = () => {
+  const openReivew = () => {
     setAllReview(true);
   };
   const closeAllReview = () => {
@@ -53,7 +53,7 @@ const Index = () => {
       {modalOpenBool && (
         <RestaurantModal
           detailModalClose={detailModalClose}
-          openAllReivew={openAllReivew}
+          openReivew={openReivew}
         />
       )}
       {allReview && <RestaurantReviewModal closeAllReview={closeAllReview} />}

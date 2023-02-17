@@ -19,6 +19,8 @@ const Header = () => {
   const dispatch = useDispatch();
   const onClickURL = useCallback((name) => dispatch(change(name)), [dispatch]);
 
+  const bookmark = useCallback((id)=> dispatch(change(id)),[dispatch])
+
   return (
     <HeaderWrap>
       <HedaerLeftWrap>
@@ -37,7 +39,7 @@ const Header = () => {
         >
           병원
         </HospitalBtn>
-        <p>즐겨찾기</p>
+        {/* <p onClick={bookmark}>즐겨찾기</p> */}
       </HedaerLeftWrap>
       <Question href="mailto:sales@lfin.kr">문의하기</Question>
       <MobileMenu>
