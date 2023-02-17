@@ -18,7 +18,7 @@ public class GetShopRes {
     //이름
     private String name;
     //전화번호
-    private String number;
+
     //지번주소
     private String numberAddress;
     //도로명주소
@@ -29,6 +29,17 @@ public class GetShopRes {
     private String lon;
     //대표이미지
     private String thumbnail;
+
+
+    //전화번호
+    private String number;
+    //전화번호
+    private String sort;
+    //전화번호
+    private String time;
+    //전화번호
+    private String info;
+
     //리뷰총 갯수
     private Long review_number;
 
@@ -39,12 +50,17 @@ public class GetShopRes {
     public GetShopRes(Shop shop, Long reviewCounter, Double reviewRating) {
         this.id = shop.getId();
         this.name = shop.getShop_name();
-        this.number = shop.getSort();
+
         this.numberAddress = shop.getNumberAddress();
         this.roadAddress = shop.getRoadAddress();
         this.lat = shop.getLat();
         this.lon = shop.getLon();
         this.thumbnail=shop.getThumbnail();
+
+        this.number = shop.getNumber();
+        this.sort=shop.getSort();
+        this.info=shop.getInfo();
+        this.time=shop.getTime();
 
         this.review_number = reviewCounter;
         if (Double.isNaN(reviewRating))

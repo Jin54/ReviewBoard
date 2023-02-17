@@ -21,8 +21,7 @@ public class Shop {
     @Column(nullable = false, length = 25)
     private String shop_name;
 
-    @Column(nullable = true, length = 255)
-    private String sort;
+
     @Column(nullable = false, length = 255)
     private String numberAddress;
     @Column(nullable = false, length = 255)
@@ -33,5 +32,15 @@ public class Shop {
     private String lon;
     @Column(nullable = true, length = 255)
     private String thumbnail;
+
+    @Column(nullable = true, length = 255)
+    private String sort;
+    @Column(nullable = true, length = 255)
+    private String number;
+
+    @Column(nullable = true, length = 500)
+    private String time;
+    @Column(nullable = true, length = 1000)
+    private String info;
 
 }

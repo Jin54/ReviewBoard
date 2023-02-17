@@ -88,10 +88,9 @@ public class ShopService {
         ///for문 순회하면서 GetShopRes형태로 담음
         List<GetShopRes> result = new ArrayList<>();
         for (ShopInterface shopInterface : shopList) {
-            System.out.println("222222222222222");
-           Long reviewCounter =shopInterface.getCnt();
-          Double reviewRating =reviewRepository.sumRatingByShop(shopInterface.getShop()) /  (double)reviewCounter;
-            GetShopRes getShopRes = new GetShopRes(shopInterface.getShop(),reviewCounter,reviewRating);
+            Long reviewCounter = shopInterface.getCnt();
+            Double reviewRating = reviewRepository.sumRatingByShop(shopInterface.getShop()) / (double) reviewCounter;
+            GetShopRes getShopRes = new GetShopRes(shopInterface.getShop(), reviewCounter, reviewRating);
             result.add(getShopRes);
         }
 
