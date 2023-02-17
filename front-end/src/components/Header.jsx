@@ -37,6 +37,7 @@ const Header = () => {
         >
           병원
         </HospitalBtn>
+        <p>즐겨찾기</p>
       </HedaerLeftWrap>
       <Question href="mailto:sales@lfin.kr">문의하기</Question>
       <MobileMenu>

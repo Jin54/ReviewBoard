@@ -4,6 +4,7 @@ import restaurantModal from "./restaurantModal";
 import location from "./location";
 import urlChange from "./urlChange";
 import mapData from "./mapData";
+import bookmarkFuc from "./bookmark";
 
 const rootReducer = combineReducers({
   map,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   location,
   urlChange,
   mapData,
+  bookmarkFuc
 });
 
 export default rootReducer;

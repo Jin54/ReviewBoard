@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect, useCallback } from "react";
+import { useSelector,useDispatch } from "react-redux";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
+// import { bookmark } from "../modules/bookmark";
+import { BOOKMARK } from "../modules/bookmark";
 
 import ImgComponent from "./ImageComponent";
 import ReviewScope from "./ReviewScope";
@@ -13,6 +15,13 @@ const RestaurantModal = (props) => {
   const [listData, setListData] = useState([]);
   const selectRestaurantId = useSelector((state) => state.restaurantModal.id);
   const showURL = useSelector((state) => state.urlChange.name);
+
+  const dispatch = useDispatch()
+  // const bookmark = useCallback((id) => bookmark(id),[dispatch])
+  const bookmark =(e) => {
+    dispatch({type: BOOKMARK, id: listData.id})
+  }
+  const bookmarkList = useSelector((state) => state.bookmarkFuc);
 
   useEffect(() => {
     RestaurantModalAPI(
@@ -34,6 +43,7 @@ const RestaurantModal = (props) => {
         <Close onClick={props.detailModalClose}>
           <ImgComponent src={"close.png"} width={"100%"} />
         </Close>
+        {bookmarkList.includes(listData.id) ? <div onClick={bookmark}>즐겨찾기 해제</div> : <div onClick={bookmark}>즐겨찾기</div>}
       </CloseWrap>
       <Box>
         <div key={listData.id}>
@@ -50,8 +60,8 @@ const RestaurantModal = (props) => {
           </About>
           <Info>
             <InfoComponent img={"time.png"} txt={listData.time} />
-            <InfoComponent img={"sort.png"} txt={listData.number} />
-            {/* <InfoComponent img={"phone.png"} txt={listData.sort} /> */}
+            <InfoComponent img={"sort.png"} txt={listData.sort} />
+            <InfoComponent img={"phone.png"} txt={listData.number} />
           </Info>
         </div>
         <Divider></Divider>
