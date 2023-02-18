@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import ImgComponent from "./ImageComponent";
+import ImgComponent from "./../ImageComponent";
 
 const HeaderSlide = (props) => {
   // 햄버거 버튼 시 보이는 메뉴 모달

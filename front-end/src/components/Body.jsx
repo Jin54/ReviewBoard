@@ -8,7 +8,7 @@ import Map from "./body/Map";
 import List from "./body/list/List";
 import DetailModal from "./body/modal/DetailModal";
 
-const Body = () => {
+const Body = (props) => {
   const [openListModal, setOpenListModal] = useState(false);
   const [openDetailModal, setOpenDetailModal] = useState(false);
 

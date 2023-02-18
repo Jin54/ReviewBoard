@@ -1,20 +1,30 @@
 import React from "react";
 import styled from "styled-components";
+import { useState } from "react";
 
 // components import
-import Header from "../components/Header";
+import Header from "../components/header/Header";
 import Body from "../components/Body";
 import Footer from "../components/Footer";
 
 //redux
 
 const Index = () => {
+  const [openListModal, setOpenListModal] = useState(false);
+  const [openDetailModal, setOpenDetailModal] = useState(false);
+
   return (
     <IndexWrap>
-      <Header />
-      <Body />
-      {/* <RestaurantModal />
-      <RestaurantReviewModal /> */}
+      <Header
+        setOpenListModal={setOpenListModal}
+        setOpenDetailModal={setOpenDetailModal}
+      />
+      <Body
+        openListModal={openListModal}
+        openDetailModal={openDetailModal}
+        setOpenListModal={setOpenListModal}
+        setOpenDetailModal={setOpenDetailModal}
+      />
       <Footer />
     </IndexWrap>
   );

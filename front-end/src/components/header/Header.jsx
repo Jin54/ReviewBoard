@@ -2,11 +2,11 @@ import React, { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import ImgComponent from "./ImageComponent";
-import { change } from "../modules/urlChange";
+import ImgComponent from "../ImageComponent";
+import { change } from "../../modules/urlChange";
 import HeaderSlide from "./HearderSlide";
 
-const Header = () => {
+const Header = (props) => {
   // 모바일 메뉴
   const [mobilemenu, setMobileMenu] = useState(false);
   //클릭 시 맛집, 병원 API 변경
