@@ -1,89 +1,52 @@
-import React, { useCallback, useEffect, useState } from "react";
-import dummy from "./../db/location.json";
+//지역 선택 모달창
+import { useState } from "react";
 import styled from "styled-components";
-import ImgComponent from "./ImageComponent";
 
-import { useDispatch } from "react-redux";
-import { saveLocation, selectLocation } from "../modules/location";
+import ImgComponent from "../../../ImageComponent";
+import dummy from "../../../../db/location.json";
+import SmallLocationModal from "./SmallLocationModal";
 
-// =========== RegionListModal 지역 선택 모달
-//수정-보민 : map, json DB, Redux (setCity)
+const BigLocationModal = (props) => {
+  const [bigLocationName, setBigLocationName] = useState();
 
-const RegionListModal = (props) => {
-  // 도시 선택 버튼
-  const [locationBtn, setLocationBtn] = useState("");
-  // 세부 지역 선택 버튼
-  const [cityBtn, setCityBtn] = useState("");
-
-  //입력한 지역 저장 -> [리스트 보기]에 표시할 예정
-  const dispatch = useDispatch();
-  const inputLocation = useCallback(
-    (locationBtn, cityBtn) => dispatch(saveLocation(locationBtn, cityBtn)),
-    [dispatch]
-  );
-  useEffect(() => {
-    inputLocation(locationBtn, cityBtn);
-  }, [cityBtn]);
-
-  //지역 입력이 완료되면 리스트 보기 페이지로 이동
-  const [showListBool, setShowListBool] = useState(false);
-  useEffect(() => {
-    if (showListBool === false) return;
-    else props.showList();
-  }, [showListBool]);
-
-  //지역 선택 시 지역 선택의 값 변경 : map 에서 중심 위치 이동의 여부
-  const SelectLocation = useCallback(
-    (bool) => dispatch(selectLocation(bool)),
-    [dispatch]
-  );
-
-  const locationList = dummy.locations.map((location) => (
+  //큰 지역 리스트
+  const bigLocationList = dummy.bigLocations.map((bigLocations) => (
     <Region
-      key={location.id}
-      id={location.id}
+      key={bigLocations.id}
+      id={bigLocations.id}
       onClick={() => {
-        setLocationBtn(location.search);
+        setBigLocationName(bigLocations.search);
       }}
-      selected={locationBtn === location.search && "selected"}
-      name={location.name}
-    ></Region>
-  ));
-
-  const searchCityList = dummy.citys.filter(
-    (city) => city.location === locationBtn
-  );
-  const cityList = searchCityList.map((city) => (
-    <Region
-      key={city.id}
-      id={city.id}
-      onClick={() => {
-        setCityBtn(city.name);
-        setShowListBool(true);
-        SelectLocation(true);
-      }}
-      selected={cityBtn === city.name && "selected"}
-      name={city.name}
+      selected={bigLocationName === bigLocations.search && "selected"}
+      name={bigLocations.name}
     ></Region>
   ));
 
   return (
     <RegionSelectWrap>
       <CloseWrap>
-        <Close onClick={props.closeRegion}>
+        <Close onClick={() => props.setModalOpen(false)}>
           <ImgComponent src={"close.png"} width={"100%"} />
         </Close>
       </CloseWrap>
       <Box>
         <ListWrap>
-          <FlexWrap>{locationList}</FlexWrap>
+          <FlexWrap>{bigLocationList}</FlexWrap>
           <Divider />
-          <FlexWrap>{locationBtn === "" ? <></> : cityList}</FlexWrap>
+          <FlexWrap>
+            <SmallLocationModal
+              bigLocationName={bigLocationName}
+              setModalOpen={props.setModalOpen}
+              setXY={props.setXY}
+            />
+          </FlexWrap>
         </ListWrap>
       </Box>
     </RegionSelectWrap>
   );
 };
+
+export default BigLocationModal;
 
 const RegionSelectWrap = styled.div`
   width: 100%;
@@ -158,7 +121,6 @@ const Divider = styled.hr`
   height: 0.5px;
   background-color: #c09567;
 `;
-
 // 지역 버튼
 const Region = ({ onClick, selected, name }) => {
   return (
@@ -189,5 +151,3 @@ const RegionBtn = styled.div`
     width: 18%;
   }
 `;
-
-export default RegionListModal;

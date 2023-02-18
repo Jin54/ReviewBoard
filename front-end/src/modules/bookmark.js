@@ -1,27 +1,26 @@
+export const ADDBOOKMARK = "bookmark/ADDBOOKMARK";
+export const DELETEBOOKMARK = "bookmark/DELETEBOOKMARK";
 
-export const BOOKMARK = 'BOOKMARK'
-
-export const bookmark = (id) => ({
-  type: BOOKMARK,
+export const addBookmark = (id) => ({
+  type: ADDBOOKMARK,
+  id: id,
+});
+export const deleteBookmark = (id) => ({
+  type: DELETEBOOKMARK,
   id: id,
 });
 
-
 const initialState = [];
 
-function bookmarkFuc(state = initialState, action) {
-    // console.log(state)
-
+function bookmark(state = initialState, action) {
   switch (action.type) {
-    case BOOKMARK:
-        if(state.includes(action.id)){
-            return state.filter((id) => id !== action.id)
-        }else{
-            return [...state, action.id];
-        }
+    case ADDBOOKMARK:
+      return [...state, action.id];
+    case DELETEBOOKMARK:
+      return state.filter((id) => id !== action.id);
     default:
       return state;
   }
 }
 
-export default bookmarkFuc;
+export default bookmark;

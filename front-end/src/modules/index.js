@@ -1,18 +1,14 @@
 import { combineReducers } from "redux";
-import map from "./map";
-import restaurantModal from "./restaurantModal";
-import location from "./location";
+import saveData from "./saveData";
+import setMap from "./setMap";
 import urlChange from "./urlChange";
-import mapData from "./mapData";
-import bookmarkFuc from "./bookmark";
+import bookmark from "./bookmark";
 
 const rootReducer = combineReducers({
-  map,
-  restaurantModal,
-  location,
+  saveData,
+  setMap,
   urlChange,
-  mapData,
-  bookmarkFuc
+  bookmark,
 });
 
 export default rootReducer;

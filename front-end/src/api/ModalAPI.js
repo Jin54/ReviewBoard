@@ -1,18 +1,20 @@
 import axios from "axios";
 
-export const RestaurantModalAPI = async (setListData, id, showURL) => {
+export const ModalAPI = async (showURL, id, setDetialData) => {
   const apiurl = process.env.REACT_APP_APIURL;
   const url = `${apiurl}/${showURL}/${id}`;
 
+  // console.log("id : " + id);
   try {
     const data = await axios({
       method: "get",
       url: url,
     });
-    setListData(data.data.result);
+    // console.log(data.data);
+    setDetialData(data.data.result);
   } catch (err) {
     alert(err);
   }
 };
 
-export default RestaurantModalAPI;
+export default ModalAPI;

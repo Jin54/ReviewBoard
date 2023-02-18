@@ -1,62 +1,20 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
 
 // components import
 import Header from "../components/Header";
 import Body from "../components/Body";
-import ListPage from "../components/ListPage";
 import Footer from "../components/Footer";
-import RestaurantModal from "../components/RestaurantModal";
-import RestaurantReviewModal from "../components/RestaurantReviewModal";
 
 //redux
-import { modalopen } from "../modules/restaurantModal";
 
 const Index = () => {
-  // 지도보기 & 리스트 버튼 클릭시 해당 페이지 보이기
-  const [showPage, setShowPage] = useState("지도보기");
-
-  const showMap = () => {
-    setShowPage("지도보기");
-  };
-  const showList = () => {
-    setShowPage("리스트보기");
-  };
-
-  // 매장 상세 보기
-  const modalOpenBool = useSelector((state) => state.restaurantModal.open);
-  const dispatch = useDispatch();
-  const modalOpen = useCallback(
-    (bool) => dispatch(modalopen(bool)),
-    [dispatch]
-  );
-  const detailModalClose = () => {
-    modalOpen(false);
-  };
-
-  // 더보기 클릭 시 전체 리뷰 모달
-  const [allReview, setAllReview] = useState(false);
-  const openReivew = () => {
-    setAllReview(true);
-  };
-  const closeAllReview = () => {
-    setAllReview(false);
-  };
-
   return (
     <IndexWrap>
       <Header />
-      <MapOrList showMap={showMap} showList={showList} showPage={showPage} />
-      {showPage === "지도보기" && <Body showList={showList} />}
-      {showPage === "리스트보기" && <ListPage />}
-      {modalOpenBool && (
-        <RestaurantModal
-          detailModalClose={detailModalClose}
-          openReivew={openReivew}
-        />
-      )}
-      {allReview && <RestaurantReviewModal closeAllReview={closeAllReview} />}
+      <Body />
+      {/* <RestaurantModal />
+      <RestaurantReviewModal /> */}
       <Footer />
     </IndexWrap>
   );
@@ -76,48 +34,3 @@ const IndexWrap = styled.div`
   }
 `;
 export default Index;
-
-// 지도보기 & 리스트보기 버튼
-
-const MapOrList = ({ showMap, showList, showPage }) => {
-  return (
-    <MapOrListWrap>
-      <MapBtn onClick={showMap} selected={showPage === "지도보기"}>
-        지도보기
-      </MapBtn>
-      <ListBtn onClick={showList} selected={showPage === "리스트보기"}>
-        리스트보기
-      </ListBtn>
-    </MapOrListWrap>
-  );
-};
-
-const MapOrListWrap = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 60%;
-  margin: auto;
-  margin-top: 40px;
-  flex: 0;
-`;
-const MapBtn = styled.p`
-  margin: 0;
-  margin-right: 40px;
-  font-weight: 400;
-  font-size: 20px;
-  color: ${(props) => (props.selected ? "#000" : "#999")};
-  @media screen and (max-width: 1000px) {
-    font-size: 12px;
-  }
-`;
-const ListBtn = styled.p`
-  margin: 0;
-  margin-left: 40px;
-  font-weight: 400;
-  font-size: 20px;
-  color: ${(props) => (props.selected ? "#000" : "#999")};
-  @media screen and (max-width: 1000px) {
-    font-size: 12px;
-  }
-`;

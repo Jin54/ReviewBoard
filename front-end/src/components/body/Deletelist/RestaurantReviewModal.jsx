@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import ImgComponent from "./ImageComponent";
+import ImgComponent from "../ImageComponent";
 import ReviewScope from "./ReviewScope";
 
 import { ReviewAPI } from "../api/Review";
@@ -17,7 +17,7 @@ const RestaurantReviewModal = ({ closeAllReview }) => {
         </Close>
       </CloseWrap>
       <Box>
-        <ReviewComponent />
+        <ReviewList />
       </Box>
     </RestaurantReviewModalWrap>
   );
@@ -80,6 +80,15 @@ const Close = styled.div`
 
 export default RestaurantReviewModal;
 
+// 매장 상세 리뷰
+const ReviewList = () => {
+  return (
+    <ReviewListWrap>
+      <ReviewComponent />
+    </ReviewListWrap>
+  );
+};
+
 const ReviewListWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -91,48 +100,57 @@ const ReviewListWrap = styled.div`
 const ReviewComponent = () => {
   const restaurantID = useSelector((state) => state.restaurantModal.id);
   const [reviewData, setReviewData] = useState(null);
-  // const [pageNum, setPageNum] = useState(10);
-  // const showURL = useSelector((state) => state.urlChange.name);
+  const [pageNum, setPageNum] = useState(10);
+  const showURL = useSelector((state) => state.urlChange.name);
 
-  // useEffect(() => {
-  //   ReviewAPI(
-  //     (data) => {
-  //       setReviewData(data);
-  //     },
-  //     restaurantID,
-  //     // pageNum,
-  //     // showURL
-  //   );
-  //   //주의 : console.log(reviewData) 이렇게 해도 reviewData 는 null 로 나온다. useEffect 밖에서 console 해줘야 한다.
-  // }, [restaurantID]);
+  //무한 스크롤 : 라이브러리 react-intersection-observer
+  const [ref, inView] = useInView();
+  useEffect(() => {
+    setPageNum(pageNum + 10);
+  }, [ref, inView]);
 
-  if (reviewData == null) {
+  useEffect(() => {
+    ReviewAPI(
+      (data) => {
+        setReviewData(data);
+      },
+      restaurantID,
+      pageNum,
+      showURL
+    );
+    //주의 : console.log(reviewData) 이렇게 해도 reviewData 는 null 로 나온다. useEffect 밖에서 console 해줘야 한다.
+  }, [restaurantID, pageNum, showURL]);
+
+  // if (reviewData === null) {
+  //   return <ReviewBox>리뷰 없음</ReviewBox>;
+  // }
+  if (reviewData === null || undefined) {
     return (
       <>
         <ReviewBox>리뷰 없음</ReviewBox>
+        <div ref={ref} style={{ height: "100px", width: "100px" }}></div>
       </>
     );
   }
 
-  console.log(reviewData)
-
   return (
     <ReviewListWrap>
-      {/* {reviewData.map((review) => ( */}
-        <ReviewBox key={reviewData.id}>
+      {reviewData.map((review) => (
+        <ReviewBox key={review.id}>
           <Top>
-            <Feeling scope={reviewData.rating} />
-            <Date>{reviewData.createAT}</Date>
+            <Feeling scope={review.rating} />
+            <Date>{review.createAT}</Date>
           </Top>
           <Middle>
-            <ReviewScopeNum>{reviewData.rating}</ReviewScopeNum>
-            {!(reviewData.rating == null || undefined) && (
-              <ReviewScope scope={reviewData.rating} />
+            <ReviewScopeNum>{review.rating}</ReviewScopeNum>
+            {!(review.rating == null || undefined) && (
+              <ReviewScope scope={review.rating} />
             )}
           </Middle>
-          <Bottom>{reviewData.content}</Bottom>
+          <Bottom>{review.content}</Bottom>
         </ReviewBox>
-       {/* ))}  */}
+      ))}
+      <div ref={ref} style={{ height: "100px", width: "100px" }}></div>
     </ReviewListWrap>
   );
 };
@@ -196,6 +214,10 @@ const Bottom = styled.p`
   font-size: 14px;
   color: #999999;
   margin: 0;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   @media screen and (max-width: 1000px) {
     margin: 0;
     font-size: 11px;

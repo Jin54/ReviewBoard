@@ -1,119 +1,94 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect, useCallback } from "react";
 import { useInView } from "react-intersection-observer";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { change } from "../modules/restaurantModal";
 import ReviewScope from "./ReviewScope";
-import { modalopen } from "../modules/restaurantModal";
+import { setDetailID } from "../../../modules/saveData";
+import { addBookmark, deleteBookmark } from "../../../modules/bookmark";
 
-const ListPage = () => {
+const ListContent = (props) => {
+  const mapData = useSelector((state) => state.saveData.mapData);
+  const bookmark = useSelector((state) => state.bookmark);
+  const dispatch = useDispatch();
+  const SetDetailID = useCallback(
+    (id) => dispatch(setDetailID(id)),
+    [dispatch]
+  );
+  const AddBookmark = useCallback(
+    (id) => dispatch(addBookmark(id)),
+    [dispatch]
+  );
+  const DeleteBookmark = useCallback(
+    (id) => dispatch(deleteBookmark(id)),
+    [dispatch]
+  );
+  const [bookmarkColor, setBookmarkColor] = useState("black"); //북마크 색상
+
+  // 무한스크롤
+  const [pageNum, setPageNum] = useState(0);
+  const [bottom, inView] = useInView();
+  useEffect(() => {
+    if (!inView) return;
+    setPageNum(pageNum + 10);
+  }, [inView]);
+
+  if (mapData == null) return;
+
   return (
-    <ListPageWrap>
-      <ListScroll>
-        <ListContent />
-      </ListScroll>
-    </ListPageWrap>
+    <FlexWrap>
+      {mapData.map(
+        (data, index) =>
+          index < pageNum && (
+            <ListContentWrap
+              key={index}
+              onClick={() => {
+                SetDetailID(data.id);
+                props.setOpenDetailModal(true);
+              }}
+            >
+              <ImgBox>
+                <ImgWrap imgUrl={data.thumbnail}></ImgWrap>
+              </ImgBox>
+              <AboutWrap>
+                <Top>
+                  <TopTitle>
+                    <Title>{data.name}</Title>
+                    <BookMark
+                      bookmarkColor={
+                        bookmark.includes(data.id) ? "blue" : "red"
+                      }
+                      onClick={() => {
+                        bookmark.includes(data.id)
+                          ? DeleteBookmark(data.id)
+                          : AddBookmark(data.id);
+                      }}
+                    />
+                  </TopTitle>
+                  <Address>{data.numberAddress}</Address>
+                </Top>
+                <Middle>
+                  <Scope>{data.review_rating}</Scope>
+                  <ReviewScope scope={data.review_rating} />
+                </Middle>
+                <Bottom>리뷰 {data.review_number}</Bottom>
+              </AboutWrap>
+            </ListContentWrap>
+          )
+      )}
+      <div ref={bottom} style={{ height: "100px", width: "100px" }}></div>
+    </FlexWrap>
   );
 };
 
-const ListPageWrap = styled.div`
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: 10px;
-  margin-top: 60px;
-  flex: 1;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  box-sizing: border-box;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  @media screen and (max-width: 1000px) {
-    margin-top: 20px;
-    height: 100%;
-  }
-`;
-const ListScroll = styled.div`
-  @media screen and (max-width: 1000px) {
-    display: block;
-    width: 100%;
-    overflow-y: scroll;
-    height: 100%;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    box-sizing: border-box;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-`;
+export default ListContent;
+
 const FlexWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
 `;
-export default ListPage;
-
-// =============================================
-
-function ListContent() {
-  // 무한스크롤
-  const [pageNum, setPageNum] = useState(0);
-  const [ref, inView] = useInView();
-  useEffect(() => {
-    if (!inView) return;
-    setPageNum(pageNum + 10);
-  }, [ref, inView]);
-
-  //가게 클릭 시 해당 가게로 이름 변경 -> 모달창 이동
-  const dispatch = useDispatch();
-  const onClickSelect = useCallback((id) => dispatch(change(id)), [dispatch]);
-  const modalOpen = useCallback(
-    (bool) => dispatch(modalopen(bool)),
-    [dispatch]
-  );
-
-  //mapData 리덕스
-  const MapData = useSelector((state) => state.mapData.data);
-  if (MapData === null) return;
-
-  return (
-    <FlexWrap>
-      {MapData.map((restaurant, index) =>
-        index < pageNum ? (
-          <ListContentWrap
-            key={restaurant.id}
-            onClick={() => {
-              onClickSelect(restaurant.id);
-              modalOpen(true);
-            }}
-          >
-            <ImgBox>
-              <ImgWrap imgUrl={restaurant.thumbnail}></ImgWrap>
-            </ImgBox>
-            <AboutWrap>
-              <Top>
-                <Title>{restaurant.name}</Title>
-                <Address>{restaurant.numberAddress}</Address>
-              </Top>
-              <Middle>
-                <Scope>{restaurant.review_rating}</Scope>
-                <ReviewScope scope={restaurant.review_rating} />
-              </Middle>
-              <Bottom>리뷰 {restaurant.review_number}</Bottom>
-            </AboutWrap>
-          </ListContentWrap>
-        ) : (
-          ""
-        )
-      )}
-      <div ref={ref} style={{ height: "10px", width: "10px" }}></div>
-    </FlexWrap>
-  );
-}
 
 const ListContentWrap = styled.div`
   background: #ffffff;
@@ -125,6 +100,7 @@ const ListContentWrap = styled.div`
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  cursor: pointer;
   @media screen and (max-width: 1000px) {
     flex-direction: column;
   }
@@ -172,6 +148,11 @@ const Top = styled.div`
     flex-direction: column;
   }
 `;
+const TopTitle = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;
 const Title = styled.span`
   font-weight: 700;
   font-size: 16px;
@@ -185,6 +166,11 @@ const Title = styled.span`
     font-size: 14px;
     margin-bottom: 4px;
   }
+`;
+const BookMark = styled.div`
+  width: 30px;
+  height: 30px;
+  background-color: ${(props) => props.bookmarkColor};
 `;
 const Address = styled.span`
   font-weight: 400;
