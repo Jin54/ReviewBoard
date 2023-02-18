@@ -57,10 +57,12 @@ const ListContent = (props) => {
                       bookmarkColor={
                         bookmark.includes(data.id) ? "blue" : "red"
                       }
-                      onClick={() => {
+                      onClick={(e) => {
                         bookmark.includes(data.id)
                           ? DeleteBookmark(data.id)
                           : AddBookmark(data.id);
+
+                          e.stopPropagation();
                       }}
                     />
                   </TopTitle>

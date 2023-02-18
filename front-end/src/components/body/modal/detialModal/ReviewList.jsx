@@ -5,7 +5,9 @@ import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 
 import ReviewAPI from "../../../../api/ReviewAPI";
+
 import ReviewScope from "../../list/ReviewScope";
+import ReviewDetailModal from "./ReviewDetailModal";
 
 const ReviewList = () => {
   const [pageNum, setPageNum] = useState(0);
@@ -42,6 +44,8 @@ const ReviewList = () => {
       {reviewData.map(
         (review, index) =>
           index < pageNum && (
+            <>
+            <ReviewDetailModal rate={review.rating} />
             <ReviewBox key={review.id}>
               <Top>
                 <Feeling scope={review.rating} />
@@ -55,6 +59,7 @@ const ReviewList = () => {
               </Middle>
               <Bottom>{review.content}</Bottom>
             </ReviewBox>
+            </>
           )
       )}
       <div ref={bottom} style={{ height: "10px", width: "100px" }}></div>
