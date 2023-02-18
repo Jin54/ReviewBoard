@@ -1,10 +1,16 @@
 const SETMAPDATA = "saveData/SAVEMAPDATA";
 const DETAILID = "saveData/DETAILID";
 const SETDETAILDATDA = "saveData/SETDETAILDATA";
+const SETBOOKMARKDATA = "saveData/SETBOOKMARKDATA";
 
 export const setMapData = (mapData) => ({
   type: SETMAPDATA,
   mapData: mapData,
+});
+
+export const setBookmarkData = (BookmarkData) => ({
+  type: SETBOOKMARKDATA,
+  mapData: BookmarkData,
 });
 
 export const setDetailID = (detailID) => ({

@@ -99,7 +99,8 @@ const DetailModal = (props) => {
               <ReviewMore>더보기</ReviewMore>
             )}
           </ReviewTxtWrap>
-          <ReviewList reviewNum={detailData.review_number} />
+          {console.log(detailData)}
+          <ReviewList />
         </ReviewWrap>
       </Box>
     </RestaurantModalWrap>

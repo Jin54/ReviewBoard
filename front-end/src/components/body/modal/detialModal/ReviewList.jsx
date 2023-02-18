@@ -8,7 +8,7 @@ import ReviewAPI from "../../../../api/ReviewAPI";
 import ReviewScope from "../../list/ReviewScope";
 
 const ReviewList = () => {
-  const [pageNum, setPageNum] = useState(10);
+  const [pageNum, setPageNum] = useState(0);
   const [reviewData, setReviewData] = useState(null);
   const showURL = useSelector((state) => state.urlChange.name);
   const detailID = useSelector((state) => state.saveData.detailID);
@@ -18,7 +18,7 @@ const ReviewList = () => {
   useEffect(() => {
     if (!inView) return;
     setPageNum(pageNum + 10);
-  }, [bottom, inView]);
+  }, [inView]);
 
   //리뷰 API
   useEffect(() => {
@@ -26,30 +26,38 @@ const ReviewList = () => {
     ReviewAPI(showURL, detailID, pageNum, (data) => {
       setReviewData(data);
     });
-  }, []);
+  }, [pageNum]);
 
   if (reviewData == null) {
-    return <ReviewNone>리뷰 없음</ReviewNone>;
+    return (
+      <>
+        <ReviewNone>리뷰 없음</ReviewNone>
+        <div ref={bottom} style={{ height: "10px", width: "100px" }}></div>
+      </>
+    );
   }
 
   return (
     <ReviewFlexWrap>
-      {reviewData.map((review) => (
-        <ReviewBox key={review.id}>
-          <Top>
-            <Feeling scope={review.rating} />
-            <Date>{review.createAT}</Date>
-          </Top>
-          <Middle>
-            <ReviewScopeNum>{review.rating}</ReviewScopeNum>
-            {!(review.rating == null || undefined) && (
-              <ReviewScope scope={review.rating} />
-            )}
-          </Middle>
-          <Bottom>{review.content}</Bottom>
-        </ReviewBox>
-      ))}
-      <div ref={bottom} style={{ height: "100px", width: "100px" }}></div>
+      {reviewData.map(
+        (review, index) =>
+          index < pageNum && (
+            <ReviewBox key={review.id}>
+              <Top>
+                <Feeling scope={review.rating} />
+                <Date>{review.createAT}</Date>
+              </Top>
+              <Middle>
+                <ReviewScopeNum>{review.rating}</ReviewScopeNum>
+                {!(review.rating == null || undefined) && (
+                  <ReviewScope scope={review.rating} />
+                )}
+              </Middle>
+              <Bottom>{review.content}</Bottom>
+            </ReviewBox>
+          )
+      )}
+      <div ref={bottom} style={{ height: "10px", width: "100px" }}></div>
     </ReviewFlexWrap>
   );
 };
@@ -57,6 +65,7 @@ const ReviewList = () => {
 export default ReviewList;
 
 const ReviewFlexWrap = styled.div`
+  height: 100%;
   width: 100%;
   display: flex;
   flex-wrap: wrap;

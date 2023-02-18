@@ -23,7 +23,6 @@ const ListContent = (props) => {
     (id) => dispatch(deleteBookmark(id)),
     [dispatch]
   );
-  const [bookmarkColor, setBookmarkColor] = useState("black"); //북마크 색상
 
   // 무한스크롤
   const [pageNum, setPageNum] = useState(0);
@@ -76,7 +75,7 @@ const ListContent = (props) => {
             </ListContentWrap>
           )
       )}
-      <div ref={bottom} style={{ height: "100px", width: "100px" }}></div>
+      <div ref={bottom} style={{ height: "10px", width: "100px" }}></div>
     </FlexWrap>
   );
 };
@@ -140,6 +139,7 @@ const AboutWrap = styled.div`
 const Top = styled.div`
   margin-bottom: 20px;
   display: flex;
+  flex-direction: column;
   align-items: baseline;
   width: 100%;
   justify-content: space-between;
@@ -179,6 +179,7 @@ const Address = styled.span`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  width: 100%;
   @media screen and (max-width: 1000px) {
     font-size: 11px;
     width: 100%;
