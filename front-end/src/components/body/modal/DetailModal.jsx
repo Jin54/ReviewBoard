@@ -87,7 +87,6 @@ const DetailModal = (props) => {
                 bookmark.includes(detailID)
                   ? bookmarkTrue(detailID)
                   : bookmarkFalse(detailID);
-                console.log(detailID);
               }}
             />
           </InfoWrap>
