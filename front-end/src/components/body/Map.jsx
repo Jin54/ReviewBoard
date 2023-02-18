@@ -16,10 +16,6 @@ const Map = (props) => {
   const [xy, setXY] = useState({}); //중심 좌표
   const [size, setSize] = useState(null);
 
-  useEffect(() => {
-    // console.log(xy);
-  }, [xy]);
-
   return (
     <>
       <KaKaoMap id="map">
