@@ -13,7 +13,7 @@ export const ReviewAPI = async (showURL, id, pageNum, setReviewData) => {
       method: "get",
       url: url,
     });
-    console.log(data.data);
+    // console.log(data.data);
     setReviewData(data.data.result);
   } catch (err) {
     alert(err);

@@ -10,21 +10,10 @@ import Footer from "../components/Footer";
 //redux
 
 const Index = () => {
-  const [openListModal, setOpenListModal] = useState(false);
-  const [openDetailModal, setOpenDetailModal] = useState(false);
-
   return (
     <IndexWrap>
-      <Header
-        setOpenListModal={setOpenListModal}
-        setOpenDetailModal={setOpenDetailModal}
-      />
-      <Body
-        openListModal={openListModal}
-        openDetailModal={openDetailModal}
-        setOpenListModal={setOpenListModal}
-        setOpenDetailModal={setOpenDetailModal}
-      />
+      <Header />
+      <Body />
       <Footer />
     </IndexWrap>
   );

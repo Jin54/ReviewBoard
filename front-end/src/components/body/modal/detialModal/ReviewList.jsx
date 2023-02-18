@@ -45,20 +45,20 @@ const ReviewList = () => {
         (review, index) =>
           index < pageNum && (
             <>
-            <ReviewDetailModal rate={review.rating} />
-            <ReviewBox key={review.id}>
-              <Top>
-                <Feeling scope={review.rating} />
-                <Date>{review.createAT}</Date>
-              </Top>
-              <Middle>
-                <ReviewScopeNum>{review.rating}</ReviewScopeNum>
-                {!(review.rating == null || undefined) && (
-                  <ReviewScope scope={review.rating} />
-                )}
-              </Middle>
-              <Bottom>{review.content}</Bottom>
-            </ReviewBox>
+              {/* <ReviewDetailModal rate={review.rating} /> */}
+              <ReviewBox key={review.id}>
+                <Top>
+                  <Feeling scope={review.rating} />
+                  <Date>{review.createAT}</Date>
+                </Top>
+                <Middle>
+                  <ReviewScopeNum>{review.rating}</ReviewScopeNum>
+                  {!(review.rating == null || undefined) && (
+                    <ReviewScope scope={review.rating} />
+                  )}
+                </Middle>
+                <Bottom>{review.content}</Bottom>
+              </ReviewBox>
             </>
           )
       )}

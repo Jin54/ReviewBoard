@@ -57,6 +57,7 @@ const DetailModal = (props) => {
 
   return (
     <RestaurantModalWrap>
+      {console.log("디테일")}
       <CloseWrap>
         <Close onClick={() => props.setOpenDetailModal(false)}>
           <ImgComponent src={"close.png"} width={"100%"} />
