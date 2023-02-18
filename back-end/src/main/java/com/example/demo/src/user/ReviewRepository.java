@@ -22,5 +22,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     @Query("SELECT COALESCE(sum(r.rating),0)  from Review r where r.shop=:shop_id")
     Double sumRatingByShop(@Param("shop_id") Shop shop);
 
+
+    @Query("SELECT r from Review r  where r.shop=:shop_id order by r.id asc ,LENGTH(r.content) desc ")
     Page<Review> findAllByShop(Shop shop,Pageable pageable);
 }
