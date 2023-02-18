@@ -44,22 +44,20 @@ const ReviewList = () => {
       {reviewData.map(
         (review, index) =>
           index < pageNum && (
-            <>
+            <ReviewBox key={review.id}>
               {/* <ReviewDetailModal rate={review.rating} /> */}
-              <ReviewBox key={review.id}>
-                <Top>
-                  <Feeling scope={review.rating} />
-                  <Date>{review.createAT}</Date>
-                </Top>
-                <Middle>
-                  <ReviewScopeNum>{review.rating}</ReviewScopeNum>
-                  {!(review.rating == null || undefined) && (
-                    <ReviewScope scope={review.rating} />
-                  )}
-                </Middle>
-                <Bottom>{review.content}</Bottom>
-              </ReviewBox>
-            </>
+              <Top>
+                <Feeling scope={review.rating} />
+                <Date>{review.createAT}</Date>
+              </Top>
+              <Middle>
+                <ReviewScopeNum>{review.rating}</ReviewScopeNum>
+                {!(review.rating == null || undefined) && (
+                  <ReviewScope scope={review.rating} />
+                )}
+              </Middle>
+              <Bottom>{review.content}</Bottom>
+            </ReviewBox>
           )
       )}
       <div ref={bottom} style={{ height: "10px", width: "100px" }}></div>

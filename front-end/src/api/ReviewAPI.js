@@ -14,6 +14,7 @@ export const ReviewAPI = async (showURL, id, pageNum, setReviewData) => {
       url: url,
     });
     // console.log(data.data);
+    // console.log("ReviewAPI");
     setReviewData(data.data.result);
   } catch (err) {
     alert(err);

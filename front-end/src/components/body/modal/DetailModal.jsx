@@ -43,6 +43,7 @@ const DetailModal = (props) => {
       SetDetailData(data);
     });
   }, []);
+
   //북마크
   function bookmarkTrue(id) {
     DeleteBookmark(id);
@@ -57,7 +58,6 @@ const DetailModal = (props) => {
 
   return (
     <RestaurantModalWrap>
-      {console.log("디테일")}
       <CloseWrap>
         <Close onClick={() => props.setOpenDetailModal(false)}>
           <ImgComponent src={"close.png"} width={"100%"} />
@@ -96,11 +96,10 @@ const DetailModal = (props) => {
         <ReviewWrap>
           <ReviewTxtWrap>
             <ReviewNum>리뷰 {detailData.review_number}개</ReviewNum>
-            {!(detailData.review_number === 0) && (
+            {!(detailData.review_number == 0) && (
               <ReviewMore>더보기</ReviewMore>
             )}
           </ReviewTxtWrap>
-          {console.log(detailData)}
           <ReviewList />
         </ReviewWrap>
       </Box>

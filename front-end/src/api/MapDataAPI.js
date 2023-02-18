@@ -26,6 +26,7 @@ export const MapDataAPI = async (
       url: url,
     });
     // console.log(data.data.result);
+    // console.log("MapDataAPI");
     setMapData(data.data.result);
   } catch (err) {
     alert(err);

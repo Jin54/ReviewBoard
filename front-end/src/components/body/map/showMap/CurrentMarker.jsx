@@ -50,10 +50,12 @@ const CurrentMarker = (props) => {
         // 마커를 표시합니다
         displayCurrentMarker(locPosition);
       });
+
+      return;
     } else {
-      props.setXY([37.715133, 126.734086]);
       // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-      alert("현재 위치를 허용해주세요.");
+      props.setXY([37.715133, 126.734086]);
+      console.log("접속 위치 없음");
     }
   }, [_map]);
 };

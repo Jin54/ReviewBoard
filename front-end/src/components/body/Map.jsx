@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import Loading from "./map/Loading";
 import CurrentMarker from "./map/showMap/CurrentMarker";
 import ShowMarker from "./map/showMap/ShowMarker";
 import SaveMapData from "./map/showMap/SaveMapData";
@@ -17,15 +16,17 @@ const Map = (props) => {
   const [xy, setXY] = useState({}); //중심 좌표
   const [size, setSize] = useState(null);
 
+  useEffect(() => {
+    // console.log(xy);
+  }, [xy]);
+
   return (
     <>
       <KaKaoMap id="map">
-        {_map == null ? (
-          <Loading />
-        ) : (
+        {!(_map == null) && (
           <>
             <CurrentMarker setXY={setXY} />
-            <MapEvent setXY={setXY} setSize={setSize} />
+            <MapEvent setXY={setXY} setSize={setSize} xy={xy} />
             <SaveMapData xy={xy} size={size} />
             <ShowMarker setOpenDetailModal={props.setOpenDetailModal} />
           </>
