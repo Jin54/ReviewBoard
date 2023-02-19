@@ -23,6 +23,7 @@ const CurrentMarker = (props) => {
           lon = position.coords.longitude; // 경도
 
         props.setXY([lon, lat]);
+        props.setCurrentBtnOpen(true);
 
         var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 
@@ -53,7 +54,6 @@ const CurrentMarker = (props) => {
         displayCurrentMarker(locPosition);
         return;
       });
-
       props.setXY([126.97645631375248, 37.566976954478896]);
     }
   }, [_map]);

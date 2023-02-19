@@ -11,11 +11,22 @@ import BigLocationModal from "./map/LocationModal/BigLocationModal";
 
 const Map = (props) => {
   const [modalOepn, setModalOpen] = useState(false);
+  const [currentBtnOpen, setCurrentBtnOpen] = useState(false);
 
   const _map = useSelector((state) => state.setMap._map);
   const [xy, setXY] = useState({}); //중심 좌표
   const [size, setSize] = useState(null);
+
+  //중복 마커 유지
   const [duplicateMapData, setDuplicateMapData] = useState(null); //중복되는 맵 데이터 id
+  const [markerID, setMarkerID] = useState();
+  useEffect(() => {
+    if (duplicateMapData == null) return;
+    // setDuplicateMapData([...duplicateMapData, markerID]);
+    // console.log(duplicateMapData);
+    console.log(markerID);
+    console.log("바뀜");
+  }, [markerID]);
 
   //삭제 예정
   // const mapData = useSelector((state) => state.saveData.mapData);
@@ -23,10 +34,10 @@ const Map = (props) => {
   //   console.log("mapData");
   //   console.log(mapData);
   // }, [mapData]);
-  // useEffect(() => {
-  //   console.log("duplicateMapData");
-  //   console.log(duplicateMapData);
-  // }, [duplicateMapData]);
+  useEffect(() => {
+    console.log("duplicateMapData");
+    console.log(duplicateMapData);
+  }, [duplicateMapData]);
   // useEffect(() => {
   //   console.log(_map);
   // }, [_map]);
@@ -36,14 +47,16 @@ const Map = (props) => {
       <KaKaoMap id="map">
         {!(_map === null) && (
           <>
-            <CurrentMarker setXY={setXY} />
+            <CurrentMarker
+              setXY={setXY}
+              setCurrentBtnOpen={setCurrentBtnOpen}
+            />
             <MapEvent setXY={setXY} setSize={setSize} xy={xy} />
             <SaveMapData
               xy={xy}
               size={size}
-              setDuplicateMapData={(data) => {
-                setDuplicateMapData(data);
-              }}
+              setMarkerID={setMarkerID}
+              markerID={markerID}
             />
             <ShowMarker
               setOpenDetailModal={props.setOpenDetailModal}
@@ -53,7 +66,11 @@ const Map = (props) => {
           </>
         )}
       </KaKaoMap>
-      <MapBtns setModalOpen={setModalOpen} setXY={setXY} />
+      <MapBtns
+        setModalOpen={setModalOpen}
+        setXY={setXY}
+        currentBtnOpen={currentBtnOpen}
+      />
       {modalOepn && (
         <BigLocationModal setModalOpen={setModalOpen} setXY={setXY} />
       )}

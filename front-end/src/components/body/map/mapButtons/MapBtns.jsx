@@ -9,7 +9,7 @@ const MapBtns = (props) => {
       <MapButtons>
         <MapBtnsLeft>
           <SelectLocationBtn setModalOpen={props.setModalOpen} />
-          <GPSBtn setXY={props.setXY} />
+          {props.currentBtnOpen && <GPSBtn setXY={props.setXY} />}
         </MapBtnsLeft>
         <MapBtnsRight></MapBtnsRight>
       </MapButtons>

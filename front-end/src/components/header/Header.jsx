@@ -35,7 +35,6 @@ const Header = (props) => {
       <HeaderRightWrap>
         <HeaderRightBtn>로그인</HeaderRightBtn>
         <HeaderRightBtn>즐겨찾기</HeaderRightBtn>
-        <HeaderRightBtn href="mailto:sales@lfin.kr">문의하기</HeaderRightBtn>
       </HeaderRightWrap>
       <MobileMenu>
         <HamburgerBtn

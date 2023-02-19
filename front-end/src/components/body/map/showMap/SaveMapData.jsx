@@ -41,9 +41,16 @@ const SaveMapData = (props) => {
     // const searchSmallLocationList = dummy.smallLocations.filter(
     //   (smallLocation) => smallLocation.location === props.bigLocationName
     // );
-    // const mapDataID = mapData.map((data) =>
-    //   props.setDuplicateMapData([...data.id])
-    // );
+    if (mapData != null) {
+      mapData.map(
+        (data) => {
+          // props.setDuplicateMapData([...duplicateMapData, data.id]);
+          // props.setMarkerID([...props.markerID, data.id]);
+          console.log("==========");
+        }
+        // props.setDuplicateMapData([...data.id])
+      );
+    }
     // props.setDuplicateMapData(mapDataID);
     // console.log(mapData);
 
