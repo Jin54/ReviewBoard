@@ -21,6 +21,13 @@ const HeaderSlide = (props) => {
             props.setMobileMenu(false);
           }}
         >
+          로그인
+        </MFoodBtn>
+        <MFoodBtn
+          onClick={() => {
+            props.setMobileMenu(false);
+          }}
+        >
           즐겨찾기
         </MFoodBtn>
         <MFoodBtn

@@ -7,13 +7,6 @@ const { kakao } = window;
 const CurrentMarker = (props) => {
   const _map = useSelector((state) => state.setMap._map);
   const [currentMarker, setCurrentMarker] = useState(); //현재 위치
-  const [agree, setAgree] = useState();
-
-  useEffect(() => {
-    if (!agree) {
-      props.setXY([126.97645631375248, 37.566976954478896]);
-    }
-  }, [agree]);
 
   useEffect(() => {
     if (_map == null) {
@@ -32,8 +25,6 @@ const CurrentMarker = (props) => {
         props.setXY([lon, lat]);
 
         var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-        setAgree(true);
-        console.log(agree);
 
         // 지도에 마커와 인포윈도우를 표시하는 함수입니다
         //마커 이미지 생성하기
@@ -63,20 +54,8 @@ const CurrentMarker = (props) => {
         return;
       });
 
-      setAgree(false);
-      // if (agree === true) {
-      //   console.log("현재 위치 허용 여부 : " + agree);
-      //   return;
-      // }
-      // if (agree === false) {
-      //   console.log("현재 위치 허용 여부 : " + agree);
-      //   return;
-      // }
+      props.setXY([126.97645631375248, 37.566976954478896]);
     }
-    // } else {
-    //   // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-    //   props.setXY([37.715133, 126.734086]);
-    // }
   }, [_map]);
 
   return;
