@@ -36,16 +36,16 @@ const Header = () => {
   );
 
   //삭제 예정
-  const bookmarkData = useSelector((state) => state.saveData.bookmarkData);
-  const bookmarkID = useSelector((state) => state.bookmarkID);
-  useEffect(() => {
-    console.log("확인하기");
-    console.log("bookmarkData");
-    console.log(bookmarkData);
-    console.log("bookmarkID");
-    console.log(bookmarkID);
-    console.log("확인하기 끝");
-  }, [bookmarkData, bookmarkID]);
+  // const bookmarkData = useSelector((state) => state.saveData.bookmarkData);
+  // const bookmarkID = useSelector((state) => state.bookmarkID);
+  // useEffect(() => {
+  //   console.log("확인하기");
+  //   console.log("bookmarkData");
+  //   console.log(bookmarkData);
+  //   console.log("bookmarkID");
+  //   console.log(bookmarkID);
+  //   console.log("확인하기 끝");
+  // }, [bookmarkData, bookmarkID]);
 
   return (
     <>

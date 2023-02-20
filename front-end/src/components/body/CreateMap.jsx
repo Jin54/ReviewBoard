@@ -6,7 +6,7 @@ import { saveMap } from "../../modules/setMap";
 
 const { kakao } = window;
 
-const CreateMap = (props) => {
+const CreateMap = () => {
   //맵 저장
   const dispatch = useDispatch();
   const SaveMap = useCallback((map) => dispatch(saveMap(map)), [dispatch]);
@@ -26,7 +26,7 @@ const CreateMap = (props) => {
     map.setMinLevel(3); //맵의 최소 확대 크기
 
     SaveMap(map);
-  }, [document.getElementById("map")]);
+  }, []);
 };
 
 export default CreateMap;

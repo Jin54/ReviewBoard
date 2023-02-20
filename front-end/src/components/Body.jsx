@@ -16,7 +16,7 @@ const Body = () => {
     <>
       <MapOrList />
       <BodyWrap>
-        <CreateMap></CreateMap>
+        <CreateMap />
         <Map />
         {openListModal && <List />}
         {openDetailModal && <DetailModal />}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -18,6 +18,11 @@ const Map = () => {
   const [currentBtnOpen, setCurrentBtnOpen] = useState(false);
   const [xy, setXY] = useState({}); //중심 좌표
   const [size, setSize] = useState(null);
+
+  useEffect(() => {
+    console.log("_map");
+    console.log(_map);
+  }, [_map]);
 
   return (
     <>
