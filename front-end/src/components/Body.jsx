@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 import MapOrList from "./body/MapOrList";
 import CreateMap from "./body/CreateMap";
@@ -8,22 +9,17 @@ import List from "./body/list/List";
 import DetailModal from "./body/modal/DetailModal";
 
 const Body = () => {
-  const [openListModal, setOpenListModal] = useState(false);
-  const [openDetailModal, setOpenDetailModal] = useState(false);
+  const openListModal = useSelector((state) => state.openBool.listModal);
+  const openDetailModal = useSelector((state) => state.openBool.detailModal);
 
   return (
     <>
-      <MapOrList
-        openListModal={openListModal}
-        setOpenListModal={setOpenListModal}
-      />
+      <MapOrList />
       <BodyWrap>
         <CreateMap></CreateMap>
-        <Map setOpenDetailModal={setOpenDetailModal} />
-        {openListModal && <List setOpenDetailModal={setOpenDetailModal} />}
-        {openDetailModal && (
-          <DetailModal setOpenDetailModal={setOpenDetailModal} />
-        )}
+        <Map />
+        {openListModal && <List />}
+        {openDetailModal && <DetailModal />}
       </BodyWrap>
     </>
   );

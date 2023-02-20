@@ -5,13 +5,12 @@ import { MapDataAPI } from "../../../../api/MapDataAPI";
 import { setMapData } from "../../../../modules/saveData";
 
 const SaveMapData = (props) => {
-  const showURL = useSelector((state) => state.urlChange.name);
   const _map = useSelector((state) => state.setMap._map);
-  const mapData = useSelector((state) => state.saveData.mapData);
+  const showURL = useSelector((state) => state.urlChange.name);
 
   const dispatch = useDispatch();
   const SetMapData = useCallback(
-    (map) => dispatch(setMapData(map)),
+    (data) => dispatch(setMapData(data)),
     [dispatch]
   );
 
@@ -36,23 +35,6 @@ const SaveMapData = (props) => {
     if (radiusMath === 0) {
       radiusMath = 1;
     }
-
-    //맵 데이터 중복 체크
-    // const searchSmallLocationList = dummy.smallLocations.filter(
-    //   (smallLocation) => smallLocation.location === props.bigLocationName
-    // );
-    if (mapData != null) {
-      mapData.map(
-        (data) => {
-          // props.setDuplicateMapData([...duplicateMapData, data.id]);
-          // props.setMarkerID([...props.markerID, data.id]);
-          console.log("==========");
-        }
-        // props.setDuplicateMapData([...data.id])
-      );
-    }
-    // props.setDuplicateMapData(mapDataID);
-    // console.log(mapData);
 
     //상위 100개 데이터 불러오기
     MapDataAPI(

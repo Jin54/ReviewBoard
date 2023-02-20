@@ -1,54 +1,76 @@
 import React, { useState, useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import ImgComponent from "../ImageComponent";
+import { setOpenBookmark } from "../../modules/openBool";
 import { change } from "../../modules/urlChange";
-import HeaderSlide from "./HearderSlide";
 
-const Header = (props) => {
+import ImgComponent from "../ImageComponent";
+import HeaderSlide from "./HearderSlide";
+import OnClickBookmark from "./OnClickBookmark";
+
+const Header = () => {
   // 모바일 메뉴
   const [mobilemenu, setMobileMenu] = useState(false);
+
   //클릭 시 맛집, 병원 API 변경
   const dispatch = useDispatch();
   const onClickURL = useCallback((name) => dispatch(change(name)), [dispatch]);
+  //북마크 관련
+  const openBookmark = useSelector((state) => state.openBool.bookmark);
+  const SetOpenBookmark = useCallback(() => {
+    dispatch(setOpenBookmark());
+  }, [dispatch]);
 
   return (
-    <HeaderWrap>
-      <HedaerLeftWrap>
-        <ImgComponent src={"logo.png"} width={"60px"} />
-        <FoodBtn
-          onClick={() => {
-            onClickURL("shop");
-          }}
-        >
-          맛집
-        </FoodBtn>
-        <HospitalBtn
-          onClick={() => {
-            onClickURL("hospital");
-          }}
-        >
-          병원
-        </HospitalBtn>
-      </HedaerLeftWrap>
-      <HeaderRightWrap>
-        <HeaderRightBtn>로그인</HeaderRightBtn>
-        <HeaderRightBtn>즐겨찾기</HeaderRightBtn>
-      </HeaderRightWrap>
-      <MobileMenu>
-        <HamburgerBtn
-          onClick={() => {
-            setMobileMenu(true);
-          }}
-        >
-          <ImgComponent src={"hamburger.png"} width={"100%"} />
-        </HamburgerBtn>
-        {mobilemenu && (
-          <HeaderSlide setMobileMenu={setMobileMenu} onClickURL={onClickURL} />
-        )}
-      </MobileMenu>
-    </HeaderWrap>
+    <>
+      {openBookmark && <OnClickBookmark />}
+      <HeaderWrap>
+        <HedaerLeftWrap>
+          <ImgComponent src={"logo.png"} width={"60px"} />
+          <FoodBtn
+            onClick={() => {
+              onClickURL("shop");
+            }}
+          >
+            맛집
+          </FoodBtn>
+          <HospitalBtn
+            onClick={() => {
+              onClickURL("hospital");
+            }}
+          >
+            병원
+          </HospitalBtn>
+        </HedaerLeftWrap>
+        <HeaderRightWrap>
+          <HeaderRightBtn>로그인</HeaderRightBtn>
+          <BookmarkBtn
+            selected={openBookmark}
+            onClick={() => {
+              SetOpenBookmark();
+            }}
+          >
+            즐겨찾기
+          </BookmarkBtn>
+        </HeaderRightWrap>
+        <MobileMenu>
+          <HamburgerBtn
+            onClick={() => {
+              setMobileMenu(true);
+            }}
+          >
+            <ImgComponent src={"hamburger.png"} width={"100%"} />
+          </HamburgerBtn>
+          {mobilemenu && (
+            <HeaderSlide
+              setMobileMenu={setMobileMenu}
+              onClickURL={onClickURL}
+            />
+          )}
+        </MobileMenu>
+      </HeaderWrap>
+    </>
   );
 };
 
@@ -115,6 +137,10 @@ const HeaderRightBtn = styled.a`
   @media screen and (max-width: 1000px) {
     display: none;
   }
+`;
+const LoginBtn = styled(HeaderRightBtn)``;
+const BookmarkBtn = styled(HeaderRightBtn)`
+  background-color: ${(props) => props.selected && "red"};
 `;
 const MobileMenu = styled.div`
   display: none;

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import ModalAPI from "../../../api/ModalAPI";
 import { setDetailData } from "../../../modules/saveData";
 import { addBookmark, deleteBookmark } from "../../../modules/bookmark";
+import { setOpenDetailModal } from "../../../modules/openBool";
 
 import ImgComponent from "../../ImageComponent";
 import ReviewScope from "../list/ReviewScope";
@@ -17,6 +18,9 @@ const DetailModal = (props) => {
   const detailData = useSelector((state) => state.saveData.detailData);
   const bookmark = useSelector((state) => state.bookmark);
   const dispatch = useDispatch();
+  const SetOpenDetailModal = useCallback(() => {
+    dispatch(setOpenDetailModal());
+  }, [dispatch]);
   const SetDetailData = useCallback(
     (data) => dispatch(setDetailData(data)),
     [dispatch]
@@ -59,7 +63,11 @@ const DetailModal = (props) => {
   return (
     <RestaurantModalWrap>
       <CloseWrap>
-        <Close onClick={() => props.setOpenDetailModal(false)}>
+        <Close
+          onClick={() => {
+            SetOpenDetailModal();
+          }}
+        >
           <ImgComponent src={"close.png"} width={"100%"} />
         </Close>
       </CloseWrap>

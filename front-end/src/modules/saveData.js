@@ -8,9 +8,9 @@ export const setMapData = (mapData) => ({
   mapData: mapData,
 });
 
-export const setBookmarkData = (BookmarkData) => ({
+export const setBookmarkData = (bookmarkData) => ({
   type: SETBOOKMARKDATA,
-  mapData: BookmarkData,
+  bookmarkData: bookmarkData,
 });
 
 export const setDetailID = (detailID) => ({
@@ -27,6 +27,7 @@ const initialState = {
   mapData: null,
   detailID: null,
   detailData: null,
+  bookmarkData: null,
 };
 
 function saveData(state = initialState, action) {
@@ -45,6 +46,11 @@ function saveData(state = initialState, action) {
       return {
         ...state,
         detailData: action.detailData,
+      };
+    case SETBOOKMARKDATA:
+      return {
+        ...state,
+        bookmarkData: action.bookmarkData,
       };
     default:
       return state;

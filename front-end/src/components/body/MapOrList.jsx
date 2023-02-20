@@ -1,22 +1,32 @@
 // 지도보기 & 리스트보기 버튼
+import { useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
-const MapOrList = (props) => {
+import { setOpenListModal } from "../../modules/openBool";
+
+const MapOrList = () => {
+  const openListModal = useSelector((state) => state.openBool.listModal);
+  const dispatch = useDispatch();
+  const SetOpenListModal = useCallback(() => {
+    dispatch(setOpenListModal());
+  }, [dispatch]);
+
   return (
     <MapOrListWrap>
       <MapBtn
         onClick={() => {
-          props.setOpenListModal(false);
+          SetOpenListModal();
         }}
-        selected={!props.openListModal}
+        selected={!openListModal}
       >
         지도보기
       </MapBtn>
       <ListBtn
         onClick={() => {
-          props.setOpenListModal(true);
+          SetOpenListModal();
         }}
-        selected={props.openListModal}
+        selected={openListModal}
       >
         리스트보기
       </ListBtn>

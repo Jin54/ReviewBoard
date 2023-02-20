@@ -7,7 +7,7 @@ export const MapDataAPI = async (
   x,
   y,
   mapBounds,
-  setMapData
+  SetMapData
 ) => {
   // console.log("setMapData : " + setMapData);
   // console.log("x : " + x);
@@ -25,8 +25,8 @@ export const MapDataAPI = async (
       method: "get",
       url: url,
     });
-    console.log(data.data.result);
-    setMapData(data.data.result);
+    // console.log(data.data.result);
+    SetMapData(data.data.result);
   } catch (err) {
     alert(err);
   }

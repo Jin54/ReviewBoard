@@ -1,12 +1,18 @@
 //리스트 모달창
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 import ListContent from "./ListContent";
 
-const List = (props) => {
+const List = () => {
+  const openBookmark = useSelector((state) => state.openBool.bookmark);
+  const mapData = useSelector((state) => state.saveData.mapData);
+  const bookmarkData = useSelector((state) => state.saveData.bookmarkData);
+
   return (
     <ListPageWrap>
-      <ListContent setOpenDetailModal={props.setOpenDetailModal} />
+      {openBookmark && <ListContent listData={bookmarkData} />}
+      <ListContent listData={mapData} />
     </ListPageWrap>
   );
 };

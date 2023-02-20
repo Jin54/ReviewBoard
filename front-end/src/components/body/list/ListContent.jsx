@@ -6,11 +6,14 @@ import styled from "styled-components";
 import ReviewScope from "./ReviewScope";
 import { setDetailID } from "../../../modules/saveData";
 import { addBookmark, deleteBookmark } from "../../../modules/bookmark";
+import { setOpenDetailModal } from "../../../modules/openBool";
 
 const ListContent = (props) => {
-  const mapData = useSelector((state) => state.saveData.mapData);
   const bookmark = useSelector((state) => state.bookmark);
   const dispatch = useDispatch();
+  const SetOpenDetailModal = useCallback(() => {
+    dispatch(setOpenDetailModal());
+  }, [dispatch]);
   const SetDetailID = useCallback(
     (id) => dispatch(setDetailID(id)),
     [dispatch]
@@ -32,18 +35,18 @@ const ListContent = (props) => {
     setPageNum(pageNum + 10);
   }, [inView]);
 
-  if (mapData == null) return;
+  if (props.listData == null) return;
 
   return (
     <FlexWrap>
-      {mapData.map(
+      {props.listData.map(
         (data, index) =>
           index < pageNum && (
             <ListContentWrap
               key={index}
               onClick={() => {
                 SetDetailID(data.id);
-                props.setOpenDetailModal(true);
+                SetOpenDetailModal();
               }}
             >
               <ImgBox>
@@ -62,7 +65,7 @@ const ListContent = (props) => {
                           ? DeleteBookmark(data.id)
                           : AddBookmark(data.id);
 
-                          e.stopPropagation();
+                        e.stopPropagation();
                       }}
                     />
                   </TopTitle>

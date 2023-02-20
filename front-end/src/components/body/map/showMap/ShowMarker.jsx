@@ -3,26 +3,28 @@ import { useEffect, useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import "../../../../style/map.scss";
-import markerImg from "../../../../img/circle.png";
+import MarkerImg from "../../../../img/circle.png";
 import { setDetailID } from "../../../../modules/saveData";
+import { setOpenDetailModal } from "../../../../modules/openBool";
 
 const { kakao } = window;
 
 const ShowMarker = (props) => {
   const _map = useSelector((state) => state.setMap._map);
-  const mapData = useSelector((state) => state.saveData.mapData);
-  const [markers, setMarkers] = useState([]);
+  const openBookmark = useSelector((state) => state.openBool.bookmark);
+  const bookmarkID = useSelector((state) => state.bookmark);
   const dispatch = useDispatch();
   const SetDetailID = useCallback(
     (id) => dispatch(setDetailID(id)),
     [dispatch]
   );
+  const SetOpenDetailModal = useCallback(() => {
+    dispatch(setOpenDetailModal());
+  }, [dispatch]);
+  const [markers, setMarkers] = useState([]);
 
   useEffect(() => {
-    if (_map === null || mapData == null) return;
-
-    if (mapData != null) {
-    }
+    if (_map === null || props.mapData == null) return;
 
     if (markers !== null) {
       for (var i = 0; i < markers.length; i++) {
@@ -31,28 +33,40 @@ const ShowMarker = (props) => {
       setMarkers([]);
     }
 
-    const showMarkers = mapData.map((data, index) => {
-      // 마커 이미지의 이미지 크기 입니다
-      var imageSize = new kakao.maps.Size(10, 10);
-      // 마커 이미지를 생성합니다
-      var markerImage = new kakao.maps.MarkerImage(markerImg, imageSize);
+    props.mapData.map((data, index) => {
       const coords = new kakao.maps.LatLng(data.lat, data.lon);
-      if (index < 10) {
+      if (props.show == "bookmark" && openBookmark) {
+        var imageSize = new kakao.maps.Size(24, 35);
+        var markerImg = new kakao.maps.MarkerImage(
+          "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png",
+          imageSize
+        );
         var marker = new kakao.maps.Marker({
-          map: _map, // 마커를 표시할 지도
-          position: coords, // 마커를 표시할 위치
+          map: _map,
+          position: coords,
+          image: markerImg,
         });
-      } else {
+        marker.setZIndex(-20);
+      } else if (bookmarkID.includes(data.id) && openBookmark) {
+        return; //북마크에 있는 데이터일 때
+      } else if (index < 10) {
         marker = new kakao.maps.Marker({
-          map: _map, // 마커를 표시할 지도
-          position: coords, // 마커를 표시할 위치
-          image: markerImage, // 마커 이미지
+          map: _map,
+          position: coords,
         });
+        marker.setZIndex(-30);
+      } else {
+        var imageSize = new kakao.maps.Size(10, 10);
+        var markerImage = new kakao.maps.MarkerImage(MarkerImg, imageSize);
+        marker = new kakao.maps.Marker({
+          map: _map,
+          position: coords,
+          image: markerImage,
+        });
+        marker.setZIndex(-30);
       }
 
       setMarkers((markers) => [...markers, marker]);
-
-      marker.setZIndex(-20);
 
       //=============마커의 오버레이(클릭 시 보여지는 css)========================================================
       var content = document.createElement("div");
@@ -96,7 +110,7 @@ const ShowMarker = (props) => {
         "</div>";
       infowrap.onclick = function () {
         SetDetailID(data.id);
-        props.setOpenDetailModal(true);
+        SetOpenDetailModal();
       };
       content.appendChild(infowrap);
 
@@ -117,7 +131,7 @@ const ShowMarker = (props) => {
         overlay.setMap(null);
       });
     });
-  }, [mapData]);
+  }, [props.mapData, openBookmark]);
 };
 
 export default ShowMarker;

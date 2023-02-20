@@ -1,13 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { useState } from "react";
 
 // components import
 import Header from "../components/header/Header";
 import Body from "../components/Body";
 import Footer from "../components/Footer";
-
-//redux
 
 const Index = () => {
   return (

@@ -3,8 +3,8 @@ import axios from "axios";
 export const ModalAPI = async (showURL, id, setDetialData) => {
   const apiurl = process.env.REACT_APP_APIURL;
   const url = `${apiurl}/${showURL}/${id}`;
-
   // console.log("id : " + id);
+
   try {
     const data = await axios({
       method: "get",
