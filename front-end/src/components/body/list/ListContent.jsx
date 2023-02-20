@@ -4,6 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import ReviewScope from "./ReviewScope";
+// import BookmarkImgOFF from '../../../assets/heartOff.png'
+import BookmarkImgOFF from '../../../assets/heartOffFill.png'
+import BookmarkImgON from '../../../assets/heartOn.png'
+
 import { setDetailID } from "../../../modules/saveData";
 import { addBookmark, deleteBookmark } from "../../../modules/bookmark";
 import { setOpenDetailModal } from "../../../modules/openBool";
@@ -57,8 +61,8 @@ const ListContent = (props) => {
                   <TopTitle>
                     <Title>{data.name}</Title>
                     <BookMark
-                      bookmarkColor={
-                        bookmark.includes(data.id) ? "blue" : "red"
+                      starcolor={
+                        bookmark.includes(data.id) ? BookmarkImgON : BookmarkImgOFF
                       }
                       onClick={(e) => {
                         bookmark.includes(data.id)
@@ -142,7 +146,7 @@ const AboutWrap = styled.div`
 `;
 // 매장명 & 주소
 const Top = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   display: flex;
   flex-direction: column;
   align-items: baseline;
@@ -157,6 +161,7 @@ const TopTitle = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  margin-bottom: 4px;
 `;
 const Title = styled.span`
   font-weight: 700;
@@ -173,9 +178,11 @@ const Title = styled.span`
   }
 `;
 const BookMark = styled.div`
-  width: 30px;
-  height: 30px;
-  background-color: ${(props) => props.bookmarkColor};
+  width: 24px;
+  background-image: url(${(props) =>props.starcolor});
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
 `;
 const Address = styled.span`
   font-weight: 400;
