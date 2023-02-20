@@ -1,6 +1,5 @@
 //리스트 모달창
 import styled from "styled-components";
-import { useSelector } from "react-redux";
 
 import ListContent from "./ListContent";
 

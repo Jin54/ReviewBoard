@@ -53,7 +53,13 @@ const Header = () => {
           </HospitalBtn>
         </HedaerLeftWrap>
         <HeaderRightWrap>
-          <Kakaologin>로그인</Kakaologin>
+          <Kakaologin
+            onClick={() => {
+              SetOpenBookmark();
+            }}
+          >
+            로그인
+          </Kakaologin>
           <BookmarkBtn
             selected={openBookmark}
             onClick={() => {
@@ -149,7 +155,8 @@ const HeaderRightBtn = styled.a`
 `;
 const LoginBtn = styled(HeaderRightBtn)``;
 const BookmarkBtn = styled(HeaderRightBtn)`
-  background-color: ${(props) => props.selected && "red"};
+  background-color: ${(props) => props.selected && "#c09567"};
+  color: ${(props) => props.selected && "#fff"};
 `;
 const MobileMenu = styled.div`
   display: none;

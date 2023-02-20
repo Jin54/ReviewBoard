@@ -27,8 +27,7 @@ const ListContent = (props) => {
   if (openBookmark) {
     return (
       <FlexWrap>
-        {openBookmark &&
-          bookmarkData != null &&
+        {bookmarkData != null &&
           bookmarkData.map(
             (data, index) =>
               index < pageNum &&
@@ -36,6 +35,17 @@ const ListContent = (props) => {
                 <ListContentMap data={data} index={index} key={index} />
               )
           )}
+        {/* 북마크를 클릭했을 때 사라지지 않게 하기
+         (북마크 제외한 나머지 mapData) : api 요청이 한 번 들어오기 때문에, bookmarkData 에는 추가된 값이 없다. 
+         bookmarkID 에는 있지만. 
+         그래서 그 중간 애들도 보여줘야 한다.*/}
+        {mapData.map(
+          (data, index) =>
+            index < pageNum &&
+            bookmarkID.includes(data.id) && (
+              <ListContentMap data={data} index={index} key={index} />
+            )
+        )}
         {mapData.map(
           (data, index) =>
             index < pageNum &&
@@ -51,7 +61,9 @@ const ListContent = (props) => {
       <FlexWrap>
         {mapData.map(
           (data, index) =>
-            index < pageNum && <ListContentMap data={data} index={index} />
+            index < pageNum && (
+              <ListContentMap data={data} index={index} key={index} />
+            )
         )}
         <div ref={bottom} style={{ height: "10px", width: "100px" }}></div>
       </FlexWrap>
