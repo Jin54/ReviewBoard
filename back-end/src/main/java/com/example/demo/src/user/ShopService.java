@@ -2,10 +2,9 @@ package com.example.demo.src.user;
 
 
 import com.example.demo.common.exceptions.BaseException;
-import com.example.demo.src.user.entity.Review;
-import com.example.demo.src.user.entity.Review_img;
-import com.example.demo.src.user.entity.Shop;
+import com.example.demo.src.user.entity.*;
 import com.example.demo.src.user.model.*;
+import com.example.demo.util.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -29,6 +28,10 @@ public class ShopService {
 
     private final ShopRepository shopRepository;
     private final ReviewRepository reviewRepository;
+    private final UserRepository userRepository;
+    private final BookMarkRepository bookMarkRepository;
+
+    private final JwtService jwtService;
 
     private final ReviewImgRepository reviewImgRepository;
     //랜덤으로 음식점 출력
@@ -188,5 +191,47 @@ public class ShopService {
         return result;
     }
 
+
+    public List<Long> setShopBookMark(Long shopId) {
+
+        Long jwtUserId = jwtService.getUserId();
+        User user = userRepository.findById(jwtUserId).orElseThrow(() -> new BaseException(NOT_FIND_USER));
+        Shop shop = shopRepository.findById(shopId).orElseThrow(() -> new BaseException(NOT_FIND_SHOP));
+
+        long numOfEntriesDeleted = bookMarkRepository.deleteByUserAndShop(user,shop);
+
+        System.out.println(numOfEntriesDeleted);
+        if(numOfEntriesDeleted == 0 ) {
+            bookMarkRepository.save(new Bookmark(user, shop));
+        }
+
+        List<Bookmark> bookMarkList =  bookMarkRepository.findAllByUserOrderByIdDesc(user);
+        List<Long> result = new ArrayList<>();
+        for (Bookmark bookmark : bookMarkList) {
+            result.add(bookmark.getShop().getId());
+        }
+        return result;
+    }
+
+    public List<GetShopRes> getShopBookMark() {
+
+        Long jwtUserId = jwtService.getUserId();
+        User user = userRepository.findById(jwtUserId).orElseThrow(() -> new BaseException(NOT_FIND_USER));
+
+
+        List<Bookmark> bookMarkList =  bookMarkRepository.findAllByUserOrderByIdDesc(user);
+        List<GetShopRes> result = new ArrayList<>();
+        for (Bookmark bookmark : bookMarkList) {
+
+            Shop shop =bookmark.getShop();
+
+            Long reviewCounter =reviewRepository.countByShop(shop);
+            Double reviewRating =reviewRepository.sumRatingByShop(shop) /  (double)reviewCounter;
+            GetShopRes getShopRes = new GetShopRes(shop,reviewCounter,reviewRating);
+
+            result.add(getShopRes);
+        }
+        return result;
+    }
 
 }

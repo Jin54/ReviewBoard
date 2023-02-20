@@ -24,5 +24,5 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 
 
     @Query("SELECT r from Review r  where r.shop=:shop_id order by r.id asc ,LENGTH(r.content) desc ")
-    Page<Review> findAllByShop(Shop shop,Pageable pageable);
+    Page<Review> findAllByShop(@Param("shop_id")Shop shop,Pageable pageable);
 }

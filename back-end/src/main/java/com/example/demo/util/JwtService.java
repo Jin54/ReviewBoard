@@ -1,4 +1,4 @@
-package com.example.demo.utils;
+package com.example.demo.util;
 
 
 import com.example.demo.common.exceptions.BaseException;
@@ -28,13 +28,13 @@ public class JwtService {
     @param userId
     @return String
      */
-    public String createJwt(Long userId){
+    public String createJwt(Long userId) {
         Date now = new Date();
         return Jwts.builder()
-                .setHeaderParam("type","jwt")
-                .claim("userId",userId)
+                .setHeaderParam("type", "jwt")
+                .claim("userId", userId)
                 .setIssuedAt(now)
-                .setExpiration(new Date(System.currentTimeMillis()+1*(1000*60*60*24*365)))
+                .setExpiration(new Date(System.currentTimeMillis() + 1 * (1000 * 60 * 60 * 24 * 365)))
                 .signWith(SignatureAlgorithm.HS256, JWT_SECRET_KEY)
                 .compact();
     }
@@ -43,9 +43,9 @@ public class JwtService {
     Header에서 X-ACCESS-TOKEN 으로 JWT 추출
     @return String
      */
-    public String getJwt(){
-        HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
-            return request.getHeader("X-ACCESS-TOKEN");
+    public String getJwt() {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        return request.getHeader("X-ACCESS-TOKEN");
     }
 
     /*
@@ -53,17 +53,17 @@ public class JwtService {
     @return Long
     @throws BaseException
      */
-    public Long getUserId() throws BaseException{
+    public Long getUserId() throws BaseException {
         //1. JWT 추출
         String accessToken = getJwt();
         System.out.println(accessToken);
-        if(accessToken == null || accessToken.length() == 0){
+        if (accessToken == null || accessToken.length() == 0) {
             throw new BaseException(EMPTY_JWT);
         }
 
         // 2. JWT parsing
         Jws<Claims> claims;
-        try{
+        try {
             claims = Jwts.parser()
                     .setSigningKey(JWT_SECRET_KEY)
                     .parseClaimsJws(accessToken);
@@ -72,7 +72,7 @@ public class JwtService {
         }
 
         // 3. userIdx 추출
-        return claims.getBody().get("userId",Long.class);
+        return claims.getBody().get("userId", Long.class);
     }
 
 }
