@@ -63,7 +63,7 @@ const DetailModal = (props) => {
   if (detailData == null) return;
 
   return (
-    <RestaurantModalWrap>
+    <RestaurantModalWrap onClick={(e)=> {e.preventDefault();}}>
       <CloseWrap>
         <Close
           onClick={() => {
@@ -116,6 +116,9 @@ const DetailModal = (props) => {
           <ReviewList />
         </ReviewWrap>
       </Box>
+      <BackBlack onClick={() => {
+            SetOpenDetailModal();
+          }} />
     </RestaurantModalWrap>
   );
 };
@@ -310,4 +313,15 @@ const ReviewMore = styled.p`
     font-size: 12px;
     padding: 8px;
   }
+`;
+
+const BackBlack = styled.div`
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -20;
+  background-color: rgba(0, 0, 0, 0);
+  overflow: hidden;
 `;
