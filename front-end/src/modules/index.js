@@ -3,7 +3,7 @@ import saveData from "./saveData";
 import setMap from "./setMap";
 import urlChange from "./urlChange";
 import openBool from "./openBool";
-import bookmark from "./bookmark";
+import bookmarkID from "./bookmarkID";
 import token from "./token";
 
 const rootReducer = combineReducers({
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   urlChange,
   openBool,
   token,
-  bookmark,
+  bookmarkID,
 });
 
 export default rootReducer;

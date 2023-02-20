@@ -12,7 +12,7 @@ const { kakao } = window;
 const ShowMarker = (props) => {
   const _map = useSelector((state) => state.setMap._map);
   const openBookmark = useSelector((state) => state.openBool.bookmark);
-  const bookmarkID = useSelector((state) => state.bookmark);
+  const bookmarkID = useSelector((state) => state.bookmarkID);
   const dispatch = useDispatch();
   const SetDetailID = useCallback(
     (id) => dispatch(setDetailID(id)),
@@ -114,13 +114,12 @@ const ShowMarker = (props) => {
       };
       content.appendChild(infowrap);
 
-      // 마커 위에 커스텀오버레이를 표시합니다
-      // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
       const overlay = new kakao.maps.CustomOverlay({
         clickable: true, //true 로 설정하면 컨텐츠 영역을 클릭했을 경우 지도 이벤트를 막아준다.
         content: content,
         position: marker.getPosition(),
       });
+      overlay.setMap(null);
 
       // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
       kakao.maps.event.addListener(marker, "click", function () {

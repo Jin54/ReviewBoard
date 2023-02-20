@@ -1,5 +1,5 @@
 //상세 지역 선택 모달창
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import dummy from "../../../../db/location.json";
