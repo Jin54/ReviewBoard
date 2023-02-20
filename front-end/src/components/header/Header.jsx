@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { setOpenBookmark } from "../../modules/openBool";
 import { change } from "../../modules/urlChange";
-import { setKakaoToken } from "../../modules/token";
+import { resetBookmarkID } from "../../modules/bookmarkID";
 
 import ImgComponent from "../ImageComponent";
 import Kakaologin from "../login/Kakaologin";
@@ -23,29 +23,13 @@ const Header = () => {
   const SetOpenBookmark = useCallback(() => {
     dispatch(setOpenBookmark());
   }, [dispatch]);
-
-  //토큰
-  const SetKakaoToken = useCallback(
-    (token) => {
-      dispatch(setKakaoToken(token));
-    },
-    [dispatch]
-  );
-  SetKakaoToken(
-    "eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjEsImlhdCI6MTY3NjgzNzg5OSwiZXhwIjoxNjc4MzA5MTI4fQ.kizTLEAMz6xv9SzXICwX2Y02cTUYuyzY304BLiZZnek"
-  );
-
-  //삭제 예정
-  // const bookmarkData = useSelector((state) => state.saveData.bookmarkData);
-  // const bookmarkID = useSelector((state) => state.bookmarkID);
-  // useEffect(() => {
-  //   console.log("확인하기");
-  //   console.log("bookmarkData");
-  //   console.log(bookmarkData);
-  //   console.log("bookmarkID");
-  //   console.log(bookmarkID);
-  //   console.log("확인하기 끝");
-  // }, [bookmarkData, bookmarkID]);
+  const ResetBookmarkID = useCallback(() => {
+    dispatch(resetBookmarkID());
+  }, [dispatch]);
+  //북마크 id 배열 초기화
+  useEffect(() => {
+    ResetBookmarkID();
+  }, [openBookmark]);
 
   return (
     <>

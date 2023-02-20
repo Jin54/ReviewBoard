@@ -18,6 +18,7 @@ const initialState = {
   bookmark: false,
   listModal: false,
   detailModal: false,
+  bookmarkID: false,
 };
 
 function openBool(state = initialState, action) {

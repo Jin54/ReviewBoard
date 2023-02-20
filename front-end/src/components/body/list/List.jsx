@@ -5,14 +5,9 @@ import { useSelector } from "react-redux";
 import ListContent from "./ListContent";
 
 const List = () => {
-  const openBookmark = useSelector((state) => state.openBool.bookmark);
-  const mapData = useSelector((state) => state.saveData.mapData);
-  const bookmarkData = useSelector((state) => state.saveData.bookmarkData);
-
   return (
     <ListPageWrap>
-      {openBookmark && <ListContent listData={bookmarkData} />}
-      <ListContent listData={mapData} />
+      <ListContent />
     </ListPageWrap>
   );
 };

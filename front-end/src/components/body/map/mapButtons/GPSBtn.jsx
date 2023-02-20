@@ -29,7 +29,7 @@ const GPSBtn = (props) => {
     <GPSButton
       top="120"
       onClick={() => {
-        panTo();
+        props.currentBtnOpen ? panTo() : alert("현재 위치를 동의해주세요.");
       }}
     >
       <ImgComponent src={"gps.png"} width={"100%"} />

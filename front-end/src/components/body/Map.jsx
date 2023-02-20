@@ -1,28 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import CurrentMarker from "./map/showMap/CurrentMarker";
-import ShowMarker from "./map/showMap/ShowMarker";
 import SaveMapData from "./map/showMap/SaveMapData";
 import MapEvent from "./map/showMap/MapEvent";
 import MapBtns from "./map/mapButtons/MapBtns";
 import BigLocationModal from "./map/LocationModal/BigLocationModal";
+import ShowMarker from "./map/showMap/ShowMarker";
 
 const Map = () => {
+  const _map = useSelector((state) => state.setMap._map);
   const mapData = useSelector((state) => state.saveData.mapData);
   const bookmarkData = useSelector((state) => state.saveData.bookmarkData);
-  const _map = useSelector((state) => state.setMap._map);
 
   const [modalOepn, setModalOpen] = useState(false);
   const [currentBtnOpen, setCurrentBtnOpen] = useState(false);
   const [xy, setXY] = useState({}); //중심 좌표
   const [size, setSize] = useState(null);
-
-  useEffect(() => {
-    console.log("_map");
-    console.log(_map);
-  }, [_map]);
 
   return (
     <>

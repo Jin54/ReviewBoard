@@ -1,9 +1,20 @@
+// 햄버거 버튼 시 보이는 메뉴 모달
+import { useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import ImgComponent from "./../ImageComponent";
 
+import { setOpenBookmark } from "../../modules/openBool";
+
 const HeaderSlide = (props) => {
-  // 햄버거 버튼 시 보이는 메뉴 모달
+  //즐겨찾기 버튼 관련
+  const openBookmark = useSelector((state) => state.openBool.bookmark);
+  const dispatch = useDispatch();
+  const SetOpenBookmark = useCallback(() => {
+    dispatch(setOpenBookmark());
+  }, [dispatch]);
+
   return (
     <MobileMenuWrap>
       <MobileMenuBox>
@@ -24,8 +35,10 @@ const HeaderSlide = (props) => {
           로그인
         </MFoodBtn>
         <MFoodBtn
+          selected={openBookmark}
           onClick={() => {
             props.setMobileMenu(false);
+            SetOpenBookmark();
           }}
         >
           즐겨찾기

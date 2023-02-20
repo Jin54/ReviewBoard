@@ -1,5 +1,6 @@
-export const ADDBOOKMARKID = "bookmark/ADDBOOKMARKID";
-export const DELETEBOOKMARKID = "bookmark/DELETEBOOKMARKID";
+export const ADDBOOKMARKID = "bookmarkID/ADDBOOKMARKID";
+export const DELETEBOOKMARKID = "bookmarkID/DELETEBOOKMARKID";
+export const RESETBOOKMARKID = "bookmarkID/RESETBOOKMARKID";
 
 export const addBookmarkID = (id) => ({
   type: ADDBOOKMARKID,
@@ -8,6 +9,9 @@ export const addBookmarkID = (id) => ({
 export const deleteBookmarkID = (id) => ({
   type: DELETEBOOKMARKID,
   id: id,
+});
+export const resetBookmarkID = () => ({
+  type: RESETBOOKMARKID,
 });
 
 const initialState = [];
@@ -18,6 +22,8 @@ function bookmarkID(state = initialState, action) {
       if (!state.includes(action.id)) return [...state, action.id];
     case DELETEBOOKMARKID:
       return state.filter((id) => id !== action.id);
+    case RESETBOOKMARKID:
+      return (state = []);
     default:
       return state;
   }

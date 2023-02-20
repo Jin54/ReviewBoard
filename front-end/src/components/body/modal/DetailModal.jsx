@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import ModalAPI from "../../../api/ModalAPI";
+import BookmarkIDAPI from "../../../api/BookmarkIDAPI";
 import { setDetailData } from "../../../modules/saveData";
 import { addBookmarkID, deleteBookmarkID } from "../../../modules/bookmarkID";
 import { setOpenDetailModal } from "../../../modules/openBool";
@@ -15,10 +16,9 @@ import BookmarkImgOFF from "../../../assets/heartOffFill.png";
 import BookmarkImgON from "../../../assets/heartOn.png";
 
 const DetailModal = (props) => {
-  const showURL = useSelector((state) => state.urlChange.name);
+  //모달 api
   const detailID = useSelector((state) => state.saveData.detailID);
   const detailData = useSelector((state) => state.saveData.detailData);
-  const bookmarkID = useSelector((state) => state.bookmarkID);
   const dispatch = useDispatch();
   const SetOpenDetailModal = useCallback(() => {
     dispatch(setOpenDetailModal());
@@ -27,6 +27,11 @@ const DetailModal = (props) => {
     (data) => dispatch(setDetailData(data)),
     [dispatch]
   );
+
+  //북마크
+  const showURL = useSelector((state) => state.urlChange.name);
+  const bookmarkID = useSelector((state) => state.bookmarkID);
+  const kakaoToken = useSelector((state) => state.token.kakao);
   const AddBookmarkID = useCallback(
     (id) => dispatch(addBookmarkID(id)),
     [dispatch]
@@ -99,6 +104,7 @@ const DetailModal = (props) => {
             <Bookmark
               starcolor={bookmarkColor}
               onClick={() => {
+                BookmarkIDAPI(showURL, kakaoToken, detailData.id);
                 bookmarkID.includes(detailID)
                   ? bookmarkTrue(detailID)
                   : bookmarkFalse(detailID);
@@ -110,9 +116,6 @@ const DetailModal = (props) => {
         <ReviewWrap>
           <ReviewTxtWrap>
             <ReviewNum>리뷰 {detailData.review_number}개</ReviewNum>
-            {/* {!(detailData.review_number == 0) && (
-              <ReviewMore>더보기</ReviewMore>
-            )} */}
           </ReviewTxtWrap>
           <ReviewList />
         </ReviewWrap>
@@ -254,9 +257,6 @@ const Info = styled.div`
   }
 `;
 const Bookmark = styled.div`
-  /* width: 30px;
-  height: 30px;
-  background-color: ${(props) => props.bookmarkColor}; */
   cursor: pointer;
   width: 24px;
   background-image: url(${(props) => props.starcolor});

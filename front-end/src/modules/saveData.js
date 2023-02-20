@@ -1,7 +1,7 @@
 const SETMAPDATA = "saveData/SAVEMAPDATA";
-const DETAILID = "saveData/DETAILID";
 const SETDETAILDATDA = "saveData/SETDETAILDATA";
 const SETBOOKMARKDATA = "saveData/SETBOOKMARKDATA";
+const DETAILID = "saveData/DETAILID";
 
 export const setMapData = (mapData) => ({
   type: SETMAPDATA,
@@ -13,14 +13,13 @@ export const setBookmarkData = (bookmarkData) => ({
   bookmarkData: bookmarkData,
 });
 
-export const setDetailID = (detailID) => ({
-  type: DETAILID,
-  detailID: detailID,
-});
-
 export const setDetailData = (detailData) => ({
   type: SETDETAILDATDA,
   detailData: detailData,
+});
+export const setDetailID = (detailID) => ({
+  type: DETAILID,
+  detailID: detailID,
 });
 
 const initialState = {
