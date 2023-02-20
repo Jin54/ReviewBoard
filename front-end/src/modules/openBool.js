@@ -1,9 +1,9 @@
-const SETOPENBOOKMARK = "opetBool/SETOPENBOOKMARK";
+const OPENBOOKMARK = "opetBool/OPENBOOKMARK";
 const OPENLISTMODAL = "opetBool/OPENLISTMODAL";
 const OPENDETAILMODAL = "opetBool/OPENDETAILMODAL";
 
 export const setOpenBookmark = () => ({
-  type: SETOPENBOOKMARK,
+  type: OPENBOOKMARK,
 });
 
 export const setOpenListModal = () => ({
@@ -22,7 +22,7 @@ const initialState = {
 
 function openBool(state = initialState, action) {
   switch (action.type) {
-    case SETOPENBOOKMARK:
+    case OPENBOOKMARK:
       return {
         ...state,
         bookmark: !state.bookmark,

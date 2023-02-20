@@ -5,15 +5,15 @@ import styled from "styled-components";
 
 import ReviewScope from "./ReviewScope";
 // import BookmarkImgOFF from '../../../assets/heartOff.png'
-import BookmarkImgOFF from '../../../assets/heartOffFill.png'
-import BookmarkImgON from '../../../assets/heartOn.png'
+import BookmarkImgOFF from "../../../assets/heartOffFill.png";
+import BookmarkImgON from "../../../assets/heartOn.png";
 
 import { setDetailID } from "../../../modules/saveData";
-import { addBookmark, deleteBookmark } from "../../../modules/bookmark";
+import { addBookmarkID, deleteBookmarkID } from "../../../modules/bookmarkID";
 import { setOpenDetailModal } from "../../../modules/openBool";
 
 const ListContent = (props) => {
-  const bookmark = useSelector((state) => state.bookmark);
+  const bookmarkID = useSelector((state) => state.bookmarkID);
   const dispatch = useDispatch();
   const SetOpenDetailModal = useCallback(() => {
     dispatch(setOpenDetailModal());
@@ -22,12 +22,12 @@ const ListContent = (props) => {
     (id) => dispatch(setDetailID(id)),
     [dispatch]
   );
-  const AddBookmark = useCallback(
-    (id) => dispatch(addBookmark(id)),
+  const AddBookmarkID = useCallback(
+    (id) => dispatch(addBookmarkID(id)),
     [dispatch]
   );
-  const DeleteBookmark = useCallback(
-    (id) => dispatch(deleteBookmark(id)),
+  const DeleteBookmarkID = useCallback(
+    (id) => dispatch(deleteBookmarkID(id)),
     [dispatch]
   );
 
@@ -62,12 +62,14 @@ const ListContent = (props) => {
                     <Title>{data.name}</Title>
                     <BookMark
                       starcolor={
-                        bookmark.includes(data.id) ? BookmarkImgON : BookmarkImgOFF
+                        bookmarkID.includes(data.id)
+                          ? BookmarkImgON
+                          : BookmarkImgOFF
                       }
                       onClick={(e) => {
-                        bookmark.includes(data.id)
-                          ? DeleteBookmark(data.id)
-                          : AddBookmark(data.id);
+                        bookmarkID.includes(data.id)
+                          ? DeleteBookmarkID(data.id)
+                          : AddBookmarkID(data.id);
 
                         e.stopPropagation();
                       }}
@@ -179,7 +181,7 @@ const Title = styled.span`
 `;
 const BookMark = styled.div`
   width: 24px;
-  background-image: url(${(props) =>props.starcolor});
+  background-image: url(${(props) => props.starcolor});
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;

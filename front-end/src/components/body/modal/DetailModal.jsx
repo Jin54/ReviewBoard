@@ -4,21 +4,21 @@ import styled from "styled-components";
 
 import ModalAPI from "../../../api/ModalAPI";
 import { setDetailData } from "../../../modules/saveData";
-import { addBookmark, deleteBookmark } from "../../../modules/bookmark";
+import { addBookmarkID, deleteBookmarkID } from "../../../modules/bookmarkID";
 import { setOpenDetailModal } from "../../../modules/openBool";
 
 import ImgComponent from "../../ImageComponent";
 import ReviewScope from "../list/ReviewScope";
 import DetailInfo from "./detialModal/DetailInfo";
 import ReviewList from "./detialModal/ReviewList";
-import BookmarkImgOFF from '../../../assets/heartOffFill.png'
-import BookmarkImgON from '../../../assets/heartOn.png'
+import BookmarkImgOFF from "../../../assets/heartOffFill.png";
+import BookmarkImgON from "../../../assets/heartOn.png";
 
 const DetailModal = (props) => {
   const showURL = useSelector((state) => state.urlChange.name);
   const detailID = useSelector((state) => state.saveData.detailID);
   const detailData = useSelector((state) => state.saveData.detailData);
-  const bookmark = useSelector((state) => state.bookmark);
+  const bookmarkID = useSelector((state) => state.bookmarkID);
   const dispatch = useDispatch();
   const SetOpenDetailModal = useCallback(() => {
     dispatch(setOpenDetailModal());
@@ -27,12 +27,12 @@ const DetailModal = (props) => {
     (data) => dispatch(setDetailData(data)),
     [dispatch]
   );
-  const AddBookmark = useCallback(
-    (id) => dispatch(addBookmark(id)),
+  const AddBookmarkID = useCallback(
+    (id) => dispatch(addBookmarkID(id)),
     [dispatch]
   );
-  const DeleteBookmark = useCallback(
-    (id) => dispatch(deleteBookmark(id)),
+  const DeleteBookmarkID = useCallback(
+    (id) => dispatch(deleteBookmarkID(id)),
     [dispatch]
   );
   const [bookmarkColor, setBookmarkColor] = useState(BookmarkImgON); //북마크 색상
@@ -41,7 +41,7 @@ const DetailModal = (props) => {
   useEffect(() => {
     if (detailID == null) return;
 
-    bookmark.includes(detailID)
+    bookmarkID.includes(detailID)
       ? setBookmarkColor(BookmarkImgON)
       : setBookmarkColor(BookmarkImgOFF);
 
@@ -52,11 +52,11 @@ const DetailModal = (props) => {
 
   //북마크
   function bookmarkTrue(id) {
-    DeleteBookmark(id);
+    DeleteBookmarkID(id);
     setBookmarkColor(BookmarkImgOFF);
   }
   function bookmarkFalse(id) {
-    AddBookmark(id);
+    AddBookmarkID(id);
     setBookmarkColor(BookmarkImgON);
   }
 
@@ -88,17 +88,18 @@ const DetailModal = (props) => {
           </About>
           <InfoWrap>
             <Info>
-              <DetailInfo img={"time.png"} txt={detailData.time} arrow={detailData.time} />
+              <DetailInfo
+                img={"time.png"}
+                txt={detailData.time}
+                arrow={detailData.time}
+              />
               <DetailInfo img={"sort.png"} txt={detailData.sort} />
               <DetailInfo img={"phone.png"} txt={detailData.number} />
             </Info>
             <Bookmark
               starcolor={bookmarkColor}
-              // starcolor={
-              //   bookmark.includes(data.id) ? BookmarkImgON : BookmarkImgOFF
-              // }
               onClick={() => {
-                bookmark.includes(detailID)
+                bookmarkID.includes(detailID)
                   ? bookmarkTrue(detailID)
                   : bookmarkFalse(detailID);
               }}
@@ -116,9 +117,11 @@ const DetailModal = (props) => {
           <ReviewList />
         </ReviewWrap>
       </Box>
-      <BackBlack onClick={() => {
-            SetOpenDetailModal();
-          }} />
+      <BackBlack
+        onClick={() => {
+          SetOpenDetailModal();
+        }}
+      />
     </RestaurantModalWrap>
   );
 };
@@ -256,7 +259,7 @@ const Bookmark = styled.div`
   background-color: ${(props) => props.bookmarkColor}; */
   cursor: pointer;
   width: 24px;
-  background-image: url(${(props) =>props.starcolor});
+  background-image: url(${(props) => props.starcolor});
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;

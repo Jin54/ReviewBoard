@@ -7,15 +7,14 @@ import styled from "styled-components";
 import ReviewAPI from "../../../../api/ReviewAPI";
 
 import ReviewScope from "../../list/ReviewScope";
-import ReviewDetailModal from "./ReviewDetailModal";
 
 const ReviewList = () => {
   const [pageNum, setPageNum] = useState(0);
   const [reviewData, setReviewData] = useState(null);
   const showURL = useSelector((state) => state.urlChange.name);
   const detailID = useSelector((state) => state.saveData.detailID);
-  const [overflow, setOverflow] = useState('hidden')
-  const [whiteSpace, setWhiteSpace] = useState('nowrap')
+  const [overflow, setOverflow] = useState("hidden");
+  const [whiteSpace, setWhiteSpace] = useState("nowrap");
   const [type, setType] = useState([]);
 
   //무한 스크롤
@@ -33,8 +32,6 @@ const ReviewList = () => {
     });
   }, [pageNum]);
 
-  console.log(reviewData)
-  
   if (reviewData == null) {
     return (
       <>
@@ -45,8 +42,6 @@ const ReviewList = () => {
   }
 
   // 리뷰 글 전체 보여주기
-
-
 
   const putType = (text) => {
     const newArray = type.filter(function (txtdata) {
@@ -64,7 +59,6 @@ const ReviewList = () => {
         (review, index) =>
           index < pageNum && (
             <ReviewBox key={review.id} onClick={() => putType(review.id)}>
-              {/* <ReviewDetailModal rate={review.rating} /> */}
               <Top>
                 <Feeling scope={review.rating} />
                 <Date>{review.createAT}</Date>
@@ -75,7 +69,12 @@ const ReviewList = () => {
                   <ReviewScope scope={review.rating} />
                 )}
               </Middle>
-              <Bottom overflow={!type.includes(review.id) && overflow} whiteSpace={!type.includes(review.id) && whiteSpace}>{review.content}</Bottom>
+              <Bottom
+                overflow={!type.includes(review.id) && overflow}
+                whiteSpace={!type.includes(review.id) && whiteSpace}
+              >
+                {review.content}
+              </Bottom>
             </ReviewBox>
           )
       )}
