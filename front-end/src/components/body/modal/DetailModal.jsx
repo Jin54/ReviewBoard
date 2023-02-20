@@ -11,6 +11,8 @@ import ImgComponent from "../../ImageComponent";
 import ReviewScope from "../list/ReviewScope";
 import DetailInfo from "./detialModal/DetailInfo";
 import ReviewList from "./detialModal/ReviewList";
+import BookmarkImgOFF from '../../../assets/heartOffFill.png'
+import BookmarkImgON from '../../../assets/heartOn.png'
 
 const DetailModal = (props) => {
   const showURL = useSelector((state) => state.urlChange.name);
@@ -33,15 +35,15 @@ const DetailModal = (props) => {
     (id) => dispatch(deleteBookmark(id)),
     [dispatch]
   );
-  const [bookmarkColor, setBookmarkColor] = useState("red"); //북마크 색상
+  const [bookmarkColor, setBookmarkColor] = useState(BookmarkImgON); //북마크 색상
 
   //가게 상세 API
   useEffect(() => {
     if (detailID == null) return;
 
     bookmark.includes(detailID)
-      ? setBookmarkColor("blue")
-      : setBookmarkColor("red");
+      ? setBookmarkColor(BookmarkImgON)
+      : setBookmarkColor(BookmarkImgOFF);
 
     ModalAPI(showURL, detailID, (data) => {
       SetDetailData(data);
@@ -51,11 +53,11 @@ const DetailModal = (props) => {
   //북마크
   function bookmarkTrue(id) {
     DeleteBookmark(id);
-    setBookmarkColor("red");
+    setBookmarkColor(BookmarkImgOFF);
   }
   function bookmarkFalse(id) {
     AddBookmark(id);
-    setBookmarkColor("blue");
+    setBookmarkColor(BookmarkImgON);
   }
 
   if (detailData == null) return;
@@ -86,12 +88,15 @@ const DetailModal = (props) => {
           </About>
           <InfoWrap>
             <Info>
-              <DetailInfo img={"time.png"} txt={detailData.time} />
+              <DetailInfo img={"time.png"} txt={detailData.time} arrow={detailData.time} />
               <DetailInfo img={"sort.png"} txt={detailData.sort} />
               <DetailInfo img={"phone.png"} txt={detailData.number} />
             </Info>
             <Bookmark
-              bookmarkColor={bookmarkColor}
+              starcolor={bookmarkColor}
+              // starcolor={
+              //   bookmark.includes(data.id) ? BookmarkImgON : BookmarkImgOFF
+              // }
               onClick={() => {
                 bookmark.includes(detailID)
                   ? bookmarkTrue(detailID)
@@ -104,9 +109,9 @@ const DetailModal = (props) => {
         <ReviewWrap>
           <ReviewTxtWrap>
             <ReviewNum>리뷰 {detailData.review_number}개</ReviewNum>
-            {!(detailData.review_number == 0) && (
+            {/* {!(detailData.review_number == 0) && (
               <ReviewMore>더보기</ReviewMore>
-            )}
+            )} */}
           </ReviewTxtWrap>
           <ReviewList />
         </ReviewWrap>
@@ -243,10 +248,15 @@ const Info = styled.div`
   }
 `;
 const Bookmark = styled.div`
-  width: 30px;
+  /* width: 30px;
   height: 30px;
-  background-color: ${(props) => props.bookmarkColor};
+  background-color: ${(props) => props.bookmarkColor}; */
   cursor: pointer;
+  width: 24px;
+  background-image: url(${(props) =>props.starcolor});
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
 `;
 // ============
 const Divider = styled.div`

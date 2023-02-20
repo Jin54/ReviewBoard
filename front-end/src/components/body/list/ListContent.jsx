@@ -183,6 +183,7 @@ const BookMark = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
+  cursor: pointer;
 `;
 const Address = styled.span`
   font-weight: 400;
