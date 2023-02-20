@@ -5,6 +5,7 @@ import styled from "styled-components";
 import ReviewScope from "./ReviewScope";
 import BookmarkImgOFF from "../../../assets/heartOffFill.png";
 import BookmarkImgON from "../../../assets/heartOn.png";
+import ImgComponent from "../../ImageComponent";
 
 import BookmarkIDAPI from "../../../api/BookmarkIDAPI";
 import { setDetailID } from "../../../modules/saveData";
@@ -42,8 +43,13 @@ const ListContentMap = (props) => {
         SetOpenDetailModal();
       }}
     >
+      {console.log(props.data)}
       <ImgBox>
-        <ImgWrap imgUrl={props.data.thumbnail}></ImgWrap>
+        {props.data.thumbnail ? (
+          <ImgWrap imgUrl={props.data.thumbnail}></ImgWrap>
+        ) : (
+          <ImgComponent src={"noImage.jpg"} width={"90%"} />
+        )}
       </ImgBox>
       <AboutWrap>
         <Top>

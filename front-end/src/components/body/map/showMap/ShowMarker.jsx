@@ -94,7 +94,9 @@ const ShowMarker = (props) => {
       infowrap.innerHTML =
         '<div class="imgwrap">' +
         "<img src='" +
-        data.thumbnail +
+        (data.thumbnail != null
+          ? data.thumbnail
+          : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg") +
         "'><img>" +
         "</div>" +
         '<div class="info">' +

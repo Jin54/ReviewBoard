@@ -81,7 +81,11 @@ const DetailModal = (props) => {
       <Box>
         <div key={detailData.id}>
           <MainImg>
-            <Thumbnail src={detailData.thumbnail} width={"100%"} />
+            {detailData.thumbnail ? (
+              <Thumbnail src={detailData.thumbnail} width={"100%"} />
+            ) : (
+              <ImgComponent src={"noImage.jpg"} width={"80%"} />
+            )}
           </MainImg>
           <About>
             <Title>{detailData.name}</Title>
