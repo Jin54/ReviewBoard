@@ -6,6 +6,7 @@ import { setOpenBookmark } from "../../modules/openBool";
 import { change } from "../../modules/urlChange";
 
 import ImgComponent from "../ImageComponent";
+import Kakaologin from "../login/Kakaologin";
 import HeaderSlide from "./HearderSlide";
 import OnClickBookmark from "./OnClickBookmark";
 
@@ -44,7 +45,7 @@ const Header = () => {
           </HospitalBtn>
         </HedaerLeftWrap>
         <HeaderRightWrap>
-          <HeaderRightBtn>로그인</HeaderRightBtn>
+          <Kakaologin>로그인</Kakaologin>
           <BookmarkBtn
             selected={openBookmark}
             onClick={() => {
