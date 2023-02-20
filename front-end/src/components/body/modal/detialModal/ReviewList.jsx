@@ -14,6 +14,8 @@ const ReviewList = () => {
   const [reviewData, setReviewData] = useState(null);
   const showURL = useSelector((state) => state.urlChange.name);
   const detailID = useSelector((state) => state.saveData.detailID);
+  const [overflow, setOverflow] = useState('hidden')
+  const [whiteSpace, setWhiteSpace] = useState('nowrap')
 
   //무한 스크롤
   const [bottom, inView] = useInView();
@@ -29,6 +31,8 @@ const ReviewList = () => {
       setReviewData(data);
     });
   }, [pageNum]);
+  
+  console.log(reviewData)
 
   if (reviewData == null) {
     return (
@@ -39,12 +43,23 @@ const ReviewList = () => {
     );
   }
 
+  // 리뷰 글 전체 보여주기
+  const showAllReview = () => {
+    if(overflow == 'hidden'){
+      setOverflow('visible')
+      setWhiteSpace('wrap')
+    }else{
+      setOverflow('hidden')
+      setWhiteSpace('nowrap')
+    }
+  }
+
   return (
     <ReviewFlexWrap>
       {reviewData.map(
         (review, index) =>
           index < pageNum && (
-            <ReviewBox key={review.id}>
+            <ReviewBox key={review.id} onClick={showAllReview}>
               {/* <ReviewDetailModal rate={review.rating} /> */}
               <Top>
                 <Feeling scope={review.rating} />
@@ -56,7 +71,7 @@ const ReviewList = () => {
                   <ReviewScope scope={review.rating} />
                 )}
               </Middle>
-              <Bottom>{review.content}</Bottom>
+              <Bottom overflow={overflow} whiteSpace={whiteSpace}>{review.content}</Bottom>
             </ReviewBox>
           )
       )}
@@ -140,6 +155,12 @@ const Bottom = styled.p`
   font-size: 14px;
   color: #999999;
   margin: 0;
+  width: 100%;
+  text-overflow: ellipsis;
+  /* white-space: nowrap; */
+  white-space: ${(props) => props.whiteSpace};
+  /* overflow: hidden; */
+  overflow: ${(props) => props.overflow};
   @media screen and (max-width: 1000px) {
     margin: 0;
     font-size: 11px;

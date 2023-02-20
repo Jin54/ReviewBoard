@@ -63,7 +63,7 @@ const DetailModal = (props) => {
   if (detailData == null) return;
 
   return (
-    <RestaurantModalWrap onClick={(e)=> {e.preventDefault();}}>
+    <RestaurantModalWrap>
       <CloseWrap>
         <Close
           onClick={() => {
