@@ -17,7 +17,7 @@ export const ReviewAPI = async (showURL, id, pageNum, setReviewData) => {
     // console.log("ReviewAPI");
     setReviewData(data.data.result);
   } catch (err) {
-    alert(err);
+    alert("해당 가게의 리뷰 정보를 가져오지 못했습니다.");
   }
 };
 

@@ -3,18 +3,28 @@ import { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
+import { changeURL } from "../../modules/urlChange";
+import { setOpenMobileMenu } from "../../modules/openBool";
+
 import ImgComponent from "./../ImageComponent";
-
-import { setOpenBookmark } from "../../modules/openBool";
 import Footer from "../Footer";
+import LoginBtn from "./login/LoginBtn";
+import BookmarkBtn from "./login/BookmarkBtn";
 
-const HeaderSlide = (props) => {
-  //즐겨찾기 버튼 관련
-  const openBookmark = useSelector((state) => state.openBool.bookmark);
+const HeaderSlide = () => {
+  //모바일 메뉴 닫기
   const dispatch = useDispatch();
-  const SetOpenBookmark = useCallback(() => {
-    dispatch(setOpenBookmark());
-  }, [dispatch]);
+  const SetOpenMobileMenu = useCallback(
+    (bool) => dispatch(setOpenMobileMenu(bool)),
+    [dispatch]
+  );
+
+  //클릭 시 맛집, 병원 API 변경
+  const showURL = useSelector((state) => state.urlChange.name);
+  const onClickURL = useCallback(
+    (name) => dispatch(changeURL(name)),
+    [dispatch]
+  );
 
   return (
     <MobileMenuWrap>
@@ -23,40 +33,28 @@ const HeaderSlide = (props) => {
           <CloseWrap>
             <Close
               onClick={() => {
-                props.setMobileMenu(false);
+                SetOpenMobileMenu(false);
               }}
             >
               <ImgComponent src={"close.png"} width={"100%"} />
             </Close>
           </CloseWrap>
-          <MHospitalBtn
-            onClick={() => {
-              props.setMobileMenu(false);
-            }}
-          >
-            로그인
-          </MHospitalBtn>
-          <MHospitalBtn
-            selected={openBookmark}
-            onClick={() => {
-              props.setMobileMenu(false);
-              SetOpenBookmark(true);
-            }}
-          >
-            즐겨찾기
-          </MHospitalBtn>
+          <LoginBtn />
+          <BookmarkBtn />
           <MFoodBtn
+            selected={showURL == "shop" && true}
             onClick={() => {
-              props.BackBlackonClickURL("shop");
-              props.setMobileMenu(false);
+              onClickURL("shop");
+              SetOpenMobileMenu(false);
             }}
           >
             맛집
           </MFoodBtn>
           <MHospitalBtn
+            selected={showURL == "hospital" && true}
             onClick={() => {
-              props.onClickURL("hospital");
-              props.setMobileMenu(false);
+              onClickURL("hospital");
+              SetOpenMobileMenu(false);
             }}
           >
             병원
@@ -64,7 +62,7 @@ const HeaderSlide = (props) => {
           <MQuestionBtn
             href="mailto:sales@lfin.kr"
             onClick={() => {
-              props.setMobileMenu(false);
+              SetOpenMobileMenu(false);
             }}
           >
             문의
@@ -74,7 +72,7 @@ const HeaderSlide = (props) => {
       </MobileMenuBox>
       <BackBlack
         onClick={() => {
-          props.setMobileMenu(false);
+          SetOpenMobileMenu(false);
         }}
       ></BackBlack>
     </MobileMenuWrap>
@@ -135,35 +133,29 @@ const Close = styled.div`
     padding-right: 0;
   }
 `;
-const MFoodBtn = styled.p`
-  padding-top: 30px;
-  padding-bottom: 30px;
+const MBtn = styled.p`
   color: #000;
   font-weight: 400;
   font-size: 20x;
   margin: 0;
-  border-top: 0.5px solid #c09567;
   cursor: pointer;
 `;
-const MHospitalBtn = styled.p`
+const MFoodBtn = styled(MBtn)`
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-top: 0.5px solid #c09567;
+  font-weight: ${(props) => (props.selected ? "700" : "400")};
+`;
+const MHospitalBtn = styled(MBtn)`
   padding-top: 15px;
   padding-bottom: 30px;
-  color: #000;
-  font-weight: 400;
-  font-size: 20x;
-  margin: 0;
-  cursor: pointer;
+  font-weight: ${(props) => (props.selected ? "700" : "400")};
 `;
-const MQuestionBtn = styled.a`
+const MQuestionBtn = styled(MBtn)`
   padding-top: 30px;
-  color: #000;
-  font-weight: 400;
-  font-size: 20x;
-  margin: 0;
   border-top: 0.5px solid #c09567;
   text-decoration: none;
   display: block;
-  cursor: pointer;
 `;
 const BackBlack = styled.div`
   position: fixed;

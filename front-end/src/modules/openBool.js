@@ -2,11 +2,13 @@ const OPENLOGIN = "openBool/OPENLOGIN";
 const OPENBOOKMARK = "openBool/OPENBOOKMARK";
 const OPENLISTMODAL = "opennBool/OPENLISTMODAL";
 const OPENDETAILMODAL = "openBool/OPENDETAILMODAL";
+const OPENMOBILEMENU = "openBool/OPENMOBILEMENU";
 
 export const setOpenLogin = (bool) => ({
   type: OPENLOGIN,
   bool: bool,
 });
+
 export const setOpenBookmark = (bool) => ({
   type: OPENBOOKMARK,
   bool: bool,
@@ -20,11 +22,17 @@ export const setOpenDetailModal = () => ({
   type: OPENDETAILMODAL,
 });
 
+export const setOpenMobileMenu = (bool) => ({
+  type: OPENMOBILEMENU,
+  bool: bool,
+});
+
 const initialState = {
   login: false,
   bookmark: false,
   listModal: false,
   detailModal: false,
+  mobileMenu: false,
 };
 
 function openBool(state = initialState, action) {
@@ -48,6 +56,11 @@ function openBool(state = initialState, action) {
       return {
         ...state,
         detailModal: !state.detailModal,
+      };
+    case OPENMOBILEMENU:
+      return {
+        ...state,
+        mobileMenu: action.bool,
       };
     default:
       return state;

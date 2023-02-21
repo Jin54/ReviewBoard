@@ -1,7 +1,7 @@
-const CHANGE = "urlChange/CHANGE";
+const CHANGEURL = "urlChange/CHANGEURL";
 
-export const change = (name) => ({
-  type: CHANGE,
+export const changeURL = (name) => ({
+  type: CHANGEURL,
   name: name,
 });
 
@@ -11,7 +11,7 @@ const initialState = {
 
 function urlShow(state = initialState, action) {
   switch (action.type) {
-    case CHANGE:
+    case CHANGEURL:
       return {
         ...state,
         name: action.name,

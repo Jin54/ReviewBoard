@@ -23,7 +23,7 @@ const BookmarkIDAPI = async (showURL, token, shopid, ResetBookmarkID) => {
     // console.log(data.data.result);
     ResetBookmarkID(data.data.result);
   } catch (err) {
-    alert(err);
+    alert("즐겨찾기에 실패하였습니다.");
   }
 };
 

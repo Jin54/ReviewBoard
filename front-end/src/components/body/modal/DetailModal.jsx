@@ -47,7 +47,8 @@ const DetailModal = () => {
     });
   }, []);
 
-  //북마크
+  var bookmarkList = bookmarkID[0];
+  if (bookmarkID[0] == null) bookmarkList = [0];
 
   if (detailData == null || detailID == null) return;
 
@@ -92,7 +93,7 @@ const DetailModal = () => {
             </Info>
             <Bookmark
               starcolor={
-                bookmarkID != null && bookmarkID[0].includes(detailData.id)
+                bookmarkList.includes(detailData.id)
                   ? BookmarkImgON
                   : BookmarkImgOFF
               }

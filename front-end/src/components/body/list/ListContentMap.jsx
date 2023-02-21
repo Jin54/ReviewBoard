@@ -32,9 +32,8 @@ const ListContentMap = (props) => {
   const kakaoToken = useSelector((state) => state.token.kakao);
   const openLogin = useSelector((state) => state.openBool.login);
 
-  if (bookmarkID[0] == null) {
-    ResetBookmarkID([0]);
-  }
+  var bookmarkList = bookmarkID[0];
+  if (bookmarkID[0] == null) bookmarkList = [0];
 
   return (
     <ListContentWrap
@@ -56,7 +55,7 @@ const ListContentMap = (props) => {
             <Title>{props.data.name}</Title>
             <BookMark
               starcolor={
-                bookmarkID[0].includes(props.data.id)
+                bookmarkList.includes(props.data.id)
                   ? BookmarkImgON
                   : BookmarkImgOFF
               }

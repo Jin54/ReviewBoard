@@ -25,10 +25,17 @@ export const MapDataAPI = async (
       method: "get",
       url: url,
     });
-    // console.log(data.data.result);
     SetMapData(data.data.result);
+
+    // if (data.data.code == 200) {
+    //   SetMapData(data.data.result);
+    // } else if (data.data.code == 404) {
+    //   console.log(data.data);
+    // } else {
+    //   alert("데이터 요청에 실패하였습니다.");
+    // }
   } catch (err) {
-    alert(err);
+    alert("데이터 요청에 실패하였습니다.");
   }
 };
 

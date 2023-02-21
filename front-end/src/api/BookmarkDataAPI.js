@@ -28,7 +28,7 @@ const BookmarkDataAPI = async (
     });
     ResetBookmarkID(idList);
   } catch (err) {
-    alert(err);
+    alert("즐겨찾기에 대한 정보가 존재하지 않습니다.");
   }
 };
 

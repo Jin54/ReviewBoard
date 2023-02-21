@@ -13,7 +13,7 @@ export const ModalAPI = async (showURL, id, setDetialData) => {
     // console.log(data.data);
     setDetialData(data.data.result);
   } catch (err) {
-    alert(err);
+    alert("해당 매장 정보가 존재하지 않습니다.");
   }
 };
 
