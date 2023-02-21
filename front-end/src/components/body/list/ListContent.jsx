@@ -24,6 +24,8 @@ const ListContent = (props) => {
     return <FlexWrap>목록 없음</FlexWrap>;
   }
 
+  console.log(mapData)
+
   if (openBookmark) {
     return (
       <FlexWrap>

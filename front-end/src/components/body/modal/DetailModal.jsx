@@ -101,6 +101,7 @@ const DetailModal = (props) => {
                 img={"time.png"}
                 txt={detailData.time}
                 arrow={detailData.time}
+                time = {detailData.time}
               />
               <DetailInfo img={"sort.png"} txt={detailData.sort} />
               <DetailInfo img={"phone.png"} txt={detailData.number} />
