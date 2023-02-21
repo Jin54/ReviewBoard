@@ -22,6 +22,7 @@ const BookmarkDataAPI = async (
     // console.log(data.data.result);
     SetBookmarkData(data.data.result);
     data.data.result.map((data) => {
+      console.log(data.id);
       AddBookmarkID(data.id);
     });
   } catch (err) {

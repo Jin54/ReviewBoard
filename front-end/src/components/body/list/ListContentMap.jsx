@@ -10,7 +10,7 @@ import ImgComponent from "../../ImageComponent";
 import BookmarkIDAPI from "../../../api/BookmarkIDAPI";
 import { setDetailID } from "../../../modules/saveData";
 import { setOpenDetailModal } from "../../../modules/openBool";
-import { addBookmarkID, deleteBookmarkID } from "../../../modules/bookmarkID";
+import { resetBookmarkID } from "../../../modules/bookmarkID";
 
 const ListContentMap = (props) => {
   const dispatch = useDispatch();
@@ -21,19 +21,15 @@ const ListContentMap = (props) => {
     (id) => dispatch(setDetailID(id)),
     [dispatch]
   );
+  const ResetBookmarkID = useCallback(
+    (idList) => dispatch(resetBookmarkID(idList)),
+    [dispatch]
+  );
 
   //북마크
   const bookmarkID = useSelector((state) => state.bookmarkID);
   const showURL = useSelector((state) => state.urlChange.name);
   const kakaoToken = useSelector((state) => state.token.kakao);
-  const AddBookmarkID = useCallback(
-    (id) => dispatch(addBookmarkID(id)),
-    [dispatch]
-  );
-  const DeleteBookmarkID = useCallback(
-    (id) => dispatch(deleteBookmarkID(id)),
-    [dispatch]
-  );
 
   return (
     <ListContentWrap
@@ -62,10 +58,9 @@ const ListContentMap = (props) => {
                   : BookmarkImgOFF
               }
               onClick={(e) => {
-                BookmarkIDAPI(showURL, kakaoToken, props.data.id);
-                bookmarkID.includes(props.data.id)
-                  ? DeleteBookmarkID(props.data.id)
-                  : AddBookmarkID(props.data.id);
+                BookmarkIDAPI(showURL, kakaoToken, props.data.id, (data) =>
+                  ResetBookmarkID(data)
+                );
                 e.stopPropagation();
               }}
             />

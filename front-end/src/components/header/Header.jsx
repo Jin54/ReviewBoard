@@ -28,15 +28,28 @@ const Header = () => {
   }, [dispatch]);
   //북마크 id 배열 초기화
   useEffect(() => {
-    ResetBookmarkID();
+    ResetBookmarkID(null);
   }, [openBookmark]);
+
+  //삭제 예정
+  const bookmarkID = useSelector((state) => state.bookmarkID);
+
+  useEffect(() => {
+    console.log(bookmarkID);
+  }, [bookmarkID]);
 
   return (
     <>
       {openBookmark && <OnClickBookmark />}
       <HeaderWrap>
         <HedaerLeftWrap>
-          <ImgComponent src={"logo.png"} height={'100%'} />
+          <ImgComponent
+            src={"logo.png"}
+            height={"100%"}
+            onClick={() => {
+              window.location.replace("/");
+            }}
+          />
           <FoodBtn
             onClick={() => {
               onClickURL("shop");

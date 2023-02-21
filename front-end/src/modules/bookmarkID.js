@@ -1,17 +1,13 @@
 export const ADDBOOKMARKID = "bookmarkID/ADDBOOKMARKID";
-export const DELETEBOOKMARKID = "bookmarkID/DELETEBOOKMARKID";
 export const RESETBOOKMARKID = "bookmarkID/RESETBOOKMARKID";
 
 export const addBookmarkID = (id) => ({
   type: ADDBOOKMARKID,
   id: id,
 });
-export const deleteBookmarkID = (id) => ({
-  type: DELETEBOOKMARKID,
-  id: id,
-});
-export const resetBookmarkID = () => ({
+export const resetBookmarkID = (idList) => ({
   type: RESETBOOKMARKID,
+  idList: idList,
 });
 
 const initialState = [];
@@ -20,10 +16,9 @@ function bookmarkID(state = initialState, action) {
   switch (action.type) {
     case ADDBOOKMARKID:
       if (!state.includes(action.id)) return [...state, action.id];
-    case DELETEBOOKMARKID:
-      return state.filter((id) => id !== action.id);
+      return state;
     case RESETBOOKMARKID:
-      return (state = []);
+      return [action.idList];
     default:
       return state;
   }

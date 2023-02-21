@@ -5,7 +5,7 @@ import styled from "styled-components";
 import ModalAPI from "../../../api/ModalAPI";
 import BookmarkIDAPI from "../../../api/BookmarkIDAPI";
 import { setDetailData } from "../../../modules/saveData";
-import { addBookmarkID, deleteBookmarkID } from "../../../modules/bookmarkID";
+import { resetBookmarkID } from "../../../modules/bookmarkID";
 import { setOpenDetailModal } from "../../../modules/openBool";
 
 import ImgComponent from "../../ImageComponent";
@@ -32,23 +32,14 @@ const DetailModal = (props) => {
   const showURL = useSelector((state) => state.urlChange.name);
   const bookmarkID = useSelector((state) => state.bookmarkID);
   const kakaoToken = useSelector((state) => state.token.kakao);
-  const AddBookmarkID = useCallback(
-    (id) => dispatch(addBookmarkID(id)),
+  const ResetBookmarkID = useCallback(
+    (data) => dispatch(resetBookmarkID(data)),
     [dispatch]
   );
-  const DeleteBookmarkID = useCallback(
-    (id) => dispatch(deleteBookmarkID(id)),
-    [dispatch]
-  );
-  const [bookmarkColor, setBookmarkColor] = useState(BookmarkImgON); //북마크 색상
 
   //가게 상세 API
   useEffect(() => {
     if (detailID == null) return;
-
-    bookmarkID.includes(detailID)
-      ? setBookmarkColor(BookmarkImgON)
-      : setBookmarkColor(BookmarkImgOFF);
 
     ModalAPI(showURL, detailID, (data) => {
       SetDetailData(data);
@@ -56,14 +47,6 @@ const DetailModal = (props) => {
   }, []);
 
   //북마크
-  function bookmarkTrue(id) {
-    DeleteBookmarkID(id);
-    setBookmarkColor(BookmarkImgOFF);
-  }
-  function bookmarkFalse(id) {
-    AddBookmarkID(id);
-    setBookmarkColor(BookmarkImgON);
-  }
 
   if (detailData == null) return;
 
@@ -101,18 +84,21 @@ const DetailModal = (props) => {
                 img={"time.png"}
                 txt={detailData.time}
                 arrow={detailData.time}
-                time = {detailData.time}
+                time={detailData.time}
               />
               <DetailInfo img={"sort.png"} txt={detailData.sort} />
               <DetailInfo img={"phone.png"} txt={detailData.number} />
             </Info>
             <Bookmark
-              starcolor={bookmarkColor}
+              starcolor={
+                bookmarkID.includes(props.data.id)
+                  ? BookmarkImgON
+                  : BookmarkImgOFF
+              }
               onClick={() => {
-                BookmarkIDAPI(showURL, kakaoToken, detailData.id);
-                bookmarkID.includes(detailID)
-                  ? bookmarkTrue(detailID)
-                  : bookmarkFalse(detailID);
+                BookmarkIDAPI(showURL, kakaoToken, detailData.id, (data) =>
+                  ResetBookmarkID(data)
+                );
               }}
             />
           </InfoWrap>
