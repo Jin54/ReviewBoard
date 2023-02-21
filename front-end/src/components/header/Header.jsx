@@ -86,23 +86,24 @@ const Header = () => {
         <HeaderRightWrap>
           {/* 임시로 만듦. api 요청 때메 -> Kakaoologin에 넣을 예정 */}
           {!openLogin ? (
-            <div
+            <button
               onClick={() => {
-                requestLogin();
+                openLogin ? SetOpenLogin(false) : requestLogin();
               }}
             >
               로그인
-            </div>
+            </button>
           ) : (
-            <div
+            <button
               onClick={() => {
                 SetOpenLogin(false);
                 SetOpenBookmark(false);
                 ResetBookmarkID(null);
+                setLoginCode();
               }}
             >
               로그아웃
-            </div>
+            </button>
           )}
           <Kakaologin>로그인</Kakaologin>
           <BookmarkBtn
