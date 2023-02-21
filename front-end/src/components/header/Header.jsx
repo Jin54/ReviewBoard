@@ -2,9 +2,10 @@ import React, { useState, useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import { setOpenBookmark } from "../../modules/openBool";
+import { setOpenBookmark, setOpenLogin } from "../../modules/openBool";
 import { change } from "../../modules/urlChange";
 import { resetBookmarkID } from "../../modules/bookmarkID";
+import LoginAPI from "../../api/LoginAPI";
 
 import ImgComponent from "../ImageComponent";
 import Kakaologin from "../login/Kakaologin";
@@ -18,28 +19,45 @@ const Header = () => {
   //클릭 시 맛집, 병원 API 변경
   const dispatch = useDispatch();
   const onClickURL = useCallback((name) => dispatch(change(name)), [dispatch]);
+
+  //로그인
+  const openLogin = useSelector((state) => state.openBool.login);
+  const token = useSelector((state) => state.token.kakao);
+  const showURL = useSelector((state) => state.urlChange.name);
+  const SetOpenLogin = useCallback(
+    (bool) => {
+      dispatch(setOpenLogin(bool));
+    },
+    [dispatch]
+  );
+  const [loginCode, setLoginCode] = useState();
+
   //북마크 관련
   const openBookmark = useSelector((state) => state.openBool.bookmark);
-  const SetOpenBookmark = useCallback(() => {
-    dispatch(setOpenBookmark());
-  }, [dispatch]);
+  const SetOpenBookmark = useCallback(
+    (bool) => {
+      dispatch(setOpenBookmark(bool));
+    },
+    [dispatch]
+  );
   const ResetBookmarkID = useCallback(() => {
     dispatch(resetBookmarkID());
   }, [dispatch]);
-  //북마크 id 배열 초기화
-  useEffect(() => {
-    ResetBookmarkID(null);
-  }, [openBookmark]);
 
-  //삭제 예정
-  const bookmarkID = useSelector((state) => state.bookmarkID);
-
+  //로그인 유무로 북마크 활성화
+  function requestLogin() {
+    LoginAPI(showURL, token, (data) => setLoginCode(data));
+  }
   useEffect(() => {
-    console.log(bookmarkID);
-  }, [bookmarkID]);
+    if (loginCode == null) return;
+    else if (loginCode == 200) {
+      SetOpenLogin(true);
+    } else alert("로그인에 실패하였습니다.");
+  }, [loginCode]);
 
   return (
     <>
+      {openLogin && <OnClickBookmark />}
       {openBookmark && <OnClickBookmark />}
       <HeaderWrap>
         <HedaerLeftWrap>
@@ -66,17 +84,33 @@ const Header = () => {
           </HospitalBtn>
         </HedaerLeftWrap>
         <HeaderRightWrap>
-          <Kakaologin
-            onClick={() => {
-              SetOpenBookmark();
-            }}
-          >
-            로그인
-          </Kakaologin>
+          {/* 임시로 만듦. api 요청 때메 -> Kakaoologin에 넣을 예정 */}
+          {!openLogin ? (
+            <div
+              onClick={() => {
+                requestLogin();
+              }}
+            >
+              로그인
+            </div>
+          ) : (
+            <div
+              onClick={() => {
+                SetOpenLogin(false);
+                SetOpenBookmark(false);
+                ResetBookmarkID(null);
+              }}
+            >
+              로그아웃
+            </div>
+          )}
+          <Kakaologin>로그인</Kakaologin>
           <BookmarkBtn
             selected={openBookmark}
             onClick={() => {
-              SetOpenBookmark();
+              openLogin
+                ? SetOpenBookmark(!openBookmark)
+                : alert("로그인을 해주세요.");
             }}
           >
             즐겨찾기

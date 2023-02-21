@@ -23,23 +23,25 @@ const MapOrList = () => {
       >
         지도보기
       </MapBtn>
-      {openBookmark ? 
-      <ListBtn
-        onClick={() => {
-          SetOpenListModal();
-        }}
-        selected={openListModal}
-      >
-        북마크 목록
-      </ListBtn> : 
-      <ListBtn
-      onClick={() => {
-        SetOpenListModal();
-      }}
-      selected={openListModal}
-    >
-      리스트보기
-    </ListBtn>}
+      {openBookmark ? (
+        <ListBtn
+          onClick={() => {
+            SetOpenListModal();
+          }}
+          selected={openListModal}
+        >
+          북마크
+        </ListBtn>
+      ) : (
+        <ListBtn
+          onClick={() => {
+            SetOpenListModal();
+          }}
+          selected={openListModal}
+        >
+          리스트보기
+        </ListBtn>
+      )}
     </MapOrListWrap>
   );
 };

@@ -1,9 +1,15 @@
-const OPENBOOKMARK = "opetBool/OPENBOOKMARK";
-const OPENLISTMODAL = "opetBool/OPENLISTMODAL";
-const OPENDETAILMODAL = "opetBool/OPENDETAILMODAL";
+const OPENLOGIN = "openBool/OPENLOGIN";
+const OPENBOOKMARK = "openBool/OPENBOOKMARK";
+const OPENLISTMODAL = "opennBool/OPENLISTMODAL";
+const OPENDETAILMODAL = "openBool/OPENDETAILMODAL";
 
-export const setOpenBookmark = () => ({
+export const setOpenLogin = (bool) => ({
+  type: OPENLOGIN,
+  bool: bool,
+});
+export const setOpenBookmark = (bool) => ({
   type: OPENBOOKMARK,
+  bool: bool,
 });
 
 export const setOpenListModal = () => ({
@@ -15,18 +21,23 @@ export const setOpenDetailModal = () => ({
 });
 
 const initialState = {
+  login: false,
   bookmark: false,
   listModal: false,
   detailModal: false,
-  bookmarkID: false,
 };
 
 function openBool(state = initialState, action) {
   switch (action.type) {
+    case OPENLOGIN:
+      return {
+        ...state,
+        login: action.bool,
+      };
     case OPENBOOKMARK:
       return {
         ...state,
-        bookmark: !state.bookmark,
+        bookmark: action.bool,
       };
     case OPENLISTMODAL:
       return {

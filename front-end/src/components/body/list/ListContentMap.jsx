@@ -30,16 +30,19 @@ const ListContentMap = (props) => {
   const bookmarkID = useSelector((state) => state.bookmarkID);
   const showURL = useSelector((state) => state.urlChange.name);
   const kakaoToken = useSelector((state) => state.token.kakao);
+  const openLogin = useSelector((state) => state.openBool.login);
+
+  if (bookmarkID[0] == null) {
+    ResetBookmarkID([0]);
+  }
 
   return (
     <ListContentWrap
-      key={props.index}
       onClick={() => {
         SetDetailID(props.data.id);
         SetOpenDetailModal();
       }}
     >
-      {console.log(props.data)}
       <ImgBox>
         {props.data.thumbnail ? (
           <ImgWrap imgUrl={props.data.thumbnail}></ImgWrap>
@@ -53,14 +56,16 @@ const ListContentMap = (props) => {
             <Title>{props.data.name}</Title>
             <BookMark
               starcolor={
-                bookmarkID.includes(props.data.id)
+                bookmarkID[0].includes(props.data.id)
                   ? BookmarkImgON
                   : BookmarkImgOFF
               }
               onClick={(e) => {
-                BookmarkIDAPI(showURL, kakaoToken, props.data.id, (data) =>
-                  ResetBookmarkID(data)
-                );
+                openLogin
+                  ? BookmarkIDAPI(showURL, kakaoToken, props.data.id, (data) =>
+                      ResetBookmarkID(data)
+                    )
+                  : alert("로그인을 해주세요.");
                 e.stopPropagation();
               }}
             />

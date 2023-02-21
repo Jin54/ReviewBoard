@@ -65,7 +65,7 @@ const ReviewList = () => {
               </Top>
               <Middle>
                 <ReviewScopeNum>{review.rating}</ReviewScopeNum>
-                {!(review.rating == null || undefined) && (
+                {!(review.rating == null) && (
                   <ReviewScope scope={review.rating} />
                 )}
               </Middle>

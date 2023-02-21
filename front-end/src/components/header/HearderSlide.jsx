@@ -20,55 +20,55 @@ const HeaderSlide = (props) => {
     <MobileMenuWrap>
       <MobileMenuBox>
         <FlexWrap>
-        <CloseWrap>
-          <Close
+          <CloseWrap>
+            <Close
+              onClick={() => {
+                props.setMobileMenu(false);
+              }}
+            >
+              <ImgComponent src={"close.png"} width={"100%"} />
+            </Close>
+          </CloseWrap>
+          <MHospitalBtn
             onClick={() => {
               props.setMobileMenu(false);
             }}
           >
-            <ImgComponent src={"close.png"} width={"100%"} />
-          </Close>
-        </CloseWrap>
-        <MHospitalBtn
-          onClick={() => {
-            props.setMobileMenu(false);
-          }}
-        >
-          로그인
-        </MHospitalBtn>
-        <MHospitalBtn
-          selected={openBookmark}
-          onClick={() => {
-            props.setMobileMenu(false);
-            SetOpenBookmark();
-          }}
-        >
-          즐겨찾기
-        </MHospitalBtn>
-        <MFoodBtn
-          onClick={() => {
-            props.BackBlackonClickURL("shop");
-            props.setMobileMenu(false);
-          }}
-        >
-          맛집
-        </MFoodBtn>
-        <MHospitalBtn
-          onClick={() => {
-            props.onClickURL("hospital");
-            props.setMobileMenu(false);
-          }}
-        >
-          병원
-        </MHospitalBtn>
-        <MQuestionBtn
-          href="mailto:sales@lfin.kr"
-          onClick={() => {
-            props.setMobileMenu(false);
-          }}
-        >
-          문의
-        </MQuestionBtn>
+            로그인
+          </MHospitalBtn>
+          <MHospitalBtn
+            selected={openBookmark}
+            onClick={() => {
+              props.setMobileMenu(false);
+              SetOpenBookmark(true);
+            }}
+          >
+            즐겨찾기
+          </MHospitalBtn>
+          <MFoodBtn
+            onClick={() => {
+              props.BackBlackonClickURL("shop");
+              props.setMobileMenu(false);
+            }}
+          >
+            맛집
+          </MFoodBtn>
+          <MHospitalBtn
+            onClick={() => {
+              props.onClickURL("hospital");
+              props.setMobileMenu(false);
+            }}
+          >
+            병원
+          </MHospitalBtn>
+          <MQuestionBtn
+            href="mailto:sales@lfin.kr"
+            onClick={() => {
+              props.setMobileMenu(false);
+            }}
+          >
+            문의
+          </MQuestionBtn>
         </FlexWrap>
         <Footer />
       </MobileMenuBox>
@@ -108,7 +108,7 @@ const MobileMenuBox = styled.div`
 
 const FlexWrap = styled.div`
   flex: 1;
-`
+`;
 const CloseWrap = styled.div`
   &::after {
     display: block;

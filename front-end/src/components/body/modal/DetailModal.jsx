@@ -15,7 +15,7 @@ import ReviewList from "./detialModal/ReviewList";
 import BookmarkImgOFF from "../../../assets/heartOffFill.png";
 import BookmarkImgON from "../../../assets/heartOn.png";
 
-const DetailModal = (props) => {
+const DetailModal = () => {
   //모달 api
   const detailID = useSelector((state) => state.saveData.detailID);
   const detailData = useSelector((state) => state.saveData.detailData);
@@ -36,6 +36,7 @@ const DetailModal = (props) => {
     (data) => dispatch(resetBookmarkID(data)),
     [dispatch]
   );
+  const openLogin = useSelector((state) => state.openBool.login);
 
   //가게 상세 API
   useEffect(() => {
@@ -48,7 +49,7 @@ const DetailModal = (props) => {
 
   //북마크
 
-  if (detailData == null) return;
+  if (detailData == null || detailID == null) return;
 
   return (
     <RestaurantModalWrap>
@@ -91,14 +92,16 @@ const DetailModal = (props) => {
             </Info>
             <Bookmark
               starcolor={
-                bookmarkID.includes(props.data.id)
+                bookmarkID != null && bookmarkID[0].includes(detailData.id)
                   ? BookmarkImgON
                   : BookmarkImgOFF
               }
               onClick={() => {
-                BookmarkIDAPI(showURL, kakaoToken, detailData.id, (data) =>
-                  ResetBookmarkID(data)
-                );
+                openLogin
+                  ? BookmarkIDAPI(showURL, kakaoToken, detailData.id, (data) =>
+                      ResetBookmarkID(data)
+                    )
+                  : alert("로그인을 해주세요.");
               }}
             />
           </InfoWrap>

@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {useHistory} from "react-router-dom"
-import styled from 'styled-components';
-import { KAKAO_AUTH_URL } from './OAuth';
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
+import { KAKAO_AUTH_URL } from "./OAuth";
 
 const Kakaologin = () => {
-
   const [user, setUser] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
   const { Kakao } = window;
@@ -41,42 +40,46 @@ const Kakaologin = () => {
         console.log(error);
       },
     });
-    };
+  };
 
-    const kakaoLogout = () => {
-        Kakao.Auth.logout((res) => {
-          console.log(Kakao.Auth.getAccessToken());
-          console.log(res);
-          localStorage.removeItem("email");
-          localStorage.removeItem("profileImg");
-          localStorage.removeItem("nickname");
-          setUser(null);
-        });
-      };
-    
-      useEffect(() => {
-        initKakao();
-        Kakao.Auth.getAccessToken() ? setIsLogin(true) : setIsLogin(false);
-      }, []);
-    
-      useEffect(() => {
-        console.log(isLogin);
-        if (isLogin) {
-          setUser({
-            email: localStorage.getItem("email"),
-          });
-        }
-      }, [isLogin]);
+  const kakaoLogout = () => {
+    Kakao.Auth.logout((res) => {
+      // console.log(Kakao.Auth.getAccessToken());
+      // console.log(res);
+      localStorage.removeItem("email");
+      localStorage.removeItem("profileImg");
+      localStorage.removeItem("nickname");
+      setUser(null);
+    });
+  };
 
-    return (
-        <Login>
-        {user ? <LoginBtn onClick={kakaoLogout}>로그아웃</LoginBtn> : <LoginBtn onClick={kakaoLogin}>로그인</LoginBtn>}
-        </Login>
-    )
-}
-console.log(window.location.href)
+  useEffect(() => {
+    initKakao();
+    Kakao.Auth.getAccessToken() ? setIsLogin(true) : setIsLogin(false);
+  }, []);
 
-const Login = styled.div``
+  useEffect(() => {
+    // console.log(isLogin);
+    if (isLogin) {
+      setUser({
+        email: localStorage.getItem("email"),
+      });
+    }
+  }, [isLogin]);
+
+  return (
+    <Login>
+      {user ? (
+        <LoginBtn onClick={kakaoLogout}>로그아웃</LoginBtn>
+      ) : (
+        <LoginBtn onClick={kakaoLogin}>로그인</LoginBtn>
+      )}
+    </Login>
+  );
+};
+// console.log(window.location.href)
+
+const Login = styled.div``;
 
 const LoginBtn = styled.a`
   border: 1.5px solid #c09567;
@@ -96,7 +99,7 @@ const LoginBtn = styled.a`
   @media screen and (max-width: 1000px) {
     display: none;
   }
-`
+`;
 
 export default Kakaologin;
 

@@ -6,7 +6,7 @@ const BookmarkDataAPI = async (
   showURL,
   token,
   SetBookmarkData,
-  AddBookmarkID
+  ResetBookmarkID
 ) => {
   const apiurl = process.env.REACT_APP_APIURL;
   const url = `${apiurl}/${showURL}/bookmark/`;
@@ -21,10 +21,12 @@ const BookmarkDataAPI = async (
 
     // console.log(data.data.result);
     SetBookmarkData(data.data.result);
+
+    var idList = [];
     data.data.result.map((data) => {
-      console.log(data.id);
-      AddBookmarkID(data.id);
+      idList.push(data.id);
     });
+    ResetBookmarkID(idList);
   } catch (err) {
     alert(err);
   }

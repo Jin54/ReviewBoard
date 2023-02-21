@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import BookmarkDataAPI from "../../api/BookmarkDataAPI";
 
 import { setBookmarkData } from "../../modules/saveData";
-import { addBookmarkID } from "../../modules/bookmarkID";
+import { resetBookmarkID } from "../../modules/bookmarkID";
 
 const OnClickBookmark = () => {
   const showURL = useSelector((state) => state.urlChange.name);
@@ -17,9 +17,9 @@ const OnClickBookmark = () => {
     },
     [dispatch]
   );
-  const AddBookmarkID = useCallback(
+  const ResetBookmarkID = useCallback(
     (data) => {
-      dispatch(addBookmarkID(data));
+      dispatch(resetBookmarkID(data));
     },
     [dispatch]
   );
@@ -29,7 +29,7 @@ const OnClickBookmark = () => {
       showURL,
       kakaoToken,
       (data) => SetBookmarkData(data),
-      (id) => AddBookmarkID(id)
+      (id) => ResetBookmarkID(id)
     );
   }, []);
 };
