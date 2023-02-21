@@ -6,6 +6,7 @@ import styled from "styled-components";
 import ImgComponent from "./../ImageComponent";
 
 import { setOpenBookmark } from "../../modules/openBool";
+import Footer from "../Footer";
 
 const HeaderSlide = (props) => {
   //즐겨찾기 버튼 관련
@@ -18,6 +19,7 @@ const HeaderSlide = (props) => {
   return (
     <MobileMenuWrap>
       <MobileMenuBox>
+        <FlexWrap>
         <CloseWrap>
           <Close
             onClick={() => {
@@ -27,14 +29,14 @@ const HeaderSlide = (props) => {
             <ImgComponent src={"close.png"} width={"100%"} />
           </Close>
         </CloseWrap>
-        <MFoodBtn
+        <MHospitalBtn
           onClick={() => {
             props.setMobileMenu(false);
           }}
         >
           로그인
-        </MFoodBtn>
-        <MFoodBtn
+        </MHospitalBtn>
+        <MHospitalBtn
           selected={openBookmark}
           onClick={() => {
             props.setMobileMenu(false);
@@ -42,7 +44,7 @@ const HeaderSlide = (props) => {
           }}
         >
           즐겨찾기
-        </MFoodBtn>
+        </MHospitalBtn>
         <MFoodBtn
           onClick={() => {
             props.BackBlackonClickURL("shop");
@@ -59,12 +61,6 @@ const HeaderSlide = (props) => {
         >
           병원
         </MHospitalBtn>
-        <MHospitalBtn
-          onClick={() => {
-            props.onClickURL("hospital");
-            props.setMobileMenu(false);
-          }}
-        ></MHospitalBtn>
         <MQuestionBtn
           href="mailto:sales@lfin.kr"
           onClick={() => {
@@ -73,6 +69,8 @@ const HeaderSlide = (props) => {
         >
           문의
         </MQuestionBtn>
+        </FlexWrap>
+        <Footer />
       </MobileMenuBox>
       <BackBlack
         onClick={() => {
@@ -104,7 +102,13 @@ const MobileMenuBox = styled.div`
   height: 100%;
   padding: 30px 20px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 `;
+
+const FlexWrap = styled.div`
+  flex: 1;
+`
 const CloseWrap = styled.div`
   &::after {
     display: block;
@@ -132,12 +136,13 @@ const Close = styled.div`
   }
 `;
 const MFoodBtn = styled.p`
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   color: #000;
   font-weight: 400;
   font-size: 20x;
   margin: 0;
+  border-top: 0.5px solid #c09567;
   cursor: pointer;
 `;
 const MHospitalBtn = styled.p`

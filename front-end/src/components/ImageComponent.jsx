@@ -14,7 +14,7 @@ const ImgComponent = props => {
       src={process.env.PUBLIC_URL + '/img/' + props.src}
       alt={'img'}
       onClick={props.onClick}
-      style={{width:props.width}}
+      style={{width:props.width, height:props.height}}
     />
   )
 }

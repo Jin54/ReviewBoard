@@ -11,7 +11,7 @@ const Index = () => {
     <IndexWrap>
       <Header />
       <Body />
-      <Footer />
+      <FooterLocation><Footer /></FooterLocation>
     </IndexWrap>
   );
 };
@@ -29,4 +29,10 @@ const IndexWrap = styled.div`
     padding-right: 8%;
   }
 `;
+
+const FooterLocation = styled.div`
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
+`
 export default Index;

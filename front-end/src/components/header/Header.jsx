@@ -36,7 +36,7 @@ const Header = () => {
       {openBookmark && <OnClickBookmark />}
       <HeaderWrap>
         <HedaerLeftWrap>
-          <ImgComponent src={"logo.png"} width={"60px"} />
+          <ImgComponent src={"logo.png"} height={'100%'} />
           <FoodBtn
             onClick={() => {
               onClickURL("shop");
@@ -100,6 +100,10 @@ const HeaderWrap = styled.div`
 const HedaerLeftWrap = styled.div`
   display: flex;
   align-items: center;
+  height: 60px;
+  @media screen and (max-width: 1000px) {
+    height: 40px;
+  }
 `;
 const FoodBtn = styled.p`
   margin-left: 100px;

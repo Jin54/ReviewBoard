@@ -54,6 +54,9 @@ const MapOrListWrap = styled.div`
   margin: auto;
   margin-top: 40px;
   flex: 0;
+  @media screen and (max-width: 1000px) {
+    margin-top: 20px;
+  }
 `;
 const MapBtn = styled.p`
   margin: 0;

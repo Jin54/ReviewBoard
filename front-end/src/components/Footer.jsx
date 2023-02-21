@@ -27,10 +27,12 @@ const FooterWrap = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 14px;
+  margin-bottom: 14px;
   @media screen and (max-width: 1000px) {
     flex-direction: column-reverse;
+    /* display: none; */
+    margin-bottom: 0;
   }
 `;
 const FooterLeft = styled.div``;
@@ -51,6 +53,7 @@ const TOS = styled.div`
   margin-bottom: 20px;
   @media screen and (max-width: 1000px) {
     font-size: 12px;
+    margin-bottom: 0;
   }
 `;
 const QuestionBtn = styled.a`
@@ -75,7 +78,7 @@ const FooterRight = styled.p`
   line-height: 24px;
   color: #000000;
   @media screen and (max-width: 1000px) {
-    font-size: 11px;
+    font-size: 10px;
     line-height: 16px;
     margin-bottom: 15px;
   }
