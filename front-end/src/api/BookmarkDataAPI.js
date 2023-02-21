@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// 즐겨찾기 해둔 데이터들
+
 const BookmarkDataAPI = async (
   showURL,
   token,
@@ -10,7 +12,7 @@ const BookmarkDataAPI = async (
   const url = `${apiurl}/${showURL}/bookmark/`;
   try {
     const data = await axios({
-      method: "get",
+      method: "get", // 요청 받아오기
       url: url,
       headers: {
         "X-ACCESS-TOKEN": `${token}`,

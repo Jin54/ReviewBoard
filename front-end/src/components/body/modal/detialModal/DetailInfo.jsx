@@ -80,9 +80,6 @@ const DropDownArrow = styled.div`
   margin-top: 4px;
 `
 
-
-
-
 const CurrentStatus = ({time}) => {
 
   // const time = '매일 06:00 - 22:00' // 실제 데이터 받아올 때는 이거 지우고 CurrentStatus = ({time}) 으로 바꾸기
@@ -118,7 +115,13 @@ const CurrentStatus = ({time}) => {
   }else{ // 매일 영업 시간이 다를 때
     if(todayLabel == '월요일'){
       if(time.includes('월')){
-
+        if( time[3]){ //  txt에 있는 영업 시간 사이에 now 가 포함될 때
+          return "영업 중";
+      }else if("txt 에 있는 영업 시간 전일 때"){
+          return "영업 전";
+      }else{
+          return "마감";
+      }
       }
     }else if (todayLabel == '화요일'){
     
