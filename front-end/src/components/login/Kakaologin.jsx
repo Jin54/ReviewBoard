@@ -3,7 +3,6 @@ import {useHistory} from "react-router-dom"
 import styled from 'styled-components';
 
 const {Kakao} = window;
-// const history = useHistory();
 
 const Kakaologin = () => {
 
@@ -49,17 +48,18 @@ return (
 const LoginBtn = styled.a`
   border: 1.5px solid #c09567;
   border-radius: 50px;
-  padding: 7px;
+  padding: 10px 20px;
   font-weight: 700;
   font-size: 16px;
   text-align: center;
   color: #c09567;
-  width: 100px;
+  /* width: 100px; */
   box-sizing: border-box;
   text-decoration: none;
   margin-left: 20px;
   box-sizing: border-box;
   cursor: pointer;
+
   @media screen and (max-width: 1000px) {
     display: none;
   }

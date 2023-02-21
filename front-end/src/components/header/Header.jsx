@@ -101,7 +101,7 @@ const HedaerLeftWrap = styled.div`
   display: flex;
   align-items: center;
 `;
-const FoodBtn = styled.div`
+const FoodBtn = styled.p`
   margin-left: 100px;
   color: #000;
   font-weight: ${(props) => (props.selected ? "700" : "400")};
@@ -110,12 +110,15 @@ const FoodBtn = styled.div`
   border-bottom: 0px solid #c09567;
   padding-bottom: ${(props) => props.selected && "10px"};
   border-bottom: ${(props) => props.selected && "4px"};
+  @media screen and (max-width: 1400px) {
+    margin-left: 50px;
+  }
   @media screen and (max-width: 1000px) {
     display: none;
   }
   cursor: pointer;
 `;
-const HospitalBtn = styled.div`
+const HospitalBtn = styled.p`
   margin-left: 70px;
   color: #000;
   font-weight: ${(props) => (props.selected ? "700" : "400")};
@@ -124,6 +127,9 @@ const HospitalBtn = styled.div`
   border-bottom: 0px solid #c09567;
   padding-bottom: ${(props) => props.selected && "10px"};
   border-bottom: ${(props) => props.selected && "4px"};
+  @media screen and (max-width: 1400px) {
+    margin-left: 50px;
+  }
   @media screen and (max-width: 1000px) {
     display: none;
   }
@@ -138,12 +144,12 @@ const HeaderRightWrap = styled.div`
 const HeaderRightBtn = styled.a`
   border: 1.5px solid #c09567;
   border-radius: 50px;
-  padding: 7px;
+  padding: 10px 20px;
   font-weight: 700;
   font-size: 16px;
   text-align: center;
   color: #c09567;
-  width: 100px;
+  /* width: 100px; */
   box-sizing: border-box;
   text-decoration: none;
   margin-left: 20px;
@@ -153,10 +159,13 @@ const HeaderRightBtn = styled.a`
     display: none;
   }
 `;
-const LoginBtn = styled(HeaderRightBtn)``;
+
 const BookmarkBtn = styled(HeaderRightBtn)`
   background-color: ${(props) => props.selected && "#c09567"};
   color: ${(props) => props.selected && "#fff"};
+  /* @media screen and (max-width: 1400px) {
+    font-size: 14px;
+  } */
 `;
 const MobileMenu = styled.div`
   display: none;

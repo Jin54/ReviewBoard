@@ -286,11 +286,10 @@ const ReviewWrap = styled.div`
   width: 100%;
 `;
 const ReviewTxtWrap = styled.div`
-  margin-left: 20px;
+  margin-left: 4px;
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  margin-left: 20px;
   @media screen and (max-width: 1000px) {
     margin-left: 0;
   }
