@@ -10,9 +10,9 @@ const Kakaologin = () => {
   const { Kakao } = window;
 
   const initKakao = async () => {
-    const jsKey = "3c5fd0d61672a00438664be501823461";
+    const appKey = process.env.REACT_APP_APIKEY;
     if (Kakao && !Kakao.isInitialized()) {
-      await Kakao.init(jsKey);
+      await Kakao.init(appKey);
       console.log(`kakao 초기화 ${Kakao.isInitialized()}`);
     }
   };
