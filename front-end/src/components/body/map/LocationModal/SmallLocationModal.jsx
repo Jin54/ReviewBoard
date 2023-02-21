@@ -69,7 +69,7 @@ const RegionBtn = styled.div`
   box-sizing: border-box;
   width: 12%;
   background-color: ${(props) => (props.selected ? "#C09567" : "#fff")};
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1400px) {
     font-size: 12px;
     padding-top: 4px;
     padding-bottom: 4px;
