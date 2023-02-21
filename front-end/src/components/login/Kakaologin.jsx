@@ -1,49 +1,82 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {useHistory} from "react-router-dom"
 import styled from 'styled-components';
-
-const {Kakao} = window;
+import { KAKAO_AUTH_URL } from './OAuth';
 
 const Kakaologin = () => {
 
-    function loginWithKakao() {
-        if (!Kakao.isInitialized()) {
-            Kakao.init(process.env.Kakao_Client_Id)
-        }
+  const [user, setUser] = useState(null);
+  const [isLogin, setIsLogin] = useState(false);
+  const { Kakao } = window;
 
-        Kakao.Auth.login({
-            success: (_) => {
-                Kakao.API.request({
-                    url: '/v2/user/me',
-                    data: {
-                        property_keys: ["kakao_account.email", "kakao_account.profile"]
-                    },
-                    success: (res) => {
-                        // res.kakao_account.email
-                        // res.kakao_account.profile.nickname
-                        // res.kakao_account.profile.profile_image_url
-                        console.log( res.kakao_account.email )
-                        // util.removeScript(kakaoScript)
-                        // return res.kakao_account
-                        localStorage.setItem("email",res.kakao_account.email);
-                        console.log('이메일은'+ res.kakao_account.email);
-                    },
-                    fail: (err) => {
-                        alert(`개인정보를 가져올 수 없습니다. ${JSON.stringify(err)}`)
-                    }
-                })
-            },
-            fail: (err) => {
-                alert(`도메인을 확인해주세요. ${JSON.stringify(err)}`)
-            },
-        });
+  const initKakao = async () => {
+    const appKey = process.env.REACT_APP_APIKEY;
+    if (Kakao && !Kakao.isInitialized()) {
+      await Kakao.init(appKey);
+      console.log(`kakao 초기화 ${Kakao.isInitialized()}`);
     }
-    
+  };
 
-return (
-    <LoginBtn onClick={()=>loginWithKakao()}>로그인</LoginBtn>
-)
+  const kakaoLogin = async () => {
+    await Kakao.Auth.login({
+      success(res) {
+        console.log(res);
+        Kakao.Auth.setAccessToken(res.access_token);
+        console.log("카카오 로그인 성공");
+
+        Kakao.API.request({
+          url: "/v2/user/me",
+          success(res) {
+            console.log("카카오 인가 요청 성공");
+            setIsLogin(true);
+            const kakaoAccount = res.kakao_account;
+            localStorage.setItem("email", kakaoAccount.email);
+          },
+          fail(error) {
+            console.log(error);
+          },
+        });
+      },
+      fail(error) {
+        console.log(error);
+      },
+    });
+    };
+
+    const kakaoLogout = () => {
+        Kakao.Auth.logout((res) => {
+          console.log(Kakao.Auth.getAccessToken());
+          console.log(res);
+          localStorage.removeItem("email");
+          localStorage.removeItem("profileImg");
+          localStorage.removeItem("nickname");
+          setUser(null);
+        });
+      };
+    
+      useEffect(() => {
+        initKakao();
+        Kakao.Auth.getAccessToken() ? setIsLogin(true) : setIsLogin(false);
+      }, []);
+    
+      useEffect(() => {
+        console.log(isLogin);
+        if (isLogin) {
+          setUser({
+            email: localStorage.getItem("email"),
+          });
+        }
+      }, [isLogin]);
+
+    return (
+        <Login>
+        {user ? <LoginBtn onClick={kakaoLogout}>로그아웃</LoginBtn> : <LoginBtn onClick={kakaoLogin}>로그인</LoginBtn>}
+        </Login>
+    )
 }
+console.log(window.location.href)
+
+const Login = styled.div``
 
 const LoginBtn = styled.a`
   border: 1.5px solid #c09567;
@@ -66,3 +99,7 @@ const LoginBtn = styled.a`
 `
 
 export default Kakaologin;
+
+// https://data-jj.tistory.com/53
+
+// https://2mojurmoyang.tistory.com/192
