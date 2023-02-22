@@ -99,7 +99,7 @@ const DetailModal = () => {
           <InfoRight>
             <Copy
               onClick={() => {
-                navigator.clipboard.writeText(detailData.id);
+                navigator.clipboard.writeText(showURL + ": " + detailData.id);
                 alert(
                   "해당 가게 정보가 클립보드에 복사되었습니다.\n문의하기를 클릭하여 변경 정보를 ID 와 함께 보내주세요."
                 );

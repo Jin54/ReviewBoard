@@ -8,16 +8,19 @@ import { setOpenListModal } from "../../modules/openBool";
 const MapOrList = () => {
   const openListModal = useSelector((state) => state.openBool.listModal);
   const dispatch = useDispatch();
-  const SetOpenListModal = useCallback(() => {
-    dispatch(setOpenListModal());
-  }, [dispatch]);
+  const SetOpenListModal = useCallback(
+    (bool) => {
+      dispatch(setOpenListModal(bool));
+    },
+    [dispatch]
+  );
   const openBookmark = useSelector((state) => state.openBool.bookmark);
 
   return (
     <MapOrListWrap>
       <MapBtn
         onClick={() => {
-          SetOpenListModal();
+          SetOpenListModal(false);
         }}
         selected={!openListModal}
       >
@@ -26,7 +29,7 @@ const MapOrList = () => {
       {openBookmark ? (
         <ListBtn
           onClick={() => {
-            SetOpenListModal();
+            SetOpenListModal(true);
           }}
           selected={openListModal}
         >
@@ -35,7 +38,7 @@ const MapOrList = () => {
       ) : (
         <ListBtn
           onClick={() => {
-            SetOpenListModal();
+            SetOpenListModal(true);
           }}
           selected={openListModal}
         >
@@ -54,7 +57,7 @@ const MapOrListWrap = styled.div`
   justify-content: space-between;
   width: 60%;
   margin: auto;
-  margin-top: 40px;
+  margin-top: 10px;
   flex: 0;
   @media screen and (max-width: 1000px) {
     margin-top: 20px;

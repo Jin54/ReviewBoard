@@ -5,15 +5,13 @@ import GPSBtn from "./GPSBtn";
 
 const MapBtns = (props) => {
   return (
-    <>
-      <MapButtons>
-        <MapBtnsLeft>
-          <SelectLocationBtn setModalOpen={props.setModalOpen} />
-          <GPSBtn setXY={props.setXY} currentBtnOpen={props.currentBtnOpen} />
-        </MapBtnsLeft>
-        <MapBtnsRight></MapBtnsRight>
-      </MapButtons>
-    </>
+    <MapButtons>
+      <MapBtnsLeft>
+        <SelectLocationBtn setModalOpen={props.setModalOpen} />
+        <GPSBtn setXY={props.setXY} currentBtnOpen={props.currentBtnOpen} />
+      </MapBtnsLeft>
+      <MapBtnsRight></MapBtnsRight>
+    </MapButtons>
   );
 };
 
@@ -21,9 +19,9 @@ export default MapBtns;
 
 const MapButtons = styled.div`
   position: absolute;
-  left: 50%;
+  left: 45%;
   width: 90%;
-  top: 7%;
+  top: 5%;
   transform: translateX(-50%);
   z-index: 1;
   display: flex;

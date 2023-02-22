@@ -14,8 +14,9 @@ export const setOpenBookmark = (bool) => ({
   bool: bool,
 });
 
-export const setOpenListModal = () => ({
+export const setOpenListModal = (bool) => ({
   type: OPENLISTMODAL,
+  bool: bool,
 });
 
 export const setOpenDetailModal = () => ({
@@ -50,7 +51,7 @@ function openBool(state = initialState, action) {
     case OPENLISTMODAL:
       return {
         ...state,
-        listModal: !state.listModal,
+        listModal: action.bool,
       };
     case OPENDETAILMODAL:
       return {

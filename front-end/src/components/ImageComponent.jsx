@@ -7,15 +7,15 @@
  *  - width : 이미지 가로 사이즈
  **/
 
-const ImgComponent = props => {
+const ImgComponent = (props) => {
   return (
     <img
       className={props.class}
-      src={process.env.PUBLIC_URL + '/img/' + props.src}
-      alt={'img'}
+      src={process.env.PUBLIC_URL + "/img/" + props.src}
+      alt={"img"}
       onClick={props.onClick}
-      style={{width:props.width, height:props.height}}
+      style={{ width: props.width, height: props.height }}
     />
-  )
-}
-export default ImgComponent
+  );
+};
+export default ImgComponent;

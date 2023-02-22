@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
@@ -24,22 +24,23 @@ const Header = () => {
     (name) => dispatch(changeURL(name)),
     [dispatch]
   );
-
-  //로그인
   const showURL = useSelector((state) => state.urlChange.name);
+  const openLogin = useSelector((state) => state.openBool.login);
 
   //북마크 관련
   return (
     <>
       <HeaderWrap>
         <HedaerLeftWrap>
-          <ImgComponent
-            src={"logo.png"}
-            height={"100%"}
-            onClick={() => {
-              window.location.replace("/");
-            }}
-          />
+          <div style={{ cursor: "pointer", height: "100%" }}>
+            <ImgComponent
+              src={"logo.png"}
+              height={"100%"}
+              onClick={() => {
+                window.location.replace("/");
+              }}
+            />
+          </div>
           <FoodBtn
             selected={showURL == "shop" && true}
             onClick={() => {
@@ -58,6 +59,7 @@ const Header = () => {
           </HospitalBtn>
         </HedaerLeftWrap>
         <HeaderRightWrap>
+          {openLogin && <Name>{sessionStorage.getItem("user-name")} 님</Name>}
           <Kakaologin />
           <BookmarkBtn />
         </HeaderRightWrap>
@@ -119,6 +121,10 @@ const HospitalBtn = styled(UrlBtn)`
 const HeaderRightWrap = styled.div`
   display: flex;
   align-items: center;
+`;
+const Name = styled.div`
+  font-size: 16px;
+  color: #c09567;
 `;
 
 const MobileMenu = styled.div`

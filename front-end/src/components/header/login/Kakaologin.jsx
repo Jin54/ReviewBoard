@@ -85,9 +85,9 @@ const LoginBtn = styled.div`
   @media screen and (min-width: 1000px) {
     border: 1.5px solid #c09567;
     border-radius: 50px;
-    padding: 10px 20px;
-    font-weight: 700;
-    font-size: 16px;
+    padding: 7px 10px;
+    font-weight: 600;
+    font-size: 14px;
     text-align: center;
     color: #c09567;
     box-sizing: border-box;

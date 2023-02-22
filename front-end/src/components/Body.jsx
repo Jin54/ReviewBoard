@@ -26,15 +26,14 @@ const Body = () => {
 };
 
 const BodyWrap = styled.div`
-  width: 80%;
+  width: 100%;
   margin: auto;
   box-sizing: border-box;
   flex: 1;
-  /* border: 1px solid #c09567; */
   border-radius: 10px;
   position: relative;
   overflow: hidden;
-  margin-top: 40px;
+  margin-top: 20px;
   position: relative;
   @media screen and (max-width: 1000px) {
     margin-top: 20px;
