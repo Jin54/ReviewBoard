@@ -28,22 +28,8 @@ const Kakaologin = () => {
   const kakaoLogin = async () => {
     await Kakao.Auth.login({
       success(res) {
-
-        LoginAPI(res.access_token, SetKakaoToken)
-
-        // Kakao.API.request({
-        //   url: "/v2/user/me",
-        //   success(res) {
-        //     console.log("카카오 인가 요청 성공");
-        //     setIsLogin(true);
-        //     const kakaoAccount = res.kakao_account;
-        //     localStorage.setItem("email", kakaoAccount.email); 
-        //     console.log(kakaoAccount) // email_needs_agreement : true , has_email:true , profile_nickname_needs_agreement:false
-        //   },
-        //   fail(error) {
-        //     console.log(error);
-        //   },
-        // });
+        LoginAPI(res.access_token, SetKakaoToken);
+        setUser(true);
       },
       fail(error) {
         console.log(error);
@@ -54,11 +40,8 @@ const Kakaologin = () => {
   // 카카오 로그아웃
   const kakaoLogout = () => {
     Kakao.Auth.logout((res) => {
-      // console.log(Kakao.Auth.getAccessToken());
-      // console.log(res);
-      localStorage.removeItem("email");
       setUser(null);
-      SetKakaoToken(null)
+      LoginAPI(res.access_token, SetKakaoToken)
       console.log('카카오 로그아웃')
     });
   };
@@ -69,7 +52,6 @@ const Kakaologin = () => {
   }, []);
 
   useEffect(() => {
-    // console.log(isLogin);
     if (isLogin) {
       setUser({
         email: localStorage.getItem("email"),

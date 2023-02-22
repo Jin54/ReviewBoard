@@ -15,11 +15,11 @@ const LoginAPI = async ( kakaoToken, SetKakaoToken ) => {
         url: url,
         data: token,
       }); 
-      console.log(kakaoToken)
-      console.log(url)
+      // console.log(kakaoToken)
+      // console.log(url)
       //  데이터 받아오는 함수 작성
       console.log(data)
-      SetKakaoToken(data.result)
+      SetKakaoToken(data.data.result)
 
   //     // setLoginCode(data.data.code);
     } catch (err) {
