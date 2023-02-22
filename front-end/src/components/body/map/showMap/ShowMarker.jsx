@@ -22,6 +22,7 @@ const ShowMarker = (props) => {
     dispatch(setOpenDetailModal());
   }, [dispatch]);
   const [markers, setMarkers] = useState([]);
+  const [showOverlay, setShowOverlay] = useState(false);
 
   useEffect(() => {
     if (_map === null || props.mapData == null) return;
@@ -115,13 +116,12 @@ const ShowMarker = (props) => {
         SetOpenDetailModal();
       };
       content.appendChild(infowrap);
-
       const overlay = new kakao.maps.CustomOverlay({
         clickable: true, //true 로 설정하면 컨텐츠 영역을 클릭했을 경우 지도 이벤트를 막아준다.
         content: content,
         position: marker.getPosition(),
+        map: null,
       });
-      overlay.setMap(null);
 
       // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
       kakao.maps.event.addListener(marker, "click", function () {

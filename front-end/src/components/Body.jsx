@@ -34,7 +34,7 @@ const BodyWrap = styled.div`
   border-radius: 10px;
   position: relative;
   overflow: hidden;
-  margin-top: 40px;
+  margin-top: 20px;
   position: relative;
   @media screen and (max-width: 1000px) {
     margin-top: 20px;

@@ -11,7 +11,9 @@ const Index = () => {
     <IndexWrap>
       <Header />
       <Body />
-      <FooterLocation><Footer /></FooterLocation>
+      <FooterLocation>
+        <Footer />
+      </FooterLocation>
     </IndexWrap>
   );
 };
@@ -34,5 +36,5 @@ const FooterLocation = styled.div`
   @media screen and (max-width: 1000px) {
     display: none;
   }
-`
+`;
 export default Index;

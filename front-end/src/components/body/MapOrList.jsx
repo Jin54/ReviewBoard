@@ -54,7 +54,7 @@ const MapOrListWrap = styled.div`
   justify-content: space-between;
   width: 60%;
   margin: auto;
-  margin-top: 40px;
+  margin-top: 20px;
   flex: 0;
   @media screen and (max-width: 1000px) {
     margin-top: 20px;
@@ -64,7 +64,7 @@ const MapBtn = styled.p`
   margin: 0;
   margin-right: 40px;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 18px;
   color: ${(props) => (props.selected ? "#000" : "#999")};
   @media screen and (max-width: 1000px) {
     font-size: 12px;
@@ -75,7 +75,7 @@ const ListBtn = styled.p`
   margin: 0;
   margin-left: 40px;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 18px;
   color: ${(props) => (props.selected ? "#000" : "#999")};
   @media screen and (max-width: 1000px) {
     font-size: 12px;

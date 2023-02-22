@@ -16,7 +16,7 @@ const ListContent = () => {
   const [bottom, inView] = useInView();
   useEffect(() => {
     if (!inView) return;
-    setPageNum(pageNum + 10);
+    setPageNum(pageNum + 20);
   }, [inView]);
 
   //데이터 보여주는 함수

@@ -84,9 +84,9 @@ const Login = styled.div``;
 const LoginBtn = styled.a`
   border: 1.5px solid #c09567;
   border-radius: 50px;
-  padding: 10px 20px;
-  font-weight: 700;
-  font-size: 16px;
+  padding: 6px 10px;
+  font-weight: 500;
+  font-size: 14px;
   text-align: center;
   color: #c09567;
   box-sizing: border-box;
