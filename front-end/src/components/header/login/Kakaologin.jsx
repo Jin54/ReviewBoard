@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import LoginAPI from "../../../api/LoginAPI";
 import { setOpenLogin, setOpenBookmark } from "../../../modules/openBool";
+import { setUserName } from "../../../modules/userData";
 
 import OnClickBookmark from "../OnClickBookmark";
 
@@ -19,6 +20,12 @@ const Kakaologin = () => {
   const SetOpenBookmark = useCallback(
     (bool) => {
       dispatch(setOpenBookmark(bool));
+    },
+    [dispatch]
+  );
+  const SetUserName = useCallback(
+    (name) => {
+      dispatch(setUserName(name));
     },
     [dispatch]
   );
@@ -42,7 +49,11 @@ const Kakaologin = () => {
   const kakaoLogin = async () => {
     await Kakao.Auth.login({
       success(res) {
-        LoginAPI(res.access_token, (data) => setBookmarkAPI(data));
+        LoginAPI(
+          res.access_token,
+          (data) => setBookmarkAPI(data),
+          (data) => SetUserName(data)
+        );
         SetOpenLogin(true);
       },
       fail(error) {

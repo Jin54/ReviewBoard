@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const LoginAPI = async (kakaoToken, setBookmarkAPI) => {
+const LoginAPI = async (kakaoToken, setBookmarkAPI, SetUserName) => {
   const apiurl = process.env.REACT_APP_APIURL;
   const url = `${apiurl}kakaoLogin`;
   const token = { access_token: kakaoToken };
@@ -15,6 +15,7 @@ const LoginAPI = async (kakaoToken, setBookmarkAPI) => {
     sessionStorage.setItem("user-jwt", data.data.result.jwt);
     sessionStorage.setItem("user-name", data.data.result.name);
     sessionStorage.setItem("user-email", data.data.result.email);
+    SetUserName(data.data.result.name);
     setBookmarkAPI(true);
   } catch (err) {
     alert(err);

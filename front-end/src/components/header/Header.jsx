@@ -26,55 +26,53 @@ const Header = () => {
   );
   const showURL = useSelector((state) => state.urlChange.name);
   const openLogin = useSelector((state) => state.openBool.login);
+  const userName = useSelector((state) => state.userData.name);
 
-  //북마크 관련
   return (
-    <>
-      <HeaderWrap>
-        <HedaerLeftWrap>
-          <div style={{ cursor: "pointer", height: "100%" }}>
-            <ImgComponent
-              src={"logo.png"}
-              height={"100%"}
-              onClick={() => {
-                window.location.replace("/");
-              }}
-            />
-          </div>
-          <FoodBtn
-            selected={showURL == "shop" && true}
+    <HeaderWrap>
+      <HedaerLeftWrap>
+        <div style={{ cursor: "pointer", height: "100%" }}>
+          <ImgComponent
+            src={"logo.png"}
+            height={"100%"}
             onClick={() => {
-              onClickURL("shop");
+              window.location.replace("/");
             }}
-          >
-            맛집
-          </FoodBtn>
-          <HospitalBtn
-            selected={showURL == "hospital" && true}
-            onClick={() => {
-              onClickURL("hospital");
-            }}
-          >
-            병원
-          </HospitalBtn>
-        </HedaerLeftWrap>
-        <HeaderRightWrap>
-          {openLogin && <Name>{sessionStorage.getItem("user-name")} 님</Name>}
-          <Kakaologin />
-          <BookmarkBtn />
-        </HeaderRightWrap>
-        <MobileMenu>
-          <HamburgerBtn
-            onClick={() => {
-              SetOpenMobileMenu(true);
-            }}
-          >
-            <ImgComponent src={"hamburger.png"} width={"100%"} />
-          </HamburgerBtn>
-          {openMobileMenu && <HeaderSlide />}
-        </MobileMenu>
-      </HeaderWrap>
-    </>
+          />
+        </div>
+        <FoodBtn
+          selected={showURL == "shop" && true}
+          onClick={() => {
+            onClickURL("shop");
+          }}
+        >
+          맛집
+        </FoodBtn>
+        <HospitalBtn
+          selected={showURL == "hospital" && true}
+          onClick={() => {
+            onClickURL("hospital");
+          }}
+        >
+          병원
+        </HospitalBtn>
+      </HedaerLeftWrap>
+      <HeaderRightWrap>
+        {openLogin && <Name>{userName} 님</Name>}
+        <Kakaologin />
+        <BookmarkBtn />
+      </HeaderRightWrap>
+      <MobileMenu>
+        <HamburgerBtn
+          onClick={() => {
+            SetOpenMobileMenu(true);
+          }}
+        >
+          <ImgComponent src={"hamburger.png"} width={"100%"} />
+        </HamburgerBtn>
+        {openMobileMenu && <HeaderSlide />}
+      </MobileMenu>
+    </HeaderWrap>
   );
 };
 
