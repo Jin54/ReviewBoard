@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { setKakaoToken } from "../modules/token";
 
 const LoginAPI = async ( kakaoToken, SetKakaoToken ) => {
-
   const apiurl = process.env.REACT_APP_APIURL;
   const url = `${apiurl}kakaoLogin`;
 
@@ -22,7 +21,7 @@ const LoginAPI = async ( kakaoToken, SetKakaoToken ) => {
       console.log(data)
       SetKakaoToken(data.result)
 
-      // setLoginCode(data.data.code);
+  //     // setLoginCode(data.data.code);
     } catch (err) {
       alert(err);
     }
