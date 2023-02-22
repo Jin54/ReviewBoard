@@ -8,7 +8,6 @@ import { setOpenMobileMenu } from "../../modules/openBool";
 
 import ImgComponent from "./../ImageComponent";
 import Footer from "../Footer";
-import LoginBtn from "./login/LoginBtn";
 import BookmarkBtn from "./login/BookmarkBtn";
 
 const HeaderSlide = () => {

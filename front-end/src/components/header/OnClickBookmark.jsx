@@ -8,7 +8,6 @@ import { resetBookmarkID } from "../../modules/bookmarkID";
 
 const OnClickBookmark = () => {
   const showURL = useSelector((state) => state.urlChange.name);
-  const UserData = useSelector((state) => state.loginData);
 
   const dispatch = useDispatch();
   const SetBookmarkData = useCallback(
@@ -27,7 +26,6 @@ const OnClickBookmark = () => {
   useEffect(() => {
     BookmarkDataAPI(
       showURL,
-      UserData,
       (data) => SetBookmarkData(data),
       (id) => ResetBookmarkID(id)
     );

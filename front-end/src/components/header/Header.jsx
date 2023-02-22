@@ -8,7 +8,7 @@ import { setOpenMobileMenu } from "../../modules/openBool";
 import ImgComponent from "../ImageComponent";
 import Kakaologin from "./login/Kakaologin";
 import HeaderSlide from "./HearderSlide";
-import OnClickBookmark from "./OnClickBookmark";
+import BookmarkBtn from "./login/BookmarkBtn";
 
 const Header = () => {
   // 모바일 메뉴
@@ -26,15 +26,11 @@ const Header = () => {
   );
 
   //로그인
-  const openLogin = useSelector((state) => state.openBool.login);
   const showURL = useSelector((state) => state.urlChange.name);
 
   //북마크 관련
-  const openBookmark = useSelector((state) => state.openBool.bookmark);
   return (
     <>
-      {openLogin && <OnClickBookmark />}
-      {openBookmark && <OnClickBookmark />}
       <HeaderWrap>
         <HedaerLeftWrap>
           <ImgComponent
@@ -62,8 +58,8 @@ const Header = () => {
           </HospitalBtn>
         </HedaerLeftWrap>
         <HeaderRightWrap>
-          {/* 임시로 만듦. api 요청 때메 -> Kakaoologin에 넣을 예정 */}
-          <Kakaologin>카카오 로그인</Kakaologin>
+          <Kakaologin />
+          <BookmarkBtn />
         </HeaderRightWrap>
         <MobileMenu>
           <HamburgerBtn

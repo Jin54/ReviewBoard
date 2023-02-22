@@ -1,9 +1,11 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import LoginAPI from "../../../api/LoginAPI";
-import { setOpenLogin } from "../../../modules/openBool";
+import { setOpenLogin, setOpenBookmark } from "../../../modules/openBool";
+
+import OnClickBookmark from "../OnClickBookmark";
 
 const Kakaologin = () => {
   const openLogin = useSelector((state) => state.openBool.login);
@@ -14,6 +16,15 @@ const Kakaologin = () => {
     },
     [dispatch]
   );
+  const SetOpenBookmark = useCallback(
+    (bool) => {
+      dispatch(setOpenBookmark(bool));
+    },
+    [dispatch]
+  );
+  //클릭 후, 즐겨찾기 api 가 호출되어야 한다. bookmarkData
+  //없을 경우, 로그인을 하면 즐겨찾기 api 에러가 뜬다.
+  const [bookmarkAPI, setBookmarkAPI] = useState(false);
 
   // 초기화 -> 로그인 시작
   const { Kakao } = window;
@@ -31,9 +42,8 @@ const Kakaologin = () => {
   const kakaoLogin = async () => {
     await Kakao.Auth.login({
       success(res) {
-        LoginAPI(res.access_token);
+        LoginAPI(res.access_token, (data) => setBookmarkAPI(data));
         SetOpenLogin(true);
-        return;
       },
       fail(error) {
         console.log(error);
@@ -46,15 +56,24 @@ const Kakaologin = () => {
     Kakao.Auth.logout(() => {
       sessionStorage.clear();
       SetOpenLogin(false);
+      SetOpenBookmark(false);
+      window.location.replace("/");
     });
   };
 
   return (
     <>
       {!openLogin ? (
-        <LoginBtn onClick={kakaoLogin}>카카오 로그인</LoginBtn>
+        <LoginBtn selected={!openLogin} onClick={kakaoLogin}>
+          로그인
+        </LoginBtn>
       ) : (
-        <LoginBtn onClick={kakaoLogout}>카카오 로그아웃</LoginBtn>
+        <>
+          <LoginBtn selected={!openLogin} onClick={kakaoLogout}>
+            로그아웃
+          </LoginBtn>
+          {bookmarkAPI && <OnClickBookmark />}
+        </>
       )}
     </>
   );
@@ -73,7 +92,7 @@ const LoginBtn = styled.div`
     color: #c09567;
     box-sizing: border-box;
     text-decoration: none;
-    margin-left: 20px;
+    margin-left: 10px;
     box-sizing: border-box;
     cursor: pointer;
 

@@ -22,7 +22,7 @@ const ListContent = () => {
   //데이터 보여주는 함수
   function funcData(ListData) {
     if (ListData == null) {
-      return <FlexWrap>목록 없음</FlexWrap>;
+      return <div>목록 없음</div>;
     }
 
     return ListData.map(
