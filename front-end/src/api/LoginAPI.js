@@ -18,7 +18,7 @@ const LoginAPI = async (kakaoToken, setBookmarkAPI, SetUserName) => {
     SetUserName(data.data.result.name);
     setBookmarkAPI(true);
   } catch (err) {
-    alert(err);
+    alert("로그인에 실패하였습니다. 이메일 동의를 해주세요.");
   }
 };
 
