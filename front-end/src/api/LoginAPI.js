@@ -12,8 +12,8 @@ const LoginAPI = async ( kakaoToken, SetKakaoToken ) => {
       const data = await axios({
         method: "post",
         url: url,
-        data: JSON.stringify({
-          access_token: `${kakaoToken}`,
+        body: JSON.stringify({
+          access_token: kakaoToken,
         }),
       }); 
       console.log(kakaoToken)
