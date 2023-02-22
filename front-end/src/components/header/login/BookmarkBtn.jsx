@@ -52,7 +52,6 @@ const WebBtn = styled.div`
     background-color: ${(props) => (props.selected ? "#fff" : "#c09567")};
     color: ${(props) => (props.selected ? "#c09567" : "#fff")};
   }
-
   @media screen and (max-width: 1000px) {
     display: none;
   }

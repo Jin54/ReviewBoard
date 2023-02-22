@@ -48,7 +48,7 @@ const SaveMapData = (props) => {
         SetMapData(data);
       }
     );
-  }, [props.xy, props.size]);
+  }, [props.xy, props.size, showURL]);
 };
 
 export default SaveMapData;

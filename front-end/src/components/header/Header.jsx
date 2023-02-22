@@ -66,8 +66,8 @@ const Header = () => {
         <HeaderRightWrap>
           {/* 임시로 만듦. api 요청 때메 -> Kakaoologin에 넣을 예정 */}
           <LoginBtn />
-          <Kakaologin>로그인</Kakaologin>
           <BookmarkBtn />
+          <Kakaologin>카카오 로그인</Kakaologin>
         </HeaderRightWrap>
         <MobileMenu>
           <HamburgerBtn

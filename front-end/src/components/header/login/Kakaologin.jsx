@@ -70,9 +70,9 @@ const Kakaologin = () => {
   return (
     <Login>
       {user ? (
-        <LoginBtn onClick={kakaoLogout}>로그아웃</LoginBtn>
+        <LoginBtn onClick={kakaoLogout}>카카오 로그아웃</LoginBtn>
       ) : (
-        <LoginBtn onClick={kakaoLogin}>로그인</LoginBtn>
+        <LoginBtn onClick={kakaoLogin}>카카오 로그인</LoginBtn>
       )}
     </Login>
   );

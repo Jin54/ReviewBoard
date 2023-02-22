@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
@@ -64,33 +64,43 @@ const DetailModal = () => {
         </Close>
       </CloseWrap>
       <Box>
-        <div key={detailData.id}>
-          <MainImg>
-            {detailData.thumbnail ? (
-              <Thumbnail src={detailData.thumbnail} width={"100%"} />
-            ) : (
-              <ImgComponent src={"noImage.jpg"} width={"80%"} />
-            )}
-          </MainImg>
-          <About>
-            <Title>{detailData.name}</Title>
-            <Address>{detailData.numberAddress}</Address>
-            <ScopeWrap>
-              <Scope>{detailData.review_rating}</Scope>
-              <ReviewScope scope={detailData.review_rating} />
-            </ScopeWrap>
-          </About>
-          <InfoWrap>
-            <Info>
-              <DetailInfo
-                img={"time.png"}
-                txt={detailData.time}
-                arrow={detailData.time}
-                time={detailData.time}
-              />
-              <DetailInfo img={"sort.png"} txt={detailData.sort} />
-              <DetailInfo img={"phone.png"} txt={detailData.number} />
-            </Info>
+        <MainImg>
+          {detailData.thumbnail ? (
+            <Thumbnail src={detailData.thumbnail} width={"100%"} />
+          ) : (
+            <ImgComponent src={"noImage.jpg"} width={"80%"} />
+          )}
+        </MainImg>
+        <About>
+          <Title>{detailData.name}</Title>
+          <Address>{detailData.numberAddress}</Address>
+          <ScopeWrap>
+            <Scope>{detailData.review_rating}</Scope>
+            <ReviewScope scope={detailData.review_rating} />
+          </ScopeWrap>
+        </About>
+        <InfoWrap>
+          <Info>
+            <DetailInfo
+              img={"time.png"}
+              txt={detailData.time}
+              arrow={detailData.time}
+              time={detailData.time}
+            />
+            <DetailInfo img={"sort.png"} txt={detailData.sort} />
+            <DetailInfo img={"phone.png"} txt={detailData.number} />
+          </Info>
+          <InfoRight>
+            <Copy
+              onClick={() => {
+                navigator.clipboard.writeText(detailData.id);
+                alert(
+                  "해당 가게 정보가 클립보드에 복사되었습니다.\n문의하기를 클릭하여 변경 정보를 ID 와 함께 보내주세요."
+                );
+              }}
+            >
+              정보 변경
+            </Copy>
             <Bookmark
               starcolor={
                 bookmarkList.includes(detailData.id)
@@ -105,8 +115,8 @@ const DetailModal = () => {
                   : alert("로그인을 해주세요.");
               }}
             />
-          </InfoWrap>
-        </div>
+          </InfoRight>
+        </InfoWrap>
         <Divider></Divider>
         <ReviewWrap>
           <ReviewTxtWrap>
@@ -251,6 +261,21 @@ const Info = styled.div`
     margin-left: 0;
   }
 `;
+const InfoRight = styled.div`
+  margin-right: 20px;
+  display: flex;
+  @media screen and (max-width: 1000px) {
+    margin-right: 0;
+  }
+`;
+const Copy = styled.div`
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  color: #999999;
+`;
 const Bookmark = styled.div`
   cursor: pointer;
   width: 24px;
@@ -258,6 +283,9 @@ const Bookmark = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
+  @media screen and (max-width: 1000px) {
+    width: 36px;
+  }
 `;
 // ============
 const Divider = styled.div`
@@ -293,22 +321,6 @@ const ReviewNum = styled.p`
   color: #999999;
   @media screen and (max-width: 1000px) {
     font-size: 12px;
-  }
-`;
-const ReviewMore = styled.p`
-  margin: 0;
-  background: #c09567;
-  border: 1px solid #c09567;
-  border-radius: 10px;
-  padding: 10px;
-  box-sizing: border-box;
-  color: #fff;
-  font-weight: 700;
-  font-size: 14px;
-  cursor: pointer;
-  @media screen and (max-width: 1000px) {
-    font-size: 12px;
-    padding: 8px;
   }
 `;
 
