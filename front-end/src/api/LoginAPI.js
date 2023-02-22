@@ -7,13 +7,13 @@ const LoginAPI = async ( kakaoToken, SetKakaoToken ) => {
   const apiurl = process.env.REACT_APP_APIURL;
   const url = `${apiurl}kakaoLogin`;
 
+  const token = {access_token : kakaoToken}
+
     try {
       const data = await axios({
         method: "post",
         url: url,
-        body: JSON.stringify({
-          access_token: kakaoToken,
-        }),
+        data: token,
       }); 
       console.log(kakaoToken)
       console.log(url)
