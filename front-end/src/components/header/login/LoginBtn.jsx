@@ -42,7 +42,6 @@ const LoginBtn = () => {
     LoginAPI(showURL, token, (data) => setLoginCode(data));
   }
   useEffect(() => {
-    console.log(loginCode);
     if (loginCode == null) return;
     else if (loginCode == 200) {
       SetOpenLogin(true);
@@ -56,15 +55,17 @@ const LoginBtn = () => {
   return (
     <>
       {!openLogin ? (
-        <div
+        <WebBtn
+          selected={!openLogin}
           onClick={() => {
             openLogin ? SetOpenLogin(false) : requestLogin();
           }}
         >
           로그인
-        </div>
+        </WebBtn>
       ) : (
-        <div
+        <WebBtn
+          selected={!openLogin}
           onClick={() => {
             SetOpenLogin(false);
             SetOpenBookmark(false);
@@ -73,10 +74,33 @@ const LoginBtn = () => {
           }}
         >
           로그아웃
-        </div>
+        </WebBtn>
       )}
     </>
   );
 };
 
 export default LoginBtn;
+const WebBtn = styled.div`
+  @media screen and (min-width: 1000px) {
+    border: 1.5px solid #c09567;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    color: #c09567;
+    box-sizing: border-box;
+    text-decoration: none;
+    margin-left: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    background-color: ${(props) => (props.selected ? "#fff" : "#c09567")};
+    color: ${(props) => (props.selected ? "#c09567" : "#fff")};
+  }
+
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
+`;

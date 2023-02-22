@@ -89,7 +89,6 @@ const LoginBtn = styled.a`
   font-size: 16px;
   text-align: center;
   color: #c09567;
-  /* width: 100px; */
   box-sizing: border-box;
   text-decoration: none;
   margin-left: 20px;
