@@ -1,32 +1,23 @@
 import axios from "axios";
-import { useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setKakaoToken } from "../modules/token";
 
-const LoginAPI = async ( kakaoToken, SetKakaoToken ) => {
+const LoginAPI = async (kakaoToken) => {
   const apiurl = process.env.REACT_APP_APIURL;
   const url = `${apiurl}kakaoLogin`;
+  const token = { access_token: kakaoToken };
 
-  const token = {access_token : kakaoToken}
+  try {
+    const data = await axios({
+      method: "post",
+      url: url,
+      data: token,
+    });
 
-    try {
-      const data = await axios({
-        method: "post",
-        url: url,
-        data: token,
-      }); 
-      // console.log(kakaoToken)
-      // console.log(url)
-      //  데이터 받아오는 함수 작성
-      console.log(data)
-      SetKakaoToken(data.data.result)
-
-  //     // setLoginCode(data.data.code);
-    } catch (err) {
-      alert(err);
-    }
-
-  // setLoginCode(200);
+    sessionStorage.setItem("user-jwt", data.data.result.jwt);
+    sessionStorage.setItem("user-name", data.data.result.name);
+    sessionStorage.setItem("user-email", data.data.result.email);
+  } catch (err) {
+    alert(err);
+  }
 };
 
 export default LoginAPI;

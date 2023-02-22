@@ -26,7 +26,6 @@ export const MapDataAPI = async (
       url: url,
     });
     SetMapData(data.data.result);
-
     // if (data.data.code == 200) {
     //   SetMapData(data.data.result);
     // } else if (data.data.code == 404) {

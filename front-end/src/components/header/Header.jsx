@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
@@ -9,8 +9,6 @@ import ImgComponent from "../ImageComponent";
 import Kakaologin from "./login/Kakaologin";
 import HeaderSlide from "./HearderSlide";
 import OnClickBookmark from "./OnClickBookmark";
-import BookmarkBtn from "./login/BookmarkBtn";
-import LoginBtn from "./login/LoginBtn";
 
 const Header = () => {
   // 모바일 메뉴
@@ -65,8 +63,6 @@ const Header = () => {
         </HedaerLeftWrap>
         <HeaderRightWrap>
           {/* 임시로 만듦. api 요청 때메 -> Kakaoologin에 넣을 예정 */}
-          <LoginBtn />
-          <BookmarkBtn />
           <Kakaologin>카카오 로그인</Kakaologin>
         </HeaderRightWrap>
         <MobileMenu>

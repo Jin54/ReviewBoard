@@ -39,8 +39,6 @@ const HeaderSlide = () => {
               <ImgComponent src={"close.png"} width={"100%"} />
             </Close>
           </CloseWrap>
-          <LoginBtn />
-          <BookmarkBtn />
           <MFoodBtn
             selected={showURL == "shop" && true}
             onClick={() => {
