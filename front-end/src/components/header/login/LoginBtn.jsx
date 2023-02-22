@@ -39,7 +39,7 @@ const LoginBtn = () => {
 
   //로그인 유무로 북마크 활성화
   function requestLogin() {
-    LoginAPI(showURL, token, (data) => setLoginCode(data));
+    LoginAPI((data) => setLoginCode(data));
   }
   useEffect(() => {
     if (loginCode == null) return;

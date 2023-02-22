@@ -1,21 +1,30 @@
 const SETKAKAOTOKEN = "token/SETKAKAOTOKEN";
 
-export const setKakaoToken = (token) => ({
+export const setKakaoToken = (data) => ({
   type: SETKAKAOTOKEN,
-  token: token,
+  jwttoken: data.jwttoken,
+  email: data.email,
+  name: data.name,
 });
 
 const initialState = {
-  kakao:
-    "eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjEsImlhdCI6MTY3NjgzNzg5OSwiZXhwIjoxNjc4MzA5MTI4fQ.kizTLEAMz6xv9SzXICwX2Y02cTUYuyzY304BLiZZnek",
+  jwttoken:
+    "",
+  email:
+    "",
+  name:
+    "",
 };
 
 function token(state = initialState, action) {
   switch (action.type) {
     case SETKAKAOTOKEN:
+      // console.log(action)
       return {
         ...state,
-        kakao: action.token,
+        jwttoken: action.jwttoken,
+        email: action.email,
+        name: action.name,
       };
     default:
       return state;

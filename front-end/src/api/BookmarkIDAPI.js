@@ -12,7 +12,7 @@ const BookmarkIDAPI = async (showURL, token, shopid, ResetBookmarkID) => {
 
   try {
     const data = await axios({
-      // await 비동기처리 (데이터가 없을 때 문제여서 중간 시간 때문에) 이거 끝나기 전에 암것도 못하도록
+      // await 비동기처리 (데이터가 없을 때 문제여서 중간 시간 때문에)
       method: "post", // 수정하기
       url: url,
       headers: {

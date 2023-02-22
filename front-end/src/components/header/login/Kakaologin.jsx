@@ -1,13 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+
+import { setKakaoToken } from "../../../modules/token";
 import { KAKAO_AUTH_URL } from "./OAuth";
+import LoginAPI from "../../../api/LoginAPI";
 
 const Kakaologin = () => {
   const [user, setUser] = useState(null);
   const [isLogin, setIsLogin] = useState(false);
   const { Kakao } = window;
 
+  const dispatch = useDispatch();
+  const SetKakaoToken = useCallback((data) => dispatch(setKakaoToken(data)), [dispatch]);
+
+  // 초기화
   const initKakao = async () => {
     const appKey = process.env.REACT_APP_APIKEY;
     if (Kakao && !Kakao.isInitialized()) {
@@ -16,25 +24,26 @@ const Kakaologin = () => {
     }
   };
 
+  // 카카오 로그인
   const kakaoLogin = async () => {
     await Kakao.Auth.login({
       success(res) {
-        console.log(res);
-        Kakao.Auth.setAccessToken(res.access_token);
-        console.log("카카오 로그인 성공");
 
-        Kakao.API.request({
-          url: "/v2/user/me",
-          success(res) {
-            console.log("카카오 인가 요청 성공");
-            setIsLogin(true);
-            const kakaoAccount = res.kakao_account;
-            localStorage.setItem("email", kakaoAccount.email);
-          },
-          fail(error) {
-            console.log(error);
-          },
-        });
+        LoginAPI(res.access_token, SetKakaoToken)
+
+        // Kakao.API.request({
+        //   url: "/v2/user/me",
+        //   success(res) {
+        //     console.log("카카오 인가 요청 성공");
+        //     setIsLogin(true);
+        //     const kakaoAccount = res.kakao_account;
+        //     localStorage.setItem("email", kakaoAccount.email); 
+        //     console.log(kakaoAccount) // email_needs_agreement : true , has_email:true , profile_nickname_needs_agreement:false
+        //   },
+        //   fail(error) {
+        //     console.log(error);
+        //   },
+        // });
       },
       fail(error) {
         console.log(error);
@@ -42,14 +51,15 @@ const Kakaologin = () => {
     });
   };
 
+  // 카카오 로그아웃
   const kakaoLogout = () => {
     Kakao.Auth.logout((res) => {
       // console.log(Kakao.Auth.getAccessToken());
       // console.log(res);
       localStorage.removeItem("email");
-      localStorage.removeItem("profileImg");
-      localStorage.removeItem("nickname");
       setUser(null);
+      SetKakaoToken(null)
+      console.log('카카오 로그아웃')
     });
   };
 
