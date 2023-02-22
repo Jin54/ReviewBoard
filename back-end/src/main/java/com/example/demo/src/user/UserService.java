@@ -33,19 +33,22 @@ public class UserService {
     private final UserRepository userRepository;
     private final JwtService jwtService;
 
-    public PostShopRes logIn(String kakaoEmail) {
+    public PostShopRes logIn(String[] info) {
+        String kakaoEmail = info[0];
+        String name= info[1];
+
         Optional<User>  user = userRepository.findByEmail(kakaoEmail);
 
         if(user.isPresent()){
             String jwtToken = jwtService.createJwt(user.get().getId());
-            return new PostShopRes(user.get().getId(),jwtToken,user.get().getEmail());
+            return new PostShopRes(user.get().getId(),jwtToken,user.get().getEmail(),name );
         }
 
         User saveUser = new User(kakaoEmail);
         userRepository.save(saveUser);
         String jwtToken = jwtService.createJwt(saveUser.getId());
 
-        return new PostShopRes(saveUser.getId(),jwtToken,saveUser.getEmail());
+        return new PostShopRes(saveUser.getId(),jwtToken,saveUser.getEmail(),name );
 
     }
     //랜덤으로 음식점 출력

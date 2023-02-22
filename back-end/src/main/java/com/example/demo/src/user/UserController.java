@@ -1,7 +1,9 @@
 package com.example.demo.src.user;
 
 
+import com.example.demo.common.Constant;
 import com.example.demo.common.exceptions.BaseException;
+import com.example.demo.common.oauth.OAuthService;
 import com.example.demo.common.response.BaseResponse;
 import com.example.demo.src.user.model.GetReviewRes;
 import com.example.demo.src.user.model.GetShopRes;
@@ -14,7 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+import static com.example.demo.common.response.BaseResponseStatus.FAILED_KAKAO_ACCESS_TOKEN;
+import static com.example.demo.common.response.BaseResponseStatus.FAILED_KAKAO_LOGIN;
 
 
 @Slf4j
@@ -26,6 +29,7 @@ public class UserController {
 
     private final UserService userService;
 
+    private  final OAuthService oAuthService;
     /**
      * KAKAO 로그인 API
      * [POST] /kakaoLogin
@@ -37,14 +41,18 @@ public class UserController {
     @PostMapping("")
     public BaseResponse<PostShopRes> kakaoLogIn(@RequestBody PostLoginReq postLoginReq) {
 
-//        String kakaoEmail = oAuthService.getProfile(IsOAuth.KAKAO, postLoginReq.getAccessToken());
-//        if (kakaoEmail == null)
-//            throw new BaseException(FAILED_KAKAO_LOGIN);
-//
-//        postLoginReq.setSocialInfo(kakaoEmail, IsOAuth.KAKAO);
+        System.out.println(postLoginReq.getAccess_token());
+        if (postLoginReq.getAccess_token() == null)
+            throw new BaseException(FAILED_KAKAO_ACCESS_TOKEN);
 
-        String kakaoEmail="mmm1103@naver.com";
-        PostShopRes postShopRes = userService.logIn(kakaoEmail);
+
+        //Zu_S6mCyfk7EexxKFobs6ZAygjWjhq1fDeesX8kSCj11GgAAAYZ4APY8
+        String info[] = oAuthService.getProfile(Constant.SocialLoginType.KAKAO, postLoginReq.getAccess_token());
+        if (info[0] == null)
+            throw new BaseException(FAILED_KAKAO_LOGIN);
+
+
+        PostShopRes postShopRes = userService.logIn(info);
 
         return new BaseResponse<>(postShopRes);
     }

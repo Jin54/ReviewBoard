@@ -37,7 +37,11 @@ public enum BaseResponseStatus {
     INVALID_OAUTH_TYPE(false, HttpStatus.BAD_REQUEST.value(), "알 수 없는 소셜 로그인 형식입니다."),
 
 
+    FAILED_KAKAO_LOGIN(false, HttpStatus.BAD_REQUEST.value(), "카카오 로그인 실패 했습니다."),
 
+
+    FAILED_KAKAO_FIND_FAILED(false, HttpStatus.BAD_REQUEST.value(), "카카오 정보를 불러오기 실패 했습니다."),
+    FAILED_KAKAO_ACCESS_TOKEN(false, HttpStatus.BAD_REQUEST.value(), "카카오 토큰 찾기 실패 했습니다."),
     /**
      * 500 :  Database, Server 오류
      */

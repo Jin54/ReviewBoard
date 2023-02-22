@@ -17,10 +17,13 @@ public class PostShopRes {
     private String jwt;
     @Schema(description = "",  nullable = false)
     private String email;
+    @Schema(description = "",  nullable = false)
+    private String name;
 
-    public PostShopRes(Long id, String jwt, String email) {
+    public PostShopRes(Long id, String jwt, String email,String name) {
         this.id = id;
         this.jwt = jwt;
         this.email = email;
+        this.name=name;
     }
 }

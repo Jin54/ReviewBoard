@@ -15,8 +15,9 @@ import lombok.Setter;
 public class PostLoginReq {
 
 
-    @Schema(description = "",  nullable = false)
+    @Schema(description = "",  nullable = true)
     private String access_token ;
+
 
 
     //위도
