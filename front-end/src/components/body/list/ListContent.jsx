@@ -16,13 +16,13 @@ const ListContent = () => {
   const [bottom, inView] = useInView();
   useEffect(() => {
     if (!inView) return;
-    setPageNum(pageNum + 20);
+    setPageNum(pageNum + 10);
   }, [inView]);
 
   //데이터 보여주는 함수
   function funcData(ListData) {
     if (ListData == null) {
-      return <FlexWrap>목록 없음</FlexWrap>;
+      return <div>목록 없음</div>;
     }
 
     return ListData.map(

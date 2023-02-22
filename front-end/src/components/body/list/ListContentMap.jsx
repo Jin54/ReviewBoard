@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
@@ -6,9 +6,10 @@ import ReviewScope from "./ReviewScope";
 import BookmarkImgOFF from "../../../assets/heartOffFill.png";
 import BookmarkImgON from "../../../assets/heartOn.png";
 import ImgComponent from "../../ImageComponent";
+import OnClickBookmark from "../../header/OnClickBookmark";
 
 import BookmarkIDAPI from "../../../api/BookmarkIDAPI";
-import { setDetailID } from "../../../modules/saveData";
+import { setDetailID, setBookmarkData } from "../../../modules/saveData";
 import { setOpenDetailModal } from "../../../modules/openBool";
 import { resetBookmarkID } from "../../../modules/bookmarkID";
 
@@ -25,12 +26,18 @@ const ListContentMap = (props) => {
     (idList) => dispatch(resetBookmarkID(idList)),
     [dispatch]
   );
+  const SetBookmarkData = useCallback(
+    (data) => {
+      dispatch(setBookmarkData(data));
+    },
+    [dispatch]
+  );
 
   //북마크
   const bookmarkID = useSelector((state) => state.bookmarkID);
   const showURL = useSelector((state) => state.urlChange.name);
-  const kakaoToken = useSelector((state) => state.token.kakao);
   const openLogin = useSelector((state) => state.openBool.login);
+  const [bookmarkAPI, setBookmarkAPI] = useState(false);
 
   var bookmarkList = bookmarkID[0];
   if (bookmarkID[0] == null) bookmarkList = [0];
@@ -42,6 +49,7 @@ const ListContentMap = (props) => {
         SetOpenDetailModal();
       }}
     >
+      {bookmarkAPI && <OnClickBookmark />}
       <ImgBox>
         {props.data.thumbnail ? (
           <ImgWrap imgUrl={props.data.thumbnail}></ImgWrap>
@@ -61,8 +69,11 @@ const ListContentMap = (props) => {
               }
               onClick={(e) => {
                 openLogin
-                  ? BookmarkIDAPI(showURL, kakaoToken, props.data.id, (data) =>
-                      ResetBookmarkID(data)
+                  ? BookmarkIDAPI(
+                      showURL,
+                      props.data.id,
+                      (data) => ResetBookmarkID(data),
+                      (data) => SetBookmarkData(data)
                     )
                   : alert("로그인을 해주세요.");
                 e.stopPropagation();

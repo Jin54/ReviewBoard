@@ -1,29 +1,24 @@
 import axios from "axios";
 
-const LoginAPI = async (showURL, token, setLoginCode) => {
+const LoginAPI = async (kakaoToken, setBookmarkAPI) => {
   const apiurl = process.env.REACT_APP_APIURL;
   const url = `${apiurl}kakaoLogin`;
+  const token = { access_token: kakaoToken };
 
-    try {
-      const data = await axios({
-        method: "post",
-        url: url,
-        body: JSON.stringify({
-          access_token: kakaoToken,
-        }),
-      }); 
-      console.log(kakaoToken)
-      console.log(url)
-      //  데이터 받아오는 함수 작성
-      console.log(data)
-      SetKakaoToken(data.result)
+  try {
+    const data = await axios({
+      method: "post",
+      url: url,
+      data: token,
+    });
 
-  //     // setLoginCode(data.data.code);
-  //   } catch (err) {
-  //     alert(err);
-  //   }
-
-  setLoginCode(200);
+    sessionStorage.setItem("user-jwt", data.data.result.jwt);
+    sessionStorage.setItem("user-name", data.data.result.name);
+    sessionStorage.setItem("user-email", data.data.result.email);
+    setBookmarkAPI(true);
+  } catch (err) {
+    alert(err);
+  }
 };
 
 export default LoginAPI;

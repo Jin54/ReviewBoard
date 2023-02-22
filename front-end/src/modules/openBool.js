@@ -14,14 +14,12 @@ export const setOpenBookmark = (bool) => ({
   bool: bool,
 });
 
-export const setOpenListModal = (bool) => ({
+export const setOpenListModal = () => ({
   type: OPENLISTMODAL,
-  bool: bool,
 });
 
-export const setOpenDetailModal = (bool) => ({
+export const setOpenDetailModal = () => ({
   type: OPENDETAILMODAL,
-  bool: bool,
 });
 
 export const setOpenMobileMenu = (bool) => ({
@@ -52,7 +50,7 @@ function openBool(state = initialState, action) {
     case OPENLISTMODAL:
       return {
         ...state,
-        listModal: action.bool,
+        listModal: !state.listModal,
       };
     case OPENDETAILMODAL:
       return {

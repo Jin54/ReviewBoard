@@ -8,7 +8,6 @@ import { resetBookmarkID } from "../../modules/bookmarkID";
 
 const OnClickBookmark = () => {
   const showURL = useSelector((state) => state.urlChange.name);
-  const kakaoToken = useSelector((state) => state.token.kakao);
 
   const dispatch = useDispatch();
   const SetBookmarkData = useCallback(
@@ -27,7 +26,6 @@ const OnClickBookmark = () => {
   useEffect(() => {
     BookmarkDataAPI(
       showURL,
-      kakaoToken,
       (data) => SetBookmarkData(data),
       (id) => ResetBookmarkID(id)
     );

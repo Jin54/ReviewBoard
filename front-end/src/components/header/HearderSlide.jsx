@@ -8,7 +8,6 @@ import { setOpenMobileMenu } from "../../modules/openBool";
 
 import ImgComponent from "./../ImageComponent";
 import Footer from "../Footer";
-import LoginBtn from "./login/LoginBtn";
 import BookmarkBtn from "./login/BookmarkBtn";
 
 const HeaderSlide = () => {
@@ -39,8 +38,6 @@ const HeaderSlide = () => {
               <ImgComponent src={"close.png"} width={"100%"} />
             </Close>
           </CloseWrap>
-          <LoginBtn />
-          <BookmarkBtn />
           <MFoodBtn
             selected={showURL == "shop" && true}
             onClick={() => {

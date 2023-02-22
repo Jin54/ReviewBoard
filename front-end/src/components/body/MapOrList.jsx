@@ -8,8 +8,8 @@ import { setOpenListModal } from "../../modules/openBool";
 const MapOrList = () => {
   const openListModal = useSelector((state) => state.openBool.listModal);
   const dispatch = useDispatch();
-  const SetOpenListModal = useCallback((bool) => {
-    dispatch(setOpenListModal(bool));
+  const SetOpenListModal = useCallback(() => {
+    dispatch(setOpenListModal());
   }, [dispatch]);
   const openBookmark = useSelector((state) => state.openBool.bookmark);
 
@@ -17,7 +17,7 @@ const MapOrList = () => {
     <MapOrListWrap>
       <MapBtn
         onClick={() => {
-          SetOpenListModal(false);
+          SetOpenListModal();
         }}
         selected={!openListModal}
       >
@@ -26,7 +26,7 @@ const MapOrList = () => {
       {openBookmark ? (
         <ListBtn
           onClick={() => {
-            SetOpenListModal(true);
+            SetOpenListModal();
           }}
           selected={openListModal}
         >
@@ -35,7 +35,7 @@ const MapOrList = () => {
       ) : (
         <ListBtn
           onClick={() => {
-            SetOpenListModal(true);
+            SetOpenListModal();
           }}
           selected={openListModal}
         >
@@ -54,7 +54,7 @@ const MapOrListWrap = styled.div`
   justify-content: space-between;
   width: 60%;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 40px;
   flex: 0;
   @media screen and (max-width: 1000px) {
     margin-top: 20px;
@@ -64,7 +64,7 @@ const MapBtn = styled.p`
   margin: 0;
   margin-right: 40px;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 20px;
   color: ${(props) => (props.selected ? "#000" : "#999")};
   @media screen and (max-width: 1000px) {
     font-size: 12px;
@@ -75,7 +75,7 @@ const ListBtn = styled.p`
   margin: 0;
   margin-left: 40px;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 20px;
   color: ${(props) => (props.selected ? "#000" : "#999")};
   @media screen and (max-width: 1000px) {
     font-size: 12px;

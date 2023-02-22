@@ -1,40 +1,49 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useCallback, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import { KAKAO_AUTH_URL } from "./OAuth";
+
+import LoginAPI from "../../../api/LoginAPI";
+import { setOpenLogin, setOpenBookmark } from "../../../modules/openBool";
+
+import OnClickBookmark from "../OnClickBookmark";
 
 const Kakaologin = () => {
-  const [user, setUser] = useState(null);
-  const [isLogin, setIsLogin] = useState(false);
-  const { Kakao } = window;
+  const openLogin = useSelector((state) => state.openBool.login);
+  const dispatch = useDispatch();
+  const SetOpenLogin = useCallback(
+    (bool) => {
+      dispatch(setOpenLogin(bool));
+    },
+    [dispatch]
+  );
+  const SetOpenBookmark = useCallback(
+    (bool) => {
+      dispatch(setOpenBookmark(bool));
+    },
+    [dispatch]
+  );
+  //클릭 후, 즐겨찾기 api 가 호출되어야 한다. bookmarkData
+  //없을 경우, 로그인을 하면 즐겨찾기 api 에러가 뜬다.
+  const [bookmarkAPI, setBookmarkAPI] = useState(false);
 
+  // 초기화 -> 로그인 시작
+  const { Kakao } = window;
   const initKakao = async () => {
     const appKey = process.env.REACT_APP_APIKEY;
     if (Kakao && !Kakao.isInitialized()) {
       await Kakao.init(appKey);
-      console.log(`kakao 초기화 ${Kakao.isInitialized()}`);
     }
   };
+  useEffect(() => {
+    initKakao();
+  }, []);
 
+  // 카카오 로그인
   const kakaoLogin = async () => {
     await Kakao.Auth.login({
       success(res) {
-        console.log(res);
-        Kakao.Auth.setAccessToken(res.access_token);
-        console.log("카카오 로그인 성공");
-
-        Kakao.API.request({
-          url: "/v2/user/me",
-          success(res) {
-            console.log("카카오 인가 요청 성공");
-            setIsLogin(true);
-            const kakaoAccount = res.kakao_account;
-            localStorage.setItem("email", kakaoAccount.email);
-          },
-          fail(error) {
-            console.log(error);
-          },
-        });
+        LoginAPI(res.access_token, (data) => setBookmarkAPI(data));
+        SetOpenLogin(true);
       },
       fail(error) {
         console.log(error);
@@ -42,66 +51,59 @@ const Kakaologin = () => {
     });
   };
 
+  // 카카오 로그아웃
   const kakaoLogout = () => {
-    Kakao.Auth.logout((res) => {
-      // console.log(Kakao.Auth.getAccessToken());
-      // console.log(res);
-      localStorage.removeItem("email");
-      localStorage.removeItem("profileImg");
-      localStorage.removeItem("nickname");
-      setUser(null);
+    Kakao.Auth.logout(() => {
+      sessionStorage.clear();
+      SetOpenLogin(false);
+      SetOpenBookmark(false);
+      window.location.replace("/");
     });
   };
 
-  useEffect(() => {
-    initKakao();
-    Kakao.Auth.getAccessToken() ? setIsLogin(true) : setIsLogin(false);
-  }, []);
-
-  useEffect(() => {
-    // console.log(isLogin);
-    if (isLogin) {
-      setUser({
-        email: localStorage.getItem("email"),
-      });
-    }
-  }, [isLogin]);
-
   return (
-    <Login>
-      {user ? (
-        <LoginBtn onClick={kakaoLogout}>카카오 로그아웃</LoginBtn>
+    <>
+      {!openLogin ? (
+        <LoginBtn selected={!openLogin} onClick={kakaoLogin}>
+          로그인
+        </LoginBtn>
       ) : (
-        <LoginBtn onClick={kakaoLogin}>카카오 로그인</LoginBtn>
+        <>
+          <LoginBtn selected={!openLogin} onClick={kakaoLogout}>
+            로그아웃
+          </LoginBtn>
+          {bookmarkAPI && <OnClickBookmark />}
+        </>
       )}
-    </Login>
+    </>
   );
 };
-// console.log(window.location.href)
 
-const Login = styled.div``;
+export default Kakaologin;
 
-const LoginBtn = styled.a`
-  border: 1.5px solid #c09567;
-  border-radius: 50px;
-  padding: 6px 10px;
-  font-weight: 500;
-  font-size: 14px;
-  text-align: center;
-  color: #c09567;
-  box-sizing: border-box;
-  text-decoration: none;
-  margin-left: 20px;
-  box-sizing: border-box;
-  cursor: pointer;
+const LoginBtn = styled.div`
+  @media screen and (min-width: 1000px) {
+    border: 1.5px solid #c09567;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    color: #c09567;
+    box-sizing: border-box;
+    text-decoration: none;
+    margin-left: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    background-color: ${(props) => (props.selected ? "#fff" : "#c09567")};
+    color: ${(props) => (props.selected ? "#c09567" : "#fff")};
+  }
 
   @media screen and (max-width: 1000px) {
     display: none;
   }
 `;
 
-export default Kakaologin;
-
 // https://data-jj.tistory.com/53
-
 // https://2mojurmoyang.tistory.com/192

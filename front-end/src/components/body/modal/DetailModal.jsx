@@ -7,6 +7,7 @@ import BookmarkIDAPI from "../../../api/BookmarkIDAPI";
 import { setDetailData } from "../../../modules/saveData";
 import { resetBookmarkID } from "../../../modules/bookmarkID";
 import { setOpenDetailModal } from "../../../modules/openBool";
+import { setBookmarkData } from "../../../modules/saveData";
 
 import ImgComponent from "../../ImageComponent";
 import ReviewScope from "../list/ReviewScope";
@@ -31,9 +32,14 @@ const DetailModal = () => {
   //북마크
   const showURL = useSelector((state) => state.urlChange.name);
   const bookmarkID = useSelector((state) => state.bookmarkID);
-  const kakaoToken = useSelector((state) => state.token.kakao);
   const ResetBookmarkID = useCallback(
     (data) => dispatch(resetBookmarkID(data)),
+    [dispatch]
+  );
+  const SetBookmarkData = useCallback(
+    (data) => {
+      dispatch(setBookmarkData(data));
+    },
     [dispatch]
   );
   const openLogin = useSelector((state) => state.openBool.login);
@@ -109,8 +115,11 @@ const DetailModal = () => {
               }
               onClick={() => {
                 openLogin
-                  ? BookmarkIDAPI(showURL, kakaoToken, detailData.id, (data) =>
-                      ResetBookmarkID(data)
+                  ? BookmarkIDAPI(
+                      showURL,
+                      detailData.id,
+                      (data) => ResetBookmarkID(data),
+                      (data) => SetBookmarkData(data)
                     )
                   : alert("로그인을 해주세요.");
               }}

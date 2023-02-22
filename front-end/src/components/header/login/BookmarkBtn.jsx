@@ -7,7 +7,6 @@ import { setOpenBookmark } from "../../../modules/openBool";
 const BookmarkBtn = () => {
   const openBookmark = useSelector((state) => state.openBool.bookmark);
   const openLogin = useSelector((state) => state.openBool.login);
-  const openMobileMenu = useSelector((state) => state.openBool.mobileMenu);
   const dispatch = useDispatch();
   const SetOpenBookmark = useCallback(
     (bool) => {
@@ -38,9 +37,9 @@ const WebBtn = styled.div`
   @media screen and (min-width: 1000px) {
     border: 1.5px solid #c09567;
     border-radius: 50px;
-    padding: 6px 10px;
-    font-weight: 500;
-    font-size: 14px;
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 16px;
     text-align: center;
     color: #c09567;
     box-sizing: border-box;
@@ -49,8 +48,8 @@ const WebBtn = styled.div`
     box-sizing: border-box;
     cursor: pointer;
 
-    background-color: ${(props) => (props.selected ? "#fff" : "#c09567")};
-    color: ${(props) => (props.selected ? "#c09567" : "#fff")};
+    background-color: ${(props) => (props.selected ? "#c09567" : "#fff")};
+    color: ${(props) => (props.selected ? "#fff" : "#c09567")};
   }
   @media screen and (max-width: 1000px) {
     display: none;

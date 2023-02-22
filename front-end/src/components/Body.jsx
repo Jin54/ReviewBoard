@@ -30,10 +30,11 @@ const BodyWrap = styled.div`
   margin: auto;
   box-sizing: border-box;
   flex: 1;
+  /* border: 1px solid #c09567; */
   border-radius: 10px;
   position: relative;
   overflow: hidden;
-  margin-top: 20px;
+  margin-top: 40px;
   position: relative;
   @media screen and (max-width: 1000px) {
     margin-top: 20px;
