@@ -30,7 +30,6 @@ const BodyWrap = styled.div`
   margin: auto;
   box-sizing: border-box;
   flex: 1;
-  /* border: 1px solid #c09567; */
   border-radius: 10px;
   position: relative;
   overflow: hidden;

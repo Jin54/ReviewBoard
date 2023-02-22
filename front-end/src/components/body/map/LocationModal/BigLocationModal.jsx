@@ -54,7 +54,7 @@ const RegionSelectWrap = styled.div`
   position: absolute;
   bottom: 0;
   z-index: 20;
-  border-top: 1px solid #c09567;
+  border: 1px solid #c09567;
   border-radius: 10px;
   padding: 40px 22px;
   box-sizing: border-box;
