@@ -37,6 +37,7 @@ const ListContentMap = (props) => {
   const bookmarkID = useSelector((state) => state.bookmarkID);
   const showURL = useSelector((state) => state.urlChange.name);
   const openLogin = useSelector((state) => state.openBool.login);
+  const userJWT = useSelector((state) => state.userData.jwt);
   const [bookmarkAPI, setBookmarkAPI] = useState(false);
 
   var bookmarkList = bookmarkID[0];
@@ -71,6 +72,7 @@ const ListContentMap = (props) => {
                 openLogin
                   ? BookmarkIDAPI(
                       showURL,
+                      userJWT,
                       props.data.id,
                       (data) => ResetBookmarkID(data),
                       (data) => SetBookmarkData(data)

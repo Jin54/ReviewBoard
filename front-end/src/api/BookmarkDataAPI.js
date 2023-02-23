@@ -2,7 +2,12 @@ import axios from "axios";
 
 // 즐겨찾기 해둔 데이터들
 
-const BookmarkDataAPI = async (showURL, SetBookmarkData, ResetBookmarkID) => {
+const BookmarkDataAPI = async (
+  showURL,
+  userJWT,
+  SetBookmarkData,
+  ResetBookmarkID
+) => {
   const apiurl = process.env.REACT_APP_APIURL;
   const url = `${apiurl}/${showURL}/bookmark/`;
   try {
@@ -10,7 +15,7 @@ const BookmarkDataAPI = async (showURL, SetBookmarkData, ResetBookmarkID) => {
       method: "get", // 요청 받아오기
       url: url,
       headers: {
-        "X-ACCESS-TOKEN": sessionStorage.getItem("user-jwt"),
+        "X-ACCESS-TOKEN": userJWT,
       },
     });
 

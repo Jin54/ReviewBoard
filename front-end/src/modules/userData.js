@@ -2,7 +2,7 @@ export const SETUSERTOKEN = "userData/SETUSERTOKEN";
 export const SETUSERNAME = "userData/SETUSERNAME";
 export const SETUSEREMAIL = "userData/SETUSEREMAIL";
 
-export const setUserData = (jwt) => ({
+export const setUserToken = (jwt) => ({
   type: SETUSERTOKEN,
   jwt: jwt,
 });

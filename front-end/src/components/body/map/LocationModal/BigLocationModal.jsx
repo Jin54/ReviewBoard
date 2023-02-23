@@ -113,6 +113,7 @@ const FlexWrap = styled.div`
   flex-wrap: wrap;
   width: 100%;
   margin: auto;
+  cursor: pointer;
 `;
 const Divider = styled.hr`
   border: 0;

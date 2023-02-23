@@ -32,6 +32,7 @@ const DetailModal = () => {
   //북마크
   const showURL = useSelector((state) => state.urlChange.name);
   const bookmarkID = useSelector((state) => state.bookmarkID);
+  const userJWT = useSelector((state) => state.userData.jwt);
   const ResetBookmarkID = useCallback(
     (data) => dispatch(resetBookmarkID(data)),
     [dispatch]
@@ -114,9 +115,11 @@ const DetailModal = () => {
                   : BookmarkImgOFF
               }
               onClick={() => {
+                console.log(userJWT);
                 openLogin
                   ? BookmarkIDAPI(
                       showURL,
+                      userJWT,
                       detailData.id,
                       (data) => ResetBookmarkID(data),
                       (data) => SetBookmarkData(data)

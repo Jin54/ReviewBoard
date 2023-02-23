@@ -68,6 +68,7 @@ const RegionBtn = styled.div`
   margin: 1%;
   box-sizing: border-box;
   width: 12%;
+  cursor: pointer;
   background-color: ${(props) => (props.selected ? "#C09567" : "#fff")};
   @media screen and (max-width: 1400px) {
     font-size: 12px;

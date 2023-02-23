@@ -5,6 +5,7 @@ import BookmarkDataAPI from "./BookmarkDataAPI";
 
 const BookmarkIDAPI = async (
   showURL,
+  userJWT,
   shopid,
   ResetBookmarkID,
   SetBookmarkData
@@ -18,13 +19,14 @@ const BookmarkIDAPI = async (
       method: "post", // 수정하기
       url: url,
       headers: {
-        "X-ACCESS-TOKEN": sessionStorage.getItem("user-jwt"), // 어떤 걸 수정할지
+        "X-ACCESS-TOKEN": userJWT, // 어떤 걸 수정할지
       },
     });
     //await 가 끝나면 실행
     ResetBookmarkID(data.data.result);
     BookmarkDataAPI(
       showURL,
+      userJWT,
       (data) => SetBookmarkData(data),
       (data) => ResetBookmarkID(data)
     );

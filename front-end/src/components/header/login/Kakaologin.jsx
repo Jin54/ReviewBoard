@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import LoginAPI from "../../../api/LoginAPI";
 import { setOpenLogin, setOpenBookmark } from "../../../modules/openBool";
-import { setUserName } from "../../../modules/userData";
+import { setUserName, setUserToken } from "../../../modules/userData";
 
 import OnClickBookmark from "../OnClickBookmark";
 
@@ -26,6 +26,12 @@ const Kakaologin = () => {
   const SetUserName = useCallback(
     (name) => {
       dispatch(setUserName(name));
+    },
+    [dispatch]
+  );
+  const SetUserToken = useCallback(
+    (jwt) => {
+      dispatch(setUserToken(jwt));
     },
     [dispatch]
   );
@@ -52,7 +58,8 @@ const Kakaologin = () => {
         LoginAPI(
           res.access_token,
           (data) => setBookmarkAPI(data),
-          (data) => SetUserName(data)
+          (data) => SetUserName(data),
+          (data) => SetUserToken(data)
         );
         SetOpenLogin(true);
       },
