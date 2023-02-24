@@ -26,7 +26,7 @@ const BigLocationModal = (props) => {
     <RegionSelectWrap>
       <CloseWrap>
         <Close onClick={() => props.setModalOpen(false)}>
-          <ImgComponent src={"close.png"} width={"100%"} />
+          <ImgComponent src={"close.webp"} width={"100%"} />
         </Close>
       </CloseWrap>
       <Box>

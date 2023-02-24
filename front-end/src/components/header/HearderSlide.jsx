@@ -38,7 +38,7 @@ const HeaderSlide = () => {
                 SetOpenMobileMenu(false);
               }}
             >
-              <ImgComponent src={"close.png"} width={"100%"} />
+              <ImgComponent src={"close.webp"} width={"100%"} />
             </Close>
           </CloseWrap>
         <HeaderRightWrap>
