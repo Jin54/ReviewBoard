@@ -279,6 +279,12 @@ const InfoRight = styled.div`
   @media screen and (max-width: 1000px) {
     margin-right: 0;
   }
+  @media screen and (max-width: 450px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 const Copy = styled.div`
   cursor: pointer;
@@ -287,6 +293,12 @@ const Copy = styled.div`
   align-items: center;
   margin-right: 20px;
   color: #999999;
+  @media screen and (max-width: 450px) {
+    font-size: 12px;
+    height: auto;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
 `;
 const Bookmark = styled.div`
   cursor: pointer;
@@ -297,6 +309,10 @@ const Bookmark = styled.div`
   background-position: center center;
   @media screen and (max-width: 1000px) {
     width: 36px;
+  }
+  @media screen and (max-width: 450px) {
+    width: 20px;
+    height: 20px;
   }
 `;
 // ============

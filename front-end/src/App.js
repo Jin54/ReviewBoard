@@ -24,6 +24,10 @@ const AppWrap = styled.div`
   @media screen and (max-width: 1000px) {
     width: 100%;
   }
+  @media screen and (max-width: 350px) {
+    display: none;
+  }
+
 `
 
 export default App;
