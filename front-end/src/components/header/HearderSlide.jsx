@@ -8,6 +8,7 @@ import { setOpenMobileMenu } from "../../modules/openBool";
 
 import ImgComponent from "./../ImageComponent";
 import Footer from "../Footer";
+import Kakaologin from "./login/Kakaologin";
 import BookmarkBtn from "./login/BookmarkBtn";
 
 const HeaderSlide = () => {
@@ -24,6 +25,8 @@ const HeaderSlide = () => {
     (name) => dispatch(changeURL(name)),
     [dispatch]
   );
+  const openLogin = useSelector((state) => state.openBool.login);
+  const userName = useSelector((state) => state.userData.name);
 
   return (
     <MobileMenuWrap>
@@ -38,6 +41,11 @@ const HeaderSlide = () => {
               <ImgComponent src={"close.png"} width={"100%"} />
             </Close>
           </CloseWrap>
+        <HeaderRightWrap>
+          {openLogin && <Name>{userName} 님</Name>}
+          <MHospitalBtn><Kakaologin /></MHospitalBtn>
+          <MHospitalBtn><BookmarkBtn /></MHospitalBtn>
+        </HeaderRightWrap>
           <MFoodBtn
             selected={showURL == "shop" && true}
             onClick={() => {
@@ -105,6 +113,7 @@ const FlexWrap = styled.div`
   flex: 1;
 `;
 const CloseWrap = styled.div`
+margin-bottom: 20px;
   &::after {
     display: block;
     content: "";
@@ -163,4 +172,15 @@ const BackBlack = styled.div`
   z-index: 4;
   background-color: rgba(0, 0, 0, 0.5);
   overflow: hidden;
+`;
+
+const HeaderRightWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const Name = styled.div`
+  font-size: 16px;
+  color: #c09567;
+  margin-top: 16px;
+  margin-bottom: 10px;
 `;

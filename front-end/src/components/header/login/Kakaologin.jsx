@@ -118,9 +118,6 @@ const LoginBtn = styled.div`
     color: ${(props) => (props.selected ? "#c09567" : "#fff")};
   }
 
-  @media screen and (max-width: 1000px) {
-    display: none;
-  }
 `;
 
 // https://data-jj.tistory.com/53

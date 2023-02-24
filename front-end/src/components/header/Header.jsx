@@ -59,8 +59,8 @@ const Header = () => {
       </HedaerLeftWrap>
       <HeaderRightWrap>
         {openLogin && <Name>{userName} 님</Name>}
-        <Kakaologin />
-        <BookmarkBtn />
+        <KakaologinWrap><Kakaologin /></KakaologinWrap>
+        <BookmarkWrap><BookmarkBtn /></BookmarkWrap>
       </HeaderRightWrap>
       <MobileMenu>
         <HamburgerBtn
@@ -96,12 +96,15 @@ const UrlBtn = styled.p`
   color: #000;
   font-size: 16px;
   letter-spacing: 0.01em;
-  border-bottom: 0px solid #c09567;
+  /* border-bottom: 0px solid #c09567; */
   font-weight: ${(props) => (props.selected ? "700" : "400")};
-  padding-bottom: ${(props) => props.selected && "10px"};
-  border-bottom: ${(props) => props.selected && "4px"};
+  padding-bottom: ${(props) => props.selected && "2px"};
+  border-bottom: ${(props) => props.selected && "2px solid #c09567"};
   @media screen and (max-width: 1400px) {
     margin-left: 50px;
+  }
+  @media screen and (max-width: 1200px) {
+    margin-left: 30px;
   }
   @media screen and (max-width: 1000px) {
     display: none;
@@ -109,11 +112,26 @@ const UrlBtn = styled.p`
   cursor: pointer;
 `;
 const FoodBtn = styled(UrlBtn)`
-  margin-left: 100px;
+  @media screen and (min-width: 1400px) {
+    margin-left: 100px;
+  }
 `;
 const HospitalBtn = styled(UrlBtn)`
-  margin-left: 70px;
+  @media screen and (min-width: 1400px) {
+    margin-left: 70px;
+  }
 `;
+
+const KakaologinWrap = styled.div`
+    @media screen and (max-width: 1000px) {
+    display: none;
+  }
+`
+const BookmarkWrap = styled.div`
+    @media screen and (max-width: 1000px) {
+    display: none;
+  }
+`
 
 // ============
 const HeaderRightWrap = styled.div`
@@ -123,6 +141,9 @@ const HeaderRightWrap = styled.div`
 const Name = styled.div`
   font-size: 16px;
   color: #c09567;
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 const MobileMenu = styled.div`
