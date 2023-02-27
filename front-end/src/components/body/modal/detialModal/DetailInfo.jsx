@@ -46,9 +46,9 @@ const InfoWrap = styled.div`
   margin-bottom: 16px;
   display: flex;
   align-items: "top";
-  @media screen and (max-width: 1000px) {
+  /* @media screen and (max-width: 1000px) {
     margin-bottom: 10px;
-  }
+  } */
 `;
 const InfoIcon = styled.div`
   width: 20px;
@@ -66,9 +66,9 @@ const InfoTxt = styled.div`
   white-space: pre-wrap;
   overflow: hidden;
   height: ${(props) => props.dropDown};
-  @media screen and (max-width: 1000px) {
+  /* @media screen and (max-width: 1000px) {
     font-size: 12px;
-  }
+  } */
 `;
 
 const DropDownArrow = styled.div`

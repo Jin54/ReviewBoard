@@ -57,19 +57,19 @@ const Region = ({ onClick, selected, name }) => {
 };
 
 const RegionBtn = styled.div`
-  border: 1px solid #000000;
+  border: 1px solid #00B295;
   border-radius: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
   font-weight: 400;
   font-size: 14px;
   text-align: center;
-  color: ${(props) => (props.selected ? "##fff" : "#000")};
+  color: ${(props) => (props.selected ? "#fff" : "#000")};
   margin: 1%;
   box-sizing: border-box;
   width: 12%;
   cursor: pointer;
-  background-color: ${(props) => (props.selected ? "#C09567" : "#fff")};
+  background-color: ${(props) => (props.selected ? "#00B295" : "#fff")};
   @media screen and (max-width: 1400px) {
     font-size: 12px;
     padding-top: 4px;

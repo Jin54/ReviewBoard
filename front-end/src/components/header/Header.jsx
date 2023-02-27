@@ -9,6 +9,7 @@ import ImgComponent from "../ImageComponent";
 import Kakaologin from "./login/Kakaologin";
 import HeaderSlide from "./HearderSlide";
 import BookmarkBtn from "./login/BookmarkBtn";
+import Footer from "../Footer";
 
 const Header = () => {
   // 모바일 메뉴
@@ -27,20 +28,26 @@ const Header = () => {
   const showURL = useSelector((state) => state.urlChange.name);
   const openLogin = useSelector((state) => state.openBool.login);
   const userName = useSelector((state) => state.userData.name);
+  const menuHamburger = useSelector((state) => state.openBool.mobileMenu);
 
   return (
     <HeaderWrap>
       <HedaerLeftWrap>
-        <div style={{ cursor: "pointer", height: "100%" }}>
+        <ImgBox>
           <ImgComponent
-            src={"logo.png"}
+            src={"logo_WHITE.png"}
             height={"100%"}
             onClick={() => {
               window.location.replace("/");
             }}
           />
-        </div>
-        <FoodBtn
+        </ImgBox>
+        {openLogin && <Name>{userName} 님</Name>}
+        <KakaologinWrap><Kakaologin /></KakaologinWrap>
+        <BookmarkWrap><BookmarkBtn /></BookmarkWrap>
+      </HedaerLeftWrap>
+      <HeaderRightWrap>
+      <FoodBtn
           selected={showURL == "shop" && true}
           onClick={() => {
             onClickURL("shop");
@@ -56,16 +63,12 @@ const Header = () => {
         >
           병원
         </HospitalBtn>
-      </HedaerLeftWrap>
-      <HeaderRightWrap>
-        {openLogin && <Name>{userName} 님</Name>}
-        <KakaologinWrap><Kakaologin /></KakaologinWrap>
-        <BookmarkWrap><BookmarkBtn /></BookmarkWrap>
       </HeaderRightWrap>
+      <FooterWrap><Footer /></FooterWrap>
       <MobileMenu>
         <HamburgerBtn
           onClick={() => {
-            SetOpenMobileMenu(true);
+            SetOpenMobileMenu(!menuHamburger);
           }}
         >
           <ImgComponent src={"hamburger.png"} width={"100%"} />
@@ -77,30 +80,62 @@ const Header = () => {
 };
 
 const HeaderWrap = styled.div`
-  width: 100%;
-  margin-top: 10px;
+  position: absolute;
+  z-index: 15;
+  height: 100%;
+  width: 10%;
+  background-color: #00B295;
+  box-shadow: 6px 4px 16px rgba(0, 0, 0, 0.25);
+  /* margin-top: 10px; */
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+    height: 40px;
+    flex-direction: row;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
 `;
 // ============
 const HedaerLeftWrap = styled.div`
   display: flex;
   align-items: center;
-  height: 60px;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 18%;
+  width: 50%;
+  /* height: 60px; */
+  @media screen and (max-width: 1400px) and (min-width: 1000px) {
+      width: 80%;
+    }
   @media screen and (max-width: 1000px) {
-    height: 40px;
+    width: 18%;
+    height: 100%;
   }
 `;
+
+const ImgBox = styled.div`
+  cursor: pointer;
+  height: 60px;
+  @media screen and (max-width: 1000px) {
+    height: 100%;
+  }
+`
 const UrlBtn = styled.p`
-  color: #000;
+  color: ${(props) => (props.selected ? "#00B295" : "#fafafa")};
   font-size: 16px;
   letter-spacing: 0.01em;
-  /* border-bottom: 0px solid #c09567; */
-  font-weight: ${(props) => (props.selected ? "700" : "400")};
-  padding-bottom: ${(props) => props.selected && "2px"};
-  border-bottom: ${(props) => props.selected && "2px solid #c09567"};
-  @media screen and (max-width: 1400px) {
+  background-color: ${(props) => (props.selected ? "#fafafa" : "#00B295")};
+  padding: 3px 24px;
+  border-radius: 4px;
+  white-space:nowrap;
+  font-weight: ${(props) => (props.selected ? "700" : "300")};
+  /* @media screen and (max-width: 1400px) {
     margin-left: 50px;
   }
   @media screen and (max-width: 1200px) {
@@ -108,26 +143,30 @@ const UrlBtn = styled.p`
   }
   @media screen and (max-width: 1000px) {
     display: none;
-  }
+  } */
   cursor: pointer;
 `;
 const FoodBtn = styled(UrlBtn)`
-  @media screen and (min-width: 1400px) {
+  /* @media screen and (min-width: 1400px) {
     margin-left: 100px;
-  }
+  } */
 `;
 const HospitalBtn = styled(UrlBtn)`
-  @media screen and (min-width: 1400px) {
+  /* @media screen and (min-width: 1400px) {
     margin-left: 70px;
-  }
+  } */
 `;
 
 const KakaologinWrap = styled.div`
+width: 100%;
+white-space:nowrap;
     @media screen and (max-width: 1000px) {
     display: none;
   }
 `
 const BookmarkWrap = styled.div`
+width: 100%;
+white-space:nowrap;
     @media screen and (max-width: 1000px) {
     display: none;
   }
@@ -137,10 +176,17 @@ const BookmarkWrap = styled.div`
 const HeaderRightWrap = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: column;
+  border: 1px solid #fafafa;
+  padding: 4px;
+  border-radius: 6px;
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
 `;
 const Name = styled.div`
   font-size: 16px;
-  color: #c09567;
+  color: #fafafa;
   @media screen and (max-width: 1000px) {
     display: none;
   }
@@ -154,6 +200,13 @@ const MobileMenu = styled.div`
 `;
 const HamburgerBtn = styled.div`
   width: 30px;
+  margin-right: 30px;
 `;
+
+const FooterWrap = styled.div`
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
+`
 
 export default Header;

@@ -40,8 +40,8 @@ const GPSBtn = (props) => {
 export default GPSBtn;
 
 const BtnStyle = styled.div`
-  background: #16312c;
-  border-radius: 10px;
+  background: #00B295;
+  border-radius: 6px;
   color: #fff;
   font-weight: 700;
   font-size: 18px;

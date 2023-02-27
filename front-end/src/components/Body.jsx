@@ -18,8 +18,8 @@ const Body = () => {
       <BodyWrap>
         <CreateMap />
         <Map />
-        {openListModal && <List />}
-        {openDetailModal && <DetailModal />}
+        {openListModal && <ListWrap><List /></ListWrap>}
+        {openDetailModal &&<DetailModal />}
       </BodyWrap>
     </>
   );
@@ -27,19 +27,50 @@ const Body = () => {
 
 const BodyWrap = styled.div`
   width: 100%;
+  height: 100%;
   margin: auto;
   box-sizing: border-box;
   flex: 1;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   position: relative;
   overflow: hidden;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   position: relative;
-  @media screen and (max-width: 1000px) {
+  /* @media screen and (max-width: 1000px) {
     margin-top: 20px;
     margin-bottom: 20px;
     width: 100%;
-  }
+  } */
 `;
+const ListWrap = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+  position: absolute;
+  padding-left: 20%;
+  padding-right: 20%;
+  top:0;
+  bottom: 0;
+  left: 0;
+  background-color: #fafafa;
+  z-index: 5;
+  @media screen and (max-width: 1000px) {
+    /* width: 100%; */
+    padding: 5%;
+  }
+`
+const DetailModalWrap = styled.div`
+  display: flex;
+align-items: center;
+justify-content: center;
+  position: absolute;
+  /* padding-left: 30%;
+  padding-right: 30%; */
+  top:0;
+  bottom: 0;
+  left: 0;
+  background-color: #fafafa;
+  z-index: 10;
+`
 
 export default Body;

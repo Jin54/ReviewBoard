@@ -18,12 +18,9 @@ function App () {
 
 const AppWrap = styled.div`
   height: 100vh;
-  width: 50%;
+  width: 100vw;
   margin: auto;
   overflow: hidden;
-  @media screen and (max-width: 1000px) {
-    width: 100%;
-  }
   @media screen and (max-width: 350px) {
     display: none;
   }

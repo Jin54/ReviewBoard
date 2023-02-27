@@ -94,14 +94,14 @@ const ReviewFlexWrap = styled.div`
 `;
 
 const ReviewNone = styled.p`
-  color: #c09567;
+  color: #00B295;
   text-align: center;
   font-size: 20px;
   padding-top: 20px;
 `;
 
 const ReviewBox = styled.div`
-  border: 1px solid #c09567;
+  border: 1px solid #00B295;
   border-radius: 10px;
   width: 49%;
   margin-bottom: 2%;

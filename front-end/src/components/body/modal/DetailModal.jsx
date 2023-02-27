@@ -61,24 +61,25 @@ const DetailModal = () => {
 
   return (
     <RestaurantModalWrap>
-      <CloseWrap>
-        <Close
+
+      <Box>
+              {/* <CloseWrap> */}
+              <Close
           onClick={() => {
             SetOpenDetailModal();
           }}
         >
           <ImgComponent src={"close.webp"} width={"100%"} />
         </Close>
-      </CloseWrap>
-      <Box>
+      {/* </CloseWrap> */}
         <MainImg>
+          <Gradation />
           {detailData.thumbnail ? (
             <Thumbnail src={detailData.thumbnail} width={"100%"} />
           ) : (
             <ImgComponent src={"noImage.jpg"} width={"80%"} />
           )}
-        </MainImg>
-        <About>
+          <About>
           <Title>{detailData.name}</Title>
           <Address>{detailData.numberAddress}</Address>
           <ScopeWrap>
@@ -86,6 +87,8 @@ const DetailModal = () => {
             <ReviewScope scope={detailData.review_rating} />
           </ScopeWrap>
         </About>
+        </MainImg>
+
         <InfoWrap>
           <Info>
             <DetailInfo
@@ -151,23 +154,32 @@ export default DetailModal;
 const RestaurantModalWrap = styled.div`
   height: 100%;
   width: 100%;
-  z-index: 20;
+  z-index: 10;
   position: absolute;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 0;
-  border: 1px solid #c09567;
-  border-radius: 10px;
-  padding: 40px 22px;
-  box-sizing: border-box;
+
+  /* padding: 40px 22px; */
+  /* box-sizing: border-box; */
   background-color: #fff;
-  @media screen and (max-width: 1000px) {
+  /* @media screen and (max-width: 1000px) {
     padding-top: 20px;
-  }
+  } */
 `;
 
 const Thumbnail = styled.img``;
 
 const Box = styled.div`
+  border: 1px solid #00B295;
+  border-radius: 10px;
+  overflow: hidden;
+width: 50%;
+position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  z-index: 10;
   overflow: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -177,22 +189,18 @@ const Box = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`;
-const CloseWrap = styled.div`
-  &::after {
-    display: block;
-    content: "";
-    line-height: 0;
-    clear: both;
-  }
-  &::before {
-    display: block;
-    content: "";
-    line-height: 0;
-    clear: both;
+  @media screen and (max-width: 1000px) {
+width: 100%;
+border: none;
+top: 70px;
+border-radius: 0;
   }
 `;
 const Close = styled.div`
+  position: absolute;
+  right: 10px;
+  z-index: 10;
+  top: 20px;
   width: 17px;
   height: 17px;
   margin-bottom: 30px;
@@ -204,30 +212,48 @@ const Close = styled.div`
     height: 12px;
     margin-right: 0;
     padding-right: 0;
+    top: 30px;
+    margin-right: 2%;
   }
 `;
 
 const MainImg = styled.div`
   background-color: #fff;
-  border-radius: 10px;
-  width: 80%;
+  position: relative;
+  /* border-radius: 10px; */
+  width: 100%;
   margin: auto;
-  height: 300px;
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   margin-bottom: 20px;
-  @media screen and (max-width: 1000px) {
+  /* @media screen and (max-width: 1000px) {
     height: 300px;
     width: 90%;
-  }
+  } */
 `;
+
+const Gradation = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(180deg, #373737 0%, rgba(46, 46, 46, 0) 79.22%);
+`
 const About = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-color: #fff;
+  width: 70%;
+  position: absolute;
+  bottom: -10px;
+  border-radius: 6px;
+  padding-top: 20px;
+  padding-bottom: 10px;
 `;
 const Title = styled.p`
   font-weight: 700;
@@ -264,17 +290,19 @@ const Scope = styled.p`
 //=============
 const InfoWrap = styled.div`
   display: flex;
-  width: 100%;
+  width: 94%;
   justify-content: space-between;
+  margin: auto;
+  margin-top: 50px;
 `;
 const Info = styled.div`
-  margin-left: 20px;
-  @media screen and (max-width: 1000px) {
+  /* margin-left: 20px; */
+  /* @media screen and (max-width: 1000px) {
     margin-left: 0;
-  }
+  } */
 `;
 const InfoRight = styled.div`
-  margin-right: 20px;
+  /* margin-right: 20px; */
   display: flex;
   @media screen and (max-width: 1000px) {
     margin-right: 0;
@@ -318,19 +346,20 @@ const Bookmark = styled.div`
 // ============
 const Divider = styled.div`
   border: 0;
-  margin-bottom: 30px;
-  margin-top: 30px;
   height: 0.5px;
-  background-color: #c09567;
-  @media screen and (max-width: 1000px) {
+  background-color: #00B295;
+  width: 94%;
+  margin: 20px auto;
+  /* @media screen and (max-width: 1000px) {
     margin-bottom: 20px;
     margin-top: 20px;
-  }
+  } */
 `;
 // =============
 
 const ReviewWrap = styled.div`
-  width: 100%;
+  width: 94%;
+  margin: auto;
 `;
 const ReviewTxtWrap = styled.div`
   margin-left: 4px;
@@ -358,7 +387,7 @@ const BackBlack = styled.div`
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: -20;
+  z-index: -10;
   background-color: rgba(0, 0, 0, 0);
   overflow: hidden;
 `;

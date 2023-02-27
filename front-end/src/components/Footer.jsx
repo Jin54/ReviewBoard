@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <FooterWrap>
       <FooterLeft>
+      <QuestionBtn href="mailto:sales@lfin.kr">문의하기</QuestionBtn>
         <Privacy>개인정보처리방침</Privacy>
         <TOS>이용약관</TOS>
-        <QuestionBtn href="mailto:sales@lfin.kr">문의하기</QuestionBtn>
       </FooterLeft>
       <FooterRight>
         대표이사 : 박영경 <br />
@@ -28,44 +28,56 @@ const FooterWrap = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   margin-top: 14px;
-  margin-bottom: 14px;
+  margin-bottom: 30px;
+  margin-bottom: 0;
   @media screen and (max-width: 1000px) {
-    flex-direction: column-reverse;
-    /* display: none; */
-    margin-bottom: 0;
-  }
+    flex-direction: column;
+   } 
 `;
 const FooterLeft = styled.div``;
 const Privacy = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  margin-top: 30px;
   font-weight: 700;
   font-size: 14px;
   color: #000000;
   @media screen and (max-width: 1000px) {
     font-size: 12px;
-    margin-bottom: 10px;
+    color: #fafafa;
+    font-weight: 400;
+  }
+  @media screen and (max-width: 1400px) and (min-width:1000px) {
+    font-size: 12px;
   }
 `;
 const TOS = styled.div`
   font-weight: 700;
   font-size: 14px;
   color: #000000;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  @media screen and (max-width: 1400px) and (min-width:1000px) {
+    font-size: 12px;
+  }
   @media screen and (max-width: 1000px) {
     font-size: 12px;
-    margin-bottom: 0;
+    color: #fafafa;
+    font-weight: 400;
   }
 `;
 const QuestionBtn = styled.a`
   font-weight: 700;
   font-size: 14px;
   text-align: center;
-  color: #c09567;
+  color: #fafafa;
   width: 100px;
   box-sizing: border-box;
   text-decoration: none;
   box-sizing: border-box;
+  margin-bottom: 20px;
   cursor: pointer;
+  @media screen and (max-width: 1400px) and (min-width:1000px) {
+    font-size: 12px;
+  }
   @media screen and (max-width: 1000px) {
     display: none;
   }
@@ -77,10 +89,11 @@ const FooterRight = styled.p`
   font-size: 12px;
   line-height: 24px;
   color: #000000;
+  display: none;
   @media screen and (max-width: 1000px) {
+    color: #fafafa;
+    display: inline;
     font-size: 10px;
-    line-height: 16px;
-    margin-bottom: 15px;
   }
 `;
 

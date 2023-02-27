@@ -54,34 +54,47 @@ export default MapOrList;
 const MapOrListWrap = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 60%;
+  justify-content: space-around;
   margin: auto;
   margin-top: 10px;
-  flex: 0;
-  @media screen and (max-width: 1000px) {
-    margin-top: 20px;
-  }
+position: fixed;
+z-index: 10;
+bottom: 40px;
+left: 50%;
+transform: translateX(-50%);
+background: #00B295;
+border-radius: 6px;
+padding: 4px;
 `;
 const MapBtn = styled.p`
   margin: 0;
-  margin-right: 40px;
-  font-weight: 400;
+  font-weight: ${(props) => (props.selected ? "400" : "200")};
   font-size: 20px;
-  color: ${(props) => (props.selected ? "#000" : "#999")};
-  @media screen and (max-width: 1000px) {
-    font-size: 12px;
-  }
+  width: 50%;
+  padding: 4px 30px;
+  text-align: center;
+  border-radius: 5px;
+  white-space:nowrap;
+  color: ${(props) => (props.selected ? "#00B295" : "#fafafa")};
+  background-color: ${(props) => (props.selected ? "#fafafa" : "#00B295")};
   cursor: pointer;
+    @media screen and (max-width: 1000px){
+      font-size: 14px;
+  }
 `;
 const ListBtn = styled.p`
   margin: 0;
-  margin-left: 40px;
-  font-weight: 400;
+  font-weight: ${(props) => (props.selected ? "400" : "200")};
   font-size: 20px;
-  color: ${(props) => (props.selected ? "#000" : "#999")};
-  @media screen and (max-width: 1000px) {
-    font-size: 12px;
-  }
+  width: 50%;
+  padding: 4px 30px;
+  text-align: center;
+  border-radius: 5px;
+  white-space:nowrap;
+  color: ${(props) => (props.selected ? "#00B295" : "#fafafa")};
+  background-color: ${(props) => (props.selected ? "#fafafa" : "#00B295")};
   cursor: pointer;
+    @media screen and (max-width: 1000px){
+      font-size: 14px;
+  }
 `;

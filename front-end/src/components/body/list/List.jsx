@@ -14,17 +14,11 @@ const List = () => {
 export default List;
 
 const ListPageWrap = styled.div`
-  z-index: 20;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  background-color: #fff;
-  height: 100%;
-
-  width: 100%;
+  background-color: #fafafa;
+  height: 85%;
+  width: 70%;
   box-sizing: border-box;
   border-radius: 10px;
-  margin-top: 60px;
   flex: 1;
   overflow-y: scroll;
   -ms-overflow-style: none;
@@ -34,7 +28,7 @@ const ListPageWrap = styled.div`
     display: none;
   }
   @media screen and (max-width: 1000px) {
-    margin-top: 20px;
+    margin-top: 180px;
     height: 100%;
   }
 `;

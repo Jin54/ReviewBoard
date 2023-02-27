@@ -24,7 +24,8 @@ const BigLocationModal = (props) => {
 
   return (
     <RegionSelectWrap>
-      <CloseWrap>
+      <BoxWrap>
+        <CloseWrap>
         <Close onClick={() => props.setModalOpen(false)}>
           <ImgComponent src={"close.webp"} width={"100%"} />
         </Close>
@@ -42,6 +43,12 @@ const BigLocationModal = (props) => {
           </FlexWrap>
         </ListWrap>
       </Box>
+      </BoxWrap>
+      <BackBlack
+        onClick={() => {
+          props.setModalOpen(false)
+        }}
+      ></BackBlack>
     </RegionSelectWrap>
   );
 };
@@ -49,18 +56,27 @@ const BigLocationModal = (props) => {
 export default BigLocationModal;
 
 const RegionSelectWrap = styled.div`
-  width: 100%;
-  height: 80%;
+  width: 70%;
+  /* height: 80%; */
   position: absolute;
-  bottom: 0;
+  top: 50%;
   z-index: 20;
-  border: 1px solid #c09567;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border: 1px solid #00B295;
   border-radius: 10px;
   padding: 40px 22px;
   box-sizing: border-box;
   background-color: #fff;
   @media screen and (max-width: 1000px) {
-    padding-top: 20px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    transform: none;
+    /* border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0; */
+    border: none;
+    background-color: rgba(0,0,0,0);
   }
 `;
 const CloseWrap = styled.div`
@@ -75,6 +91,24 @@ const CloseWrap = styled.div`
     content: "";
     line-height: 0;
     clear: both;
+  }
+`;
+
+const BoxWrap = styled.div`
+  @media screen and (max-width: 1000px) {
+  width: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  padding: 0 10px;
+  border: 1px solid #00B295;
+  border-radius: 10px;
+  padding: 40px 22px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 `;
 const Close = styled.div`
@@ -120,7 +154,20 @@ const Divider = styled.hr`
   margin-bottom: 40px;
   margin-top: 40px;
   height: 0.5px;
-  background-color: #c09567;
+  background-color: #00B295;
+`;
+
+const BackBlack = styled.div`
+  @media screen and (max-width: 1000px) {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 80px;
+  bottom: 0;
+  z-index: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  }
 `;
 // 지역 버튼
 const Region = ({ onClick, selected, name }) => {
@@ -132,18 +179,18 @@ const Region = ({ onClick, selected, name }) => {
 };
 
 const RegionBtn = styled.div`
-  border: 1px solid #000000;
+  border: 1px solid #00B295;
   border-radius: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
   font-weight: 400;
   font-size: 14px;
   text-align: center;
-  color: ${(props) => (props.selected ? "##fff" : "#000")};
+  color: ${(props) => (props.selected ? "#fff" : "#000")};
   margin: 1%;
   box-sizing: border-box;
   width: 12%;
-  background-color: ${(props) => (props.selected ? "#C09567" : "#fff")};
+  background-color: ${(props) => (props.selected ? "#00B295" : "#fff")};
   @media screen and (max-width: 1000px) {
     font-size: 12px;
     padding-top: 4px;

@@ -32,20 +32,12 @@ const HeaderSlide = () => {
     <MobileMenuWrap>
       <MobileMenuBox>
         <FlexWrap>
-          <CloseWrap>
-            <Close
-              onClick={() => {
-                SetOpenMobileMenu(false);
-              }}
-            >
-              <ImgComponent src={"close.webp"} width={"100%"} />
-            </Close>
-          </CloseWrap>
         <HeaderRightWrap>
           {openLogin && <Name>{userName} 님</Name>}
           <MHospitalBtn><Kakaologin /></MHospitalBtn>
           <MHospitalBtn><BookmarkBtn /></MHospitalBtn>
         </HeaderRightWrap>
+        <Divider />
           <MFoodBtn
             selected={showURL == "shop" && true}
             onClick={() => {
@@ -64,6 +56,7 @@ const HeaderSlide = () => {
           >
             병원
           </MHospitalBtn>
+          <Divider />
           <MQuestionBtn
             href="mailto:sales@lfin.kr"
             onClick={() => {
@@ -87,22 +80,22 @@ const HeaderSlide = () => {
 export default HeaderSlide;
 
 const MobileMenuWrap = styled.div`
-  top: 0;
+  top: 70px;
   left: 0;
   right: 0;
   bottom: 0;
   position: fixed;
-  z-index: 30;
+  z-index: 0;
   width: 100%;
 `;
 const MobileMenuBox = styled.div`
-  background: #ffffff;
-  border-radius: 20px 0px 0px 20px;
-  width: 45%;
+  background: #00B295;
+  border-radius: 0px 0px 10px 10px;
+  width: 100%;
   position: absolute;
   right: 0;
   z-index: 30;
-  height: 100%;
+  /* height: 100%; */
   padding: 30px 20px;
   box-sizing: border-box;
   display: flex;
@@ -111,34 +104,19 @@ const MobileMenuBox = styled.div`
 
 const FlexWrap = styled.div`
   flex: 1;
+  padding-right: 20px;
+  /* width: 30%;
+  float: right; */
 `;
-const CloseWrap = styled.div`
-margin-bottom: 20px;
-  &::after {
-    display: block;
-    content: "";
-    line-height: 0;
-    clear: both;
-  }
-  &::before {
-    display: block;
-    content: "";
-    line-height: 0;
-    clear: both;
-  }
-`;
-const Close = styled.div`
-  width: 17px;
-  height: 17px;
-  float: right;
-  margin-bottom: 20px;
-  @media screen and (max-width: 1000px) {
-    width: 12px;
-    height: 12px;
-    margin-right: 0;
-    padding-right: 0;
-  }
-`;
+
+const Divider = styled.hr`
+ border: 0;
+ float: right;
+ width: 30%;
+  height: 0.5px;
+  background-color: rgba(255, 255, 255, 0.5);
+`
+
 const MBtn = styled.p`
   color: #000;
   font-weight: 400;
@@ -149,27 +127,41 @@ const MBtn = styled.p`
 const MFoodBtn = styled(MBtn)`
   padding-top: 30px;
   padding-bottom: 30px;
-  border-top: 0.5px solid #c09567;
+  /* border-top: 0.5px solid #fafafa; */
   font-weight: ${(props) => (props.selected ? "700" : "400")};
+  @media screen and (max-width: 1000px) {
+  text-align: right;
+  color: #fafafa;
+  }
 `;
 const MHospitalBtn = styled(MBtn)`
   padding-top: 15px;
   padding-bottom: 30px;
   font-weight: ${(props) => (props.selected ? "700" : "400")};
+  @media screen and (max-width: 1000px) {
+  text-align: right;
+    color: #fafafa;
+  }
 `;
 const MQuestionBtn = styled(MBtn)`
   padding-top: 30px;
-  border-top: 0.5px solid #c09567;
+  padding-bottom: 30px;
+  width: auto;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.5);
   text-decoration: none;
   display: block;
+  @media screen and (max-width: 1000px) {
+  text-align: right;
+    color: #fafafa;
+  }
 `;
 const BackBlack = styled.div`
   position: fixed;
   left: 0;
   right: 0;
-  top: 0;
+  top: 80px;
   bottom: 0;
-  z-index: 4;
+  z-index: 0;
   background-color: rgba(0, 0, 0, 0.5);
   overflow: hidden;
 `;
@@ -180,7 +172,11 @@ const HeaderRightWrap = styled.div`
 `;
 const Name = styled.div`
   font-size: 16px;
-  color: #c09567;
+  color: #fafafa;
   margin-top: 16px;
   margin-bottom: 10px;
+  @media screen and (max-width: 1000px) {
+  text-align: right;
+  padding: 15px 0 30px 0;
+  }
 `;
