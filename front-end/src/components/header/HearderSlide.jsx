@@ -143,7 +143,7 @@ const MHospitalBtn = styled(MBtn)`
     color: #fafafa;
   }
 `;
-const MQuestionBtn = styled(MBtn)`
+const MQuestionBtn = styled.a`
   padding-top: 30px;
   padding-bottom: 30px;
   width: auto;

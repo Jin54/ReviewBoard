@@ -70,8 +70,8 @@ const ReviewList = () => {
                 )}
               </Middle>
               <Bottom
-                overflow={!type.includes(review.id) && overflow}
-                whiteSpace={!type.includes(review.id) && whiteSpace}
+                overflow={!type.includes(review.id) ? overflow : undefined}
+                whiteSpace={!type.includes(review.id) ? whiteSpace : undefined}
               >
                 {review.content}
               </Bottom>

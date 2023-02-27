@@ -71,7 +71,7 @@ const Header = () => {
             SetOpenMobileMenu(!menuHamburger);
           }}
         >
-          <ImgComponent src={"hamburger.png"} width={"100%"} />
+          <ImgComponent src={"hamburger.png"} width={"80%"} />
         </HamburgerBtn>
         {openMobileMenu && <HeaderSlide />}
       </MobileMenu>
