@@ -30,5 +30,6 @@ const ListPageWrap = styled.div`
   @media screen and (max-width: 1000px) {
     margin-top: 180px;
     height: 100%;
+    padding: 0px 5%;
   }
 `;

@@ -107,9 +107,9 @@ const ListContentWrap = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  /* @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1000px) {
     flex-direction: column;
-  } */
+  }
 `;
 // 왼쪽 이미지
 const ImgBox = styled.div`
@@ -118,10 +118,10 @@ const ImgBox = styled.div`
   border-radius: 10px;
   margin-right: 25px;
   overflow: hidden;
-  /* @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1000px) {
     width: 100%;
     margin: 0;
-  } */
+  }
 `;
 const ImgWrap = styled.div`
   height: 100px;
@@ -135,11 +135,11 @@ const ImgWrap = styled.div`
 // 오른쪽 설명
 const AboutWrap = styled.div`
   width: 50%;
-  /* @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1000px) {
     flex: 0;
     width: 100%;
     margin-top: 10px;
-  } */
+  }
 `;
 // 매장명 & 주소
 const Top = styled.div`
@@ -149,10 +149,10 @@ const Top = styled.div`
   align-items: baseline;
   width: 100%;
   justify-content: space-between;
-  /* @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1000px) {
     margin-bottom: 6px;
     flex-direction: column;
-  } */
+  }
 `;
 const TopTitle = styled.div`
   display: flex;
@@ -169,10 +169,10 @@ const Title = styled.span`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  /* @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1000px) {
     font-size: 14px;
     margin-bottom: 4px;
-  } */
+  }
 `;
 const BookMark = styled.div`
   width: 24px;
@@ -190,18 +190,21 @@ const Address = styled.span`
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
-  /* @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1000px) {
     font-size: 11px;
     width: 100%;
-  } */
+  }
 `;
 // 별점 & 아이콘
 const Middle = styled.div`
   margin-bottom: 20px;
   display: flex;
   align-items: center;
-  width: 100%;
-  /* @media screen and (max-width: 1500px) and (min-width: 1000px) {
+  /* width: 90%; */
+  @media screen and (min-width: 1900px) {
+    width: 70%;
+  }
+  @media screen and (max-width: 1500px) and (min-width: 1000px) {
     width: 110%;
   }
   @media screen and (max-width: 999px) and (min-width: 600px) {
@@ -212,20 +215,20 @@ const Middle = styled.div`
   }
   @media screen and (max-width: 469px) {
     width: 100%;
-  } */
+  }
 `;
 const Scope = styled.span`
   font-weight: 700;
   font-size: 20px;
   color: #000000;
   margin-right: 16px;
-  /* @media screen and (max-width: 1500px) and (min-width: 1000px) {
+  @media screen and (max-width: 1500px) and (min-width: 1000px) {
     font-size: 16px;
     margin-right: 8px;
   }
   @media screen and (max-width: 999px) {
     margin-right: 5px;
-  } */
+  }
 `;
 
 // 리뷰 개수
@@ -233,8 +236,8 @@ const Bottom = styled.p`
   font-weight: 400;
   font-size: 14px;
   color: #999999;
-  /* @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1000px) {
     margin: 0;
     font-size: 11px;
-  } */
+  }
 `;

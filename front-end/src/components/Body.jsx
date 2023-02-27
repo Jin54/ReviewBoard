@@ -58,6 +58,10 @@ justify-content: center;
     /* width: 100%; */
     padding: 5%;
   }
+  @media screen and (max-width: 500px) {
+    padding: 0;
+    width: 100%;
+  }
 `
 const DetailModalWrap = styled.div`
   display: flex;
