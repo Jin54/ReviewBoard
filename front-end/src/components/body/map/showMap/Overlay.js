@@ -16,9 +16,6 @@ const Overlay = (data, SetDetailID, SetOpenDetailModal) => {
   HeaderCloseBtn.className = "closeimgWrap";
   HeaderCloseBtn.innerHTML =
     '<img src="https://i.postimg.cc/ZYjNRKj6/close-white.png"></img>';
-  //   HeaderCloseBtn.onclick = () => {
-  //     content.setMap(null);
-  //   };
   contentHeader.appendChild(HeaderCloseBtn);
 
   var infowrap = document.createElement("div");

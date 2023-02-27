@@ -31,7 +31,7 @@ const OnClickBookmark = () => {
       (data) => SetBookmarkData(data),
       (id) => ResetBookmarkID(id)
     );
-  }, []);
+  }, [showURL]);
 };
 
 export default OnClickBookmark;

@@ -118,7 +118,6 @@ const DetailModal = () => {
                   : BookmarkImgOFF
               }
               onClick={() => {
-                console.log(userJWT);
                 openLogin
                   ? BookmarkIDAPI(
                       showURL,
