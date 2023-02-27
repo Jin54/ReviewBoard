@@ -117,7 +117,7 @@ const Divider = styled.hr`
   background-color: rgba(255, 255, 255, 0.5);
 `
 
-const MBtn = styled.p`
+const MBtn = styled.div`
   color: #000;
   font-weight: 400;
   font-size: 20x;
