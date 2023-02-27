@@ -2,7 +2,8 @@
 import { useEffect, useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import MarkerImg from "../../../../img/circle.png";
+import Marker from "../../../../img/marker.png";
+import CircleMarker from "../../../../img/circle.png";
 import { setDetailID } from "../../../../modules/saveData";
 import { setOpenDetailModal } from "../../../../modules/openBool";
 
@@ -37,7 +38,7 @@ const ShowMarker = (props) => {
     props.mapData.map((data, index) => {
       const coords = new kakao.maps.LatLng(data.lat, data.lon);
       if (props.show == "bookmark" && openBookmark) {
-        var imageSize = new kakao.maps.Size(24, 35);
+        var imageSize = new kakao.maps.Size(30, 42);
         var markerImg = new kakao.maps.MarkerImage(
           "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png",
           imageSize
@@ -51,20 +52,23 @@ const ShowMarker = (props) => {
       } else if (bookmarkID.includes(data.id) && openBookmark) {
         return; //북마크에 있는 데이터일 때
       } else if (index < 10) {
-        marker = new kakao.maps.Marker({
-          map: _map,
-          position: coords,
-        });
-        marker.setZIndex(-30);
-      } else {
-        var imageSize = new kakao.maps.Size(10, 10);
-        var markerImage = new kakao.maps.MarkerImage(MarkerImg, imageSize);
+        var imageSize = new kakao.maps.Size(35, 35);
+        var markerImage = new kakao.maps.MarkerImage(Marker, imageSize);
         marker = new kakao.maps.Marker({
           map: _map,
           position: coords,
           image: markerImage,
         });
         marker.setZIndex(-30);
+      } else {
+        var imageSize = new kakao.maps.Size(25, 25);
+        var markerImage = new kakao.maps.MarkerImage(CircleMarker, imageSize);
+        marker = new kakao.maps.Marker({
+          map: _map,
+          position: coords,
+          image: markerImage,
+        });
+        marker.setZIndex(-40);
       }
 
       setMarkers((markers) => [...markers, marker]);

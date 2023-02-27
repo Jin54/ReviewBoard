@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
+import CurrentMarkerImg from "../../../../img/currentMarker.png";
+
 const { kakao } = window;
 
 const CurrentMarker = (props) => {
@@ -29,9 +31,8 @@ const CurrentMarker = (props) => {
 
         // 지도에 마커와 인포윈도우를 표시하는 함수입니다
         //마커 이미지 생성하기
-        var imageSrc =
-            "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png", // 마커이미지의 주소입니다
-          imageSize = new kakao.maps.Size(32, 34.5), // 마커이미지의 크기입니다
+        var imageSrc = CurrentMarkerImg, // 마커이미지의 주소입니다
+          imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
           imageOption = { offset: new kakao.maps.Point(27, 50) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
         var markerImage = new kakao.maps.MarkerImage(
           imageSrc,
