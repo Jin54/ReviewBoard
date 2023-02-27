@@ -1,10 +1,11 @@
-package com.example.demo.src.user;
+package com.example.demo.src.user.controller;
 
 
 import com.example.demo.common.Constant;
 import com.example.demo.common.exceptions.BaseException;
 import com.example.demo.common.oauth.OAuthService;
 import com.example.demo.common.response.BaseResponse;
+import com.example.demo.src.user.UserService;
 import com.example.demo.src.user.model.GetReviewRes;
 import com.example.demo.src.user.model.GetShopRes;
 import com.example.demo.src.user.model.PostLoginReq;

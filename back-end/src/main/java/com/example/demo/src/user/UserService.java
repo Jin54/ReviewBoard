@@ -1,29 +1,16 @@
 package com.example.demo.src.user;
 
 
-import com.example.demo.common.exceptions.BaseException;
-import com.example.demo.src.user.entity.Review;
-import com.example.demo.src.user.entity.Shop;
+import com.example.demo.src.user.Repository.UserRepository;
 import com.example.demo.src.user.entity.User;
-import com.example.demo.src.user.model.GetReviewRes;
-import com.example.demo.src.user.model.GetShopRes;
 import com.example.demo.src.user.model.PostShopRes;
 
 import com.example.demo.util.JwtService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-
-import static com.example.demo.common.response.BaseResponseStatus.NOT_FIND_SHOP;
-import static com.example.demo.common.response.BaseResponseStatus.NOT_FIND_USER;
 
 // Service Create, Update, Delete 의 로직 처리
 @Transactional

@@ -1,16 +1,12 @@
 package com.example.demo.src.user.model;
 
 
-import com.example.demo.src.user.entity.Review;
-import com.example.demo.src.user.entity.Review_img;
-import com.example.demo.src.user.entity.Shop;
+import com.example.demo.src.user.entity.ReviewHospital;
+import com.example.demo.src.user.entity.ReviewShop;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
@@ -32,17 +28,16 @@ public class GetReviewRes {
 
 
 
-    public GetReviewRes(Review review ) {
-        this.id = review.getId();
-       this.rating= review.getRating();
-       this.content=review.getContent();
-       this.createAT=review.getCreateAT();
-
-//        for (Review_img Review_img : imgList) {
-//            String str = "https://firebasestorage.googleapis.com/v0/b/wnatedcv.appspot.com/o/review%2F" +
-//                    Review_img.getUrl() + ".png" + "?alt=media";
-//            this.imgList.add(str);
-//        }
-
+    public GetReviewRes(ReviewShop reviewShop) {
+        this.id = reviewShop.getId();
+       this.rating= reviewShop.getRating();
+       this.content= reviewShop.getContent();
+       this.createAT= reviewShop.getCreateAT();
+    }
+    public GetReviewRes(ReviewHospital reviewHospital) {
+        this.id = reviewHospital.getId();
+        this.rating= reviewHospital.getRating();
+        this.content= reviewHospital.getContent();
+        this.createAT= reviewHospital.getCreateAT();
     }
 }

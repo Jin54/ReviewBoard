@@ -27,8 +27,17 @@ public class Bookmark {
     @JoinColumn
     private Shop shop;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private Hospital hospital;
+
     public Bookmark(User user, Shop shop) {
         this.user = user;
         this.shop = shop;
+    }
+
+    public Bookmark(User user, Hospital hospital) {
+        this.user = user;
+        this.hospital = hospital;
     }
 }

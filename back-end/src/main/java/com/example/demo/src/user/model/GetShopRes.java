@@ -1,6 +1,7 @@
 package com.example.demo.src.user.model;
 
 
+import com.example.demo.src.user.entity.Hospital;
 import com.example.demo.src.user.entity.Shop;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -61,6 +62,28 @@ public class GetShopRes {
         this.sort=shop.getSort();
         this.info=shop.getInfo();
         this.time=shop.getTime();
+
+        this.review_number = reviewCounter;
+        if (Double.isNaN(reviewRating))
+            reviewRating = 0D;
+
+        this.review_rating = (double) Math.round(reviewRating * 10) / 10;
+    }
+
+    public GetShopRes(Hospital hospital, Long reviewCounter, Double reviewRating) {
+        this.id = hospital.getId();
+        this.name = hospital.getShop_name();
+
+        this.numberAddress = hospital.getNumberAddress();
+        this.roadAddress = hospital.getRoadAddress();
+        this.lat = hospital.getLat();
+        this.lon = hospital.getLon();
+        this.thumbnail=hospital.getThumbnail();
+
+        this.number = hospital.getNumber();
+        this.sort=hospital.getSort();
+        this.info=hospital.getInfo();
+        this.time=hospital.getTime();
 
         this.review_number = reviewCounter;
         if (Double.isNaN(reviewRating))

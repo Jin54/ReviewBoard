@@ -1,4 +1,4 @@
-package com.example.demo.src.user;
+package com.example.demo.src.user.Repository;
 
 import com.example.demo.src.user.entity.Shop;
 import com.example.demo.src.user.model.GetShopCountRes;
@@ -35,7 +35,7 @@ public interface ShopRepository extends JpaRepository<Shop, Long> {
 
     @Query("SELECT s as shop, count(r.shop) as cnt \n" +
             "    from Shop s " +
-            "    left join Review  r  " +
+            "    left join ReviewShop  r  " +
             "    on (s = r.shop ) " +
             "   WHERE " + HAVERSINE_PART + " < :distance "+
             "    group by  s.id " +

@@ -4,7 +4,10 @@ package com.example.demo.src.user;
 import com.example.demo.common.exceptions.BaseException;
 import com.example.demo.src.user.Repository.*;
 import com.example.demo.src.user.entity.*;
-import com.example.demo.src.user.model.*;
+import com.example.demo.src.user.model.GetReviewRes;
+import com.example.demo.src.user.model.GetShopRes;
+import com.example.demo.src.user.model.HospitalInterface;
+import com.example.demo.src.user.model.ShopInterface;
 import com.example.demo.util.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -24,41 +27,31 @@ import static com.example.demo.common.response.BaseResponseStatus.NOT_FIND_USER;
 @Transactional
 @RequiredArgsConstructor
 @Service
-public class ShopService {
+public class HospitalService {
 
-    private final ShopRepository shopRepository;
-    private final ReviewShopRepository reviewShopRepository;
+    private final HospitalRepository hospitalRepository;
+    private final ReviewHospitalRepository reviewHospitalRepository;
     private final UserRepository userRepository;
     private final BookMarkRepository bookMarkRepository;
 
     private final JwtService jwtService;
 
 
-
     //좌표중심 탐색
     public List<GetShopRes> getShopByCoord(int pageIndex, int pageSize, double lat, double lon,int distance) {
 
-        System.out.println(lat);
-        System.out.println(lon);
 
-        //paging 변수들 선언
-        Sort.Direction direction = Sort.Direction.DESC;
-        //name 기준으로 정렬함 (딱히필요하지않은데 필수 파라미터라서)
-        Sort sort = Sort.by(direction, "id");
-
-        //paing 할 인덱스 , 사이즈 선언
-//        Pageable pageable = PageRequest.of(pageIndex - 1, pageSize, page);
         PageRequest pageable = PageRequest.of(pageIndex - 1, pageSize);
+        Page<HospitalInterface> shopList  = hospitalRepository.findHospitalsByLocation(lat, lon,distance,pageable);
 
-        //lat,lon 가까운 음식점들 선택, (distance도 파라미터로 받아야할 필요성?)
-        Page<ShopInterface> shopList  = shopRepository.findShopsByLocation(lat, lon,distance,pageable);
-
-        ///for문 순회하면서 GetShopRes형태로 담음
         List<GetShopRes> result = new ArrayList<>();
-        for (ShopInterface shopInterface : shopList) {
-            Long reviewCounter = shopInterface.getCnt();
-            Double reviewRating = reviewShopRepository.sumRatingByShop(shopInterface.getShop()) / (double) reviewCounter;
-            GetShopRes getShopRes = new GetShopRes(shopInterface.getShop(), reviewCounter, reviewRating);
+        for (HospitalInterface hospitalInterface : shopList) {
+
+            Hospital hospital =hospitalInterface.getHospital();
+            Long reviewCounter = hospitalInterface.getCnt();
+
+            Double reviewRating = reviewHospitalRepository.sumRatingByHospital(hospital) / (double) reviewCounter;
+            GetShopRes getShopRes = new GetShopRes(hospital, reviewCounter, reviewRating);
             result.add(getShopRes);
         }
 
@@ -75,20 +68,16 @@ public class ShopService {
         //paing 할 인덱스 , 사이즈 선언
         Pageable pageable = PageRequest.of(pageIndex - 1, pageSize, sort);
 
-        Shop shop=shopRepository.findById(shopId)
+        Hospital hospital=hospitalRepository.findById(shopId)
                 .orElseThrow(() -> new BaseException(NOT_FIND_USER));;
 
         //lat,lon 가까운 음식점들 선택, (distance도 파라미터로 받아야할 필요성?)
-        Page<ReviewShop> reviewList  = reviewShopRepository.findAllByShop(shop , pageable);
+        Page<ReviewHospital> reviewList  = reviewHospitalRepository.findAllByHospital(hospital , pageable);
 
         ///for문 순회하면서 GetShopRes형태로 담음
         List<GetReviewRes> result = new ArrayList<>();
-        for (ReviewShop reviewShop : reviewList) {
-
-//            List<Review_img> reviewImgs=reviewImgRepository.findAllByReview(review);
-
-            GetReviewRes getReviewRes = new GetReviewRes(reviewShop);
-
+        for (ReviewHospital reviewHospital : reviewList) {
+            GetReviewRes getReviewRes = new GetReviewRes(reviewHospital);
             result.add(getReviewRes);
         }
 
@@ -97,14 +86,11 @@ public class ShopService {
 
     public GetShopRes getShopInfo(Long shopId) {
 
+        Hospital hospital  = hospitalRepository.findById(shopId).orElseThrow(() -> new BaseException(NOT_FIND_SHOP));;
 
-
-        Shop shop  = shopRepository.findById(shopId).orElseThrow(() -> new BaseException(NOT_FIND_SHOP));;
-
-        Long reviewCounter = reviewShopRepository.countByShop(shop);
-        Double reviewRating = reviewShopRepository.sumRatingByShop(shop) /  (double)reviewCounter;
-        GetShopRes getShopRes = new GetShopRes(shop,reviewCounter,reviewRating);
-
+        Long reviewCounter =reviewHospitalRepository.countByHospital(hospital);
+        Double reviewRating =reviewHospitalRepository.sumRatingByHospital(hospital) /  (double)reviewCounter;
+        GetShopRes getShopRes = new GetShopRes(hospital,reviewCounter,reviewRating);
 
         return getShopRes;
     }
@@ -119,15 +105,15 @@ public class ShopService {
         Pageable pageable = PageRequest.of(pageIndex - 1, pageSize, sort);
 
         //lat,lon 가까운 음식점들 선택, (distance도 파라미터로 받아야할 필요성?)
-        Page<Shop> shopList  = shopRepository.findAllByNumberAddressStartingWithAndNumberAddressContaining
+        Page<Hospital> shopList  = hospitalRepository.findAllByNumberAddressStartingWithAndNumberAddressContaining
                 (first,second, pageable);
 
         ///for문 순회하면서 GetShopRes형태로 담음
         List<GetShopRes> result = new ArrayList<>();
-        for (Shop shop : shopList) {
-            Long reviewCounter = reviewShopRepository.countByShop(shop);
-            Double reviewRating = reviewShopRepository.sumRatingByShop(shop) /  (double)reviewCounter;
-            GetShopRes getShopRes = new GetShopRes(shop,reviewCounter,reviewRating);
+        for (Hospital hospital : shopList) {
+            Long reviewCounter =reviewHospitalRepository.countByHospital(hospital);
+            Double reviewRating =reviewHospitalRepository.sumRatingByHospital(hospital) /  (double)reviewCounter;
+            GetShopRes getShopRes = new GetShopRes(hospital,reviewCounter,reviewRating);
             result.add(getShopRes);
         }
 
@@ -143,13 +129,13 @@ public class ShopService {
 
         //paing 할 인덱스 , 사이즈 선언
         Pageable pageable = PageRequest.of(pageIndex - 1, pageSize, sort);
-        Page<Shop> shopList  = shopRepository.findAll(pageable);
+        Page<Hospital> shopList  = hospitalRepository.findAll(pageable);
         ///for문 순회하면서 GetShopRes형태로 담음
         List<GetShopRes> result = new ArrayList<>();
-        for (Shop shop : shopList) {
-            Long reviewCounter = reviewShopRepository.countByShop(shop);
-            Double reviewRating = reviewShopRepository.sumRatingByShop(shop) /  (double)reviewCounter;
-            GetShopRes getShopRes = new GetShopRes(shop,reviewCounter,reviewRating);
+        for (Hospital hospital : shopList) {
+            Long reviewCounter =reviewHospitalRepository.countByHospital(hospital);
+            Double reviewRating =reviewHospitalRepository.sumRatingByHospital(hospital) /  (double)reviewCounter;
+            GetShopRes getShopRes = new GetShopRes(hospital,reviewCounter,reviewRating);
             result.add(getShopRes);
         }
 
@@ -161,19 +147,18 @@ public class ShopService {
 
         Long jwtUserId = jwtService.getUserId();
         User user = userRepository.findById(jwtUserId).orElseThrow(() -> new BaseException(NOT_FIND_USER));
-        Shop shop = shopRepository.findById(shopId).orElseThrow(() -> new BaseException(NOT_FIND_SHOP));
+        Hospital hospital = hospitalRepository.findById(shopId).orElseThrow(() -> new BaseException(NOT_FIND_SHOP));
 
-        long numOfEntriesDeleted = bookMarkRepository.deleteByUserAndShop(user,shop);
+        long numOfEntriesDeleted = bookMarkRepository.deleteByUserAndHospital(user,hospital);
 
-        System.out.println(numOfEntriesDeleted);
         if(numOfEntriesDeleted == 0 ) {
-            bookMarkRepository.save(new Bookmark(user, shop));
+            bookMarkRepository.save(new Bookmark(user, hospital));
         }
 
-        List<Bookmark> bookMarkList =  bookMarkRepository.findAllByUserAndShopNotNullOrderByIdDesc(user);
+        List<Bookmark> bookMarkList =  bookMarkRepository.findAllByUserAndHospitalNotNullOrderByIdDesc(user);
         List<Long> result = new ArrayList<>();
         for (Bookmark bookmark : bookMarkList) {
-            result.add(bookmark.getShop().getId());
+            result.add(bookmark.getHospital().getId());
         }
         return result;
     }
@@ -184,15 +169,15 @@ public class ShopService {
         User user = userRepository.findById(jwtUserId).orElseThrow(() -> new BaseException(NOT_FIND_USER));
 
 
-        List<Bookmark> bookMarkList =  bookMarkRepository.findAllByUserAndShopNotNullOrderByIdDesc(user);
+        List<Bookmark> bookMarkList =  bookMarkRepository.findAllByUserAndHospitalNotNullOrderByIdDesc(user);
         List<GetShopRes> result = new ArrayList<>();
         for (Bookmark bookmark : bookMarkList) {
 
-            Shop shop =bookmark.getShop();
+            Hospital hospital =bookmark.getHospital();
 
-            Long reviewCounter = reviewShopRepository.countByShop(shop);
-            Double reviewRating = reviewShopRepository.sumRatingByShop(shop) /  (double)reviewCounter;
-            GetShopRes getShopRes = new GetShopRes(shop,reviewCounter,reviewRating);
+            Long reviewCounter =reviewHospitalRepository.countByHospital(hospital);
+            Double reviewRating =reviewHospitalRepository.sumRatingByHospital(hospital) /  (double)reviewCounter;
+            GetShopRes getShopRes = new GetShopRes(hospital,reviewCounter,reviewRating);
 
             result.add(getShopRes);
         }

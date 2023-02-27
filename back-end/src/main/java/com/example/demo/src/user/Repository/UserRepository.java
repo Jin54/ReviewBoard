@@ -1,4 +1,4 @@
-package com.example.demo.src.user;
+package com.example.demo.src.user.Repository;
 
 import com.example.demo.src.user.entity.Shop;
 import com.example.demo.src.user.entity.User;
