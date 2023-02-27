@@ -73,19 +73,24 @@ const ShowMarker = (props) => {
 
       setMarkers((markers) => [...markers, marker]);
 
+      const contents = Overlay(
+        data,
+        (id) => {
+          SetDetailID(id);
+        },
+        () => {
+          SetOpenDetailModal();
+        }
+      );
       const overlay = new kakao.maps.CustomOverlay({
         clickable: true, //true 로 설정하면 컨텐츠 영역을 클릭했을 경우 지도 이벤트를 막아준다.
-        content: Overlay(
-          data,
-          (id) => {
-            SetDetailID(id);
-          },
-          () => {
-            SetOpenDetailModal();
-          }
-        ),
+        content: contents,
         position: marker.getPosition(),
       });
+
+      contents.getElementsByClassName("closeimgWrap")[0].onclick = () => {
+        overlay.setMap(null);
+      };
 
       overlay.setMap(null);
 
