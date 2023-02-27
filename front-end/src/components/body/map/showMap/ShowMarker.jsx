@@ -15,6 +15,7 @@ const ShowMarker = (props) => {
   const _map = useSelector((state) => state.setMap._map);
   const openBookmark = useSelector((state) => state.openBool.bookmark);
   const bookmarkID = useSelector((state) => state.bookmarkID);
+  const showURL = useSelector((state) => state.urlChange.name);
   const dispatch = useDispatch();
   const SetDetailID = useCallback(
     (id) => dispatch(setDetailID(id)),
@@ -49,8 +50,9 @@ const ShowMarker = (props) => {
           image: markerImg,
         });
         marker.setZIndex(-20);
-      } else if (bookmarkID.includes(data.id) && openBookmark) {
-        return; //북마크에 있는 데이터일 때
+      } //북마크에 있는 데이터일 때
+      else if (openBookmark && bookmarkID[0].includes(data.id)) {
+        return;
       } else if (index < 10) {
         var imageSize = new kakao.maps.Size(35, 35);
         var markerImage = new kakao.maps.MarkerImage(Marker, imageSize);
