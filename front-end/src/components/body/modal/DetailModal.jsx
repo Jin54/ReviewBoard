@@ -75,7 +75,7 @@ const DetailModal = () => {
         <MainImg>
           <Gradation />
           {detailData.thumbnail ? (
-            <Thumbnail src={detailData.thumbnail} width={"100%"} />
+            <Thumbnail src={detailData.thumbnail} width={"100%"}/>
           ) : (
             <ImgComponent src={"noImage.jpg"} width={"80%"} />
           )}
@@ -223,7 +223,8 @@ const MainImg = styled.div`
   /* border-radius: 10px; */
   width: 100%;
   margin: auto;
-  height: 400px;
+  height: auto;
+  max-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
