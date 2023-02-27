@@ -61,32 +61,31 @@ const DetailModal = () => {
 
   return (
     <RestaurantModalWrap>
-
       <Box>
-              {/* <CloseWrap> */}
-              <Close
+        {/* <CloseWrap> */}
+        <Close
           onClick={() => {
             SetOpenDetailModal();
           }}
         >
           <ImgComponent src={"close.webp"} width={"100%"} />
         </Close>
-      {/* </CloseWrap> */}
+        {/* </CloseWrap> */}
         <MainImg>
           <Gradation />
           {detailData.thumbnail ? (
-            <Thumbnail src={detailData.thumbnail} width={"100%"}/>
+            <Thumbnail src={detailData.thumbnail} width={"100%"} />
           ) : (
             <ImgComponent src={"noImage.jpg"} width={"80%"} />
           )}
           <About>
-          <Title>{detailData.name}</Title>
-          <Address>{detailData.numberAddress}</Address>
-          <ScopeWrap>
-            <Scope>{detailData.review_rating}</Scope>
-            <ReviewScope scope={detailData.review_rating} />
-          </ScopeWrap>
-        </About>
+            <Title>{detailData.name}</Title>
+            <Address>{detailData.numberAddress}</Address>
+            <ScopeWrap>
+              <Scope>{detailData.review_rating}</Scope>
+              <ReviewScope scope={detailData.review_rating} />
+            </ScopeWrap>
+          </About>
         </MainImg>
 
         <InfoWrap>
@@ -102,6 +101,7 @@ const DetailModal = () => {
           </Info>
           <InfoRight>
             <Copy
+              href="mailto:sales@lfin.kr"
               onClick={() => {
                 navigator.clipboard.writeText(showURL + ": " + detailData.id);
                 alert(
@@ -171,11 +171,11 @@ const RestaurantModalWrap = styled.div`
 const Thumbnail = styled.img``;
 
 const Box = styled.div`
-  border: 1px solid #00B295;
+  border: 1px solid #00b295;
   border-radius: 10px;
   overflow: hidden;
-width: 50%;
-position: absolute;
+  width: 50%;
+  position: absolute;
   left: 50%;
   transform: translateX(-50%);
   bottom: 0;
@@ -190,10 +190,10 @@ position: absolute;
     display: none;
   }
   @media screen and (max-width: 1000px) {
-width: 100%;
-border: none;
-top: 70px;
-border-radius: 0;
+    width: 100%;
+    border: none;
+    top: 70px;
+    border-radius: 0;
   }
 `;
 const Close = styled.div`
@@ -242,7 +242,7 @@ const Gradation = styled.div`
   width: 100%;
   height: 60%;
   background: linear-gradient(180deg, #373737 0%, rgba(46, 46, 46, 0) 79.22%);
-`
+`;
 const About = styled.div`
   display: flex;
   align-items: center;
@@ -315,13 +315,14 @@ const InfoRight = styled.div`
     justify-content: center;
   }
 `;
-const Copy = styled.div`
+const Copy = styled.a`
   cursor: pointer;
   height: 100%;
   display: flex;
   align-items: center;
   margin-right: 20px;
   color: #999999;
+  text-decoration: none;
   @media screen and (max-width: 450px) {
     font-size: 12px;
     height: auto;
@@ -348,7 +349,7 @@ const Bookmark = styled.div`
 const Divider = styled.div`
   border: 0;
   height: 0.5px;
-  background-color: #00B295;
+  background-color: #00b295;
   width: 94%;
   margin: 20px auto;
   /* @media screen and (max-width: 1000px) {
