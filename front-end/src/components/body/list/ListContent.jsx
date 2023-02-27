@@ -21,8 +21,8 @@ const ListContent = () => {
 
   //데이터 보여주는 함수
   function funcData(ListData) {
-    if (ListData == null) {
-      return <div>목록 없음</div>;
+    if (ListData.length == 0) {
+      return <NoList>북마크된 항목이 없습니다.</NoList>;
     }
 
     return ListData.map(
@@ -49,3 +49,10 @@ const FlexWrap = styled.div`
   justify-content: space-between;
   align-items: flex-start;
 `;
+
+const NoList = styled.p`
+  text-align: center;
+  width: 100%;
+  color: #00B295;
+  font-size: 20px;
+`

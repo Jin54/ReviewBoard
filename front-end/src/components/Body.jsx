@@ -52,6 +52,7 @@ justify-content: center;
   top:0;
   bottom: 0;
   left: 0;
+  right: 0;
   background-color: #fafafa;
   z-index: 5;
   @media screen and (max-width: 1000px) {
