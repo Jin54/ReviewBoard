@@ -162,7 +162,7 @@ const BackBlack = styled.div`
   position: fixed;
   left: 0;
   right: 0;
-  top: 80px;
+  top: 50px;
   bottom: 0;
   z-index: 0;
   background-color: rgba(0, 0, 0, 0.5);

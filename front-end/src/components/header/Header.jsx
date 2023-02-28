@@ -81,7 +81,7 @@ const Header = () => {
 
 const HeaderWrap = styled.div`
   position: absolute;
-  z-index: 15;
+  z-index: 35;
   height: 100%;
   width: 10%;
   background-color: #00B295;

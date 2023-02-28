@@ -291,11 +291,11 @@ const ScopeWrap = styled.div`
   display: flex;
   align-items: center;
   width: 30%;
-  @media screen and (max-width: 1300px) and (min-width: 400px) {
+  @media screen and (max-width: 1300px) and (min-width: 450px) {
     width: 40%;
   }
-  @media screen and (max-width: 399px) {
-    width: 80%;
+  @media screen and (max-width: 449px) {
+    width: 60%;
   }
 `;
 const Scope = styled.p`
