@@ -57,14 +57,14 @@ const MapOrListWrap = styled.div`
   justify-content: space-around;
   margin: auto;
   margin-top: 10px;
-position: fixed;
-z-index: 10;
-bottom: 40px;
-left: 50%;
-transform: translateX(-50%);
-background: #00B295;
-border-radius: 6px;
-padding: 4px;
+  position: fixed;
+  z-index: 10;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #00B295;
+  border-radius: 6px;
+  padding: 4px;
 `;
 const MapBtn = styled.p`
   margin: 0;

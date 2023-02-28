@@ -11,30 +11,17 @@ const Index = () => {
     <IndexWrap>
       <Header />
       <Body />
-      {/* <FooterLocation><Footer /></FooterLocation> */}
     </IndexWrap>
   );
 };
 
 const IndexWrap = styled.div`
-  /* padding-right: 5%; */
   position: relative;
-  /* padding-left: 5%; */
   box-sizing: border-box;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  /* background-color: #00B295; */
-  /* @media screen and (max-width: 1000px) {
-    padding-left: 8%;
-    padding-right: 8%;
-  } */
 `;
 
-const FooterLocation = styled.div`
-  /* @media screen and (max-width: 1000px) {
-    display: none;
-  } */
-`
 export default Index;

@@ -43,6 +43,7 @@ const ListContentMap = (props) => {
   var bookmarkList = bookmarkID[0];
   if (bookmarkID[0] == null) bookmarkList = [0];
 
+  // 이미지 불러오지 못했을 때
   const handleImgError = (e) => {
     e.target.src = NoImg;
   };
@@ -56,12 +57,7 @@ const ListContentMap = (props) => {
     >
       {bookmarkAPI && <OnClickBookmark />}
       <ImgBox>
-        {/* {props.data.thumbnail && ( */}
-          {/* <ImgWrap imgUrl={props.data.thumbnail} /> */}
           <ImgWrap src={props.data.thumbnail} onError={handleImgError}/>
-        {/* )} */}
-        {/* {console.log(props.data.name)}
-        {console.log(props.data.thumbnail)} */}
       </ImgBox>
       <AboutWrap>
         <Top>
@@ -207,7 +203,6 @@ const Middle = styled.div`
   margin-bottom: 20px;
   display: flex;
   align-items: center;
-  /* width: 90%; */
   @media screen and (min-width: 1900px) {
     width: 70%;
   }

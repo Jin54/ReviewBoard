@@ -86,7 +86,6 @@ const HeaderWrap = styled.div`
   width: 10%;
   background-color: #00B295;
   box-shadow: 6px 4px 16px rgba(0, 0, 0, 0.25);
-  /* margin-top: 10px; */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -102,7 +101,7 @@ const HeaderWrap = styled.div`
     padding: 10px 0;
   }
 `;
-// ============
+
 const HedaerLeftWrap = styled.div`
   display: flex;
   align-items: center;
@@ -110,10 +109,9 @@ const HedaerLeftWrap = styled.div`
   justify-content: space-between;
   height: 18%;
   width: 50%;
-  /* height: 60px; */
   @media screen and (max-width: 1400px) and (min-width: 1000px) {
       width: 80%;
-    }
+  }
   @media screen and (max-width: 1000px) {
     width: 18%;
     height: 100%;
@@ -136,44 +134,27 @@ const UrlBtn = styled.p`
   border-radius: 4px;
   white-space:nowrap;
   font-weight: ${(props) => (props.selected ? "700" : "300")};
-  /* @media screen and (max-width: 1400px) {
-    margin-left: 50px;
-  }
-  @media screen and (max-width: 1200px) {
-    margin-left: 30px;
-  }
-  @media screen and (max-width: 1000px) {
-    display: none;
-  } */
   cursor: pointer;
 `;
 const FoodBtn = styled(UrlBtn)`
-  /* @media screen and (min-width: 1400px) {
-    margin-left: 100px;
-  } */
 `;
 const HospitalBtn = styled(UrlBtn)`
-  /* @media screen and (min-width: 1400px) {
-    margin-left: 70px;
-  } */
 `;
 
 const KakaologinWrap = styled.div`
-width: 100%;
-white-space:nowrap;
+  width: 100%;
+  white-space:nowrap;
     @media screen and (max-width: 1000px) {
     display: none;
   }
 `
 const BookmarkWrap = styled.div`
-width: 100%;
-white-space:nowrap;
+  width: 100%;
+  white-space:nowrap;
     @media screen and (max-width: 1000px) {
     display: none;
   }
 `
-
-// ============
 const HeaderRightWrap = styled.div`
   display: flex;
   align-items: center;

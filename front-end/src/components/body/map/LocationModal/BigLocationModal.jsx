@@ -19,7 +19,7 @@ const BigLocationModal = (props) => {
       }}
       selected={bigLocationName === bigLocations.search && "selected"}
       name={bigLocations.name}
-    ></Region>
+    />
   ));
 
   return (
@@ -57,7 +57,6 @@ export default BigLocationModal;
 
 const RegionSelectWrap = styled.div`
   width: 70%;
-  /* height: 80%; */
   position: absolute;
   top: 50%;
   z-index: 20;
@@ -73,8 +72,6 @@ const RegionSelectWrap = styled.div`
     bottom: 0;
     left: 0;
     transform: none;
-    /* border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0; */
     border: none;
     background-color: rgba(0,0,0,0);
   }
@@ -101,14 +98,13 @@ const BoxWrap = styled.div`
   right: 0;
   bottom: 0;
   z-index: 10;
-  padding: 0 10px;
   border: 1px solid #00B295;
   border-radius: 10px;
   padding: 40px 22px;
   box-sizing: border-box;
   background-color: #fff;
   border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+  border-bottom-right-radius: 0;
   }
 `;
 const Close = styled.div`

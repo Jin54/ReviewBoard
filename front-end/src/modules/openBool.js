@@ -43,12 +43,12 @@ function openBool(state = initialState, action) {
         ...state,
         login: action.bool,
       };
-    case OPENBOOKMARK:
+    case OPENBOOKMARK: 
       return {
         ...state,
         bookmark: action.bool,
       };
-    case OPENLISTMODAL:
+    case OPENLISTMODAL: 
       return {
         ...state,
         listModal: action.bool,

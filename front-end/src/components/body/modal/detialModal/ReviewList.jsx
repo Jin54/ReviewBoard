@@ -160,9 +160,7 @@ const Bottom = styled.p`
   margin: 0;
   width: 100%;
   text-overflow: ellipsis;
-  /* white-space: nowrap; */
   white-space: ${(props) => props.whiteSpace};
-  /* overflow: hidden; */
   overflow: ${(props) => props.overflow};
   @media screen and (max-width: 1000px) {
     margin: 0;

@@ -1,17 +1,9 @@
-import React, {useCallback} from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ImgComponent from "./ImageComponent";
-import { setOpenMobileMenu } from "../modules/openBool";
 
 const Footer = () => {
-  const openFooter = useSelector((state) => state.openBool.mobileMenu);
-  const dispatch = useDispatch();
-  const SetOpenMobileMenu = useCallback(
-    (bool) => dispatch(setOpenMobileMenu(bool)),
-    [dispatch]
-  );
-  const footerAbout = useSelector((state) => state.openBool.mobileMenu);
+  const [footerState, setFooterState] = useState(false)
   return (
     <FooterWrap>
       <FooterLeft>
@@ -22,12 +14,12 @@ const Footer = () => {
           <AboutTxt>ABOUT</AboutTxt>
           <AboutArrow
             onClick={() => {
-              SetOpenMobileMenu(!footerAbout);
+              setFooterState(!footerState);
             }}
           ><ImgComponent src={'about_arrow.png'} height={'100%'} /></AboutArrow>
         </AboutWrap>
       </FooterLeft>
-      {openFooter && <FooterRight>
+      {footerState && <FooterRight>
         대표이사 : 박영경 <br />
         사업자 등록번호 : 317-81-47616 | 통신판매신고 제2021-서울영등포-1812호
         <br />
@@ -54,13 +46,13 @@ const FooterWrap = styled.div`
 `;
 const FooterLeft = styled.div``;
 const AboutWrap = styled.div`
-margin-bottom:50px;
-display: flex;
-align-items: center;
-justify-content: space-between;
-@media screen and (max-width: 1000px) {
+  margin-bottom:50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media screen and (max-width: 1000px) {
     display: none;
-   } 
+  } 
 `;
 const AboutTxt = styled.span`
     font-weight: 700;
@@ -122,15 +114,13 @@ const QuestionBtn = styled.a`
 `;
 
 const FooterRight = styled.p`
-position: absolute;
-/* float: left; */
-left: 120%;
-padding: 10px;
-bottom: 60px;
-  /* margin: 0; */
+  position: absolute;
+  left: 120%;
+  padding: 10px;
+  bottom: 60px;
   width: 400px;
   background: #00B295;
-border-radius: 6px;
+  border-radius: 6px;
   font-weight: 100;
   font-size: 12px;
   line-height: 24px;

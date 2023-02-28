@@ -6,7 +6,6 @@ import styled from "styled-components";
 import { changeURL } from "../../modules/urlChange";
 import { setOpenMobileMenu } from "../../modules/openBool";
 
-import ImgComponent from "./../ImageComponent";
 import Footer from "../Footer";
 import Kakaologin from "./login/Kakaologin";
 import BookmarkBtn from "./login/BookmarkBtn";
@@ -95,7 +94,6 @@ const MobileMenuBox = styled.div`
   position: absolute;
   right: 0;
   z-index: 30;
-  /* height: 100%; */
   padding: 10px 20px 30px;
   box-sizing: border-box;
   display: flex;
@@ -105,14 +103,12 @@ const MobileMenuBox = styled.div`
 const FlexWrap = styled.div`
   flex: 1;
   padding-right: 20px;
-  /* width: 30%;
-  float: right; */
 `;
 
 const Divider = styled.hr`
- border: 0;
- float: right;
- width: 30%;
+  border: 0;
+  float: right;
+  width: 30%;
   height: 0.5px;
   background-color: rgba(255, 255, 255, 0.5);
 `
@@ -127,7 +123,6 @@ const MBtn = styled.div`
 const MFoodBtn = styled(MBtn)`
   padding-top: 30px;
   padding-bottom: 30px;
-  /* border-top: 0.5px solid #fafafa; */
   font-weight: ${(props) => (props.selected ? "700" : "400")};
   @media screen and (max-width: 1000px) {
   text-align: right;
@@ -151,7 +146,7 @@ const MQuestionBtn = styled.a`
   text-decoration: none;
   display: block;
   @media screen and (max-width: 1000px) {
-  text-align: right;
+    text-align: right;
     color: #fafafa;
   }
 `;

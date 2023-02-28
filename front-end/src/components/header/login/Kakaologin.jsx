@@ -122,6 +122,3 @@ const LoginBtn = styled.div`
     font-weight: ${(props) => (props.selected ? "700" : "300")};
   }
 `;
-
-// https://data-jj.tistory.com/53
-// https://2mojurmoyang.tistory.com/192

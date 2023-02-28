@@ -75,17 +75,11 @@ const DetailModal = () => {
         >
           <ImgComponent src={"close.webp"} width={"100%"} />
         </Close>
-        {/* </CloseWrap> */}
         <MainImg>
           <Gradation />
-          {/* {detailData.thumbnail ? ( */}
-            {/* <Thumbnail src={detailData.thumbnail} width={"100%"} /> */}
             <ThumbnailWrap>
               <Thumbnail src={detailData.thumbnail} onError={handleImgError} />
             </ThumbnailWrap>
-          {/* ) : (
-            <ImgComponent src={"noImage.jpg"} width={"80%"} />
-          )} */}
           <About>
             <Title>{detailData.name}</Title>
             {detailData.numberAddress == undefined ? (
@@ -235,7 +229,6 @@ const Close = styled.div`
 const MainImg = styled.div`
   background-color: #fff;
   position: relative;
-  /* border-radius: 10px; */
   width: 100%;
   margin: auto;
   height: auto;
@@ -245,10 +238,6 @@ const MainImg = styled.div`
   justify-content: center;
   overflow: hidden;
   margin-bottom: 20px;
-  /* @media screen and (max-width: 1000px) {
-    height: 300px;
-    width: 90%;
-  } */
 `;
 
 const Gradation = styled.div`
@@ -305,7 +294,7 @@ const Scope = styled.p`
   font-size: 20px;
   color: #000000;
 `;
-//=============
+
 const InfoWrap = styled.div`
   display: flex;
   width: 94%;
@@ -314,13 +303,8 @@ const InfoWrap = styled.div`
   margin-top: 50px;
 `;
 const Info = styled.div`
-  /* margin-left: 20px; */
-  /* @media screen and (max-width: 1000px) {
-    margin-left: 0;
-  } */
 `;
 const InfoRight = styled.div`
-  /* margin-right: 20px; */
   display: flex;
   @media screen and (max-width: 1000px) {
     margin-right: 0;
@@ -362,19 +346,14 @@ const Bookmark = styled.div`
     height: 20px;
   }
 `;
-// ============
+
 const Divider = styled.div`
   border: 0;
   height: 0.5px;
   background-color: #00b295;
   width: 94%;
   margin: 20px auto;
-  /* @media screen and (max-width: 1000px) {
-    margin-bottom: 20px;
-    margin-top: 20px;
-  } */
 `;
-// =============
 
 const ReviewWrap = styled.div`
   width: 94%;
