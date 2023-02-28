@@ -53,6 +53,6 @@ const FlexWrap = styled.div`
 const NoList = styled.p`
   text-align: center;
   width: 100%;
-  color: #00B295;
+  color: #00b295;
   font-size: 20px;
 `
