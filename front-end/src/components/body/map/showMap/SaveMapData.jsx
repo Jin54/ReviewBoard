@@ -31,7 +31,7 @@ const SaveMapData = (props) => {
       latitude: bounds.pa,
       longitude: bounds.oa,
     };
-    var radiusMath = parseInt(haversine(start, end, { unit: "meter" }) / 2000);
+    var radiusMath = parseInt(haversine(start, end, { unit: "meter" }) / 2500);
     if (radiusMath === 0) {
       radiusMath = 1;
     }

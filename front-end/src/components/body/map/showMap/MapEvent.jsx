@@ -15,6 +15,7 @@ const MapEvent = (props) => {
     });
 
     kakao.maps.event.addListener(_map, "zoom_changed", function () {
+      props.setXY([_map.getCenter().La, _map.getCenter().Ma]);
       props.setSize(_map.getLevel());
     });
   }, [_map]);

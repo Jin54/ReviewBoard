@@ -1,5 +1,4 @@
 import "../../../../style/map.scss";
-import NoImg from "../../../../img/noImage.jpg";
 
 const Overlay = (data, SetDetailID, SetOpenDetailModal) => {
   var content = document.createElement("div");
