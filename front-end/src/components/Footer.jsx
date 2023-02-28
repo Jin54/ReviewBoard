@@ -1,8 +1,17 @@
-import React from "react";
+import React, {useCallback} from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import ImgComponent from "./ImageComponent";
+import { setOpenMobileMenu } from "../modules/openBool";
 
 const Footer = () => {
+  const openFooter = useSelector((state) => state.openBool.mobileMenu);
+  const dispatch = useDispatch();
+  const SetOpenMobileMenu = useCallback(
+    (bool) => dispatch(setOpenMobileMenu(bool)),
+    [dispatch]
+  );
+  const footerAbout = useSelector((state) => state.openBool.mobileMenu);
   return (
     <FooterWrap>
       <FooterLeft>
@@ -11,10 +20,14 @@ const Footer = () => {
         <TOS>이용약관</TOS>
         <AboutWrap>
           <AboutTxt>ABOUT</AboutTxt>
-          <AboutArrow><ImgComponent src={'about_arrow.png'} height={'100%'} /></AboutArrow>
+          <AboutArrow
+            onClick={() => {
+              SetOpenMobileMenu(!footerAbout);
+            }}
+          ><ImgComponent src={'about_arrow.png'} height={'100%'} /></AboutArrow>
         </AboutWrap>
       </FooterLeft>
-      <FooterRight>
+      {openFooter && <FooterRight>
         대표이사 : 박영경 <br />
         사업자 등록번호 : 317-81-47616 | 통신판매신고 제2021-서울영등포-1812호
         <br />
@@ -23,7 +36,7 @@ const Footer = () => {
         본사 : 서울시 강서구 마곡중앙8로 14, M+센터
         <br />
         기업부설 연구소 : 서울시 관악구 신림로 177 창업 HERE-RO3
-      </FooterRight>
+      </FooterRight>}
     </FooterWrap>
   );
 };
@@ -109,17 +122,28 @@ const QuestionBtn = styled.a`
 `;
 
 const FooterRight = styled.p`
-  margin: 0;
+position: absolute;
+/* float: left; */
+left: 120%;
+padding: 10px;
+bottom: 60px;
+  /* margin: 0; */
+  width: 400px;
+  background: #00B295;
+border-radius: 6px;
   font-weight: 100;
   font-size: 12px;
   line-height: 24px;
-  color: #000000;
-  display: none;
+  color: #FAFAFA;
   @media screen and (max-width: 1000px) {
+    position: static;
     color: #fafafa;
     display: inline;
     font-size: 10px;
+    padding: 0;
+    line-height: 18px;
   }
 `;
+
 
 export default Footer;
