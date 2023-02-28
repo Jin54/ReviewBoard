@@ -80,7 +80,7 @@ const HeaderSlide = () => {
 export default HeaderSlide;
 
 const MobileMenuWrap = styled.div`
-  top: 70px;
+  top: 50px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -96,7 +96,7 @@ const MobileMenuBox = styled.div`
   right: 0;
   z-index: 30;
   /* height: 100%; */
-  padding: 30px 20px;
+  padding: 10px 20px 30px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -178,5 +178,6 @@ const Name = styled.div`
   @media screen and (max-width: 1000px) {
   text-align: right;
   padding: 15px 0 30px 0;
+  margin: 0;
   }
 `;

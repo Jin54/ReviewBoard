@@ -28,7 +28,7 @@ const MapButtons = styled.div`
     left: 10%;
   }
   @media screen and (max-width: 550px){
-    top: 10%;
+    top: 8%;
     left: 15%;
   }
 `;

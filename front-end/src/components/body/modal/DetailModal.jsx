@@ -158,13 +158,7 @@ const RestaurantModalWrap = styled.div`
   left: 50%;
   transform: translateX(-50%);
   bottom: 0;
-
-  /* padding: 40px 22px; */
-  /* box-sizing: border-box; */
   background-color: #fff;
-  /* @media screen and (max-width: 1000px) {
-    padding-top: 20px;
-  } */
 `;
 
 const Thumbnail = styled.img``;
@@ -191,7 +185,7 @@ const Box = styled.div`
   @media screen and (max-width: 1000px) {
     width: 100%;
     border: none;
-    top: 70px;
+    top: 50px;
     border-radius: 0;
   }
 `;
