@@ -1,6 +1,11 @@
 import "../../../../style/map.scss";
+import NoImg from "../../../../img/noImage.jpg";
 
 const Overlay = (data, SetDetailID, SetOpenDetailModal) => {
+  const handleImgError = (e) => {
+    e.target.src = NoImg;
+  };
+
   var content = document.createElement("div");
   content.className = "wrap";
 
@@ -22,11 +27,19 @@ const Overlay = (data, SetDetailID, SetOpenDetailModal) => {
   infowrap.className = "infowrap";
   infowrap.innerHTML =
     '<div class="imgwrap">' +
-    "<img src='" +
-    (data.thumbnail != null
-      ? data.thumbnail
-      : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg") +
-    "'><img>" +
+    // "<img src='" +
+    // (data.thumbnail != null ? data.thumbnail : NoImg) +
+    // "' onerror='" +
+    // NoImg +
+    // "'" +
+    // "><img>" +
+    "<img " +
+    "src='" +
+    (data.thumbnail !== null ? data.thumbnail : NoImg) +
+    "' " +
+    "onerror='" +
+    NoImg +
+    "' />" +
     "</div>" +
     '<div class="info">' +
     '<p class="address">' +

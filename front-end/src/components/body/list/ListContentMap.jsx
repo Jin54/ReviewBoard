@@ -43,6 +43,10 @@ const ListContentMap = (props) => {
   var bookmarkList = bookmarkID[0];
   if (bookmarkID[0] == null) bookmarkList = [0];
 
+  const handleImgError = (e) => {
+    e.target.src = NoImg;
+  };
+
   return (
     <ListContentWrap
       onClick={() => {
@@ -53,10 +57,13 @@ const ListContentMap = (props) => {
       {bookmarkAPI && <OnClickBookmark />}
       <ImgBox>
         {props.data.thumbnail ? (
-          <ImgWrap imgUrl={props.data.thumbnail} />
+          // <ImgWrap imgUrl={props.data.thumbnail} />
+          <img src={props.data.thumbnail} onError={handleImgError} />
         ) : (
           <ImgWrap imgUrl={NoImg} />
         )}
+        {console.log(props.data.name)}
+        {console.log(props.data.thumbnail)}
       </ImgBox>
       <AboutWrap>
         <Top>

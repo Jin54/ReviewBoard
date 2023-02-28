@@ -15,6 +15,7 @@ import DetailInfo from "./detialModal/DetailInfo";
 import ReviewList from "./detialModal/ReviewList";
 import BookmarkImgOFF from "../../../assets/heartOffFill.png";
 import BookmarkImgON from "../../../assets/heartOn.png";
+import NoImg from "../../../img/noImage.jpg";
 
 const DetailModal = () => {
   //모달 api
@@ -54,6 +55,10 @@ const DetailModal = () => {
     });
   }, []);
 
+  const handleImgError = (e) => {
+    e.target.src = NoImg;
+  };
+
   var bookmarkList = bookmarkID[0];
   if (bookmarkID[0] == null) bookmarkList = [0];
 
@@ -74,13 +79,18 @@ const DetailModal = () => {
         <MainImg>
           <Gradation />
           {detailData.thumbnail ? (
-            <Thumbnail src={detailData.thumbnail} width={"100%"} />
+            // <Thumbnail src={detailData.thumbnail} width={"100%"} />
+            <img src={detailData.thumbnail} onError={handleImgError}></img>
           ) : (
             <ImgComponent src={"noImage.jpg"} width={"80%"} />
           )}
           <About>
             <Title>{detailData.name}</Title>
-            {detailData.numberAddress == undefined ? (<Address>{detailData.numberAddress}</Address>) : (<Address>{detailData.roadAddress}</Address>)}
+            {detailData.numberAddress == undefined ? (
+              <Address>{detailData.numberAddress}</Address>
+            ) : (
+              <Address>{detailData.roadAddress}</Address>
+            )}
             <ScopeWrap>
               <Scope>{detailData.review_rating}</Scope>
               <ReviewScope scope={detailData.review_rating} />
