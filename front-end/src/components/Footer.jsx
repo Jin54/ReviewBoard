@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import ImgComponent from "./ImageComponent";
 
 const Footer = () => {
   return (
@@ -8,6 +9,10 @@ const Footer = () => {
       <QuestionBtn href="mailto:sales@lfin.kr">문의하기</QuestionBtn>
         <Privacy>개인정보처리방침</Privacy>
         <TOS>이용약관</TOS>
+        <AboutWrap>
+          <AboutTxt>ABOUT</AboutTxt>
+          <AboutArrow><ImgComponent src={'about_arrow.png'} height={'100%'} /></AboutArrow>
+        </AboutWrap>
       </FooterLeft>
       <FooterRight>
         대표이사 : 박영경 <br />
@@ -35,6 +40,26 @@ const FooterWrap = styled.div`
    } 
 `;
 const FooterLeft = styled.div``;
+const AboutWrap = styled.div`
+margin-bottom:50px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+@media screen and (max-width: 1000px) {
+    display: none;
+   } 
+`;
+const AboutTxt = styled.span`
+    font-weight: 700;
+  font-size: 14px;
+  color: #fafafa;
+`;
+const AboutArrow = styled.div`
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 const Privacy = styled.div`
   margin-bottom: 30px;
   margin-top: 30px;
@@ -54,7 +79,7 @@ const TOS = styled.div`
   font-weight: 700;
   font-size: 14px;
   color: #000000;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   @media screen and (max-width: 1400px) and (min-width:1000px) {
     font-size: 12px;
   }

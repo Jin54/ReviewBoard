@@ -2,10 +2,6 @@ import "../../../../style/map.scss";
 import NoImg from "../../../../img/noImage.jpg";
 
 const Overlay = (data, SetDetailID, SetOpenDetailModal) => {
-  const handleImgError = (e) => {
-    e.target.src = NoImg;
-  };
-
   var content = document.createElement("div");
   content.className = "wrap";
 
@@ -33,19 +29,24 @@ const Overlay = (data, SetDetailID, SetOpenDetailModal) => {
     // NoImg +
     // "'" +
     // "><img>" +
-    "<img " +
-    "src='" +
-    (data.thumbnail !== null ? data.thumbnail : NoImg) +
-    "' " +
-    "onerror='" +
-    NoImg +
-    "' />" +
+    // "<img " +
+    // "src='" +
+    // (data.thumbnail !== null ? data.thumbnail : NoImg) +
+    // "' " +
+    // "onerror='" +
+    // NoImg +
+    // "' />" +
+    "<img src='" +
+    (data.thumbnail != null
+      ? data.thumbnail
+      : "https://i.postimg.cc/m2TV33ps/noImage.jpg") +
+    "'><img>" +
     "</div>" +
     '<div class="info">' +
     '<p class="address">' +
     data.numberAddress +
     "</p>" +
-    '<p class="scope">리뷰 ' +
+    '<p class="scope">별점 ' +
     data.review_rating +
     "점</p>" +
     '<p class="review"> 리뷰' +
