@@ -80,7 +80,7 @@ const DetailModal = () => {
           )}
           <About>
             <Title>{detailData.name}</Title>
-            <Address>{detailData.numberAddress}</Address>
+            {detailData.numberAddress == undefined ? (<Address>{detailData.numberAddress}</Address>) : (<Address>{detailData.roadAddress}</Address>)}
             <ScopeWrap>
               <Scope>{detailData.review_rating}</Scope>
               <ReviewScope scope={detailData.review_rating} />
@@ -267,6 +267,8 @@ const Address = styled.p`
   font-weight: 400;
   font-size: 12px;
   color: #999999;
+  text-align: center;
+  padding: 0 20px;
 `;
 const ScopeWrap = styled.div`
   margin-bottom: 20px;

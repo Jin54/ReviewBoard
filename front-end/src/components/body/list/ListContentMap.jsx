@@ -82,7 +82,7 @@ const ListContentMap = (props) => {
               }}
             />
           </TopTitle>
-          <Address>{props.data.numberAddress}</Address>
+          {props.data.numberAddress == undefined ? (<Address>{props.data.numberAddress}</Address>) : (<Address>{props.data.roadAddress}</Address>)}
         </Top>
         <Middle>
           <Scope>{props.data.review_rating}</Scope>
