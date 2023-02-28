@@ -56,14 +56,12 @@ const ListContentMap = (props) => {
     >
       {bookmarkAPI && <OnClickBookmark />}
       <ImgBox>
-        {props.data.thumbnail ? (
-          // <ImgWrap imgUrl={props.data.thumbnail} />
-          <img src={props.data.thumbnail} onError={handleImgError} />
-        ) : (
-          <ImgWrap imgUrl={NoImg} />
-        )}
-        {console.log(props.data.name)}
-        {console.log(props.data.thumbnail)}
+        {/* {props.data.thumbnail && ( */}
+          {/* <ImgWrap imgUrl={props.data.thumbnail} /> */}
+          <ImgWrap src={props.data.thumbnail} onError={handleImgError}/>
+        {/* )} */}
+        {/* {console.log(props.data.name)}
+        {console.log(props.data.thumbnail)} */}
       </ImgBox>
       <AboutWrap>
         <Top>
@@ -125,6 +123,10 @@ const ListContentWrap = styled.div`
 // 왼쪽 이미지
 const ImgBox = styled.div`
   width: 40%;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: white;
   border-radius: 10px;
   margin-right: 25px;
@@ -134,14 +136,8 @@ const ImgBox = styled.div`
     margin: 0;
   }
 `;
-const ImgWrap = styled.div`
-  height: 100px;
+const ImgWrap = styled.img`
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: url(${(props) => props.imgUrl}) no-repeat center;
-  background-size: cover;
 `;
 // 오른쪽 설명
 const AboutWrap = styled.div`

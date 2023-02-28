@@ -78,12 +78,14 @@ const DetailModal = () => {
         {/* </CloseWrap> */}
         <MainImg>
           <Gradation />
-          {detailData.thumbnail ? (
-            // <Thumbnail src={detailData.thumbnail} width={"100%"} />
-            <img src={detailData.thumbnail} onError={handleImgError}></img>
-          ) : (
+          {/* {detailData.thumbnail ? ( */}
+            {/* <Thumbnail src={detailData.thumbnail} width={"100%"} /> */}
+            <ThumbnailWrap>
+              <Thumbnail src={detailData.thumbnail} onError={handleImgError} />
+            </ThumbnailWrap>
+          {/* ) : (
             <ImgComponent src={"noImage.jpg"} width={"80%"} />
-          )}
+          )} */}
           <About>
             <Title>{detailData.name}</Title>
             {detailData.numberAddress == undefined ? (
@@ -171,7 +173,17 @@ const RestaurantModalWrap = styled.div`
   background-color: #fff;
 `;
 
-const Thumbnail = styled.img``;
+const ThumbnailWrap = styled.div`
+width: 100%;
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+`;
+const Thumbnail = styled.img`
+width: 100%;
+`;
 
 const Box = styled.div`
   border: 1px solid #00b295;
