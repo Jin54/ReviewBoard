@@ -5,7 +5,7 @@ import styled from "styled-components";
 import ReviewScope from "./ReviewScope";
 import BookmarkImgOFF from "../../../assets/heartOffFill.png";
 import BookmarkImgON from "../../../assets/heartOn.png";
-import ImgComponent from "../../ImageComponent";
+import NoImg from "../../../img/noImage.jpg";
 import OnClickBookmark from "../../header/OnClickBookmark";
 
 import BookmarkIDAPI from "../../../api/BookmarkIDAPI";
@@ -53,9 +53,9 @@ const ListContentMap = (props) => {
       {bookmarkAPI && <OnClickBookmark />}
       <ImgBox>
         {props.data.thumbnail ? (
-          <ImgWrap imgUrl={props.data.thumbnail}></ImgWrap>
+          <ImgWrap imgUrl={props.data.thumbnail} />
         ) : (
-          <ImgComponent src={"noImage.jpg"} width={"90%"} />
+          <ImgWrap imgUrl={NoImg} />
         )}
       </ImgBox>
       <AboutWrap>
@@ -82,7 +82,11 @@ const ListContentMap = (props) => {
               }}
             />
           </TopTitle>
-          {props.data.numberAddress == undefined ? (<Address>{props.data.numberAddress}</Address>) : (<Address>{props.data.roadAddress}</Address>)}
+          {props.data.numberAddress == undefined ? (
+            <Address>{props.data.numberAddress}</Address>
+          ) : (
+            <Address>{props.data.roadAddress}</Address>
+          )}
         </Top>
         <Middle>
           <Scope>{props.data.review_rating}</Scope>
@@ -98,7 +102,7 @@ export default ListContentMap;
 
 const ListContentWrap = styled.div`
   background: #fafafa;
-  border: 1px solid #00B295;
+  border: 1px solid #00b295;
   border-radius: 10px;
   width: 49%;
   margin-bottom: 2%;

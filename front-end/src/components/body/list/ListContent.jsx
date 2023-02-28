@@ -55,4 +55,4 @@ const NoList = styled.p`
   width: 100%;
   color: #00b295;
   font-size: 20px;
-`
+`;
