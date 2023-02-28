@@ -15,7 +15,6 @@ const ShowMarker = (props) => {
   const _map = useSelector((state) => state.setMap._map);
   const openBookmark = useSelector((state) => state.openBool.bookmark);
   const bookmarkID = useSelector((state) => state.bookmarkID);
-  const showURL = useSelector((state) => state.urlChange.name);
   const dispatch = useDispatch();
   const SetDetailID = useCallback(
     (id) => dispatch(setDetailID(id)),
@@ -25,6 +24,9 @@ const ShowMarker = (props) => {
     dispatch(setOpenDetailModal());
   }, [dispatch]);
   const [markers, setMarkers] = useState([]);
+  var showOverlay = null;
+
+  //오버레이 테스트
 
   useEffect(() => {
     if (_map === null || props.mapData == null) return;
@@ -38,6 +40,7 @@ const ShowMarker = (props) => {
 
     props.mapData.map((data, index) => {
       const coords = new kakao.maps.LatLng(data.lat, data.lon);
+
       if (props.show == "bookmark" && openBookmark) {
         var imageSize = new kakao.maps.Size(30, 42);
         var markerImg = new kakao.maps.MarkerImage(
@@ -94,10 +97,16 @@ const ShowMarker = (props) => {
         overlay.setMap(null);
       };
 
-      overlay.setMap(null);
-
       // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
       kakao.maps.event.addListener(marker, "click", function () {
+        if (showOverlay == null) {
+          console.log("first");
+          showOverlay = overlay;
+          overlay.setMap(_map);
+          return;
+        }
+        showOverlay.setMap(null);
+        showOverlay = overlay;
         overlay.setMap(_map);
       });
       //지도를 클릭했을 때 오버레이 닫기
