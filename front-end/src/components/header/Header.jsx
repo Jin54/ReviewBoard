@@ -99,6 +99,7 @@ const HeaderWrap = styled.div`
     flex-direction: row;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    padding: 10px 0;
   }
 `;
 // ============
