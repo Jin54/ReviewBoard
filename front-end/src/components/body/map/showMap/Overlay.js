@@ -23,24 +23,12 @@ const Overlay = (data, SetDetailID, SetOpenDetailModal) => {
   infowrap.className = "infowrap";
   infowrap.innerHTML =
     '<div class="imgwrap">' +
-    // "<img src='" +
-    // (data.thumbnail != null ? data.thumbnail : NoImg) +
-    // "' onerror='" +
-    // NoImg +
-    // "'" +
-    // "><img>" +
-    // "<img " +
-    // "src='" +
-    // (data.thumbnail !== null ? data.thumbnail : NoImg) +
-    // "' " +
-    // "onerror='" +
-    // NoImg +
-    // "' />" +
-    "<img src='" +
-    (data.thumbnail != null
-      ? data.thumbnail
-      : "https://i.postimg.cc/m2TV33ps/noImage.jpg") +
-    "'><img>" +
+    `      <img
+        src="` +
+    data.thumbnail +
+    `"
+        onError="this.src='https://i.postimg.cc/m2TV33ps/noImage.jpg'"
+      />` +
     "</div>" +
     '<div class="info">' +
     '<p class="address">' +
