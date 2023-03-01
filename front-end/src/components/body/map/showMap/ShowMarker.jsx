@@ -26,8 +26,6 @@ const ShowMarker = (props) => {
   const [markers, setMarkers] = useState([]);
   var showOverlay = null;
 
-  //오버레이 테스트
-
   useEffect(() => {
     if (_map === null || props.mapData == null) return;
 
@@ -78,6 +76,7 @@ const ShowMarker = (props) => {
 
       setMarkers((markers) => [...markers, marker]);
 
+      //contents 까지 마커 클릭 시 오버레이 생성할 때 선언하면 이미지를 보여주는데 딜레이가 된다.
       const contents = Overlay(
         data,
         (id) => {
@@ -87,31 +86,27 @@ const ShowMarker = (props) => {
           SetOpenDetailModal();
         }
       );
-      const overlay = new kakao.maps.CustomOverlay({
-        clickable: true, //true 로 설정하면 컨텐츠 영역을 클릭했을 경우 지도 이벤트를 막아준다.
-        content: contents,
-        position: marker.getPosition(),
-      });
 
-      contents.getElementsByClassName("closeimgWrap")[0].onclick = () => {
-        overlay.setMap(null);
-      };
-
-      // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+      // 마커를 클릭했을 때 커스텀 오버레이를 선언&표시합니다
       kakao.maps.event.addListener(marker, "click", function () {
-        if (showOverlay == null) {
-          console.log("first");
-          showOverlay = overlay;
-          overlay.setMap(_map);
-          return;
-        }
-        showOverlay.setMap(null);
-        showOverlay = overlay;
-        overlay.setMap(_map);
-      });
-      //지도를 클릭했을 때 오버레이 닫기
-      kakao.maps.event.addListener(_map, "click", function () {
-        overlay.setMap(null);
+        if (showOverlay !== null) showOverlay.setMap(null);
+
+        showOverlay = new kakao.maps.CustomOverlay({
+          clickable: true, //true 로 설정하면 컨텐츠 영역을 클릭했을 경우 지도 이벤트를 막아준다.
+          content: contents,
+          position: marker.getPosition(),
+        });
+
+        showOverlay.setMap(_map);
+
+        //닫기 버튼 클릭 시 오버레이 닫기
+        contents.getElementsByClassName("closeimgWrap")[0].onclick = () => {
+          showOverlay.setMap(null);
+        };
+        //지도를 클릭했을 때 오버레이 닫기
+        kakao.maps.event.addListener(_map, "click", function () {
+          showOverlay.setMap(null);
+        });
       });
     });
   }, [props.mapData, openBookmark]);
