@@ -29,6 +29,16 @@ const Footer = () => {
         <br />
         기업부설 연구소 : 서울시 관악구 신림로 177 창업 HERE-RO3
       </FooterRight>}
+      <MobileFooterRight>
+        대표이사 : 박영경 <br />
+        사업자 등록번호 : 317-81-47616 | 통신판매신고 제2021-서울영등포-1812호
+        <br />
+        제휴/문의 메일 : sales@lfin.kr | 대표번호 02-6959-7414
+        <br />
+        본사 : 서울시 강서구 마곡중앙8로 14, M+센터
+        <br />
+        기업부설 연구소 : 서울시 관악구 신림로 177 창업 HERE-RO3
+      </MobileFooterRight>
     </FooterWrap>
   );
 };
@@ -126,6 +136,29 @@ const FooterRight = styled.p`
   line-height: 24px;
   color: #FAFAFA;
   @media screen and (max-width: 1000px) {
+    position: static;
+    color: #fafafa;
+    display: inline;
+    font-size: 10px;
+    padding: 0;
+    line-height: 18px;
+  }
+`;
+const MobileFooterRight = styled.p`
+  position: absolute;
+  left: 120%;
+  padding: 10px;
+  bottom: 60px;
+  width: 400px;
+  background: #00B295;
+  border-radius: 6px;
+  font-weight: 100;
+  font-size: 12px;
+  line-height: 24px;
+  color: #FAFAFA;
+  display: none;
+  @media screen and (max-width: 1000px) {
+    display: block;
     position: static;
     color: #fafafa;
     display: inline;
