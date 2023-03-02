@@ -79,7 +79,7 @@ const ReviewList = () => {
                   {review.content}
 
                 </Bottom>
-                <More onClick={() => setIsShowMore(!isShowMore)}>{(type.includes(review.id) ? ' 닫기' : '더보기')}</More>
+                {review.content.length > 40 ? <More onClick={() => setIsShowMore(!isShowMore)}>{(type.includes(review.id) ? ' 닫기' : '더보기')}</More> : undefined}
             </ReviewBox>
           )
       )}
