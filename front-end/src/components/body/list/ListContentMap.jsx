@@ -134,6 +134,10 @@ const ImgBox = styled.div`
 `;
 const ImgWrap = styled.img`
   width: 100%;
+  @media screen and (max-width: 430px){
+    height: 100%;
+    width: auto;
+  }
 `;
 // 오른쪽 설명
 const AboutWrap = styled.div`

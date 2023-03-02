@@ -60,6 +60,9 @@ const InfoTxt = styled.div`
   white-space: pre-wrap;
   overflow: hidden;
   height: ${(props) => props.dropDown};
+  @media screen and (max-width: 430px){
+    font-size: 12px;
+  }
 `;
 
 const DropDownArrow = styled.div`

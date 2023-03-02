@@ -31,4 +31,14 @@ const MapButtons = styled.div`
     top: 8%;
     left: 15%;
   }
+  @media screen and (max-width: 390px){
+    top: 10%;
+    left: 15%;
+  }
+  @media screen and (max-height: 700px) {
+    top: 10%;
+  }
+  @media screen and (max-height: 500px) {
+    top: 15%;
+  }
 `;

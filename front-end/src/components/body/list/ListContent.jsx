@@ -36,7 +36,7 @@ const ListContent = () => {
   return (
     <FlexWrap>
       {openBookmark ? funcData(bookmarkData) : funcData(mapData)}
-      <div ref={bottom} style={{ height: "10px", width: "100px" }} />
+      <ScrollBottomBox ref={bottom} />
     </FlexWrap>
   );
 };
@@ -55,4 +55,11 @@ const NoList = styled.p`
   width: 100%;
   color: #00b295;
   font-size: 20px;
+`;
+const ScrollBottomBox = styled.div`
+  height: 10px;
+  width: 100px;
+  @media screen and (max-width: 430px){
+    height: 100px;
+  }
 `;

@@ -124,6 +124,9 @@ const ImgBox = styled.div`
   @media screen and (max-width: 1000px) {
     height: 100%;
   }
+  @media screen and (max-height: 1000px) {
+    margin-bottom: 20px;
+  }
 `
 const UrlBtn = styled.p`
   color: ${(props) => (props.selected ? "#00B295" : "#fafafa")};
@@ -147,6 +150,9 @@ const KakaologinWrap = styled.div`
     @media screen and (max-width: 1000px) {
     display: none;
   }
+    @media screen and (max-height: 1000px) {
+    margin-bottom: 20px;
+  }
 `
 const BookmarkWrap = styled.div`
   width: 100%;
@@ -164,6 +170,9 @@ const HeaderRightWrap = styled.div`
   border-radius: 6px;
   @media screen and (max-width: 1000px) {
     display: none;
+  }
+  @media screen and (max-height: 1000px) {
+   margin-top: 40px;
   }
 `;
 const Name = styled.div`

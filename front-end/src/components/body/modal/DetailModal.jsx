@@ -259,12 +259,18 @@ const About = styled.div`
   border-radius: 6px;
   padding-top: 20px;
   padding-bottom: 10px;
+  @media screen and (max-width: 430px){
+    bottom: -30px;
+  }
 `;
 const Title = styled.p`
   font-weight: 700;
   font-size: 20px;
   color: #000000;
   margin: 0;
+  @media screen and (max-width: 430px){
+    font-size: 16px;
+  }
 `;
 const Address = styled.p`
   margin-top: 10px;
@@ -274,6 +280,9 @@ const Address = styled.p`
   color: #999999;
   text-align: center;
   padding: 0 20px;
+  @media screen and (max-width: 430px){
+    margin-bottom: 10px;
+  }
 `;
 const ScopeWrap = styled.div`
   margin-bottom: 20px;
@@ -293,6 +302,9 @@ const Scope = styled.p`
   font-weight: 700;
   font-size: 20px;
   color: #000000;
+  @media screen and (max-width: 430px){
+    font-size: 16px;
+  }
 `;
 
 const InfoWrap = styled.div`
