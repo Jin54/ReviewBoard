@@ -1,5 +1,5 @@
 //상세 모달창의 리뷰 컴포넌트
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
@@ -16,6 +16,9 @@ const ReviewList = () => {
   const [overflow, setOverflow] = useState("hidden");
   const [whiteSpace, setWhiteSpace] = useState("nowrap");
   const [type, setType] = useState([]);
+  
+   // 게시물 내용 더보기 열고 닫기
+   const [isShowMore, setIsShowMore] = useState(false)
 
   //무한 스크롤
   const [bottom, inView] = useInView();
@@ -69,12 +72,14 @@ const ReviewList = () => {
                   <ReviewScope scope={review.rating} />
                 )}
               </Middle>
-              <Bottom
-                overflow={!type.includes(review.id) ? overflow : undefined}
-                whiteSpace={!type.includes(review.id) ? whiteSpace : undefined}
-              >
-                {review.content}
-              </Bottom>
+                <Bottom
+                  overflow={!type.includes(review.id) ? overflow : undefined}
+                  whiteSpace={!type.includes(review.id) ? whiteSpace : undefined}
+                >
+                  {review.content}
+
+                </Bottom>
+                <More onClick={() => setIsShowMore(!isShowMore)}>{(type.includes(review.id) ? ' 닫기' : '더보기')}</More>
             </ReviewBox>
           )
       )}
@@ -154,7 +159,11 @@ const ReviewScopeNum = styled.span`
   margin-right: 10px;
 `;
 // 리뷰
-const Bottom = styled.p`
+
+const ReviewContWrap = styled.div`
+  width: 100%;
+`
+const Bottom = styled.span`
   font-weight: 400;
   font-size: 14px;
   color: #999999;
@@ -168,7 +177,18 @@ const Bottom = styled.p`
     margin: 0;
     font-size: 11px;
   }
+
 `;
+
+const More = styled.span`
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #999;
+  @media screen and (max-width: 1000px) {
+    font-size: 11px;
+  }
+`
 
 const Feeling = ({ scope }) => {
   function txt(scope) {
