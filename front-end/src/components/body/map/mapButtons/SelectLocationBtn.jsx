@@ -7,8 +7,8 @@ const SelectLocationBtn = (props) => {
 export default SelectLocationBtn;
 
 const BtnStyle = styled.div`
-background: #00B295;
-border-radius: 6px;
+  background: #00B295;
+  border-radius: 6px;
   color: #fff;
   font-weight: 700;
   font-size: 18px;
@@ -18,4 +18,8 @@ border-radius: 6px;
   align-items: center;
   height: 20px;
   cursor: pointer;
+  transition: 0.2s ease-in;
+    &:hover{
+      box-shadow: inset 3px 4px 4px rgba(0, 0, 0, 0.25);
+    }
 `;

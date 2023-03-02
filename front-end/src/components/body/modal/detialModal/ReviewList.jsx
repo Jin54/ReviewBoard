@@ -109,6 +109,7 @@ const ReviewBox = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+
   @media screen and (max-width: 1000px) {
     padding: 15px;
   }
@@ -162,6 +163,7 @@ const Bottom = styled.p`
   text-overflow: ellipsis;
   white-space: ${(props) => props.whiteSpace};
   overflow: ${(props) => props.overflow};
+  cursor: pointer;
   @media screen and (max-width: 1000px) {
     margin: 0;
     font-size: 11px;

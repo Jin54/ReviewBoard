@@ -68,10 +68,11 @@ const InfoTxt = styled.div`
 const DropDownArrow = styled.div`
   width: 14px;
   height: 100%;
-  margin-left: 16px;
+  margin-left: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   margin-top: 4px;
+  cursor: pointer;
 `;

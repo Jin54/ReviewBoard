@@ -70,6 +70,10 @@ const RegionBtn = styled.div`
   width: 12%;
   cursor: pointer;
   background-color: ${(props) => (props.selected ? "#00B295" : "#fff")};
+  transition: 0.2s ease-in;
+    &:hover{
+      box-shadow: inset 3px 4px 4px rgba(0, 0, 0, 0.25);
+    }
   @media screen and (max-width: 1400px) {
     font-size: 12px;
     padding-top: 4px;

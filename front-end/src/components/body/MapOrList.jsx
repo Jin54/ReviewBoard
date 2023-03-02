@@ -81,6 +81,10 @@ const MapBtn = styled.p`
     @media screen and (max-width: 1000px){
       font-size: 14px;
   }
+  /* transition: 0.2s ease-in; */
+  &:hover{
+    font-weight: 700;
+  }
 `;
 const ListBtn = styled.p`
   margin: 0;
@@ -94,6 +98,10 @@ const ListBtn = styled.p`
   color: ${(props) => (props.selected ? "#00B295" : "#fafafa")};
   background-color: ${(props) => (props.selected ? "#fafafa" : "#00B295")};
   cursor: pointer;
+  /* transition: 0.2s ease-in; */
+  &:hover{
+    font-weight: 700;
+  }
     @media screen and (max-width: 1000px){
       font-size: 14px;
   }

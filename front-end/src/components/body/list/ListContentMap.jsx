@@ -115,6 +115,10 @@ const ListContentWrap = styled.div`
   @media screen and (max-width: 1000px) {
     flex-direction: column;
   }
+  transition: 0.2s ease-in;
+    &:hover{
+      box-shadow: inset 3px 4px 4px rgba(0, 0, 0, 0.25);
+    }
 `;
 // 왼쪽 이미지
 const ImgBox = styled.div`

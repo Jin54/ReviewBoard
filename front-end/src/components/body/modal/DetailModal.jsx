@@ -336,6 +336,10 @@ const Copy = styled.a`
   margin-right: 20px;
   color: #999999;
   text-decoration: none;
+  transition: 0.2s ease-in;
+    &:hover{
+      color: #333;
+    }
   @media screen and (max-width: 450px) {
     font-size: 12px;
     height: auto;

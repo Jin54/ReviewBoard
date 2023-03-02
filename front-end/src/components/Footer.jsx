@@ -10,13 +10,11 @@ const Footer = () => {
       <QuestionBtn href="mailto:sales@lfin.kr">문의하기</QuestionBtn>
         <Privacy>개인정보처리방침</Privacy>
         <TOS>이용약관</TOS>
-        <AboutWrap>
-          <AboutTxt>ABOUT</AboutTxt>
-          <AboutArrow
-            onClick={() => {
+        <AboutWrap onClick={() => {
               setFooterState(!footerState);
-            }}
-          ><ImgComponent src={'about_arrow.png'} height={'100%'} /></AboutArrow>
+            }}>
+          <AboutTxt>ABOUT</AboutTxt>
+          <AboutArrow><ImgComponent src={'about_arrow.png'} height={'100%'} /></AboutArrow>
         </AboutWrap>
       </FooterLeft>
       {footerState && <FooterRight>
@@ -60,9 +58,14 @@ const AboutWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
   @media screen and (max-width: 1000px) {
     display: none;
   } 
+  transition: 0.2s ease-in;
+  &:hover{
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  }
 `;
 const AboutTxt = styled.span`
     font-weight: 700;
@@ -115,6 +118,10 @@ const QuestionBtn = styled.a`
   box-sizing: border-box;
   margin-bottom: 20px;
   cursor: pointer;
+  transition: 0.2s ease-in;
+  &:hover{
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  }
   @media screen and (max-width: 1400px) and (min-width:1000px) {
     font-size: 12px;
   }

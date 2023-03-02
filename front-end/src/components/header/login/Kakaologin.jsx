@@ -113,6 +113,10 @@ const LoginBtn = styled.div`
     cursor: pointer;
     background-color: ${(props) => (props.selected ? "#fafafa" : "#00B295")};
     color: ${(props) => (props.selected ? "#00B295" : "#fafafa")};
+    transition: 0.2s ease-in;
+    &:hover{
+      box-shadow: inset 3px 4px 4px rgba(0, 0, 0, 0.25);
+    }
   @media screen and (max-width: 1000px) {
     border: none;
     text-align: right;

@@ -51,6 +51,10 @@ const BtnStyle = styled.div`
   align-items: center;
   height: 20px;
   cursor: pointer;
+  transition: 0.2s ease-in;
+    &:hover{
+      box-shadow: inset 3px 4px 4px rgba(0, 0, 0, 0.25);
+    }
 `;
 
 const GPSButton = styled(BtnStyle)`
