@@ -10,15 +10,15 @@ SK Planet에서 진행한 ASAC 프로그램 기간 중 기업 프로젝트에 �
 
 ## 사용 기능
 
-Redux
-React Hooks ( useState, useEffect )
-styled-components
- react-intersection-observer
-AXIOS
-SCSS
-반응형
-Kakao Map 
-KakaoTalk API
+- Redux
+- React Hooks ( useState, useEffect )
+- styled-components
+- react-intersection-observer
+- AXIOS
+- SCSS
+- 반응형
+- Kakao Map 
+- KakaoTalk API
 
 ### 제작 기간
 
