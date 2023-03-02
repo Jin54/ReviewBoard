@@ -78,3 +78,6 @@ SK Planet에서 진행한 ASAC 프로그램 기간 중 기업 프로젝트에 �
 - 상세 모달 : 
 	· 정보 변경 & 즐겨찾기 위치 수정
 	· 별점 크기 반응형 조절
+
+
+<img width="80%" src="https://user-images.githubusercontent.com/73871543/222392417-c206eb71-9138-4fd2-89c4-261997fade00.png"/>
