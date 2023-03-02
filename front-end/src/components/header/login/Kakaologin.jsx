@@ -1,3 +1,5 @@
+// 카카오 소셜 로그인 버튼
+
 import React, { useEffect, useCallback, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";

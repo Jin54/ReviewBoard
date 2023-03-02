@@ -1,3 +1,5 @@
+//PC 버전 헤더
+
 import React, { useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";

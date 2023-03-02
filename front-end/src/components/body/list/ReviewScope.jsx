@@ -1,3 +1,5 @@
+// 리뷰 점수에 따른 별점 표시
+
 import React from "react";
 import styled from "styled-components";
 

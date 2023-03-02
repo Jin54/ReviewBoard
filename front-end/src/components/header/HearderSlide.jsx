@@ -1,4 +1,4 @@
-// 햄버거 버튼 시 보이는 메뉴 모달
+// 햄버거 버튼 시 보이는 메뉴 모달 - 모바일 버전 헤더
 import { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";

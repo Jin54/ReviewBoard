@@ -1,3 +1,5 @@
+// 매장 상세 모달창
+
 import { useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
