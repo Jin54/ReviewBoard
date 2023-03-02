@@ -24,6 +24,14 @@ SK Planet에서 진행한 ASAC 프로그램 기간 중 기업 프로젝트에 �
 
 2023-02-01 ~ 2023-03-02
 
+### 도메인 링크
+
+https://joyful-buttercream-e0df61.netlify.app/
+
+### 스웨거 링크
+
+https://allreview.shop:9000/swagger-ui/index.html
+
 ## 기능 리스트
 
 ### 1. PC ver.
