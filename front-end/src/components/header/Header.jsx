@@ -45,11 +45,15 @@ const Header = () => {
           />
         </ImgBox>
         {openLogin && <Name>{userName} 님</Name>}
-        <KakaologinWrap><Kakaologin /></KakaologinWrap>
-        <BookmarkWrap><BookmarkBtn /></BookmarkWrap>
+        <KakaologinWrap>
+          <Kakaologin />
+        </KakaologinWrap>
+        <BookmarkWrap>
+          <BookmarkBtn />
+        </BookmarkWrap>
       </HedaerLeftWrap>
       <HeaderRightWrap>
-      <FoodBtn
+        <FoodBtn
           selected={showURL == "shop" && true}
           onClick={() => {
             onClickURL("shop");
@@ -66,7 +70,9 @@ const Header = () => {
           병원
         </HospitalBtn>
       </HeaderRightWrap>
-      <FooterWrap><Footer /></FooterWrap>
+      <FooterWrap>
+        <Footer />
+      </FooterWrap>
       <MobileMenu>
         <HamburgerBtn
           onClick={() => {
@@ -86,7 +92,7 @@ const HeaderWrap = styled.div`
   z-index: 35;
   height: 100%;
   width: 10%;
-  background-color: #00B295;
+  background-color: #00b295;
   box-shadow: 6px 4px 16px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
@@ -112,7 +118,7 @@ const HedaerLeftWrap = styled.div`
   height: 18%;
   width: 50%;
   @media screen and (max-width: 1400px) and (min-width: 1000px) {
-      width: 80%;
+    width: 80%;
   }
   @media screen and (max-width: 1000px) {
     width: 18%;
@@ -129,7 +135,7 @@ const ImgBox = styled.div`
   @media screen and (max-height: 1000px) {
     margin-bottom: 20px;
   }
-`
+`;
 const UrlBtn = styled.p`
   color: ${(props) => (props.selected ? "#00B295" : "#fafafa")};
   font-size: 16px;
@@ -137,32 +143,34 @@ const UrlBtn = styled.p`
   background-color: ${(props) => (props.selected ? "#fafafa" : "#00B295")};
   padding: 3px 24px;
   border-radius: 4px;
-  white-space:nowrap;
+  white-space: nowrap;
   font-weight: ${(props) => (props.selected ? "700" : "300")};
   cursor: pointer;
+  transition: 0.2s ease-in;
+  &:hover {
+    box-shadow: inset 3px 4px 4px rgba(0, 0, 0, 0.25);
+  }
 `;
-const FoodBtn = styled(UrlBtn)`
-`;
-const HospitalBtn = styled(UrlBtn)`
-`;
+const FoodBtn = styled(UrlBtn)``;
+const HospitalBtn = styled(UrlBtn)``;
 
 const KakaologinWrap = styled.div`
   width: 100%;
-  white-space:nowrap;
-    @media screen and (max-width: 1000px) {
+  white-space: nowrap;
+  @media screen and (max-width: 1000px) {
     display: none;
   }
-    @media screen and (max-height: 1000px) {
+  @media screen and (max-height: 1000px) {
     margin-bottom: 20px;
   }
-`
+`;
 const BookmarkWrap = styled.div`
   width: 100%;
-  white-space:nowrap;
-    @media screen and (max-width: 1000px) {
+  white-space: nowrap;
+  @media screen and (max-width: 1000px) {
     display: none;
   }
-`
+`;
 const HeaderRightWrap = styled.div`
   display: flex;
   align-items: center;
@@ -174,7 +182,7 @@ const HeaderRightWrap = styled.div`
     display: none;
   }
   @media screen and (max-height: 1000px) {
-   margin-top: 40px;
+    margin-top: 40px;
   }
 `;
 const Name = styled.div`
@@ -200,6 +208,6 @@ const FooterWrap = styled.div`
   @media screen and (max-width: 1000px) {
     display: none;
   }
-`
+`;
 
 export default Header;
