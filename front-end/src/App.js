@@ -1,15 +1,15 @@
-import React from 'react'
-import styled from 'styled-components'
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
-// components import
-import Index from './pages/Index'
+import React from "react";
+import styled from "styled-components";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-function App () {
+import Index from "./pages/Index";
+
+function App() {
   return (
     <AppWrap>
       <BrowserRouter>
         <Routes>
-          <Route exact path={'/'} element={<Index />} />
+          <Route exact path={"/"} element={<Index />} />
         </Routes>
       </BrowserRouter>
     </AppWrap>
@@ -24,7 +24,6 @@ const AppWrap = styled.div`
   @media screen and (max-width: 350px) {
     display: none;
   }
-
-`
+`;
 
 export default App;

@@ -6,8 +6,8 @@ import styled from "styled-components";
 import { changeURL } from "../../modules/urlChange";
 import { setOpenMobileMenu } from "../../modules/openBool";
 
-import Footer from "../Footer";
-import Kakaologin from "./login/Kakaologin";
+import Footer from "./Footer";
+import KakaoLogin from "./login/KakaoLogin";
 import BookmarkBtn from "./login/BookmarkBtn";
 
 const HeaderSlide = () => {
@@ -31,12 +31,16 @@ const HeaderSlide = () => {
     <MobileMenuWrap>
       <MobileMenuBox>
         <FlexWrap>
-        <HeaderRightWrap>
-          {openLogin && <Name>{userName} 님</Name>}
-          <MHospitalBtn><Kakaologin /></MHospitalBtn>
-          <MHospitalBtn><BookmarkBtn /></MHospitalBtn>
-        </HeaderRightWrap>
-        <Divider />
+          <HeaderRightWrap>
+            {openLogin && <Name>{userName} 님</Name>}
+            <MHospitalBtn>
+              <KakaoLogin />
+            </MHospitalBtn>
+            <MHospitalBtn>
+              <BookmarkBtn />
+            </MHospitalBtn>
+          </HeaderRightWrap>
+          <Divider />
           <MFoodBtn
             selected={showURL == "shop" && true}
             onClick={() => {
@@ -88,7 +92,7 @@ const MobileMenuWrap = styled.div`
   width: 100%;
 `;
 const MobileMenuBox = styled.div`
-  background: #00B295;
+  background: #00b295;
   border-radius: 0px 0px 10px 10px;
   width: 100%;
   position: absolute;
@@ -111,7 +115,7 @@ const Divider = styled.hr`
   width: 30%;
   height: 0.5px;
   background-color: rgba(255, 255, 255, 0.5);
-`
+`;
 
 const MBtn = styled.div`
   color: #000;
@@ -125,8 +129,8 @@ const MFoodBtn = styled(MBtn)`
   padding-bottom: 30px;
   font-weight: ${(props) => (props.selected ? "700" : "400")};
   @media screen and (max-width: 1000px) {
-  text-align: right;
-  color: #fafafa;
+    text-align: right;
+    color: #fafafa;
   }
 `;
 const MHospitalBtn = styled(MBtn)`
@@ -134,7 +138,7 @@ const MHospitalBtn = styled(MBtn)`
   padding-bottom: 30px;
   font-weight: ${(props) => (props.selected ? "700" : "400")};
   @media screen and (max-width: 1000px) {
-  text-align: right;
+    text-align: right;
     color: #fafafa;
   }
 `;
@@ -171,8 +175,8 @@ const Name = styled.div`
   margin-top: 16px;
   margin-bottom: 10px;
   @media screen and (max-width: 1000px) {
-  text-align: right;
-  padding: 15px 0 30px 0;
-  margin: 0;
+    text-align: right;
+    padding: 15px 0 30px 0;
+    margin: 0;
   }
 `;

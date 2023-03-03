@@ -1,6 +1,11 @@
-//PC 버전 헤더
+/*
+  기능 : PC 헤더 부분
+  중요 변수&함수
+  - userName : 카카오톡 로그인 시, 해당 user의 이름 출력
+  - 
+*/
 
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
@@ -8,10 +13,10 @@ import { changeURL } from "../../modules/urlChange";
 import { setOpenMobileMenu } from "../../modules/openBool";
 
 import ImgComponent from "../ImageComponent";
-import Kakaologin from "./login/Kakaologin";
+import KakaoLogin from "./login/KakaoLogin";
 import HeaderSlide from "./HearderSlide";
 import BookmarkBtn from "./login/BookmarkBtn";
-import Footer from "../Footer";
+import Footer from "./Footer";
 
 const Header = () => {
   // 모바일 메뉴
@@ -46,7 +51,7 @@ const Header = () => {
         </ImgBox>
         {openLogin && <Name>{userName} 님</Name>}
         <KakaologinWrap>
-          <Kakaologin />
+          <KakaoLogin />
         </KakaologinWrap>
         <BookmarkWrap>
           <BookmarkBtn />

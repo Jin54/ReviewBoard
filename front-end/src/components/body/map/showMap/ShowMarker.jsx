@@ -107,7 +107,7 @@ const ShowMarker = (props) => {
         kakao.maps.event.addListener(_map, "click", function () {
           showOverlay.setMap(null);
         });
-        //오버레이 클릭했을 때 오버레이 닫기
+        //오버레이 클릭했을 때 오버레이 닫기 (모달창 열릴 때 오버레이 닫기)
         contents.onclick = () => {
           showOverlay.setMap(null);
         };

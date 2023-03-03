@@ -57,7 +57,7 @@ const ListContentMap = (props) => {
     >
       {bookmarkAPI && <OnClickBookmark />}
       <ImgBox>
-          <ImgWrap src={props.data.thumbnail} onError={handleImgError}/>
+        <ImgWrap src={props.data.thumbnail} onError={handleImgError} />
       </ImgBox>
       <AboutWrap>
         <Top>
@@ -116,9 +116,9 @@ const ListContentWrap = styled.div`
     flex-direction: column;
   }
   transition: 0.2s ease-in;
-    &:hover{
-      box-shadow: inset 3px 4px 4px rgba(0, 0, 0, 0.25);
-    }
+  &:hover {
+    box-shadow: inset 3px 4px 4px rgba(0, 0, 0, 0.25);
+  }
 `;
 // 왼쪽 이미지
 const ImgBox = styled.div`
@@ -138,7 +138,7 @@ const ImgBox = styled.div`
 `;
 const ImgWrap = styled.img`
   width: 100%;
-  @media screen and (max-width: 430px){
+  @media screen and (max-width: 430px) {
     height: 100%;
     width: auto;
   }

@@ -8,7 +8,8 @@ const BookmarkIDAPI = async (
   userJWT,
   shopid,
   ResetBookmarkID,
-  SetBookmarkData
+  SetBookmarkData,
+  SetOpenDetailModal
 ) => {
   const apiurl = process.env.REACT_APP_APIURL;
   const url = `${apiurl}/${showURL}/bookmark/${shopid}`;
@@ -30,6 +31,7 @@ const BookmarkIDAPI = async (
       (data) => SetBookmarkData(data),
       (data) => ResetBookmarkID(data)
     );
+    SetOpenDetailModal && SetOpenDetailModal(false); //DetailModal.jsx 에서 하트 클릭 시 모달창 닫기
   } catch (err) {
     alert("즐겨찾기에 실패하였습니다.");
   }

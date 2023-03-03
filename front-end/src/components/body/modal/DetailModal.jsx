@@ -79,9 +79,9 @@ const DetailModal = () => {
         </Close>
         <MainImg>
           <Gradation />
-            <ThumbnailWrap>
-              <Thumbnail src={detailData.thumbnail} onError={handleImgError} />
-            </ThumbnailWrap>
+          <ThumbnailWrap>
+            <Thumbnail src={detailData.thumbnail} onError={handleImgError} />
+          </ThumbnailWrap>
           <About>
             <Title>{detailData.name}</Title>
             {detailData.numberAddress == undefined ? (
@@ -132,7 +132,8 @@ const DetailModal = () => {
                       userJWT,
                       detailData.id,
                       (data) => ResetBookmarkID(data),
-                      (data) => SetBookmarkData(data)
+                      (data) => SetBookmarkData(data),
+                      (data) => SetOpenDetailModal(data)
                     )
                   : alert("로그인을 해주세요.");
               }}
@@ -170,15 +171,15 @@ const RestaurantModalWrap = styled.div`
 `;
 
 const ThumbnailWrap = styled.div`
-width: 100%;
-height: 100%;
-display: flex;
-align-items: center;
-justify-content: center;
-overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 `;
 const Thumbnail = styled.img`
-width: 100%;
+  width: 100%;
 `;
 
 const Box = styled.div`
@@ -261,7 +262,7 @@ const About = styled.div`
   border-radius: 6px;
   padding-top: 20px;
   padding-bottom: 10px;
-  @media screen and (max-width: 430px){
+  @media screen and (max-width: 430px) {
     bottom: -30px;
   }
 `;
@@ -270,7 +271,7 @@ const Title = styled.p`
   font-size: 20px;
   color: #000000;
   margin: 0;
-  @media screen and (max-width: 430px){
+  @media screen and (max-width: 430px) {
     font-size: 16px;
   }
 `;
@@ -282,7 +283,7 @@ const Address = styled.p`
   color: #999999;
   text-align: center;
   padding: 0 20px;
-  @media screen and (max-width: 430px){
+  @media screen and (max-width: 430px) {
     margin-bottom: 10px;
   }
 `;
@@ -304,7 +305,7 @@ const Scope = styled.p`
   font-weight: 700;
   font-size: 20px;
   color: #000000;
-  @media screen and (max-width: 430px){
+  @media screen and (max-width: 430px) {
     font-size: 16px;
   }
 `;
@@ -316,8 +317,7 @@ const InfoWrap = styled.div`
   margin: auto;
   margin-top: 50px;
 `;
-const Info = styled.div`
-`;
+const Info = styled.div``;
 const InfoRight = styled.div`
   display: flex;
   @media screen and (max-width: 1000px) {
@@ -339,9 +339,9 @@ const Copy = styled.a`
   color: #999999;
   text-decoration: none;
   transition: 0.2s ease-in;
-    &:hover{
-      color: #333;
-    }
+  &:hover {
+    color: #333;
+  }
   @media screen and (max-width: 450px) {
     font-size: 12px;
     height: auto;
