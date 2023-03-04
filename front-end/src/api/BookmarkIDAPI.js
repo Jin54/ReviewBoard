@@ -25,6 +25,8 @@ const BookmarkIDAPI = async (
     });
     //await 가 끝나면 실행
     ResetBookmarkID(data.data.result);
+    console.log(data.data.result);
+
     BookmarkDataAPI(
       showURL,
       userJWT,
