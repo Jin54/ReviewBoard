@@ -7,6 +7,7 @@ import styled from "styled-components";
 import ReviewAPI from "../../../../api/ReviewAPI";
 
 import ReviewScope from "../../list/ReviewScope";
+import ReviewMoreBtn from "./ReviewMoreBtn";
 
 const ReviewList = () => {
   const [pageNum, setPageNum] = useState(0);
@@ -72,6 +73,8 @@ const ReviewList = () => {
                   <ReviewScope scope={review.rating} />
                 )}
               </Middle>
+              {/* {TEXT(review.content, review.id)} */}
+              {/* <ReviewMoreBtn text={review.content} id={review.id} /> */}
                 <Bottom
                   overflow={!type.includes(review.id) ? overflow : undefined}
                   whiteSpace={!type.includes(review.id) ? whiteSpace : undefined}
@@ -160,9 +163,6 @@ const ReviewScopeNum = styled.span`
 `;
 // 리뷰
 
-const ReviewContWrap = styled.div`
-  width: 100%;
-`
 const Bottom = styled.span`
   font-weight: 400;
   font-size: 14px;
