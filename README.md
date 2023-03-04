@@ -32,6 +32,12 @@ https://joyful-buttercream-e0df61.netlify.app/
 
 https://allreview.shop:9000/swagger-ui/index.html
 
+## 전체 구조
+### 1. 지도 구조
+![image](https://user-images.githubusercontent.com/114986489/222860862-edf67e2a-c8ab-476a-a77c-b9506311f199.png)
+
+
+
 ## 기능 리스트
 
 ### 1. PC ver.
