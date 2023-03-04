@@ -35,7 +35,27 @@ https://allreview.shop:9000/swagger-ui/index.html
 ## 전체 구조
 ### 1. 지도 구조
 ![image](https://user-images.githubusercontent.com/114986489/222860862-edf67e2a-c8ab-476a-a77c-b9506311f199.png)
+![image](https://user-images.githubusercontent.com/114986489/222863820-5e20ed2b-2833-4b88-b0fb-cb896f965b28.png)
 
+### 2. 지도 마커 표시 및 리스트 보기
+지도에서 보여주는 데이터 (지도의 중심좌표/레벨이 변경됐을 시, 변하는 화면)
+![image](https://user-images.githubusercontent.com/114986489/222863868-cde5fcea-4b6a-470f-bb01-83f94caef5c8.png)
+
+### 3. 상세 모달창
+오버레이, 리스트 보기의 컴포넌트 클릭 시 보여주는 상세 모달창
+![image](https://user-images.githubusercontent.com/114986489/222863921-195f75d4-f803-44f8-b866-2bc985a9d1a3.png)
+
+### 4. 로그인 및 북마커
+카카오 로그인 성공 시, 즐겨찾기 데이터 보여주기
+![image](https://user-images.githubusercontent.com/114986489/222863948-53c7c8c2-4b40-47ba-bc1f-3e7cb5069259.png)
+
+### 5. 하트 클릭 시 북마커 정보 변경
+로그인일 때, 하트 클릭 시, 북마크 정보 변경 및 지도&리스트보기&하트에 바로 적용
+![image](https://user-images.githubusercontent.com/114986489/222863964-eb0d09a9-20f4-4c0a-8652-976f5e193337.png)
+
+### 6. 맛집/병원 변경
+맛집/병원으로 변경됐을 때 데이터 다시 요청 후, 적용
+![image](https://user-images.githubusercontent.com/114986489/222864013-c75f17fc-541e-4255-9ce1-a40f0e2465ac.png)
 
 
 ## 기능 리스트
