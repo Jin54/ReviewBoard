@@ -47,7 +47,7 @@ https://allreview.shop:9000/swagger-ui/index.html
 
 ### 4. 로그인 및 북마커
 카카오 로그인 성공 시, 즐겨찾기 데이터 보여주기
-![image](https://user-images.githubusercontent.com/114986489/222863948-53c7c8c2-4b40-47ba-bc1f-3e7cb5069259.png)
+![image](https://user-images.githubusercontent.com/114986489/222903211-95c57e1b-56be-4e84-8d52-12c35248ec5e.png)
 
 ### 5. 하트 클릭 시 북마커 정보 변경
 로그인일 때, 하트 클릭 시, 북마크 정보 변경 및 지도&리스트보기&하트에 바로 적용
