@@ -55,7 +55,7 @@ https://allreview.shop:9000/swagger-ui/index.html
 
 ### 6. 맛집/병원 변경
 맛집/병원으로 변경됐을 때 데이터 다시 요청 후, 적용
-![image](https://user-images.githubusercontent.com/114986489/222864013-c75f17fc-541e-4255-9ce1-a40f0e2465ac.png)
+![image](https://user-images.githubusercontent.com/114986489/222906418-777a7d0f-cc80-48a7-abf0-7275c59a1c0e.png)
 
 
 ## 기능 리스트
