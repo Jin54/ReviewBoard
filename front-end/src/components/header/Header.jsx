@@ -13,7 +13,7 @@ import { changeURL } from "../../modules/urlChange";
 import { setOpenMobileMenu } from "../../modules/openBool";
 
 import ImgComponent from "../ImageComponent";
-import KakaoLogin from "./login/Kakaologin";
+import KakaoLogin from "./login/KakaoLogin";
 import HeaderSlide from "./HearderSlide";
 import BookmarkBtn from "./login/BookmarkBtn";
 import Footer from "./Footer";
