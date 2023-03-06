@@ -19,6 +19,11 @@ const ListContent = () => {
     setPageNum(pageNum + 20);
   }, [inView]);
 
+  /*
+   * FIXME - 1. 함수 선언식을 사용하거나 표현식을 사용하거나 하나의 방식으로 일관성 있게 작성하면 좋을 것 같아요.
+   *  2. 어떤 데이터를 return해주는 것인지 함수명에 표현되면 좋을 것 같아요.
+   *  예) renderBookmarkList(), renderScrollViewDataList()
+   */
   //데이터 보여주는 함수
   function funcData(ListData) {
     if (ListData.length == 0) {
