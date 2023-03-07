@@ -55,6 +55,9 @@ const ListContentMap = (props) => {
         SetOpenDetailModal();
       }}
     >
+      {/*
+        * FIXME - bookmarkAPI는 상태가 변경되지 않는 것처럼 보이는데 어떤 용도일까요?
+        */}
       {bookmarkAPI && <OnClickBookmark />}
       <ImgBox>
         <ImgWrap src={props.data.thumbnail} onError={handleImgError} />
@@ -70,6 +73,9 @@ const ListContentMap = (props) => {
                   : BookmarkImgOFF
               }
               onClick={(e) => {
+                /*
+                 * FIXME - 별도의 함수로 빼서 관리하면 좋을 것 같아요.
+                 */
                 openLogin
                   ? BookmarkIDAPI(
                       showURL,
@@ -83,6 +89,12 @@ const ListContentMap = (props) => {
               }}
             />
           </TopTitle>
+          {/*
+            * FIXME - 이렇게하면 어떨까요??
+            *   {props.data.numberAddress
+                ? <Address>{props.data.roadAddress}</Address>
+                : <Address>{props.data.numberAddress}</Address>}
+            */}
           {props.data.numberAddress == undefined ? (
             <Address>{props.data.numberAddress}</Address>
           ) : (

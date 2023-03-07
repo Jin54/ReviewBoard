@@ -3,6 +3,9 @@
 import React from "react";
 import styled from "styled-components";
 
+/*
+ * FIXME 와... 디테일이 엄청나네요... └(ﾟдﾟ)┐
+ */
 const ReviewScope = ({ scope }) => {
   const calcStarRates = (scope) => {
     let tempStarRatesArr = [0, 0, 0, 0, 0];
@@ -16,7 +19,6 @@ const ReviewScope = ({ scope }) => {
     tempStarRatesArr[idx] = starVerScore;
     return tempStarRatesArr;
   };
-
   const starList = calcStarRates(scope).map((item, idx) => (
     <span className="star_icon" key={idx}>
       <svg

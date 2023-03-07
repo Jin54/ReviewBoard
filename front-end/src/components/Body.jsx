@@ -9,6 +9,10 @@ import List from "./body/list/List";
 import DetailModal from "./body/modal/DetailModal";
 
 const Body = () => {
+  /*
+   * FIXME - 구조분해할당으로 한줄로 깔끔하게 정리해보았어요.
+   *  const {openListModal, openDetailModal} = useSelector((state) => state.openBool)
+   */
   const openListModal = useSelector((state) => state.openBool.listModal);
   const openDetailModal = useSelector((state) => state.openBool.detailModal);
 

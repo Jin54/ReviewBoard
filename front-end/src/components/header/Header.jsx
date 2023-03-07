@@ -2,7 +2,7 @@
   기능 : PC 헤더 부분
   중요 변수&함수
   - userName : 카카오톡 로그인 시, 해당 user의 이름 출력
-  - 
+  -
 */
 
 import React, { useCallback } from "react";
@@ -59,6 +59,9 @@ const Header = () => {
       </HedaerLeftWrap>
       <HeaderRightWrap>
         <FoodBtn
+          {/* FIXME === 연산자로 비교해주세요
+            *  selected={showURL === 'shop'}
+            */}
           selected={showURL == "shop" && true}
           onClick={() => {
             onClickURL("shop");
@@ -67,6 +70,9 @@ const Header = () => {
           맛집
         </FoodBtn>
         <HospitalBtn
+          {/* FIXME === 연산자로 비교해주세요
+            *  selected={showURL === 'shop'}
+            */}
           selected={showURL == "hospital" && true}
           onClick={() => {
             onClickURL("hospital");
@@ -201,6 +207,15 @@ const Name = styled.div`
   }
 `;
 
+/*
+ * FIXME - 모바일에서만 보이는 영역이 필요해서 만든 컴포넌트라면
+ * MobileOnly(예시)라는 컴포넌트로 만들고 전역에서 사용해도 좋을 것 같아요.
+ * 컴포넌트 이름에 의미를 부여하다보면 동일한 스타일을 가진 중복되는 컴포넌트들이 많이 생길 수 있어요.
+ * 의미가 필요한 컴포넌트와 그렇지않은 컴포넌트를 잘 분리해서 만들면 컴포넌트 수를 많이 줄일 수 있을 것 같아요.
+ * <MobileOnly>
+     <모바일에서만 보여주고 싶은 컴포넌트/>
+ * </MobileOnly>
+ */
 const MobileMenu = styled.div`
   display: none;
   @media screen and (max-width: 1000px) {
@@ -212,6 +227,13 @@ const HamburgerBtn = styled.div`
   margin-right: 30px;
 `;
 
+/*
+ * FIXME - MobileMenu 컴포넌트와 마찬가지로 PC에서만 보여주고 싶은 컴포넌트를 감싸는 용도라면
+ * DesktopOnly(예시)라는 컴포넌트로 만들고 전역으로 사용해도 좋을 것 같아요
+ * <MobileOnly>
+     <PC에서만 보여주고 싶은 컴포넌트/>
+ * </MobileOnly>
+ */
 const FooterWrap = styled.div`
   @media screen and (max-width: 1000px) {
     display: none;

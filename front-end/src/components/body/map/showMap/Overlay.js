@@ -1,5 +1,9 @@
 import "../../../../style/map.scss";
 
+/*
+ * FIXME - Modal을 띄우는 함수인 것 같아요.
+ *  react portal을 이용해서 띄우는 것도 좋은 방법일 것 같아요.
+ */
 const Overlay = (data, SetDetailID, SetOpenDetailModal) => {
   var content = document.createElement("div");
   content.className = "wrap";

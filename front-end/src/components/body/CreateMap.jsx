@@ -6,12 +6,23 @@ import { saveMap } from "../../modules/setMap";
 
 const { kakao } = window;
 
+/**
+ * FIXME - 컴포넌트를 리턴하는 컴포넌트가 아닌 것 같아요.
+ *   id가 map인 element에 카카오 지도를 로드하는 함수인 것 같아요.
+ *   custom hook과 ref로 처리해보면 어떨까요?
+ *   custom hook에서 Map 컴포넌트의 KakaoMap 엘레멘트를 ref로 처리해주면 어떨까요?
+ */
 const CreateMap = () => {
   //맵 저장
   const dispatch = useDispatch();
   const SaveMap = useCallback((map) => dispatch(saveMap(map)), [dispatch]);
 
   useEffect(() => {
+    /*
+     * FIXME - === 연산자를 사용해주세요
+     *  document.getElementById("map") === null
+     *  if (!document.getElementById("map")) return;
+     */
     if (document.getElementById("map") == null) return;
 
     const mapContainer = document.getElementById("map"), // 지도를 표시할 div
