@@ -196,6 +196,9 @@ const Name = styled.div`
   @media screen and (max-width: 1000px) {
     display: none;
   }
+  @media screen and (max-height: 1000px) {
+    margin-bottom: 20px;
+  }
 `;
 
 const MobileMenu = styled.div`
