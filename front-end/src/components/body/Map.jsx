@@ -11,9 +11,6 @@ import ShowMarker from "./map/showMap/ShowMarker";
 
 const Map = () => {
   const _map = useSelector((state) => state.setMap._map);
-  const mapData = useSelector((state) => state.saveData.mapData);
-  const bookmarkData = useSelector((state) => state.saveData.bookmarkData);
-
   const [modalOepn, setModalOpen] = useState(false);
   const [currentBtnOpen, setCurrentBtnOpen] = useState(false);
   const [xy, setXY] = useState({}); //중심 좌표
@@ -30,8 +27,7 @@ const Map = () => {
             />
             <MapEvent setXY={setXY} setSize={setSize} xy={xy} />
             <SaveMapData xy={xy} size={size} />
-            <ShowMarker mapData={mapData} show="coords" />
-            <ShowMarker mapData={bookmarkData} show="bookmark" />
+            <ShowMarker />
           </>
         )}
       </KaKaoMap>
