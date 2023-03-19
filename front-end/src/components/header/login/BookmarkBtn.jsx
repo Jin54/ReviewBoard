@@ -42,23 +42,22 @@ const WebBtn = styled.div`
   font-weight: 600;
   font-size: 14px;
   text-align: center;
-  color: #00B295;
+  color: #00b295;
   text-decoration: none;
   box-sizing: border-box;
   cursor: pointer;
   background-color: ${(props) => (props.selected ? "#fafafa" : "#00B295")};
   color: ${(props) => (props.selected ? "#00B295" : "#fafafa")};
   transition: 0.2s ease-in;
-    &:hover{
-      box-shadow: inset 3px 4px 4px rgba(0, 0, 0, 0.25);
-    }
-  @media screen and (max-width: 1000px) {
-  border: none;
-  text-align: right;
-  background-color: #00B295;
-  color: #fafafa;
-  padding: 0;
-  font-weight: ${(props) => (props.selected ? "700" : "300")};
+  &:hover {
+    box-shadow: inset 3px 4px 4px rgba(0, 0, 0, 0.25);
   }
-
+  @media screen and (max-width: 1000px) {
+    border: none;
+    text-align: right;
+    background-color: #00b295;
+    color: #fafafa;
+    padding: 0;
+    font-weight: ${(props) => (props.selected ? "700" : "300")};
+  }
 `;
