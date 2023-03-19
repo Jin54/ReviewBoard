@@ -86,12 +86,9 @@ const ShowMarker = () => {
           SetOpenDetailModal();
         }
       );
-      if (showOverlay != null) showOverlay.setMap(null);
 
       // 마커를 클릭했을 때 커스텀 오버레이를 선언&표시합니다
       kakao.maps.event.addListener(marker, "click", function () {
-        if (showOverlay !== null) showOverlay.setMap(null);
-
         showOverlay.setContent(contents);
         showOverlay.setPosition(coords);
         showOverlay.setMap(_map);
@@ -100,14 +97,10 @@ const ShowMarker = () => {
         contents.getElementsByClassName("closeimgWrap")[0].onclick = () => {
           showOverlay.setMap(null);
         };
-        //지도를 클릭했을 때 오버레이 닫기
-        kakao.maps.event.addListener(_map, "click", function () {
-          showOverlay.setMap(null);
-        });
-        //오버레이 클릭했을 때 오버레이 닫기 (모달창 열릴 때 오버레이 닫기)
-        contents.onclick = () => {
-          showOverlay.setMap(null);
-        };
+      });
+      //지도를 클릭했을 때 오버레이 닫기
+      kakao.maps.event.addListener(_map, "click", function () {
+        showOverlay.setMap(null);
       });
     });
   }, [mapData, openBookmark]);
