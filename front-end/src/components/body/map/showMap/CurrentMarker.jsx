@@ -55,7 +55,6 @@ const CurrentMarker = (props) => {
         displayCurrentMarker(locPosition);
         return;
       });
-      props.setXY([126.97645631375248, 37.566976954478896]);
     }
   }, [_map]);
 

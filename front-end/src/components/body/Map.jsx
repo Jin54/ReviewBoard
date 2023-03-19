@@ -13,7 +13,7 @@ const Map = () => {
   const _map = useSelector((state) => state.setMap._map);
   const [modalOepn, setModalOpen] = useState(false);
   const [currentBtnOpen, setCurrentBtnOpen] = useState(false);
-  const [xy, setXY] = useState({}); //중심 좌표
+  const [xy, setXY] = useState([126.97645631375248, 37.566976954478896]); //중심 좌표
   const [size, setSize] = useState(null);
 
   return (

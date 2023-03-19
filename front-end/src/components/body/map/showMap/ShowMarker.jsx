@@ -32,6 +32,7 @@ const ShowMarker = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    console.log("렌더링");
     if (_map === null || mapData == null) return;
 
     var imageSize = null;
