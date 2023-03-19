@@ -16,6 +16,11 @@ const ShowMarker = () => {
   const bookmarkID = useSelector((state) => state.bookmarkID);
   const mapData = useSelector((state) => state.saveData.mapData);
   const [resetMarkers, setResetMarkers] = useState([]);
+  const [showOverlay, setShowOverlay] = useState(
+    new kakao.maps.CustomOverlay({
+      clickable: true, //true 로 설정하면 컨텐츠 영역을 클릭했을 경우 지도 이벤트를 막아준다.
+    })
+  );
 
   const dispatch = useDispatch();
   const SetDetailID = useCallback(
@@ -25,7 +30,6 @@ const ShowMarker = () => {
   const SetOpenDetailModal = useCallback(() => {
     dispatch(setOpenDetailModal());
   }, [dispatch]);
-  var showOverlay = null;
 
   useEffect(() => {
     if (_map === null || mapData == null) return;
@@ -35,7 +39,6 @@ const ShowMarker = () => {
     var marker = null;
     var zIndex = null;
     var markers = [];
-    showOverlay = null;
 
     if (resetMarkers !== null) {
       for (var i = 0; i < resetMarkers.length; i++) {
@@ -71,9 +74,10 @@ const ShowMarker = () => {
 
       marker.setZIndex(zIndex);
       markers.push(marker);
+      setResetMarkers(markers);
 
       //contents 까지 마커 클릭 시 오버레이 생성할 때 선언하면 이미지를 보여주는데 딜레이가 된다.
-      var contents = Overlay(
+      const contents = Overlay(
         data,
         (id) => {
           SetDetailID(id);
@@ -82,17 +86,14 @@ const ShowMarker = () => {
           SetOpenDetailModal();
         }
       );
+      if (showOverlay != null) showOverlay.setMap(null);
 
       // 마커를 클릭했을 때 커스텀 오버레이를 선언&표시합니다
       kakao.maps.event.addListener(marker, "click", function () {
         if (showOverlay !== null) showOverlay.setMap(null);
 
-        showOverlay = new kakao.maps.CustomOverlay({
-          clickable: true, //true 로 설정하면 컨텐츠 영역을 클릭했을 경우 지도 이벤트를 막아준다.
-          content: contents,
-          position: marker.getPosition(),
-        });
-
+        showOverlay.setContent(contents);
+        showOverlay.setPosition(coords);
         showOverlay.setMap(_map);
 
         //닫기 버튼 클릭 시 오버레이 닫기
@@ -109,8 +110,6 @@ const ShowMarker = () => {
         };
       });
     });
-
-    setResetMarkers(markers);
   }, [mapData, openBookmark]);
 };
 
