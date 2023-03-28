@@ -1,4 +1,4 @@
-import "../../../../style/map.scss";
+import "../../../style/map.scss";
 
 const Overlay = (data, SetDetailID, SetOpenDetailModal) => {
   var content = document.createElement("div");

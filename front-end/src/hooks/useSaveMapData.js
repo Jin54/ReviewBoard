@@ -1,10 +1,10 @@
 import { useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { MapDataAPI } from "../../../../api/MapDataAPI";
-import { setMapData } from "../../../../modules/saveData";
+import { MapDataAPI } from "../api/MapDataAPI";
+import { setMapData } from "../modules/saveData";
 
-const SaveMapData = (props) => {
+function useSaveMapData(xy, size) {
   const _map = useSelector((state) => state.setMap._map);
   const showURL = useSelector((state) => state.urlChange.name);
 
@@ -37,18 +37,10 @@ const SaveMapData = (props) => {
     }
 
     //상위 100개 데이터 불러오기
-    MapDataAPI(
-      showURL,
-      1,
-      100,
-      props.xy[1],
-      props.xy[0],
-      radiusMath,
-      (data) => {
-        SetMapData(data);
-      }
-    );
-  }, [props.xy, props.size, showURL]);
-};
+    MapDataAPI(showURL, 1, 100, xy[1], xy[0], radiusMath, (data) => {
+      SetMapData(data);
+    });
+  }, [xy, size, showURL]);
+}
 
-export default SaveMapData;
+export default useSaveMapData;

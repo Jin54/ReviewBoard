@@ -3,20 +3,21 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 
 import MapOrList from "./body/MapOrList";
-import CreateMap from "./body/CreateMap";
 import Map from "./body/Map";
 import List from "./body/list/List";
 import DetailModal from "./body/modal/DetailModal";
+import useCreateMap from "../hooks/useCreateMap";
 
 const Body = () => {
   const openListModal = useSelector((state) => state.openBool.listModal);
   const openDetailModal = useSelector((state) => state.openBool.detailModal);
 
+  useCreateMap();
+
   return (
     <>
       <MapOrList />
       <BodyWrap>
-        <CreateMap />
         <Map />
         {openListModal && (
           <ListWrap>

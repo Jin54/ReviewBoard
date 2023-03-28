@@ -1,35 +1,41 @@
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useMemo, useRef } from "react";
 import styled from "styled-components";
 
 const ReviewMoreBtn = (text, id) => {
-    const [isShowMore, setIsShowMore] = useState(false)
-    console.log(text)
+  const [isShowMore, setIsShowMore] = useState(false);
+  console.log(text);
 
-    const textLimit = useRef(Number(10))
+  const textLimit = useRef(Number(10));
 
-    const commenter = useMemo(() => {
-      const shortReview =text.slice(0, textLimit.current)
-  
-      if (text.length > textLimit.current) { 
-        if (isShowMore) { return text; } 
-        return shortReview;	
+  const commenter = useMemo(() => {
+    const shortReview = text.slice(0, textLimit.current);
+
+    if (text.length > textLimit.current) {
+      if (isShowMore) {
+        return text;
       }
-      return text; 
-    }, [isShowMore]);
-
-    if (text == null) return text;
-    <BottomWrap>
-    <Bottom>{commenter}</Bottom>
-    <More onClick={() => setIsShowMore(!isShowMore)}>{text != null && (text.length > textLimit.current) && (isShowMore ? ' 닫기' : '...더보기')}</More>
-    </BottomWrap>
+      return shortReview;
+    }
     return text;
-}
+  }, [isShowMore]);
 
-export default ReviewMoreBtn
+  if (text == null) return text;
+  <BottomWrap>
+    <Bottom>{commenter}</Bottom>
+    <More onClick={() => setIsShowMore(!isShowMore)}>
+      {text != null &&
+        text.length > textLimit.current &&
+        (isShowMore ? " 닫기" : "...더보기")}
+    </More>
+  </BottomWrap>;
+  return text;
+};
+
+export default ReviewMoreBtn;
 
 const BottomWrap = styled.div`
   width: 100%;
-`
+`;
 const Bottom = styled.span`
   font-weight: 400;
   font-size: 14px;
@@ -44,7 +50,6 @@ const Bottom = styled.span`
     margin: 0;
     font-size: 11px;
   }
-
 `;
 
 const More = styled.span`
@@ -55,4 +60,4 @@ const More = styled.span`
   @media screen and (max-width: 1000px) {
     font-size: 11px;
   }
-`
+`;

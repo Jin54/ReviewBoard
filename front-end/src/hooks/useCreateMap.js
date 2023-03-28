@@ -1,12 +1,12 @@
-//=========맵 생성=========================
+//맵 생성
 import { useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 
-import { saveMap } from "../../modules/setMap";
+import { saveMap } from "../modules/setMap";
 
 const { kakao } = window;
 
-const CreateMap = () => {
+function useCreateMap() {
   //맵 저장
   const dispatch = useDispatch();
   const SaveMap = useCallback((map) => dispatch(saveMap(map)), [dispatch]);
@@ -27,6 +27,6 @@ const CreateMap = () => {
 
     SaveMap(map);
   }, []);
-};
+}
 
-export default CreateMap;
+export default useCreateMap;

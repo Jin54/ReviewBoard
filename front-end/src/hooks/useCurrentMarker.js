@@ -2,11 +2,11 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import CurrentMarkerImg from "../../../../img/currentMarker.png";
+import CurrentMarkerImg from "./../img/currentMarker.png";
 
 const { kakao } = window;
 
-const CurrentMarker = (props) => {
+function useCurrentMarker(setXY, setCurrentBtnOpen) {
   const _map = useSelector((state) => state.setMap._map);
   const [currentMarker, setCurrentMarker] = useState(); //현재 위치
 
@@ -18,14 +18,15 @@ const CurrentMarker = (props) => {
     if (currentMarker != null) currentMarker.setMap(null);
 
     //현재 위치가 설정되어 있지 않을 때 실행
+
     if (navigator.geolocation) {
       // GeoLocation을 이용해서 접속 위치를 얻어옵니다
       navigator.geolocation.getCurrentPosition(function (position) {
         var lat = position.coords.latitude, // 위도
           lon = position.coords.longitude; // 경도
 
-        props.setXY([lon, lat]);
-        props.setCurrentBtnOpen(true);
+        setXY([lon, lat]);
+        setCurrentBtnOpen(true);
 
         var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 
@@ -59,6 +60,6 @@ const CurrentMarker = (props) => {
   }, [_map]);
 
   return;
-};
+}
 
-export default CurrentMarker;
+export default useCurrentMarker;

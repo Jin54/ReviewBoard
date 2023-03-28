@@ -1,16 +1,16 @@
 import { useEffect, useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import Marker from "../../../../img/marker.png";
-import CircleMarker from "../../../../img/circle.png";
-import { setDetailID } from "../../../../modules/saveData";
-import { setOpenDetailModal } from "../../../../modules/openBool";
+import Marker from "../img/marker.png";
+import CircleMarker from "../img/circle.png";
+import { setDetailID } from "../modules/saveData";
+import { setOpenDetailModal } from "../modules/openBool";
 
-import Overlay from "./Overlay";
+import Overlay from "../components/body/map/Overlay";
 
 const { kakao } = window;
 
-const ShowMarker = () => {
+function useShowMarker() {
   const _map = useSelector((state) => state.setMap._map);
   const openBookmark = useSelector((state) => state.openBool.bookmark);
   const bookmarkID = useSelector((state) => state.bookmarkID);
@@ -32,7 +32,6 @@ const ShowMarker = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("렌더링");
     if (_map === null || mapData == null) return;
 
     var imageSize = null;
@@ -105,6 +104,6 @@ const ShowMarker = () => {
       });
     });
   }, [mapData, openBookmark]);
-};
+}
 
-export default ShowMarker;
+export default useShowMarker;
