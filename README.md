@@ -115,3 +115,7 @@ https://allreview.shop:9000/swagger-ui/index.html
 
 
 <img width="80%" src="https://user-images.githubusercontent.com/73871543/222392417-c206eb71-9138-4fd2-89c4-261997fade00.png"/>
+
+## 개선해야 하는 점
+- 카테고리별 검색 기능
+- 리뷰 : 시간, 추천, 별점 순 등으로 리스트를 볼 수 있도록 추가할 것
