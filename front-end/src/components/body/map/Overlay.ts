@@ -1,0 +1,65 @@
+import "../../../style/map.scss";
+
+const Overlay = (
+  data: DataType,
+  SetDetailID: Function,
+  SetOpenDetailModal: Function
+) => {
+  var content = document.createElement("div");
+  content.className = "wrap";
+
+  var contentHeader = document.createElement("div");
+  contentHeader.className = "header";
+  content.appendChild(contentHeader);
+
+  var HeaderTitle = document.createElement("p");
+  HeaderTitle.innerHTML = data.name;
+  contentHeader.appendChild(HeaderTitle);
+
+  var HeaderCloseBtn = document.createElement("div");
+  HeaderCloseBtn.className = "closeimgWrap";
+  HeaderCloseBtn.innerHTML =
+    '<img src="https://i.postimg.cc/ZYjNRKj6/close-white.png"></img>';
+  contentHeader.appendChild(HeaderCloseBtn);
+
+  var infowrap = document.createElement("div");
+  infowrap.className = "infowrap";
+  infowrap.innerHTML =
+    '<div class="imgwrap">' +
+    `      <img
+        src="` +
+    data.thumbnail +
+    `"
+        onError="this.src='https://i.postimg.cc/m2TV33ps/noImage.jpg'"
+      />` +
+    "</div>" +
+    '<div class="info">' +
+    '<p class="address">' +
+    data.numberAddress +
+    "</p>" +
+    '<p class="scope">별점 ' +
+    data.review_rating +
+    "점</p>" +
+    '<p class="review"> 리뷰' +
+    data.review_number +
+    "개</p>" +
+    "</div>";
+  infowrap.onclick = () => {
+    SetDetailID(data.id);
+    SetOpenDetailModal();
+  };
+  content.appendChild(infowrap);
+
+  return content;
+};
+
+export default Overlay;
+
+interface DataType {
+  id: number;
+  name: string;
+  thumbnail: string;
+  numberAddress: string;
+  review_rating: number;
+  review_number: number;
+}

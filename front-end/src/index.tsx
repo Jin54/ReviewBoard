@@ -21,3 +21,7 @@ root.render(
 );
 
 reportWebVitals();
+
+// ts로 변경 시, import App from "./App"; 에러 해결
+// npm install @types/classnames
+// https://24hours-beginner.tistory.com/203

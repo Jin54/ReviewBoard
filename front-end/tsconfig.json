@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "jsx": "react",
-    "lib": ["es6", "dom"],
+    "jsx": "react-jsx",
+    "lib": ["es6", "dom", "es2017"],
     "rootDir": "src",
     "module": "commonjs",
     "esModuleInterop": true,
@@ -11,8 +11,10 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "typeRoots": ["node_modules/@types", "src/types"],
+    "resolveJsonModule": true
   },
-  "include": ["./src"],
+  "include": ["./src", "tsconfig.json"],
   "exclude": ["node_modules", "build"]
 }

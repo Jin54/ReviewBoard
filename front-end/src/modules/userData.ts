@@ -33,7 +33,7 @@ type SetUserAction =
 
 //이 리덕스 모듈에서 관리 할 상태의 타입 선언 (초기 값)
 type UserState = {
-  jwt: null | string;
+  jwt: string | null;
   name: null | string;
   email: null | string;
 };
