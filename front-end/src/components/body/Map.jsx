@@ -5,11 +5,11 @@ import styled from "styled-components";
 import MapBtns from "./map/mapButtons/MapBtns";
 import BigLocationModal from "./map/LocationModal/BigLocationModal";
 
-//hooks
-import useCurrentMarker from "./../../hooks/useCurrentMarker";
-import useMapEvent from "../../hooks/useMapEvent";
-import useSaveMapData from "../../hooks/useSaveMapData";
-import useShowMarker from "../../hooks/useShowMarker";
+//utils
+import useCurrentMarker from "./../../utils/useCurrentMarker";
+import useMapEvent from "../../utils/useMapEvent";
+import useSaveMapData from "../../utils/useSaveMapData";
+import useShowMarker from "../../utils/useShowMarker";
 
 const Map = () => {
   const [modalOepn, setModalOpen] = useState(false);

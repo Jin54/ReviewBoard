@@ -6,7 +6,7 @@ import MapOrList from "./body/MapOrList";
 import Map from "./body/Map";
 import List from "./body/list/List";
 import DetailModal from "./body/modal/DetailModal";
-import useCreateMap from "../hooks/useCreateMap";
+import useCreateMap from "../utils/useCreateMap";
 
 const Body = () => {
   const openListModal = useSelector((state) => state.openBool.listModal);
