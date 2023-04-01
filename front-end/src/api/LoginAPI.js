@@ -7,7 +7,7 @@ const LoginAPI = async (
   SetUserToken
 ) => {
   const apiurl = process.env.REACT_APP_APIURL;
-  const url = `${apiurl}kakaoLogin`;
+  const url = `${apiurl}/kakaoLogin`;
   const token = { access_token: kakaoToken };
 
   try {

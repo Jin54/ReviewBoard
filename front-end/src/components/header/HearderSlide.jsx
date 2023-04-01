@@ -7,7 +7,7 @@ import { changeURL } from "../../modules/urlChange";
 import { setOpenMobileMenu } from "../../modules/openBool";
 
 import Footer from "./Footer";
-import KakaoLogin from "./login/KakaoLogin";
+import KakaoLogin from "./login/Kakaologin";
 import BookmarkBtn from "./login/BookmarkBtn";
 
 const HeaderSlide = () => {
